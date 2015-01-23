@@ -1,0 +1,7 @@
+[phi-material=bulgy] {
+
+    border: 1px solid #dcdcdc;
+    border-radius: $phi-spacing-radius;
+    @include phi-gradient(#f1f1f1, #f1f1f1, #fcfcfc);
+
+}

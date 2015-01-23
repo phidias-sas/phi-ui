@@ -1,0 +1,15 @@
+[phi-boundary] {
+    margin: auto;
+    padding: 0;
+    max-width: 1024px;
+    overflow: auto;
+}
+
+// SMALL SCREEN
+@media (max-width: $phi-screen-size-small) {
+
+    [phi-boundary] {
+        max-width: none;
+        border: 5px solid red;
+    }
+}
