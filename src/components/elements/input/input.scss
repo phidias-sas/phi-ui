@@ -1,0 +1,80 @@
+[phi-input], phi-input {
+
+    & > label {
+
+        display: block;
+        pointer-events: none;
+        -webkit-font-smoothing: antialased;
+
+        transform-origin: top left;
+        @include phi-transition(transform, 200ms);
+
+        transform: translate3d(0, 0, 0) scale(0.8);
+        @include phi-colors((
+            color: 600
+        ));
+
+    }
+
+    & > input, & > textarea {
+
+        background: transparent;
+        border: 0;
+        margin: 0;
+        line-height: 1em;
+        min-height: 2em;
+        font-size: 1em;
+        min-width: 100%;
+        font-weight: normal;
+        border-bottom: 1px solid #dbdbdb;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    & > hr {
+
+        display: block;
+        height: 2px;
+
+        margin: 0;
+        padding: 0;
+        border: 0;
+
+        @include phi-colors((
+            background-color: 900
+        ));
+
+        @include phi-transition(width, 200ms);
+        width: 0;
+    }
+
+
+    &.phi-input-focused {
+
+        & > input, & > textarea {
+            border-bottom: 0;
+        }
+
+        & > hr {
+            width: 100%;
+        }
+
+        & > label {
+            transform: translate3d(0, 0, 0) scale(0.8) !important;
+        }
+
+    }
+
+
+    &.phi-input-empty {
+
+        & > label {
+            transform: translate3d(0, 23px, 0) scale(1);
+            color: #999;
+        }
+
+    }
+
+}

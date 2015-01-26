@@ -20,24 +20,28 @@
     -ms-user-select: none;
     user-select: none;
 
+
+    @include phi-colors((
+        background-color: 600
+    ));
+
+
     &:hover, &:focus {
-        outline: 0;
+
         @extend [phi-z="2"];
+        outline: 0;
+
+        @include phi-colors((
+            background-color: 700
+        ));
+
     }
 
     &:active {
         @extend [phi-z="0"];
+
+        @include phi-colors((
+            background-color: 700
+        ));
     }
 }
-
-@include phi-colors('[phi-button]', (
-    background-color: 600
-));
-
-@include phi-colors('[phi-button]:active', (
-    background-color: 700
-));
-
-@include phi-colors('[phi-button]:focus', (
-    background-color: 700
-));

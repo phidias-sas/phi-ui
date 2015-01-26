@@ -1,3 +1,331 @@
+/* http://css-tricks.com/international-box-sizing-awareness-day/ */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0; }
+
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block; }
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio, canvas, progress, video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */ }
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+[hidden], template {
+  display: none; }
+
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background-color: transparent; }
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+a:active, a:hover {
+  outline: 0; }
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+b, strong {
+  font-weight: bold; }
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+  font-style: italic; }
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+img {
+  border: 0; }
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+figure {
+  margin: 1em 40px; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto; }
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+code, kbd, pre, samp {
+  font-family: monospace, monospace;
+  font-size: 1em; }
+
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button, input, optgroup, select, textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */ }
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+  overflow: visible; }
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button, select {
+  text-transform: none; }
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled], html input[disabled] {
+  cursor: default; }
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+  line-height: normal; }
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"], input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box; }
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  overflow: auto; }
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+optgroup {
+  font-weight: bold; }
+
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+td, th {
+  padding: 0; }
+
 /* cyrillic-ext */
 @font-face {
   font-family: 'Roboto';
@@ -446,19 +774,21 @@
   src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(http://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC44P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
   unicode-range: U0 0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
 
-*, *:before, *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
 /*
 USAGE:
 
-@include phi-colors('SELECTOR', (
-    color: 600,
-    background: 50,
-    border-color: 900
-));
+.my-selector {
+
+    border: 3px solid;
+
+    @include phi-colors((
+        color: 600,
+        background: 50,
+        border-color: 900
+    ));
+
+}
+
 
 */
 @font-face {
@@ -467,10 +797,6 @@ USAGE:
   src: url('fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal; }
-
-html, body {
-  margin: 0;
-  padding: 0; }
 
 [phi-material=bulgy] {
   border: 1px solid #dcdcdc;
@@ -485,6 +811,213 @@ html, body {
 [phi-material=paper] {
   border-radius: 3px;
   background: #fff; }
+
+[phi-input] > label, phi-input > label {
+  display: block;
+  pointer-events: none;
+  -webkit-font-smoothing: antialased;
+  transform-origin: top left;
+  -webkit-transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transform: translate3d(0, 0, 0) scale(0.8); }
+  [phi-input] > label, phi-input > label {
+    color: #5091e0; }
+  [phi-color-theme=amber] [phi-input] > label, [phi-color-theme=amber] phi-input > label {
+    color: #ffb300; }
+  [phi-input] > label[phi-color-theme=amber], phi-input > label[phi-color-theme=amber] {
+    color: #ffb300 !important; }
+  [phi-color-theme=blue-grey] [phi-input] > label, [phi-color-theme=blue-grey] phi-input > label {
+    color: #546e7a; }
+  [phi-input] > label[phi-color-theme=blue-grey], phi-input > label[phi-color-theme=blue-grey] {
+    color: #546e7a !important; }
+  [phi-color-theme=blue] [phi-input] > label, [phi-color-theme=blue] phi-input > label {
+    color: #4e6cef; }
+  [phi-input] > label[phi-color-theme=blue], phi-input > label[phi-color-theme=blue] {
+    color: #4e6cef !important; }
+  [phi-color-theme=brown] [phi-input] > label, [phi-color-theme=brown] phi-input > label {
+    color: #6d4c41; }
+  [phi-input] > label[phi-color-theme=brown], phi-input > label[phi-color-theme=brown] {
+    color: #6d4c41 !important; }
+  [phi-color-theme=cyan] [phi-input] > label, [phi-color-theme=cyan] phi-input > label {
+    color: #00acc1; }
+  [phi-input] > label[phi-color-theme=cyan], phi-input > label[phi-color-theme=cyan] {
+    color: #00acc1 !important; }
+  [phi-color-theme=deep-orange] [phi-input] > label, [phi-color-theme=deep-orange] phi-input > label {
+    color: #f4511e; }
+  [phi-input] > label[phi-color-theme=deep-orange], phi-input > label[phi-color-theme=deep-orange] {
+    color: #f4511e !important; }
+  [phi-color-theme=deep-purple] [phi-input] > label, [phi-color-theme=deep-purple] phi-input > label {
+    color: #5e35b1; }
+  [phi-input] > label[phi-color-theme=deep-purple], phi-input > label[phi-color-theme=deep-purple] {
+    color: #5e35b1 !important; }
+  [phi-color-theme=default] [phi-input] > label, [phi-color-theme=default] phi-input > label {
+    color: #5091e0; }
+  [phi-input] > label[phi-color-theme=default], phi-input > label[phi-color-theme=default] {
+    color: #5091e0 !important; }
+  [phi-color-theme=green] [phi-input] > label, [phi-color-theme=green] phi-input > label {
+    color: #0a8f08; }
+  [phi-input] > label[phi-color-theme=green], phi-input > label[phi-color-theme=green] {
+    color: #0a8f08 !important; }
+  [phi-color-theme=grey] [phi-input] > label, [phi-color-theme=grey] phi-input > label {
+    color: #757575; }
+  [phi-input] > label[phi-color-theme=grey], phi-input > label[phi-color-theme=grey] {
+    color: #757575 !important; }
+  [phi-color-theme=indigo] [phi-input] > label, [phi-color-theme=indigo] phi-input > label {
+    color: #3949ab; }
+  [phi-input] > label[phi-color-theme=indigo], phi-input > label[phi-color-theme=indigo] {
+    color: #3949ab !important; }
+  [phi-color-theme=light-blue] [phi-input] > label, [phi-color-theme=light-blue] phi-input > label {
+    color: #039be5; }
+  [phi-input] > label[phi-color-theme=light-blue], phi-input > label[phi-color-theme=light-blue] {
+    color: #039be5 !important; }
+  [phi-color-theme=light-green] [phi-input] > label, [phi-color-theme=light-green] phi-input > label {
+    color: #7cb342; }
+  [phi-input] > label[phi-color-theme=light-green], phi-input > label[phi-color-theme=light-green] {
+    color: #7cb342 !important; }
+  [phi-color-theme=lime] [phi-input] > label, [phi-color-theme=lime] phi-input > label {
+    color: #c0ca33; }
+  [phi-input] > label[phi-color-theme=lime], phi-input > label[phi-color-theme=lime] {
+    color: #c0ca33 !important; }
+  [phi-color-theme=orange] [phi-input] > label, [phi-color-theme=orange] phi-input > label {
+    color: #fb8c00; }
+  [phi-input] > label[phi-color-theme=orange], phi-input > label[phi-color-theme=orange] {
+    color: #fb8c00 !important; }
+  [phi-color-theme=pink] [phi-input] > label, [phi-color-theme=pink] phi-input > label {
+    color: #d81b60; }
+  [phi-input] > label[phi-color-theme=pink], phi-input > label[phi-color-theme=pink] {
+    color: #d81b60 !important; }
+  [phi-color-theme=purple] [phi-input] > label, [phi-color-theme=purple] phi-input > label {
+    color: #8e24aa; }
+  [phi-input] > label[phi-color-theme=purple], phi-input > label[phi-color-theme=purple] {
+    color: #8e24aa !important; }
+  [phi-color-theme=red] [phi-input] > label, [phi-color-theme=red] phi-input > label {
+    color: #dd191d; }
+  [phi-input] > label[phi-color-theme=red], phi-input > label[phi-color-theme=red] {
+    color: #dd191d !important; }
+  [phi-color-theme=teal] [phi-input] > label, [phi-color-theme=teal] phi-input > label {
+    color: #00897b; }
+  [phi-input] > label[phi-color-theme=teal], phi-input > label[phi-color-theme=teal] {
+    color: #00897b !important; }
+  [phi-color-theme=yellow] [phi-input] > label, [phi-color-theme=yellow] phi-input > label {
+    color: #fdd835; }
+  [phi-input] > label[phi-color-theme=yellow], phi-input > label[phi-color-theme=yellow] {
+    color: #fdd835 !important; }
+[phi-input] > input, [phi-input] > textarea, phi-input > input, phi-input > textarea {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  line-height: 1em;
+  min-height: 2em;
+  font-size: 1em;
+  min-width: 100%;
+  font-weight: normal;
+  border-bottom: 1px solid #dbdbdb; }
+  [phi-input] > input:focus, [phi-input] > textarea:focus, phi-input > input:focus, phi-input > textarea:focus {
+    outline: 0; }
+[phi-input] > hr, phi-input > hr {
+  display: block;
+  height: 2px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  -webkit-transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  width: 0; }
+  [phi-input] > hr, phi-input > hr {
+    background-color: #2062b3; }
+  [phi-color-theme=amber] [phi-input] > hr, [phi-color-theme=amber] phi-input > hr {
+    background-color: #ff6f00; }
+  [phi-input] > hr[phi-color-theme=amber], phi-input > hr[phi-color-theme=amber] {
+    background-color: #ff6f00 !important; }
+  [phi-color-theme=blue-grey] [phi-input] > hr, [phi-color-theme=blue-grey] phi-input > hr {
+     }
+  [phi-input] > hr[phi-color-theme=blue-grey], phi-input > hr[phi-color-theme=blue-grey] {
+    background-color: !important; }
+  [phi-color-theme=blue] [phi-input] > hr, [phi-color-theme=blue] phi-input > hr {
+    background-color: #2a36b1; }
+  [phi-input] > hr[phi-color-theme=blue], phi-input > hr[phi-color-theme=blue] {
+    background-color: #2a36b1 !important; }
+  [phi-color-theme=brown] [phi-input] > hr, [phi-color-theme=brown] phi-input > hr {
+    background-color: #3e2723; }
+  [phi-input] > hr[phi-color-theme=brown], phi-input > hr[phi-color-theme=brown] {
+    background-color: #3e2723 !important; }
+  [phi-color-theme=cyan] [phi-input] > hr, [phi-color-theme=cyan] phi-input > hr {
+    background-color: #006064; }
+  [phi-input] > hr[phi-color-theme=cyan], phi-input > hr[phi-color-theme=cyan] {
+    background-color: #006064 !important; }
+  [phi-color-theme=deep-orange] [phi-input] > hr, [phi-color-theme=deep-orange] phi-input > hr {
+    background-color: #bf360c; }
+  [phi-input] > hr[phi-color-theme=deep-orange], phi-input > hr[phi-color-theme=deep-orange] {
+    background-color: #bf360c !important; }
+  [phi-color-theme=deep-purple] [phi-input] > hr, [phi-color-theme=deep-purple] phi-input > hr {
+    background-color: #311b92; }
+  [phi-input] > hr[phi-color-theme=deep-purple], phi-input > hr[phi-color-theme=deep-purple] {
+    background-color: #311b92 !important; }
+  [phi-color-theme=default] [phi-input] > hr, [phi-color-theme=default] phi-input > hr {
+    background-color: #2062b3; }
+  [phi-input] > hr[phi-color-theme=default], phi-input > hr[phi-color-theme=default] {
+    background-color: #2062b3 !important; }
+  [phi-color-theme=green] [phi-input] > hr, [phi-color-theme=green] phi-input > hr {
+    background-color: #0d5302; }
+  [phi-input] > hr[phi-color-theme=green], phi-input > hr[phi-color-theme=green] {
+    background-color: #0d5302 !important; }
+  [phi-color-theme=grey] [phi-input] > hr, [phi-color-theme=grey] phi-input > hr {
+    background-color: #212121; }
+  [phi-input] > hr[phi-color-theme=grey], phi-input > hr[phi-color-theme=grey] {
+    background-color: #212121 !important; }
+  [phi-color-theme=indigo] [phi-input] > hr, [phi-color-theme=indigo] phi-input > hr {
+    background-color: #1a237e; }
+  [phi-input] > hr[phi-color-theme=indigo], phi-input > hr[phi-color-theme=indigo] {
+    background-color: #1a237e !important; }
+  [phi-color-theme=light-blue] [phi-input] > hr, [phi-color-theme=light-blue] phi-input > hr {
+    background-color: #01579b; }
+  [phi-input] > hr[phi-color-theme=light-blue], phi-input > hr[phi-color-theme=light-blue] {
+    background-color: #01579b !important; }
+  [phi-color-theme=light-green] [phi-input] > hr, [phi-color-theme=light-green] phi-input > hr {
+    background-color: #33691e; }
+  [phi-input] > hr[phi-color-theme=light-green], phi-input > hr[phi-color-theme=light-green] {
+    background-color: #33691e !important; }
+  [phi-color-theme=lime] [phi-input] > hr, [phi-color-theme=lime] phi-input > hr {
+    background-color: #827717; }
+  [phi-input] > hr[phi-color-theme=lime], phi-input > hr[phi-color-theme=lime] {
+    background-color: #827717 !important; }
+  [phi-color-theme=orange] [phi-input] > hr, [phi-color-theme=orange] phi-input > hr {
+    background-color: #e65100; }
+  [phi-input] > hr[phi-color-theme=orange], phi-input > hr[phi-color-theme=orange] {
+    background-color: #e65100 !important; }
+  [phi-color-theme=pink] [phi-input] > hr, [phi-color-theme=pink] phi-input > hr {
+    background-color: #880e4f; }
+  [phi-input] > hr[phi-color-theme=pink], phi-input > hr[phi-color-theme=pink] {
+    background-color: #880e4f !important; }
+  [phi-color-theme=purple] [phi-input] > hr, [phi-color-theme=purple] phi-input > hr {
+    background-color: #4a148c; }
+  [phi-input] > hr[phi-color-theme=purple], phi-input > hr[phi-color-theme=purple] {
+    background-color: #4a148c !important; }
+  [phi-color-theme=red] [phi-input] > hr, [phi-color-theme=red] phi-input > hr {
+    background-color: #b0120a; }
+  [phi-input] > hr[phi-color-theme=red], phi-input > hr[phi-color-theme=red] {
+    background-color: #b0120a !important; }
+  [phi-color-theme=teal] [phi-input] > hr, [phi-color-theme=teal] phi-input > hr {
+    background-color: #004d40; }
+  [phi-input] > hr[phi-color-theme=teal], phi-input > hr[phi-color-theme=teal] {
+    background-color: #004d40 !important; }
+  [phi-color-theme=yellow] [phi-input] > hr, [phi-color-theme=yellow] phi-input > hr {
+    background-color: #f57f17; }
+  [phi-input] > hr[phi-color-theme=yellow], phi-input > hr[phi-color-theme=yellow] {
+    background-color: #f57f17 !important; }
+[phi-input].phi-input-focused > input, [phi-input].phi-input-focused > textarea, phi-input.phi-input-focused > input, phi-input.phi-input-focused > textarea {
+  border-bottom: 0; }
+[phi-input].phi-input-focused > hr, phi-input.phi-input-focused > hr {
+  width: 100%; }
+[phi-input].phi-input-focused > label, phi-input.phi-input-focused > label {
+  transform: translate3d(0, 0, 0) scale(0.8) !important; }
+[phi-input].phi-input-empty > label, phi-input.phi-input-empty > label {
+  transform: translate3d(0, 23px, 0) scale(1);
+  color: #999; }
 
 [phi-boundary] {
   margin: auto;
@@ -512,377 +1045,254 @@ html, body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+  [phi-button] {
+    background-color: #5091e0; }
+  [phi-color-theme=amber] [phi-button] {
+    background-color: #ffb300; }
+  [phi-button][phi-color-theme=amber] {
+    background-color: #ffb300 !important; }
+  [phi-color-theme=blue-grey] [phi-button] {
+    background-color: #546e7a; }
+  [phi-button][phi-color-theme=blue-grey] {
+    background-color: #546e7a !important; }
+  [phi-color-theme=blue] [phi-button] {
+    background-color: #4e6cef; }
+  [phi-button][phi-color-theme=blue] {
+    background-color: #4e6cef !important; }
+  [phi-color-theme=brown] [phi-button] {
+    background-color: #6d4c41; }
+  [phi-button][phi-color-theme=brown] {
+    background-color: #6d4c41 !important; }
+  [phi-color-theme=cyan] [phi-button] {
+    background-color: #00acc1; }
+  [phi-button][phi-color-theme=cyan] {
+    background-color: #00acc1 !important; }
+  [phi-color-theme=deep-orange] [phi-button] {
+    background-color: #f4511e; }
+  [phi-button][phi-color-theme=deep-orange] {
+    background-color: #f4511e !important; }
+  [phi-color-theme=deep-purple] [phi-button] {
+    background-color: #5e35b1; }
+  [phi-button][phi-color-theme=deep-purple] {
+    background-color: #5e35b1 !important; }
+  [phi-color-theme=default] [phi-button] {
+    background-color: #5091e0; }
+  [phi-button][phi-color-theme=default] {
+    background-color: #5091e0 !important; }
+  [phi-color-theme=green] [phi-button] {
+    background-color: #0a8f08; }
+  [phi-button][phi-color-theme=green] {
+    background-color: #0a8f08 !important; }
+  [phi-color-theme=grey] [phi-button] {
+    background-color: #757575; }
+  [phi-button][phi-color-theme=grey] {
+    background-color: #757575 !important; }
+  [phi-color-theme=indigo] [phi-button] {
+    background-color: #3949ab; }
+  [phi-button][phi-color-theme=indigo] {
+    background-color: #3949ab !important; }
+  [phi-color-theme=light-blue] [phi-button] {
+    background-color: #039be5; }
+  [phi-button][phi-color-theme=light-blue] {
+    background-color: #039be5 !important; }
+  [phi-color-theme=light-green] [phi-button] {
+    background-color: #7cb342; }
+  [phi-button][phi-color-theme=light-green] {
+    background-color: #7cb342 !important; }
+  [phi-color-theme=lime] [phi-button] {
+    background-color: #c0ca33; }
+  [phi-button][phi-color-theme=lime] {
+    background-color: #c0ca33 !important; }
+  [phi-color-theme=orange] [phi-button] {
+    background-color: #fb8c00; }
+  [phi-button][phi-color-theme=orange] {
+    background-color: #fb8c00 !important; }
+  [phi-color-theme=pink] [phi-button] {
+    background-color: #d81b60; }
+  [phi-button][phi-color-theme=pink] {
+    background-color: #d81b60 !important; }
+  [phi-color-theme=purple] [phi-button] {
+    background-color: #8e24aa; }
+  [phi-button][phi-color-theme=purple] {
+    background-color: #8e24aa !important; }
+  [phi-color-theme=red] [phi-button] {
+    background-color: #dd191d; }
+  [phi-button][phi-color-theme=red] {
+    background-color: #dd191d !important; }
+  [phi-color-theme=teal] [phi-button] {
+    background-color: #00897b; }
+  [phi-button][phi-color-theme=teal] {
+    background-color: #00897b !important; }
+  [phi-color-theme=yellow] [phi-button] {
+    background-color: #fdd835; }
+  [phi-button][phi-color-theme=yellow] {
+    background-color: #fdd835 !important; }
   [phi-button]:hover, [phi-button]:focus {
     outline: 0; }
-
-[phi-button] {
-  background-color: #5091e0; }
-
-[phi-color-theme=amber] [phi-button] {
-  background-color: #ffb300; }
-
-[phi-button][phi-color-theme=amber] {
-  background-color: #ffb300 !important; }
-
-[phi-color-theme=blue-grey] [phi-button] {
-  background-color: #546e7a; }
-
-[phi-button][phi-color-theme=blue-grey] {
-  background-color: #546e7a !important; }
-
-[phi-color-theme=blue] [phi-button] {
-  background-color: #4e6cef; }
-
-[phi-button][phi-color-theme=blue] {
-  background-color: #4e6cef !important; }
-
-[phi-color-theme=brown] [phi-button] {
-  background-color: #6d4c41; }
-
-[phi-button][phi-color-theme=brown] {
-  background-color: #6d4c41 !important; }
-
-[phi-color-theme=cyan] [phi-button] {
-  background-color: #00acc1; }
-
-[phi-button][phi-color-theme=cyan] {
-  background-color: #00acc1 !important; }
-
-[phi-color-theme=deep-orange] [phi-button] {
-  background-color: #f4511e; }
-
-[phi-button][phi-color-theme=deep-orange] {
-  background-color: #f4511e !important; }
-
-[phi-color-theme=deep-purple] [phi-button] {
-  background-color: #5e35b1; }
-
-[phi-button][phi-color-theme=deep-purple] {
-  background-color: #5e35b1 !important; }
-
-[phi-color-theme=default] [phi-button] {
-  background-color: #5091e0; }
-
-[phi-button][phi-color-theme=default] {
-  background-color: #5091e0 !important; }
-
-[phi-color-theme=green] [phi-button] {
-  background-color: #0a8f08; }
-
-[phi-button][phi-color-theme=green] {
-  background-color: #0a8f08 !important; }
-
-[phi-color-theme=grey] [phi-button] {
-  background-color: #757575; }
-
-[phi-button][phi-color-theme=grey] {
-  background-color: #757575 !important; }
-
-[phi-color-theme=indigo] [phi-button] {
-  background-color: #3949ab; }
-
-[phi-button][phi-color-theme=indigo] {
-  background-color: #3949ab !important; }
-
-[phi-color-theme=light-blue] [phi-button] {
-  background-color: #039be5; }
-
-[phi-button][phi-color-theme=light-blue] {
-  background-color: #039be5 !important; }
-
-[phi-color-theme=light-green] [phi-button] {
-  background-color: #7cb342; }
-
-[phi-button][phi-color-theme=light-green] {
-  background-color: #7cb342 !important; }
-
-[phi-color-theme=lime] [phi-button] {
-  background-color: #c0ca33; }
-
-[phi-button][phi-color-theme=lime] {
-  background-color: #c0ca33 !important; }
-
-[phi-color-theme=orange] [phi-button] {
-  background-color: #fb8c00; }
-
-[phi-button][phi-color-theme=orange] {
-  background-color: #fb8c00 !important; }
-
-[phi-color-theme=pink] [phi-button] {
-  background-color: #d81b60; }
-
-[phi-button][phi-color-theme=pink] {
-  background-color: #d81b60 !important; }
-
-[phi-color-theme=purple] [phi-button] {
-  background-color: #8e24aa; }
-
-[phi-button][phi-color-theme=purple] {
-  background-color: #8e24aa !important; }
-
-[phi-color-theme=red] [phi-button] {
-  background-color: #dd191d; }
-
-[phi-button][phi-color-theme=red] {
-  background-color: #dd191d !important; }
-
-[phi-color-theme=teal] [phi-button] {
-  background-color: #00897b; }
-
-[phi-button][phi-color-theme=teal] {
-  background-color: #00897b !important; }
-
-[phi-color-theme=yellow] [phi-button] {
-  background-color: #fdd835; }
-
-[phi-button][phi-color-theme=yellow] {
-  background-color: #fdd835 !important; }
-
-[phi-button]:active {
-  background-color: #3a83dc; }
-
-[phi-color-theme=amber] [phi-button]:active {
-  background-color: #ffa000; }
-
-[phi-button]:active[phi-color-theme=amber] {
-  background-color: #ffa000 !important; }
-
-[phi-color-theme=blue-grey] [phi-button]:active {
-  background-color: #455a64; }
-
-[phi-button]:active[phi-color-theme=blue-grey] {
-  background-color: #455a64 !important; }
-
-[phi-color-theme=blue] [phi-button]:active {
-  background-color: #455ede; }
-
-[phi-button]:active[phi-color-theme=blue] {
-  background-color: #455ede !important; }
-
-[phi-color-theme=brown] [phi-button]:active {
-  background-color: #5d4037; }
-
-[phi-button]:active[phi-color-theme=brown] {
-  background-color: #5d4037 !important; }
-
-[phi-color-theme=cyan] [phi-button]:active {
-  background-color: #0097a7; }
-
-[phi-button]:active[phi-color-theme=cyan] {
-  background-color: #0097a7 !important; }
-
-[phi-color-theme=deep-orange] [phi-button]:active {
-  background-color: #e64a19; }
-
-[phi-button]:active[phi-color-theme=deep-orange] {
-  background-color: #e64a19 !important; }
-
-[phi-color-theme=deep-purple] [phi-button]:active {
-  background-color: #512da8; }
-
-[phi-button]:active[phi-color-theme=deep-purple] {
-  background-color: #512da8 !important; }
-
-[phi-color-theme=default] [phi-button]:active {
-  background-color: #3a83dc; }
-
-[phi-button]:active[phi-color-theme=default] {
-  background-color: #3a83dc !important; }
-
-[phi-color-theme=green] [phi-button]:active {
-  background-color: #0a7e07; }
-
-[phi-button]:active[phi-color-theme=green] {
-  background-color: #0a7e07 !important; }
-
-[phi-color-theme=grey] [phi-button]:active {
-  background-color: #616161; }
-
-[phi-button]:active[phi-color-theme=grey] {
-  background-color: #616161 !important; }
-
-[phi-color-theme=indigo] [phi-button]:active {
-  background-color: #303f9f; }
-
-[phi-button]:active[phi-color-theme=indigo] {
-  background-color: #303f9f !important; }
-
-[phi-color-theme=light-blue] [phi-button]:active {
-  background-color: #0288d1; }
-
-[phi-button]:active[phi-color-theme=light-blue] {
-  background-color: #0288d1 !important; }
-
-[phi-color-theme=light-green] [phi-button]:active {
-  background-color: #689f38; }
-
-[phi-button]:active[phi-color-theme=light-green] {
-  background-color: #689f38 !important; }
-
-[phi-color-theme=lime] [phi-button]:active {
-  background-color: #afb42b; }
-
-[phi-button]:active[phi-color-theme=lime] {
-  background-color: #afb42b !important; }
-
-[phi-color-theme=orange] [phi-button]:active {
-  background-color: #f57c00; }
-
-[phi-button]:active[phi-color-theme=orange] {
-  background-color: #f57c00 !important; }
-
-[phi-color-theme=pink] [phi-button]:active {
-  background-color: #c2185b; }
-
-[phi-button]:active[phi-color-theme=pink] {
-  background-color: #c2185b !important; }
-
-[phi-color-theme=purple] [phi-button]:active {
-  background-color: #7b1fa2; }
-
-[phi-button]:active[phi-color-theme=purple] {
-  background-color: #7b1fa2 !important; }
-
-[phi-color-theme=red] [phi-button]:active {
-  background-color: #d01716; }
-
-[phi-button]:active[phi-color-theme=red] {
-  background-color: #d01716 !important; }
-
-[phi-color-theme=teal] [phi-button]:active {
-  background-color: #00796b; }
-
-[phi-button]:active[phi-color-theme=teal] {
-  background-color: #00796b !important; }
-
-[phi-color-theme=yellow] [phi-button]:active {
-  background-color: #fbc02d; }
-
-[phi-button]:active[phi-color-theme=yellow] {
-  background-color: #fbc02d !important; }
-
-[phi-button]:focus {
-  background-color: #3a83dc; }
-
-[phi-color-theme=amber] [phi-button]:focus {
-  background-color: #ffa000; }
-
-[phi-button]:focus[phi-color-theme=amber] {
-  background-color: #ffa000 !important; }
-
-[phi-color-theme=blue-grey] [phi-button]:focus {
-  background-color: #455a64; }
-
-[phi-button]:focus[phi-color-theme=blue-grey] {
-  background-color: #455a64 !important; }
-
-[phi-color-theme=blue] [phi-button]:focus {
-  background-color: #455ede; }
-
-[phi-button]:focus[phi-color-theme=blue] {
-  background-color: #455ede !important; }
-
-[phi-color-theme=brown] [phi-button]:focus {
-  background-color: #5d4037; }
-
-[phi-button]:focus[phi-color-theme=brown] {
-  background-color: #5d4037 !important; }
-
-[phi-color-theme=cyan] [phi-button]:focus {
-  background-color: #0097a7; }
-
-[phi-button]:focus[phi-color-theme=cyan] {
-  background-color: #0097a7 !important; }
-
-[phi-color-theme=deep-orange] [phi-button]:focus {
-  background-color: #e64a19; }
-
-[phi-button]:focus[phi-color-theme=deep-orange] {
-  background-color: #e64a19 !important; }
-
-[phi-color-theme=deep-purple] [phi-button]:focus {
-  background-color: #512da8; }
-
-[phi-button]:focus[phi-color-theme=deep-purple] {
-  background-color: #512da8 !important; }
-
-[phi-color-theme=default] [phi-button]:focus {
-  background-color: #3a83dc; }
-
-[phi-button]:focus[phi-color-theme=default] {
-  background-color: #3a83dc !important; }
-
-[phi-color-theme=green] [phi-button]:focus {
-  background-color: #0a7e07; }
-
-[phi-button]:focus[phi-color-theme=green] {
-  background-color: #0a7e07 !important; }
-
-[phi-color-theme=grey] [phi-button]:focus {
-  background-color: #616161; }
-
-[phi-button]:focus[phi-color-theme=grey] {
-  background-color: #616161 !important; }
-
-[phi-color-theme=indigo] [phi-button]:focus {
-  background-color: #303f9f; }
-
-[phi-button]:focus[phi-color-theme=indigo] {
-  background-color: #303f9f !important; }
-
-[phi-color-theme=light-blue] [phi-button]:focus {
-  background-color: #0288d1; }
-
-[phi-button]:focus[phi-color-theme=light-blue] {
-  background-color: #0288d1 !important; }
-
-[phi-color-theme=light-green] [phi-button]:focus {
-  background-color: #689f38; }
-
-[phi-button]:focus[phi-color-theme=light-green] {
-  background-color: #689f38 !important; }
-
-[phi-color-theme=lime] [phi-button]:focus {
-  background-color: #afb42b; }
-
-[phi-button]:focus[phi-color-theme=lime] {
-  background-color: #afb42b !important; }
-
-[phi-color-theme=orange] [phi-button]:focus {
-  background-color: #f57c00; }
-
-[phi-button]:focus[phi-color-theme=orange] {
-  background-color: #f57c00 !important; }
-
-[phi-color-theme=pink] [phi-button]:focus {
-  background-color: #c2185b; }
-
-[phi-button]:focus[phi-color-theme=pink] {
-  background-color: #c2185b !important; }
-
-[phi-color-theme=purple] [phi-button]:focus {
-  background-color: #7b1fa2; }
-
-[phi-button]:focus[phi-color-theme=purple] {
-  background-color: #7b1fa2 !important; }
-
-[phi-color-theme=red] [phi-button]:focus {
-  background-color: #d01716; }
-
-[phi-button]:focus[phi-color-theme=red] {
-  background-color: #d01716 !important; }
-
-[phi-color-theme=teal] [phi-button]:focus {
-  background-color: #00796b; }
-
-[phi-button]:focus[phi-color-theme=teal] {
-  background-color: #00796b !important; }
-
-[phi-color-theme=yellow] [phi-button]:focus {
-  background-color: #fbc02d; }
-
-[phi-button]:focus[phi-color-theme=yellow] {
-  background-color: #fbc02d !important; }
+    [phi-button]:hover, [phi-button]:focus {
+      background-color: #3a83dc; }
+    [phi-color-theme=amber] [phi-button]:hover, [phi-color-theme=amber] [phi-button]:focus {
+      background-color: #ffa000; }
+    [phi-button]:hover[phi-color-theme=amber], [phi-button]:focus[phi-color-theme=amber] {
+      background-color: #ffa000 !important; }
+    [phi-color-theme=blue-grey] [phi-button]:hover, [phi-color-theme=blue-grey] [phi-button]:focus {
+      background-color: #455a64; }
+    [phi-button]:hover[phi-color-theme=blue-grey], [phi-button]:focus[phi-color-theme=blue-grey] {
+      background-color: #455a64 !important; }
+    [phi-color-theme=blue] [phi-button]:hover, [phi-color-theme=blue] [phi-button]:focus {
+      background-color: #455ede; }
+    [phi-button]:hover[phi-color-theme=blue], [phi-button]:focus[phi-color-theme=blue] {
+      background-color: #455ede !important; }
+    [phi-color-theme=brown] [phi-button]:hover, [phi-color-theme=brown] [phi-button]:focus {
+      background-color: #5d4037; }
+    [phi-button]:hover[phi-color-theme=brown], [phi-button]:focus[phi-color-theme=brown] {
+      background-color: #5d4037 !important; }
+    [phi-color-theme=cyan] [phi-button]:hover, [phi-color-theme=cyan] [phi-button]:focus {
+      background-color: #0097a7; }
+    [phi-button]:hover[phi-color-theme=cyan], [phi-button]:focus[phi-color-theme=cyan] {
+      background-color: #0097a7 !important; }
+    [phi-color-theme=deep-orange] [phi-button]:hover, [phi-color-theme=deep-orange] [phi-button]:focus {
+      background-color: #e64a19; }
+    [phi-button]:hover[phi-color-theme=deep-orange], [phi-button]:focus[phi-color-theme=deep-orange] {
+      background-color: #e64a19 !important; }
+    [phi-color-theme=deep-purple] [phi-button]:hover, [phi-color-theme=deep-purple] [phi-button]:focus {
+      background-color: #512da8; }
+    [phi-button]:hover[phi-color-theme=deep-purple], [phi-button]:focus[phi-color-theme=deep-purple] {
+      background-color: #512da8 !important; }
+    [phi-color-theme=default] [phi-button]:hover, [phi-color-theme=default] [phi-button]:focus {
+      background-color: #3a83dc; }
+    [phi-button]:hover[phi-color-theme=default], [phi-button]:focus[phi-color-theme=default] {
+      background-color: #3a83dc !important; }
+    [phi-color-theme=green] [phi-button]:hover, [phi-color-theme=green] [phi-button]:focus {
+      background-color: #0a7e07; }
+    [phi-button]:hover[phi-color-theme=green], [phi-button]:focus[phi-color-theme=green] {
+      background-color: #0a7e07 !important; }
+    [phi-color-theme=grey] [phi-button]:hover, [phi-color-theme=grey] [phi-button]:focus {
+      background-color: #616161; }
+    [phi-button]:hover[phi-color-theme=grey], [phi-button]:focus[phi-color-theme=grey] {
+      background-color: #616161 !important; }
+    [phi-color-theme=indigo] [phi-button]:hover, [phi-color-theme=indigo] [phi-button]:focus {
+      background-color: #303f9f; }
+    [phi-button]:hover[phi-color-theme=indigo], [phi-button]:focus[phi-color-theme=indigo] {
+      background-color: #303f9f !important; }
+    [phi-color-theme=light-blue] [phi-button]:hover, [phi-color-theme=light-blue] [phi-button]:focus {
+      background-color: #0288d1; }
+    [phi-button]:hover[phi-color-theme=light-blue], [phi-button]:focus[phi-color-theme=light-blue] {
+      background-color: #0288d1 !important; }
+    [phi-color-theme=light-green] [phi-button]:hover, [phi-color-theme=light-green] [phi-button]:focus {
+      background-color: #689f38; }
+    [phi-button]:hover[phi-color-theme=light-green], [phi-button]:focus[phi-color-theme=light-green] {
+      background-color: #689f38 !important; }
+    [phi-color-theme=lime] [phi-button]:hover, [phi-color-theme=lime] [phi-button]:focus {
+      background-color: #afb42b; }
+    [phi-button]:hover[phi-color-theme=lime], [phi-button]:focus[phi-color-theme=lime] {
+      background-color: #afb42b !important; }
+    [phi-color-theme=orange] [phi-button]:hover, [phi-color-theme=orange] [phi-button]:focus {
+      background-color: #f57c00; }
+    [phi-button]:hover[phi-color-theme=orange], [phi-button]:focus[phi-color-theme=orange] {
+      background-color: #f57c00 !important; }
+    [phi-color-theme=pink] [phi-button]:hover, [phi-color-theme=pink] [phi-button]:focus {
+      background-color: #c2185b; }
+    [phi-button]:hover[phi-color-theme=pink], [phi-button]:focus[phi-color-theme=pink] {
+      background-color: #c2185b !important; }
+    [phi-color-theme=purple] [phi-button]:hover, [phi-color-theme=purple] [phi-button]:focus {
+      background-color: #7b1fa2; }
+    [phi-button]:hover[phi-color-theme=purple], [phi-button]:focus[phi-color-theme=purple] {
+      background-color: #7b1fa2 !important; }
+    [phi-color-theme=red] [phi-button]:hover, [phi-color-theme=red] [phi-button]:focus {
+      background-color: #d01716; }
+    [phi-button]:hover[phi-color-theme=red], [phi-button]:focus[phi-color-theme=red] {
+      background-color: #d01716 !important; }
+    [phi-color-theme=teal] [phi-button]:hover, [phi-color-theme=teal] [phi-button]:focus {
+      background-color: #00796b; }
+    [phi-button]:hover[phi-color-theme=teal], [phi-button]:focus[phi-color-theme=teal] {
+      background-color: #00796b !important; }
+    [phi-color-theme=yellow] [phi-button]:hover, [phi-color-theme=yellow] [phi-button]:focus {
+      background-color: #fbc02d; }
+    [phi-button]:hover[phi-color-theme=yellow], [phi-button]:focus[phi-color-theme=yellow] {
+      background-color: #fbc02d !important; }
+  [phi-button]:active {
+    background-color: #3a83dc; }
+  [phi-color-theme=amber] [phi-button]:active {
+    background-color: #ffa000; }
+  [phi-button]:active[phi-color-theme=amber] {
+    background-color: #ffa000 !important; }
+  [phi-color-theme=blue-grey] [phi-button]:active {
+    background-color: #455a64; }
+  [phi-button]:active[phi-color-theme=blue-grey] {
+    background-color: #455a64 !important; }
+  [phi-color-theme=blue] [phi-button]:active {
+    background-color: #455ede; }
+  [phi-button]:active[phi-color-theme=blue] {
+    background-color: #455ede !important; }
+  [phi-color-theme=brown] [phi-button]:active {
+    background-color: #5d4037; }
+  [phi-button]:active[phi-color-theme=brown] {
+    background-color: #5d4037 !important; }
+  [phi-color-theme=cyan] [phi-button]:active {
+    background-color: #0097a7; }
+  [phi-button]:active[phi-color-theme=cyan] {
+    background-color: #0097a7 !important; }
+  [phi-color-theme=deep-orange] [phi-button]:active {
+    background-color: #e64a19; }
+  [phi-button]:active[phi-color-theme=deep-orange] {
+    background-color: #e64a19 !important; }
+  [phi-color-theme=deep-purple] [phi-button]:active {
+    background-color: #512da8; }
+  [phi-button]:active[phi-color-theme=deep-purple] {
+    background-color: #512da8 !important; }
+  [phi-color-theme=default] [phi-button]:active {
+    background-color: #3a83dc; }
+  [phi-button]:active[phi-color-theme=default] {
+    background-color: #3a83dc !important; }
+  [phi-color-theme=green] [phi-button]:active {
+    background-color: #0a7e07; }
+  [phi-button]:active[phi-color-theme=green] {
+    background-color: #0a7e07 !important; }
+  [phi-color-theme=grey] [phi-button]:active {
+    background-color: #616161; }
+  [phi-button]:active[phi-color-theme=grey] {
+    background-color: #616161 !important; }
+  [phi-color-theme=indigo] [phi-button]:active {
+    background-color: #303f9f; }
+  [phi-button]:active[phi-color-theme=indigo] {
+    background-color: #303f9f !important; }
+  [phi-color-theme=light-blue] [phi-button]:active {
+    background-color: #0288d1; }
+  [phi-button]:active[phi-color-theme=light-blue] {
+    background-color: #0288d1 !important; }
+  [phi-color-theme=light-green] [phi-button]:active {
+    background-color: #689f38; }
+  [phi-button]:active[phi-color-theme=light-green] {
+    background-color: #689f38 !important; }
+  [phi-color-theme=lime] [phi-button]:active {
+    background-color: #afb42b; }
+  [phi-button]:active[phi-color-theme=lime] {
+    background-color: #afb42b !important; }
+  [phi-color-theme=orange] [phi-button]:active {
+    background-color: #f57c00; }
+  [phi-button]:active[phi-color-theme=orange] {
+    background-color: #f57c00 !important; }
+  [phi-color-theme=pink] [phi-button]:active {
+    background-color: #c2185b; }
+  [phi-button]:active[phi-color-theme=pink] {
+    background-color: #c2185b !important; }
+  [phi-color-theme=purple] [phi-button]:active {
+    background-color: #7b1fa2; }
+  [phi-button]:active[phi-color-theme=purple] {
+    background-color: #7b1fa2 !important; }
+  [phi-color-theme=red] [phi-button]:active {
+    background-color: #d01716; }
+  [phi-button]:active[phi-color-theme=red] {
+    background-color: #d01716 !important; }
+  [phi-color-theme=teal] [phi-button]:active {
+    background-color: #00796b; }
+  [phi-button]:active[phi-color-theme=teal] {
+    background-color: #00796b !important; }
+  [phi-color-theme=yellow] [phi-button]:active {
+    background-color: #fbc02d; }
+  [phi-button]:active[phi-color-theme=yellow] {
+    background-color: #fbc02d !important; }
 
 [phi-color-background="50"] {
   background-color: #dae8f8;
