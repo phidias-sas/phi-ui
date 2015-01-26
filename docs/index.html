@@ -6,56 +6,38 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
         <link rel="stylesheet" type="text/css" media="all" href="../build/phi-ui.min.css" />
-
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,500italic,700,700italic">
         <link rel="stylesheet" type="text/css" media="all" href="index.css" />
     </head>
 
-    <body>
+    <body phi-color-theme="default">
 
-        <div id="top-bar" phi-boundary>
-            <a href="#" phi-icon="fa-long-arrow-up"></a>
-            <a href="#" phi-icon="fa-long-arrow-up"></a>
-            <a href="#" phi-icon="fa-long-arrow-down"></a>
-            <a href="#" phi-icon="fa-long-arrow-down"></a>
-            <a href="#" phi-icon="fa-long-arrow-left"></a>
-            <a href="#" phi-icon="fa-long-arrow-right"></a>
-            <a href="#" phi-icon="fa-long-arrow-left"></a>
-            <a href="#" phi-icon="fa-long-arrow-right"></a>
 
-            <a href="#" phi-icon="fa-chevron-left"></a>
-            <a href="#" phi-icon="fa-chevron-up"></a>
-            <a href="#" phi-icon="fa-chevron-right"></a>
-            <a href="#" phi-icon="fa-chevron-down"></a>
-            <a href="#" phi-icon="fa-long-arrow-left"></a>
-
-            <a href="#" phi-icon="fa-long-arrow-right"></a>
-            <a href="#" phi-icon="fa-long-arrow-down"></a>
-        </div>
-
-        <div id="cover">
+        <div id="cover" phi-color-background="600">
             <div phi-boundary>
                 <h1>Phidias-UI</h1>
                 <h2>A CSS toolkit</h2>
+
+                <h3 phi-if-screen="small">Your screen is small</h3>
+                <h3 phi-if-screen="medium">Your screen is medium</h3>
+                <h3 phi-if-screen="large gt-large">Your screen is large <span phi-if-screen="gt-large">+</span></h3>
             </div>
         </div>
 
         <div id="contents" phi-boundary>
 
             <section id="layout">
-                <h1>Layout</h1>
-                <p>Brought to you by Angular Material</p>
+                <h1 phi-icon-left="fa-check">Layout</h1>
 
-                <div class="blocks" phi-layout="row" phi-layout-for-small="column">
-                    <div phi-flex>[phi-flex]</div>
-                    <div phi-flex>[phi-flex]</div>
-                    <div phi-flex>[phi-flex]</div>
+                <div class="blocks" phi-layout="row" phi-layout-for-small="column" phi-color-theme="teal">
+                    <div phi-flex phi-color-theme="pink" phi-color-background="600">[phi-flex]</div>
+                    <div phi-flex phi-color-theme="orange" phi-color-background="600">[phi-flex]</div>
+                    <div phi-flex phi-color-background="600">[phi-flex]</div>
                 </div>
 
                 <div class="blocks" phi-layout="row" phi-layout-for-small="column">
-                    <div phi-flex="50" phi-flex-for-small="100">[phi-flex=50]</div>
-                    <div phi-flex>[phi-flex]</div>
-                    <div phi-flex>[phi-flex]</div>
+                    <div phi-flex="50" phi-flex-for-small="100" phi-color-background="600">[phi-flex=50]</div>
+                    <div phi-flex phi-color-background="400">[phi-flex]</div>
+                    <div phi-flex phi-color-background="200">[phi-flex]</div>
                 </div>
 
             </section>
@@ -63,34 +45,34 @@
             <section id="materials">
                 <h1>Materials</h1>
 
-                <p phi-material="paper">This paragraph is made of paper</p>
-                <p phi-material="bulgy">This paragraph is made of bulgy</p>
+                <p phi-material="paper" phi-padded phi-color-font="900">This paragraph is made of paper</p>
+                <p phi-material="bulgy" phi-padded phi-color-font="900">This paragraph is made of bulgy</p>
             </section>
 
             <section id="buttons">
                 <h1>Buttons</h1>
 
                 <div class="buttons" phi-layout-margin>
-                    <phi-button>default</phi-button>
-                    <phi-button phi-color="amber">amber</phi-button>
-                    <phi-button phi-color="blue-grey">blue-grey</phi-button>
-                    <phi-button phi-color="blue">blue</phi-button>
-                    <phi-button phi-color="brown">brown</phi-button>
-                    <phi-button phi-color="cyan">cyan</phi-button>
-                    <phi-button phi-color="deep-orange">deep-orange</phi-button>
-                    <phi-button phi-color="deep-purple">deep-purple</phi-button>
-                    <phi-button phi-color="green">green</phi-button>
-                    <phi-button phi-color="grey">grey</phi-button>
-                    <phi-button phi-color="indigo">indigo</phi-button>
-                    <phi-button phi-color="light-blue">light-blue</phi-button>
-                    <phi-button phi-color="light-green">light-green</phi-button>
-                    <phi-button phi-color="lime">lime</phi-button>
-                    <phi-button phi-color="orange">orange</phi-button>
-                    <phi-button phi-color="pink">pink</phi-button>
-                    <phi-button phi-color="purple">purple</phi-button>
-                    <phi-button phi-color="red">red</phi-button>
-                    <phi-button phi-color="teal">teal</phi-button>
-                    <phi-button phi-color="yellow">yellow</phi-button>
+                    <button phi-button >default</button>
+                    <button phi-button phi-color-theme="amber">amber</button>
+                    <button phi-button phi-color-theme="blue-grey">blue-grey</button>
+                    <button phi-button phi-color-theme="blue">blue</button>
+                    <button phi-button phi-color-theme="brown">brown</button>
+                    <button phi-button phi-color-theme="cyan">cyan</button>
+                    <button phi-button phi-color-theme="deep-orange">deep-orange</button>
+                    <button phi-button phi-color-theme="deep-purple">deep-purple</button>
+                    <button phi-button phi-color-theme="green">green</button>
+                    <button phi-button phi-color-theme="grey">grey</button>
+                    <button phi-button phi-color-theme="indigo">indigo</button>
+                    <button phi-button phi-color-theme="light-blue">light-blue</button>
+                    <button phi-button phi-color-theme="light-green">light-green</button>
+                    <button phi-button phi-color-theme="lime">lime</button>
+                    <button phi-button phi-color-theme="orange">orange</button>
+                    <button phi-button phi-color-theme="pink">pink</button>
+                    <button phi-button phi-color-theme="purple">purple</button>
+                    <button phi-button phi-color-theme="red">red</button>
+                    <button phi-button phi-color-theme="teal">teal</button>
+                    <button phi-button phi-color-theme="yellow">yellow</button>
                 </div>
 
             </section>

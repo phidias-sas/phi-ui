@@ -15,24 +15,13 @@ function swallowError (error) {
 
 // Compile and minify Sass
 gulp.task('sass', function() {
-    return gulp.src(['src/scss/declarations/**/*.scss', 'src/scss/components/**/*.scss'])
+    return gulp.src(['src/scss/utilities/**/*.scss', 'src/scss/declarations/**/*.scss', 'src/scss/components/**/*.scss'])
     	.pipe(concat('phi-ui.css'))
         .pipe(sass()).on('error', swallowError)
         .pipe(gulp.dest('build'))
         .pipe(rename('phi-ui.min.css'))
         .pipe(minifyCSS())
         .pipe(gulp.dest('build'));
-});
-
-// duplicate all *.less files into *.scss files
-gulp.task('renameLess', function() {
-    return gulp.src('**/*.less')
-
-        .pipe(rename(function (path) {
-            path.extname = path.extname.replace('less', 'scss');
-        }))
-
-        .pipe(gulp.dest('.'));
 });
 
 // Watch Files For Changes

@@ -1,0 +1,35 @@
+$phi-color-maps: ();
+
+/*
+USAGE:
+
+@include phi-colors('SELECTOR', (
+    color: 600,
+    background: 50,
+    border-color: 900
+));
+
+*/
+
+@mixin phi-colors($selector, $properties) {
+
+    #{$selector} {
+        @each $property, $tone in $properties {
+            #{$property}: map-get($phi-color-default, $tone);
+        }
+    }
+
+    @each $color-name, $color-map in $phi-color-maps {
+        [phi-color-theme=#{$color-name}] #{$selector} {
+            @each $property, $tone in $properties {
+                #{$property}: map-get($color-map, $tone);
+            }
+        }
+
+        #{$selector}[phi-color-theme=#{$color-name}] {
+            @each $property, $tone in $properties {
+                #{$property}: map-get($color-map, $tone) !important;
+            }
+        }
+    }
+}

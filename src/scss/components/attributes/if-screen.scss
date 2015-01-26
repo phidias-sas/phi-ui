@@ -1,0 +1,39 @@
+[phi-if-screen] {
+    display: none;
+}
+
+@media (max-width: $phi-screen-size-small) {
+    [phi-if-screen~=small] {
+        display: initial;
+    }
+}
+
+@media (min-width: $phi-screen-size-small) {
+    [phi-if-screen~=gt-small] {
+        display: initial;
+    }
+}
+
+@media (min-width: $phi-screen-size-small) and (max-width: $phi-screen-size-medium) {
+    [phi-if-screen~=medium] {
+        display: initial;
+    }
+}
+
+@media (min-width: $phi-screen-size-medium) {
+    [phi-if-screen~=gt-medium] {
+        display: initial;
+    }
+}
+
+@media (min-width: $phi-screen-size-medium) and (max-width: $phi-screen-size-large) {
+    [phi-if-screen~=large] {
+        display: initial;
+    }
+}
+
+@media (min-width: $phi-screen-size-large) {
+    [phi-if-screen~=gt-large] {
+        display: initial;
+    }
+}

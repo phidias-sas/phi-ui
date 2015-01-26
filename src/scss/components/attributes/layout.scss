@@ -1,4 +1,14 @@
-// Based on: https://github.com/angular/material/blob/master/src/core/style/layout.scss
+/**
+
+Based on: https://github.com/angular/material/blob/master/src/core/style/layout.scss
+
+<div phi-layout="[row|column]" phi-layout-wrap phi-layout-padding phi-layout-margin>
+    <div phi-flex="[5, 10, 15 ... 33 ... 66 ... 100]"></div>
+    <div phi-flex-for-[small|medium|large]="[5, 10, 15 ... 33 ... 66 ... 100]"></div>
+</div>
+
+*/
+
 
 [phi-layout-padding],
 [phi-layout-padding] > * {

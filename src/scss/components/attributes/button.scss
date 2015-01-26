@@ -1,13 +1,15 @@
-phi-button {
+[phi-button] {
 
     @extend [phi-z];
 
 	display: inline-block;
 	padding: $phi-spacing-padding;
+    border: 0;
 	border-radius: $phi-spacing-radius;
 
     color: #fff;
     text-transform: uppercase;
+    font-weight: normal;
 
     cursor: pointer;
 
@@ -18,20 +20,24 @@ phi-button {
     -ms-user-select: none;
     user-select: none;
 
-
-    &:hover {
+    &:hover, &:focus {
+        outline: 0;
         @extend [phi-z="2"];
     }
 
     &:active {
         @extend [phi-z="0"];
-    }    
+    }
 }
 
-@include phi-colors('phi-button', (
-	background-color: 600
+@include phi-colors('[phi-button]', (
+    background-color: 600
 ));
 
-@include phi-colors('phi-button:active', (
+@include phi-colors('[phi-button]:active', (
+    background-color: 700
+));
+
+@include phi-colors('[phi-button]:focus', (
     background-color: 700
 ));
