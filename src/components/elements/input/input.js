@@ -2,9 +2,9 @@
 Same attributes as polymer's paper-element
 */
 
-var phiInputCounter = 0;
-
 angular.module("phi.ui").directive("phiInput", ['$timeout', function($timeout) {
+
+    var phiInputCounter = 0;
 
     return {
         restrict: 'EA',
@@ -28,6 +28,8 @@ angular.module("phi.ui").directive("phiInput", ['$timeout', function($timeout) {
                     '<hr />',
 
         link: function(scope, element, attributes)  {
+
+            element.attr("tabindex", -1); //prevent ngAria from setting tabindex
 
             scope.id = "phi-input-" + ++phiInputCounter;
 

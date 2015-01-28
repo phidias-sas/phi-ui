@@ -50,6 +50,9 @@
         width: 0;
     }
 
+    &:focus {
+        outline: 0;
+    }
 
     &.phi-input-focused {
 

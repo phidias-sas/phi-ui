@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="index.css" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-aria.min.js" type="text/javascript"></script>
         <script src="../build/phi-ui.min.js" type="text/javascript"></script>
 
     </head>
@@ -27,6 +28,18 @@
         </div>
 
         <div id="contents" phi-boundary>
+
+            <section id="material-angular">
+                <h1 aria-label="Magic">Material-Angular elements</h1>
+
+                <phi-checkbox ng-model="foo.checked1" aria-label="I accept">I accept</phi-checkbox>
+                <phi-checkbox ng-model="foo.checked2" aria-label="Pink" phi-color-theme="pink">Pink</phi-checkbox>
+                <phi-checkbox ng-model="foo.checked3" aria-label="Teal" phi-color-theme="teal">Teal</phi-checkbox>
+
+                <phi-checkbox ng-init="foo.checked4 = true" ng-model="foo.checked4" ng-disabled="true" aria-label="Unsubscribe">Unsubscribe</phi-checkbox>
+
+            </section>
+
 
             <section id="themes">
                 <h1>Color themes</h1>
@@ -59,6 +72,7 @@
 
             <section id="inputs">
                 <h1>Input fields</h1>
+
                 <div phi-layout="row" phi-layout-margin>
                     <phi-input phi-flex label="Nombre" ng-model="algo.nombre"></phi-input>
                     <phi-input phi-flex label="Apellido" ng-model="algo.apellido"></phi-input>

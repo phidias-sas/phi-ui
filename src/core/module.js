@@ -1,1 +1,1 @@
-angular.module("phi.ui", []);
+angular.module("phi.ui", ['ngAria']);
