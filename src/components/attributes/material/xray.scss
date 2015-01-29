@@ -1,0 +1,11 @@
+[phi-material=xray] {
+    border-radius: $phi-spacing-radius;
+    background: rgba(0, 0, 0, 0.95);
+	color: #fff;
+	font-weight: normal;
+
+	* {
+		color: #fff !important;
+		font-weight: normal;
+	}
+}

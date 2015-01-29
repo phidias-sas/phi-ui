@@ -1,5 +1,135 @@
 angular.module("phi.ui", ['ngAria']);
 
+angular.module("phi.ui").directive("phiPositionAround", [function() {
+
+    return {
+
+        restrict: "A",
+
+        scope: {
+        	referenceId: "@phiPositionAround",
+        	reference:   "@phiPositionReference",
+        	target:      "@phiPositionTarget",
+        },
+
+        link: function(scope, element, attributes)  {
+
+        	element.css("position", "absolute");
+
+			var parentElement     = document.getElementById(scope.referenceId);
+			var parentCoordinates = parentElement.getBoundingClientRect();
+			var localCoordinates  = element[0].getBoundingClientRect();
+
+			var coordinates = {
+				top: window.scrollY,
+				left: window.scrollX
+			};
+
+
+			var verticalTarget = null;
+			var horizontalTarget = null;
+
+			if (scope.target) {
+				var target       = scope.target.toLowerCase().split(" ");
+				verticalTarget   = target.length ? target[0] : null;
+				horizontalTarget = target.length > 1 ? target[1] : null;
+			}
+
+			switch (verticalTarget) {
+				case "top":
+					coordinates.top += parentCoordinates.top;
+				break;
+
+				default:
+				case "bottom":
+					coordinates.top += parentCoordinates.top + parentCoordinates.height;
+				break;
+
+				case "center":
+					coordinates.top += parentCoordinates.top + parentCoordinates.height/2;
+				break;
+			}
+
+			switch (horizontalTarget) {
+				default:
+				case "left":
+					coordinates.left += parentCoordinates.left;
+				break;
+
+				case "right":
+					coordinates.left += parentCoordinates.left + parentCoordinates.width;
+				break;
+
+				case "center":
+					coordinates.left += parentCoordinates.left + parentCoordinates.width/2;
+				break;
+			}
+
+
+			var verticalReference   = null;
+			var horizontalReference = null;
+
+			if (scope.reference) {
+				var reference       = scope.reference.toLowerCase().split(" ");
+				verticalReference   = reference.length ? reference[0] : null;
+				horizontalReference = reference.length > 1 ? reference[1] : null;
+			}
+
+
+			switch (verticalReference) {
+				default:
+				case "top":
+				break;
+
+				case "bottom":
+					coordinates.top -= localCoordinates.height;
+				break;
+
+				case "center":
+					coordinates.top -= localCoordinates.height/2;
+				break;
+			}
+
+			switch (horizontalReference) {
+				default:
+				case "left":
+				break;
+
+				case "right":
+					coordinates.left -= localCoordinates.width;
+				break;
+
+				case "center":
+					coordinates.left -= localCoordinates.width/2;
+				break;
+			}
+
+
+			var elementCoordinates = coordinates;
+
+
+			var elementCoordinates = {
+				top: coordinates.top + "px",
+				left: coordinates.left + "px",
+				right: coordinates.right + "px",
+				bottom: coordinates.bottom + "px"
+			};
+
+        	element.css(elementCoordinates);
+        }
+    };
+
+}]);
+angular.module("phi.ui").directive("phiCutout", [function() {
+
+    return {
+        restrict: "A",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout"><div></div><div></div><div></div></div>'));
+        }
+    };
+
+}]);
 /**
  * Proof of concept: Port an angular-material element
  */
@@ -148,8 +278,8 @@ angular.module("phi.ui").directive("phiInput", ['$timeout', function($timeout) {
         },
 
         template:   '<label for="{{id}}" ng-bind="label"></label>' +
-                    '<input id="{{id}}" ng-show="!multiline" type="text" ng-model="ngModel" ng-focus="focus()" ng-blur="blur()" ng-change="change()" />' +
-                    '<textarea id="{{id}}" ng-show="multiline" name="{{name}}" ng-model="ngModel" ng-trim="false" ng-focus="focus()" ng-blur="blur()" ng-disabled="disabled == \'true\'" ng-change="change()"></textarea>' +
+                    '<input id="{{id}}" ng-if="!multiline" type="text" ng-model="$parent.ngModel" ng-focus="focus()" ng-blur="blur()" ng-change="change()" />' +
+                    '<textarea id="{{id}}" ng-if="multiline" name="{{name}}" ng-model="$parent.ngModel" ng-trim="false" ng-focus="focus()" ng-blur="blur()" ng-disabled="disabled == \'true\'" ng-change="change()"></textarea>' +
                     '<hr />',
 
         link: function(scope, element, attributes)  {
@@ -200,6 +330,74 @@ angular.module("phi.ui").directive("phiInput", ['$timeout', function($timeout) {
                 element.toggleClass('phi-input-empty', scope.state.empty);
                 scope.resizeTextarea();
             });
+
+
+        }
+
+    };
+
+}]);
+/*
+Same attributes as polymer's paper-element
+*/
+
+angular.module("phi.ui").directive("phiMenu", [function() {
+
+    return {
+        restrict: "E",
+
+        link: function(scope, element, attributes)  {
+
+        }
+
+    };
+
+}]);
+
+
+angular.module("phi.ui").directive("phiSubmenu", [function() {
+
+    return {
+        restrict: "E",
+
+        scope: {
+            "label": "@"
+        },
+
+        transclude: true,
+
+        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
+                  '<div class="phi-submenu-contents" ng-transclude></div>',
+
+        link: function(scope, element, attributes)  {
+
+            scope.setExpanded = function(expanded) {
+
+                scope.expanded = expanded;
+
+                if (scope.expanded) {
+                    element.attr("expanded", "expanded");
+                    element.find("div").find("a").attr("tabindex", 0);
+                } else {
+                    element.removeAttr("expanded");
+                    element.find("div").find("a").attr("tabindex", -1);
+                }
+            };
+
+            scope.toggle = function() {
+                scope.setExpanded(!scope.expanded);
+            };
+
+            scope.setExpanded(false);
+
+            var items = element.find('a');
+            for (var index = 0; index < items.length; index++) {
+                if (angular.element(items[index]).attr("active") !== undefined) {
+                    scope.setExpanded(true);
+                    break;
+                }
+            }
+
 
 
         }

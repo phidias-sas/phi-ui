@@ -20,6 +20,10 @@ USAGE:
 
 @mixin phi-colors($properties, $suffix: null) {
 
+    /* 
+    carajo Colors for & 
+    */
+
     &#{$suffix} {
         @each $property, $tone in $properties {
             #{$property}: map-get($phi-color-default, $tone);

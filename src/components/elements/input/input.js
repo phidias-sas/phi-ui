@@ -23,8 +23,8 @@ angular.module("phi.ui").directive("phiInput", ['$timeout', function($timeout) {
         },
 
         template:   '<label for="{{id}}" ng-bind="label"></label>' +
-                    '<input id="{{id}}" ng-show="!multiline" type="text" ng-model="ngModel" ng-focus="focus()" ng-blur="blur()" ng-change="change()" />' +
-                    '<textarea id="{{id}}" ng-show="multiline" name="{{name}}" ng-model="ngModel" ng-trim="false" ng-focus="focus()" ng-blur="blur()" ng-disabled="disabled == \'true\'" ng-change="change()"></textarea>' +
+                    '<input id="{{id}}" ng-if="!multiline" type="text" ng-model="$parent.ngModel" ng-focus="focus()" ng-blur="blur()" ng-change="change()" />' +
+                    '<textarea id="{{id}}" ng-if="multiline" name="{{name}}" ng-model="$parent.ngModel" ng-trim="false" ng-focus="focus()" ng-blur="blur()" ng-disabled="disabled == \'true\'" ng-change="change()"></textarea>' +
                     '<hr />',
 
         link: function(scope, element, attributes)  {

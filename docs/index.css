@@ -49,7 +49,3 @@ section > h1 {
     color: #fff;
     padding: 18px;
 }
-
-h1:focus {
-    background: red;
-};

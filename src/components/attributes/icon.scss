@@ -2,29 +2,20 @@
 
     [phi-icon=#{$icon-name}] {
         &:before {
-            font-family: FontAwesome;
-            content: $icon-content;
-            cursor: inherit;
-            font-style: normal;
+            @include phi-icon($icon-name);
         }
     }
 
     [phi-icon-left=#{$icon-name}] {
         &:before {
-            font-family: FontAwesome;
-            content: $icon-content;
-            cursor: inherit;
-            font-style: normal;
+            @include phi-icon($icon-name);
             margin-right: 1ex;
         }
     }
 
     [phi-icon-right=#{$icon-name}] {
         &:after {
-            font-family: FontAwesome;
-            content: $icon-content;
-            cursor: inherit;
-            font-style: normal;
+            @include phi-icon($icon-name);
             margin-left: 1ex;
         }
     }

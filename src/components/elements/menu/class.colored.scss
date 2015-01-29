@@ -1,0 +1,59 @@
+phi-menu.phi-menu-colored {
+
+	@include phi-colors((
+		background: 600
+	), ' a[active=true]');
+
+	a {
+
+		font-size: 14px;
+
+		margin: $phi-spacing-gutter * 0.5 0;
+	    padding: 4px 11px;
+	    border-radius: $phi-spacing-radius;
+
+		color: #444;
+		text-decoration: none;
+
+		&:hover {
+		    background: #e0e0e0;
+		}
+
+		&[active=true] {
+			color: #fff;
+		}
+
+	}
+
+
+	.phi-submenu-label {
+		&:before {
+			bottom: 6px;
+		}
+	}
+
+
+
+	phi-submenu[expanded] {
+
+		@include phi-colors((
+			color: 600
+		), ' .phi-submenu-label');
+
+		@include phi-colors((
+			background-color: 600
+		), ' a[active=true]');
+
+
+		& > .phi-submenu-label {
+
+			@include phi-colors((
+				color: 600
+			));
+
+		}
+
+
+	}
+
+}

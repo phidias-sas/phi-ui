@@ -1,0 +1,77 @@
+/**
+Elements resulting HTML:
+<phi-menu></phi-menu>
+*/
+
+phi-menu {
+	display: block;
+	position: relative;
+
+
+	a {
+		display: block;
+		cursor: pointer;
+		padding-left: 25px !important;
+
+		&:focus {
+			//border: 1px dotted #999;
+			outline: 0;
+		}
+	}
+
+}
+
+
+phi-submenu {
+
+	display: block;
+
+	& > .phi-submenu-label {
+
+		position: relative;
+
+		&:before {
+			@include phi-icon("fa-caret-right");
+
+			position: absolute;
+			bottom: 2px;
+			left: 2px;
+
+			display: block;
+			width: 1em;
+			height: 1em;
+			line-height: 1em;
+
+			text-align: center;
+
+			transform: rotate(0);
+			transform-origin: center;
+			@include phi-transition(transform, 60ms);
+		}
+
+	}
+
+	& > .phi-submenu-contents {
+
+		padding-left: $phi-spacing-gutter * 2;
+
+		overflow: hidden;
+		max-height: 0;
+		@include phi-transition(max-height, 300ms);
+	}
+
+	&[expanded] {
+
+		& > .phi-submenu-label {
+
+			&:before {
+				transform: rotate(90deg)
+			}
+		}
+
+		& > .phi-submenu-contents {
+			max-height: 777px;
+		}
+
+	}
+}

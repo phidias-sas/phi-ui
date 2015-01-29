@@ -13,6 +13,11 @@ $phi-transition-timing-function-default: $phi-transition-timing-function-google;
 $phi-transition-delay-default: 0s;
 
 @mixin phi-transition ($property: $phi-transition-property-default, $duration: $phi-transition-duration-default, $timing-function: $phi-transition-timing-function-default, $delay: $phi-transition-delay-default) {
+
+
+	//when there are several rules specifying a $property, only the last one prevails.  Workaround:
+	$property: all;
+
     -webkit-transition: $property $duration $timing-function $delay;
     -moz-transition:    $property $duration $timing-function $delay;
     -o-transition:      $property $duration $timing-function $delay;
