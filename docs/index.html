@@ -97,24 +97,49 @@
                 </section>
 
 
-                <section id="popup">
+                <section id="tooltip">
                     <h1>Visibility</h1>
 
                     <div phi-layout="row">
 
-                        <phi-checkbox ng-init="popup.shown = true" ng-model="popup.shown" aria-label="make popup visible">Visible</phi-checkbox>
+                        <phi-checkbox ng-init="tooltip.shown = true" ng-model="tooltip.shown" aria-label="make tooltip visible">Visible</phi-checkbox>
 
-                        <select ng-model="popup.classname">
+                        <select ng-model="tooltip.classname">
                             <option value="">default</option>
                             <option value="phi-visible-zoom-in">zoom-in</option>
                             <option value="phi-visible-zoom-out">zoom-out</option>
                             <option value="phi-visible-scale">scale</option>
                         </select>
+
+                        <select ng-model="tooltip.align">
+                            <option value="top left">top left</option>
+                            <option value="top center">top center</option>
+                            <option value="top right">top right</option>
+                            <option value="center left">center left</option>
+                            <option value="center center">center</option>
+                            <option value="center right">center right</option>
+                            <option value="bottom left">bottom left</option>
+                            <option value="bottom center">bottom center</option>
+                            <option value="bottom right">bottom right</option>
+                        </select>
+
+                        <select ng-model="tooltip.origin">
+                            <option value="top left">top left</option>
+                            <option value="top center">top center</option>
+                            <option value="top right">top right</option>
+                            <option value="center left">center left</option>
+                            <option value="center center">center</option>
+                            <option value="center right">center right</option>
+                            <option value="bottom left">bottom left</option>
+                            <option value="bottom center">bottom center</option>
+                            <option value="bottom right">bottom right</option>
+                        </select>
+
                     </div>
 
                     <h1 id="anchor" phi-inline>Anchor</h1>
 
-                    <div phi-material="xray" phi-visible="{{popup.shown}}" ng-class="popup.classname" phi-position-around="anchor" phi-position-reference="top left" phi-position-target="bottom left">
+                    <div phi-material="xray" phi-visible="{{tooltip.shown}}" ng-class="tooltip.classname" phi-tooltip-for="anchor" phi-tooltip-align="{{tooltip.align}}" phi-tooltip-origin="{{tooltip.origin}}">
                         <phi-menu class="phi-menu-colored">
                             <a>Foo</a>
                             <a>Bar</a>
@@ -135,7 +160,7 @@
                 <section id="inputs">
                     <h1>Input fields</h1>
 
-                    <div phi-layout="row" phi-layout-margin>
+                    <div phi-layout="row" phi-layout-margin phi-layout-for-small="column">
                         <phi-input phi-flex label="Nombre" ng-model="algo.nombre"></phi-input>
                         <phi-input phi-flex label="Apellido" ng-model="algo.apellido"></phi-input>
                         <phi-input phi-flex label="Edad" ng-model="algo.edad"></phi-input>

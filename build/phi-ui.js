@@ -1,131 +1,136 @@
 angular.module("phi.ui", ['ngAria']);
 
-angular.module("phi.ui").directive("phiPositionAround", [function() {
+angular.module("phi.ui").directive("phiTooltipFor", [function() {
 
     return {
 
         restrict: "A",
 
         scope: {
-        	referenceId: "@phiPositionAround",
-        	reference:   "@phiPositionReference",
-        	target:      "@phiPositionTarget",
+        	parentId: "@phiTooltipFor",
+        	align:    "@phiTooltipAlign",
+        	origin:   "@phiTooltipOrigin",
         },
 
         link: function(scope, element, attributes)  {
 
-        	element.css("position", "absolute");
+			attributes.$observe("phiTooltipAlign", function(dsa) {
+				setPosition();
+			});
 
-			var parentElement     = document.getElementById(scope.referenceId);
-			var parentCoordinates = parentElement.getBoundingClientRect();
-			var localCoordinates  = element[0].getBoundingClientRect();
-
-			var coordinates = {
-				top: window.scrollY,
-				left: window.scrollX
-			};
+            attributes.$observe("phiTooltipOrigin", function(dsa) {
+				setPosition();
+			});
 
 
-			var verticalTarget = null;
-			var horizontalTarget = null;
+        	setPosition = function() {
 
-			if (scope.target) {
-				var target       = scope.target.toLowerCase().split(" ");
-				verticalTarget   = target.length ? target[0] : null;
-				horizontalTarget = target.length > 1 ? target[1] : null;
-			}
+	        	element.css("position", "absolute");
 
-			switch (verticalTarget) {
-				case "top":
-					coordinates.top += parentCoordinates.top;
-				break;
+				var parentElement     = document.getElementById(scope.parentId);
+				var parentCoordinates = parentElement.getBoundingClientRect();
+				var localCoordinates  = element[0].getBoundingClientRect();
 
-				default:
-				case "bottom":
-					coordinates.top += parentCoordinates.top + parentCoordinates.height;
-				break;
-
-				case "center":
-					coordinates.top += parentCoordinates.top + parentCoordinates.height/2;
-				break;
-			}
-
-			switch (horizontalTarget) {
-				default:
-				case "left":
-					coordinates.left += parentCoordinates.left;
-				break;
-
-				case "right":
-					coordinates.left += parentCoordinates.left + parentCoordinates.width;
-				break;
-
-				case "center":
-					coordinates.left += parentCoordinates.left + parentCoordinates.width/2;
-				break;
-			}
+				var coordinates = {
+					top: window.scrollY,
+					left: window.scrollX
+				};
 
 
-			var verticalReference   = null;
-			var horizontalReference = null;
+				var verticalOrigin   = null;
+				var horizontalOrigin = null;
 
-			if (scope.reference) {
-				var reference       = scope.reference.toLowerCase().split(" ");
-				verticalReference   = reference.length ? reference[0] : null;
-				horizontalReference = reference.length > 1 ? reference[1] : null;
-			}
+				if (scope.origin) {
+					var origin       = scope.origin.toLowerCase().split(" ");
+					verticalOrigin   = origin.length ? origin[0] : null;
+					horizontalOrigin = origin.length > 1 ? origin[1] : null;
+				}
 
+				switch (verticalOrigin) {
 
-			switch (verticalReference) {
-				default:
-				case "top":
-				break;
+					default:
+					case "top":
+					break;
 
-				case "bottom":
-					coordinates.top -= localCoordinates.height;
-				break;
+					case "bottom":
+						coordinates.top -= localCoordinates.height;
+					break;
 
-				case "center":
-					coordinates.top -= localCoordinates.height/2;
-				break;
-			}
+					case "center":
+						coordinates.top -= localCoordinates.height/2;
+					break;
+				}
 
-			switch (horizontalReference) {
-				default:
-				case "left":
-				break;
+				switch (horizontalOrigin) {
 
-				case "right":
-					coordinates.left -= localCoordinates.width;
-				break;
+					default:
+					case "left":
+					break;
 
-				case "center":
-					coordinates.left -= localCoordinates.width/2;
-				break;
-			}
+					case "right":
+						coordinates.left -= localCoordinates.width;
+					break;
 
-
-			var elementCoordinates = coordinates;
+					case "center":
+						coordinates.left -= localCoordinates.width/2;
+					break;
+				}
 
 
-			var elementCoordinates = {
-				top: coordinates.top + "px",
-				left: coordinates.left + "px",
-				right: coordinates.right + "px",
-				bottom: coordinates.bottom + "px"
-			};
+				var verticalAlign   = null;
+				var horizontalAlign = null;
 
-        	element.css(elementCoordinates);
-        }
-    };
+				if (scope.align) {
+					var align       = scope.align.toLowerCase().split(" ");
+					verticalAlign   = align.length ? align[0] : null;
+					horizontalAlign = align.length > 1 ? align[1] : null;
+				}
 
-}]);
-angular.module("phi.ui").directive("phiCutout", [function() {
 
-    return {
-        restrict: "A",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout"><div></div><div></div><div></div></div>'));
+				switch (verticalAlign) {
+					case "top":
+						coordinates.top += parentCoordinates.top;
+					break;
+
+					default:
+					case "bottom":
+						coordinates.top += parentCoordinates.top + parentCoordinates.height;
+					break;
+
+					case "center":
+						coordinates.top += parentCoordinates.top + parentCoordinates.height/2;
+					break;
+				}
+
+				switch (horizontalAlign) {
+					default:
+					case "left":
+						coordinates.left += parentCoordinates.left;
+					break;
+
+					case "right":
+						coordinates.left += parentCoordinates.left + parentCoordinates.width;
+					break;
+
+					case "center":
+						coordinates.left += parentCoordinates.left + parentCoordinates.width/2;
+					break;
+				}
+
+
+				var elementCoordinates = coordinates;
+
+
+				var elementCoordinates = {
+					top: coordinates.top + "px",
+					left: coordinates.left + "px",
+					right: coordinates.right + "px",
+					bottom: coordinates.bottom + "px"
+				};
+
+	        	element.css(elementCoordinates);
+        	};
+
         }
     };
 
@@ -257,6 +262,75 @@ function MdCheckboxDirective(inputDirective) {
 Same attributes as polymer's paper-element
 */
 
+angular.module("phi.ui").directive("phiMenu", [function() {
+
+    return {
+        restrict: "E",
+
+        link: function(scope, element, attributes)  {
+
+        }
+
+    };
+
+}]);
+
+
+angular.module("phi.ui").directive("phiSubmenu", [function() {
+
+    return {
+        restrict: "E",
+
+        scope: {
+            "label": "@"
+        },
+
+        transclude: true,
+
+        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
+                  '<div class="phi-submenu-contents" ng-transclude></div>',
+
+        link: function(scope, element, attributes)  {
+
+            scope.setExpanded = function(expanded) {
+
+                scope.expanded = expanded;
+
+                if (scope.expanded) {
+                    element.attr("expanded", "expanded");
+                    element.find("div").find("a").attr("tabindex", 0);
+                } else {
+                    element.removeAttr("expanded");
+                    element.find("div").find("a").attr("tabindex", -1);
+                }
+            };
+
+            scope.toggle = function() {
+                scope.setExpanded(!scope.expanded);
+            };
+
+            scope.setExpanded(false);
+
+            var items = element.find('a');
+            for (var index = 0; index < items.length; index++) {
+                if (angular.element(items[index]).attr("active") !== undefined) {
+                    scope.setExpanded(true);
+                    break;
+                }
+            }
+
+
+
+        }
+
+    };
+
+}]);
+
+/*
+Same attributes as polymer's paper-element
+*/
+
 angular.module("phi.ui").directive("phiInput", ['$timeout', function($timeout) {
 
     var phiInputCounter = 0;
@@ -337,71 +411,13 @@ angular.module("phi.ui").directive("phiInput", ['$timeout', function($timeout) {
     };
 
 }]);
-/*
-Same attributes as polymer's paper-element
-*/
-
-angular.module("phi.ui").directive("phiMenu", [function() {
+angular.module("phi.ui").directive("phiCutout", [function() {
 
     return {
-        restrict: "E",
-
+        restrict: "A",
         link: function(scope, element, attributes)  {
-
+            element.prepend(angular.element('<div class="phi-cutout"><div></div><div></div><div></div></div>'));
         }
-
-    };
-
-}]);
-
-
-angular.module("phi.ui").directive("phiSubmenu", [function() {
-
-    return {
-        restrict: "E",
-
-        scope: {
-            "label": "@"
-        },
-
-        transclude: true,
-
-        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
-                  '<div class="phi-submenu-contents" ng-transclude></div>',
-
-        link: function(scope, element, attributes)  {
-
-            scope.setExpanded = function(expanded) {
-
-                scope.expanded = expanded;
-
-                if (scope.expanded) {
-                    element.attr("expanded", "expanded");
-                    element.find("div").find("a").attr("tabindex", 0);
-                } else {
-                    element.removeAttr("expanded");
-                    element.find("div").find("a").attr("tabindex", -1);
-                }
-            };
-
-            scope.toggle = function() {
-                scope.setExpanded(!scope.expanded);
-            };
-
-            scope.setExpanded(false);
-
-            var items = element.find('a');
-            for (var index = 0; index < items.length; index++) {
-                if (angular.element(items[index]).attr("active") !== undefined) {
-                    scope.setExpanded(true);
-                    break;
-                }
-            }
-
-
-
-        }
-
     };
 
 }]);
