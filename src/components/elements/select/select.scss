@@ -1,0 +1,13 @@
+phi-select {
+
+    display: inline-block;
+    position: relative;
+
+    &:before {
+        @include phi-icon("fa-caret-down");
+        position: absolute;
+        bottom: 12px;
+        right: 8px;
+    }
+
+}

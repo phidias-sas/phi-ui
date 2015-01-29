@@ -69,10 +69,44 @@
 
             <div phi-flex phi-padded>
 
+                <section id="sandbox">
+                    <h1>Sandbox and stuff</h1>
+
+                    <div phi-texture="paper" phi-padded style="min-height: 400px">
+
+                        <h1 id="myButton" phi-color-font="600" ng-click="foo.show = !foo.show" phi-icon="fa-bars" phi-position="top right"></h1>
+
+                        <phi-menu phi-texture="xray"
+                           phi-tooltip-for="myButton"
+                           phi-tooltip-align="bottom right"
+                           phi-tooltip-origin="top right"
+                           phi-visible="{{foo.show}}"
+                           class="phi-visible-slide-bottom"
+                        >
+
+                            <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
+                            <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
+                            <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
+                            <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
+
+                            <phi-submenu label="more">
+                                <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
+                                <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
+                                <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
+                                <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
+                            </phi-submenu>
+
+                        </phi-menu>
+
+                    </div>
+
+                </section>
+
+
                 <section id="themes">
                     <h1>Color themes</h1>
                     <p>See for yourself:</p>
-                    <select ng-model="theme">
+                    <phi-select ng-model="theme">
                         <option value="default">default</option>
                         <option value="amber">amber</option>
                         <option value="blue-grey">blue-grey</option>
@@ -93,7 +127,7 @@
                         <option value="red">red</option>
                         <option value="teal">teal</option>
                         <option value="yellow">yellow</option>
-                    </select>
+                    </phi-select>
                 </section>
 
 
@@ -104,14 +138,18 @@
 
                         <phi-checkbox ng-init="tooltip.shown = true" ng-model="tooltip.shown" aria-label="make tooltip visible">Visible</phi-checkbox>
 
-                        <select ng-model="tooltip.classname">
+                        <phi-select label="effect" ng-model="tooltip.classname">
                             <option value="">default</option>
                             <option value="phi-visible-zoom-in">zoom-in</option>
                             <option value="phi-visible-zoom-out">zoom-out</option>
+                            <option value="phi-visible-slide-top">slide-top</option>
+                            <option value="phi-visible-slide-bottom">slide-bottom</option>
+                            <option value="phi-visible-slide-left">slide-left</option>
+                            <option value="phi-visible-slide-right">slide-right</option>
                             <option value="phi-visible-scale">scale</option>
-                        </select>
+                        </phi-select>
 
-                        <select ng-model="tooltip.align">
+                        <phi-select label="align" ng-model="tooltip.align">
                             <option value="top left">top left</option>
                             <option value="top center">top center</option>
                             <option value="top right">top right</option>
@@ -121,9 +159,9 @@
                             <option value="bottom left">bottom left</option>
                             <option value="bottom center">bottom center</option>
                             <option value="bottom right">bottom right</option>
-                        </select>
+                        </phi-select>
 
-                        <select ng-model="tooltip.origin">
+                        <phi-select label="origin" ng-model="tooltip.origin">
                             <option value="top left">top left</option>
                             <option value="top center">top center</option>
                             <option value="top right">top right</option>
@@ -133,14 +171,20 @@
                             <option value="bottom left">bottom left</option>
                             <option value="bottom center">bottom center</option>
                             <option value="bottom right">bottom right</option>
-                        </select>
+                        </phi-select>
 
                     </div>
 
                     <h1 id="anchor" phi-inline>Anchor</h1>
 
-                    <div phi-material="xray" phi-visible="{{tooltip.shown}}" ng-class="tooltip.classname" phi-tooltip-for="anchor" phi-tooltip-align="{{tooltip.align}}" phi-tooltip-origin="{{tooltip.origin}}">
-                        <phi-menu class="phi-menu-colored">
+                    <div phi-texture="xray"
+                         phi-visible="{{!!tooltip.shown}}"
+                         ng-class="tooltip.classname"
+                         phi-tooltip-for="anchor"
+                         phi-tooltip-align="{{tooltip.align}}"
+                         phi-tooltip-origin="{{tooltip.origin}}"
+                    >
+                        <phi-menu>
                             <a>Foo</a>
                             <a>Bar</a>
                             <a>Shoo</a>
@@ -195,8 +239,8 @@
                 <section id="materials">
                     <h1>Materials</h1>
 
-                    <p phi-material="paper" phi-padded phi-color-font="900">This paragraph is made of paper</p>
-                    <p phi-material="emboss" phi-padded phi-color-font="900">This paragraph is embossed</p>
+                    <p phi-texture="paper" phi-padded phi-color-font="900">This paragraph is made of paper</p>
+                    <p phi-texture="emboss" phi-padded phi-color-font="900">This paragraph is embossed</p>
                 </section>
 
                 <section id="buttons">

@@ -6,17 +6,28 @@ Elements resulting HTML:
 phi-menu {
 	display: block;
 	position: relative;
-
+	padding: 16px 0;
 
 	a {
 		display: block;
 		cursor: pointer;
-		padding-left: 25px !important;
+		padding: 8px 20px !important;
+		text-decoration: none;
+		color: #333;
+
+		&:hover {
+		    background-color: rgba(0, 0, 0, 0.03);
+		}
 
 		&:focus {
-			//border: 1px dotted #999;
+			background-color: rgba(0, 0, 0, 0.03);
 			outline: 0;
 		}
+
+		&[active=true] {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+
 	}
 
 }
@@ -34,8 +45,8 @@ phi-submenu {
 			@include phi-icon("fa-caret-right");
 
 			position: absolute;
-			bottom: 2px;
-			left: 2px;
+			top: 9px;
+			right: 16px;
 
 			display: block;
 			width: 1em;

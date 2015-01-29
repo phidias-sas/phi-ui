@@ -1,6 +1,6 @@
 angular.module("phi.ui", ['ngAria']);
 
-angular.module("phi.ui").directive("phiTooltipFor", [function() {
+angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", function($timeout) {
 
     return {
 
@@ -14,16 +14,7 @@ angular.module("phi.ui").directive("phiTooltipFor", [function() {
 
         link: function(scope, element, attributes)  {
 
-			attributes.$observe("phiTooltipAlign", function(dsa) {
-				setPosition();
-			});
-
-            attributes.$observe("phiTooltipOrigin", function(dsa) {
-				setPosition();
-			});
-
-
-        	setPosition = function() {
+        	scope.reposition = function() {
 
 	        	element.css("position", "absolute");
 
@@ -31,10 +22,22 @@ angular.module("phi.ui").directive("phiTooltipFor", [function() {
 				var parentCoordinates = parentElement.getBoundingClientRect();
 				var localCoordinates  = element[0].getBoundingClientRect();
 
+
 				var coordinates = {
 					top: window.scrollY,
 					left: window.scrollX
 				};
+
+				//compensate for relative parents
+				var offsetTop = (window.scrollY + localCoordinates.top - element[0].offsetTop);
+				var offsetLeft = (window.scrollX + localCoordinates.left - element[0].offsetLeft);
+
+				coordinates.top -= offsetTop;
+				coordinates.left -= offsetLeft;
+
+				//css transform displacements are taken into account, and getBoundingClientRect is run when the element is HIDDEN so
+				//if the visibility css contains a transform, this will be fucked.   Manually subtracting the clss.slide.scss distance here:
+				coordinates.top += 15;
 
 
 				var verticalOrigin   = null;
@@ -118,9 +121,6 @@ angular.module("phi.ui").directive("phiTooltipFor", [function() {
 				}
 
 
-				var elementCoordinates = coordinates;
-
-
 				var elementCoordinates = {
 					top: coordinates.top + "px",
 					left: coordinates.left + "px",
@@ -128,8 +128,58 @@ angular.module("phi.ui").directive("phiTooltipFor", [function() {
 					bottom: coordinates.bottom + "px"
 				};
 
+				if (attributes.phiTooltipMatch == "width") {
+					elementCoordinates.minWidth = parentCoordinates.width + "px";
+				} else if (attributes.phiTooltipMatch == "height") {
+					elementCoordinates.minHeight = parentCoordinates.height + "px";
+				}
+
 	        	element.css(elementCoordinates);
         	};
+
+
+			attributes.$observe("phiVisible", function() {
+				scope.reposition();
+			});
+
+			attributes.$observe("phiTooltipAlign", function() {
+				scope.reposition();
+			});
+
+            attributes.$observe("phiTooltipOrigin", function() {
+				scope.reposition();
+			});
+
+            $timeout(scope.reposition, 0);
+        }
+    };
+
+}]);
+angular.module("phi.ui").directive("phiCutout", [function() {
+
+    return {
+        restrict: "A",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout"><div></div><div></div><div></div></div>'));
+        }
+    };
+
+}]);
+angular.module("phi.ui").directive("phiPosition", [function() {
+
+    return {
+
+        restrict: "A",
+
+        link: function(scope, element, attributes)  {
+
+            element.parent().css("position", "relative");
+
+            element.css({
+                position: "absolute",
+                top: "10px",
+                right: "10px"
+            });
 
         }
     };
@@ -197,7 +247,7 @@ function MdCheckboxDirective(inputDirective) {
     return {
         restrict: 'E',
         transclude: true,
-        require: '^ngModel',
+        require: '?ngModel',
         template:
             '<div class="phi-container" phi-ink-ripple phi-ink-ripple-checkbox>' +
                 '<div class="phi-icon"></div>' +
@@ -251,82 +301,14 @@ function MdCheckboxDirective(inputDirective) {
             }
 
             function render() {
-                element.toggleClass(CHECKED_CSS, ngModelCtrl.$viewValue);
+                checked = ngModelCtrl.$viewValue;
+                element.toggleClass(CHECKED_CSS, checked);
             }
         };
     }
 }
 
 })();
-/*
-Same attributes as polymer's paper-element
-*/
-
-angular.module("phi.ui").directive("phiMenu", [function() {
-
-    return {
-        restrict: "E",
-
-        link: function(scope, element, attributes)  {
-
-        }
-
-    };
-
-}]);
-
-
-angular.module("phi.ui").directive("phiSubmenu", [function() {
-
-    return {
-        restrict: "E",
-
-        scope: {
-            "label": "@"
-        },
-
-        transclude: true,
-
-        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
-                  '<div class="phi-submenu-contents" ng-transclude></div>',
-
-        link: function(scope, element, attributes)  {
-
-            scope.setExpanded = function(expanded) {
-
-                scope.expanded = expanded;
-
-                if (scope.expanded) {
-                    element.attr("expanded", "expanded");
-                    element.find("div").find("a").attr("tabindex", 0);
-                } else {
-                    element.removeAttr("expanded");
-                    element.find("div").find("a").attr("tabindex", -1);
-                }
-            };
-
-            scope.toggle = function() {
-                scope.setExpanded(!scope.expanded);
-            };
-
-            scope.setExpanded(false);
-
-            var items = element.find('a');
-            for (var index = 0; index < items.length; index++) {
-                if (angular.element(items[index]).attr("active") !== undefined) {
-                    scope.setExpanded(true);
-                    break;
-                }
-            }
-
-
-
-        }
-
-    };
-
-}]);
-
 /*
 Same attributes as polymer's paper-element
 */
@@ -411,13 +393,176 @@ angular.module("phi.ui").directive("phiInput", ['$timeout', function($timeout) {
     };
 
 }]);
-angular.module("phi.ui").directive("phiCutout", [function() {
+/*
+Same attributes as polymer's paper-element
+*/
+
+angular.module("phi.ui").directive("phiMenu", [function() {
 
     return {
-        restrict: "A",
+        restrict: "E",
+
         link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout"><div></div><div></div><div></div></div>'));
+
         }
+
+    };
+
+}]);
+
+
+angular.module("phi.ui").directive("phiSubmenu", [function() {
+
+    return {
+        restrict: "E",
+
+        scope: {
+            "label": "@"
+        },
+
+        transclude: true,
+
+        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
+                  '<div class="phi-submenu-contents" ng-transclude></div>',
+
+        link: function(scope, element, attributes)  {
+
+            scope.setExpanded = function(expanded) {
+
+                scope.expanded = expanded;
+
+                if (scope.expanded) {
+                    element.attr("expanded", "expanded");
+                    element.find("div").find("a").attr("tabindex", 0);
+                } else {
+                    element.removeAttr("expanded");
+                    element.find("div").find("a").attr("tabindex", -1);
+                }
+            };
+
+            scope.toggle = function() {
+                scope.setExpanded(!scope.expanded);
+            };
+
+            scope.setExpanded(false);
+
+            var items = element.find('a');
+            for (var index = 0; index < items.length; index++) {
+                if (angular.element(items[index]).attr("active") !== undefined) {
+                    scope.setExpanded(true);
+                    break;
+                }
+            }
+
+
+
+        }
+
+    };
+
+}]);
+
+/*
+Same attributes as polymer's paper-element
+*/
+
+angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", function($compile, $document) {
+
+    var phiSelectCounter = 0;
+
+    return {
+        restrict: 'EA',
+
+        scope: {
+            name:     "@",
+            label:    "@",
+            error:    "@",
+            invalid:  "@",
+            disabled: "@",
+            ngModel:  "=",
+            ngChange: "&",
+            ngFocus:  "&",
+            ngBlur:   "&"
+        },
+
+        compile: function(tElement, tAttrs) {
+
+            phiSelectCounter++;
+
+            var elementId = "phi-select-" + phiSelectCounter;
+
+            return function(scope, element, attributes) {
+
+                element.data("phiSelectId", elementId);
+
+                scope.options = [];
+
+                var children = tElement.children();
+                for (var index = 0; index < children.length; index++) {
+                    option = angular.element(children[index]);
+                    scope.options.push({
+                        label: option.html(),
+                        value: option.attr("value")
+                    });
+                }
+
+                var template = '<phi-input id="' + elementId + '" label="{{label}}" name="{{name}}" ng-model="currentSearch" ng-focus="focus()" ng-blur="blur()"></phi-input>' +
+                               '<phi-menu phi-texture="paper" phi-tooltip-for="' + elementId + '" phi-tooltip-match="width" phi-visible="{{optionsVisible}}" class="phi-visible-slide-bottom">' +
+                                   '<a ng-repeat="option in options" ng-bind="option.label" ng-click="select(option)" active="{{ngModel == option.value}}"></a>' +
+                               '</phi-menu>';
+
+                scope.currentSearch = scope.ngModel;
+                scope.optionsVisible = false;
+
+
+                scope.showOptions = function() {
+
+                    if (scope.optionsVisible) {
+                        return;
+                    }
+
+                    scope.optionsVisible = true;
+                    $document.bind('click', scope.documentClicked);
+                };
+
+                scope.hideOptions = function() {
+                    scope.optionsVisible = false;
+                    $document.unbind('click', scope.documentClicked);
+                };
+
+
+                scope.select = function(option) {
+                    scope.hideOptions();
+                    scope.currentSearch  = option.label;
+                    scope.ngModel        = option.value;
+                    scope.ngChange();
+                };
+
+                scope.focus = function() {
+                    scope.showOptions();
+                    scope.ngFocus();
+                };
+
+                scope.blur = function() {
+                    scope.ngBlur();
+                };
+
+                scope.documentClicked = function(e) {
+
+                    if (angular.element(e.target).inheritedData('phiSelectId') == elementId) {
+                        return;
+                    }
+
+                    scope.hideOptions();
+                    scope.$apply();
+                };
+
+                var e = $compile(template)(scope);
+                element.empty().append(e);
+
+            };
+        }
+
     };
 
 }]);

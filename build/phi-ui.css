@@ -799,8 +799,7 @@ USAGE:
   font-style: normal; }
 
 [phi-cutout] {
-  position: relative;
-  padding: 20px 0; }
+  position: relative; }
 
 .phi-cutout {
   position: absolute;
@@ -828,7 +827,7 @@ USAGE:
       height: 100px;
       background: transparent url('img/shadow_bottom.png') no-repeat 100% 100%; }
 
-[phi-material=emboss] {
+[phi-texture=emboss] {
   border: 1px solid #dcdcdc;
   border-radius: 3px;
   background: #f1f1f1;
@@ -838,16 +837,16 @@ USAGE:
   background: -o-linear-gradient(#fcfcfc, #f1f1f1);
   filter: e(% "progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", #fcfcfc, #f1f1f1); }
 
-[phi-material=paper] {
+[phi-texture=paper] {
   border-radius: 3px;
   background: #fff; }
 
-[phi-material=xray] {
+[phi-texture=xray] {
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.95);
   color: #fff;
   font-weight: normal; }
-  [phi-material=xray] * {
+  [phi-texture=xray] * {
     color: #fff !important;
     font-weight: normal; }
 
@@ -859,6 +858,38 @@ USAGE:
 .phi-visible-scale[phi-visible=true] {
   opacity: 1;
   max-height: 300px; }
+
+.phi-visible-slide-top[phi-visible] {
+  opacity: 0;
+  transform: translate(0, -15px); }
+
+.phi-visible-slide-top[phi-visible=true] {
+  opacity: 1;
+  transform: translate(0, 0); }
+
+.phi-visible-slide-bottom[phi-visible] {
+  opacity: 0;
+  transform: translate(0, 15px); }
+
+.phi-visible-slide-bottom[phi-visible=true] {
+  opacity: 1;
+  transform: translate(0, 0); }
+
+.phi-visible-slide-left[phi-visible] {
+  opacity: 0;
+  transform: translate(-15px, 0); }
+
+.phi-visible-slide-left[phi-visible=true] {
+  opacity: 1;
+  transform: translate(0, 0); }
+
+.phi-visible-slide-right[phi-visible] {
+  opacity: 0;
+  transform: translate(15px, 0); }
+
+.phi-visible-slide-right[phi-visible=true] {
+  opacity: 1;
+  transform: translate(0, 0); }
 
 .phi-visible-zoom-in[phi-visible] {
   opacity: 0;
@@ -1302,20 +1333,22 @@ phi-checkbox {
     pointer-events: none;
     user-select: text; }
 
-[phi-input] > label, phi-input > label {
-  display: block;
-  pointer-events: none;
-  -webkit-font-smoothing: antialased;
-  transform-origin: top left;
-  -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transform: translate3d(0, 0, 0) scale(0.8);
-  /* 
+[phi-input], phi-input {
+  display: inline-block; }
+  [phi-input] > label, phi-input > label {
+    display: block;
+    pointer-events: none;
+    -webkit-font-smoothing: antialased;
+    transform-origin: top left;
+    -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transform: translate3d(0, 0, 0) scale(0.8);
+    /* 
     carajo Colors for & 
     */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1328,7 +1361,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1341,7 +1374,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1354,7 +1387,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1367,7 +1400,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1380,7 +1413,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1393,7 +1426,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1406,7 +1439,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1419,7 +1452,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1432,7 +1465,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1445,7 +1478,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1458,7 +1491,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1471,7 +1504,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1484,7 +1517,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1497,7 +1530,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1510,7 +1543,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1523,7 +1556,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1536,7 +1569,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1549,7 +1582,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1562,7 +1595,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1575,110 +1608,110 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */ }
-  [phi-input] > label, phi-input > label {
-    color: #5091e0; }
-  [phi-color-theme=amber] [phi-input] > label, [phi-color-theme=amber] phi-input > label {
-    color: #ffb300; }
-  [phi-input] > label[phi-color-theme=amber], phi-input > label[phi-color-theme=amber] {
-    color: #ffb300 !important; }
-  [phi-color-theme=blue-grey] [phi-input] > label, [phi-color-theme=blue-grey] phi-input > label {
-    color: #546e7a; }
-  [phi-input] > label[phi-color-theme=blue-grey], phi-input > label[phi-color-theme=blue-grey] {
-    color: #546e7a !important; }
-  [phi-color-theme=blue] [phi-input] > label, [phi-color-theme=blue] phi-input > label {
-    color: #4e6cef; }
-  [phi-input] > label[phi-color-theme=blue], phi-input > label[phi-color-theme=blue] {
-    color: #4e6cef !important; }
-  [phi-color-theme=brown] [phi-input] > label, [phi-color-theme=brown] phi-input > label {
-    color: #6d4c41; }
-  [phi-input] > label[phi-color-theme=brown], phi-input > label[phi-color-theme=brown] {
-    color: #6d4c41 !important; }
-  [phi-color-theme=cyan] [phi-input] > label, [phi-color-theme=cyan] phi-input > label {
-    color: #00acc1; }
-  [phi-input] > label[phi-color-theme=cyan], phi-input > label[phi-color-theme=cyan] {
-    color: #00acc1 !important; }
-  [phi-color-theme=deep-orange] [phi-input] > label, [phi-color-theme=deep-orange] phi-input > label {
-    color: #f4511e; }
-  [phi-input] > label[phi-color-theme=deep-orange], phi-input > label[phi-color-theme=deep-orange] {
-    color: #f4511e !important; }
-  [phi-color-theme=deep-purple] [phi-input] > label, [phi-color-theme=deep-purple] phi-input > label {
-    color: #5e35b1; }
-  [phi-input] > label[phi-color-theme=deep-purple], phi-input > label[phi-color-theme=deep-purple] {
-    color: #5e35b1 !important; }
-  [phi-color-theme=default] [phi-input] > label, [phi-color-theme=default] phi-input > label {
-    color: #5091e0; }
-  [phi-input] > label[phi-color-theme=default], phi-input > label[phi-color-theme=default] {
-    color: #5091e0 !important; }
-  [phi-color-theme=green] [phi-input] > label, [phi-color-theme=green] phi-input > label {
-    color: #0a8f08; }
-  [phi-input] > label[phi-color-theme=green], phi-input > label[phi-color-theme=green] {
-    color: #0a8f08 !important; }
-  [phi-color-theme=grey] [phi-input] > label, [phi-color-theme=grey] phi-input > label {
-    color: #757575; }
-  [phi-input] > label[phi-color-theme=grey], phi-input > label[phi-color-theme=grey] {
-    color: #757575 !important; }
-  [phi-color-theme=indigo] [phi-input] > label, [phi-color-theme=indigo] phi-input > label {
-    color: #3949ab; }
-  [phi-input] > label[phi-color-theme=indigo], phi-input > label[phi-color-theme=indigo] {
-    color: #3949ab !important; }
-  [phi-color-theme=light-blue] [phi-input] > label, [phi-color-theme=light-blue] phi-input > label {
-    color: #039be5; }
-  [phi-input] > label[phi-color-theme=light-blue], phi-input > label[phi-color-theme=light-blue] {
-    color: #039be5 !important; }
-  [phi-color-theme=light-green] [phi-input] > label, [phi-color-theme=light-green] phi-input > label {
-    color: #7cb342; }
-  [phi-input] > label[phi-color-theme=light-green], phi-input > label[phi-color-theme=light-green] {
-    color: #7cb342 !important; }
-  [phi-color-theme=lime] [phi-input] > label, [phi-color-theme=lime] phi-input > label {
-    color: #c0ca33; }
-  [phi-input] > label[phi-color-theme=lime], phi-input > label[phi-color-theme=lime] {
-    color: #c0ca33 !important; }
-  [phi-color-theme=orange] [phi-input] > label, [phi-color-theme=orange] phi-input > label {
-    color: #fb8c00; }
-  [phi-input] > label[phi-color-theme=orange], phi-input > label[phi-color-theme=orange] {
-    color: #fb8c00 !important; }
-  [phi-color-theme=pink] [phi-input] > label, [phi-color-theme=pink] phi-input > label {
-    color: #d81b60; }
-  [phi-input] > label[phi-color-theme=pink], phi-input > label[phi-color-theme=pink] {
-    color: #d81b60 !important; }
-  [phi-color-theme=purple] [phi-input] > label, [phi-color-theme=purple] phi-input > label {
-    color: #8e24aa; }
-  [phi-input] > label[phi-color-theme=purple], phi-input > label[phi-color-theme=purple] {
-    color: #8e24aa !important; }
-  [phi-color-theme=red] [phi-input] > label, [phi-color-theme=red] phi-input > label {
-    color: #dd191d; }
-  [phi-input] > label[phi-color-theme=red], phi-input > label[phi-color-theme=red] {
-    color: #dd191d !important; }
-  [phi-color-theme=teal] [phi-input] > label, [phi-color-theme=teal] phi-input > label {
-    color: #00897b; }
-  [phi-input] > label[phi-color-theme=teal], phi-input > label[phi-color-theme=teal] {
-    color: #00897b !important; }
-  [phi-color-theme=yellow] [phi-input] > label, [phi-color-theme=yellow] phi-input > label {
-    color: #fdd835; }
-  [phi-input] > label[phi-color-theme=yellow], phi-input > label[phi-color-theme=yellow] {
-    color: #fdd835 !important; }
-[phi-input] > input, [phi-input] > textarea, phi-input > input, phi-input > textarea {
-  background: transparent;
-  border: 0;
-  margin: 0;
-  line-height: 1em;
-  min-height: 2em;
-  font-size: 1em;
-  min-width: 100%;
-  font-weight: normal;
-  border-bottom: 1px solid #dbdbdb; }
-  [phi-input] > input:focus, [phi-input] > textarea:focus, phi-input > input:focus, phi-input > textarea:focus {
-    outline: 0; }
-[phi-input] > hr, phi-input > hr {
-  display: block;
-  height: 2px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  /* 
+    [phi-input] > label, phi-input > label {
+      color: #5091e0; }
+    [phi-color-theme=amber] [phi-input] > label, [phi-color-theme=amber] phi-input > label {
+      color: #ffb300; }
+    [phi-input] > label[phi-color-theme=amber], phi-input > label[phi-color-theme=amber] {
+      color: #ffb300 !important; }
+    [phi-color-theme=blue-grey] [phi-input] > label, [phi-color-theme=blue-grey] phi-input > label {
+      color: #546e7a; }
+    [phi-input] > label[phi-color-theme=blue-grey], phi-input > label[phi-color-theme=blue-grey] {
+      color: #546e7a !important; }
+    [phi-color-theme=blue] [phi-input] > label, [phi-color-theme=blue] phi-input > label {
+      color: #4e6cef; }
+    [phi-input] > label[phi-color-theme=blue], phi-input > label[phi-color-theme=blue] {
+      color: #4e6cef !important; }
+    [phi-color-theme=brown] [phi-input] > label, [phi-color-theme=brown] phi-input > label {
+      color: #6d4c41; }
+    [phi-input] > label[phi-color-theme=brown], phi-input > label[phi-color-theme=brown] {
+      color: #6d4c41 !important; }
+    [phi-color-theme=cyan] [phi-input] > label, [phi-color-theme=cyan] phi-input > label {
+      color: #00acc1; }
+    [phi-input] > label[phi-color-theme=cyan], phi-input > label[phi-color-theme=cyan] {
+      color: #00acc1 !important; }
+    [phi-color-theme=deep-orange] [phi-input] > label, [phi-color-theme=deep-orange] phi-input > label {
+      color: #f4511e; }
+    [phi-input] > label[phi-color-theme=deep-orange], phi-input > label[phi-color-theme=deep-orange] {
+      color: #f4511e !important; }
+    [phi-color-theme=deep-purple] [phi-input] > label, [phi-color-theme=deep-purple] phi-input > label {
+      color: #5e35b1; }
+    [phi-input] > label[phi-color-theme=deep-purple], phi-input > label[phi-color-theme=deep-purple] {
+      color: #5e35b1 !important; }
+    [phi-color-theme=default] [phi-input] > label, [phi-color-theme=default] phi-input > label {
+      color: #5091e0; }
+    [phi-input] > label[phi-color-theme=default], phi-input > label[phi-color-theme=default] {
+      color: #5091e0 !important; }
+    [phi-color-theme=green] [phi-input] > label, [phi-color-theme=green] phi-input > label {
+      color: #0a8f08; }
+    [phi-input] > label[phi-color-theme=green], phi-input > label[phi-color-theme=green] {
+      color: #0a8f08 !important; }
+    [phi-color-theme=grey] [phi-input] > label, [phi-color-theme=grey] phi-input > label {
+      color: #757575; }
+    [phi-input] > label[phi-color-theme=grey], phi-input > label[phi-color-theme=grey] {
+      color: #757575 !important; }
+    [phi-color-theme=indigo] [phi-input] > label, [phi-color-theme=indigo] phi-input > label {
+      color: #3949ab; }
+    [phi-input] > label[phi-color-theme=indigo], phi-input > label[phi-color-theme=indigo] {
+      color: #3949ab !important; }
+    [phi-color-theme=light-blue] [phi-input] > label, [phi-color-theme=light-blue] phi-input > label {
+      color: #039be5; }
+    [phi-input] > label[phi-color-theme=light-blue], phi-input > label[phi-color-theme=light-blue] {
+      color: #039be5 !important; }
+    [phi-color-theme=light-green] [phi-input] > label, [phi-color-theme=light-green] phi-input > label {
+      color: #7cb342; }
+    [phi-input] > label[phi-color-theme=light-green], phi-input > label[phi-color-theme=light-green] {
+      color: #7cb342 !important; }
+    [phi-color-theme=lime] [phi-input] > label, [phi-color-theme=lime] phi-input > label {
+      color: #c0ca33; }
+    [phi-input] > label[phi-color-theme=lime], phi-input > label[phi-color-theme=lime] {
+      color: #c0ca33 !important; }
+    [phi-color-theme=orange] [phi-input] > label, [phi-color-theme=orange] phi-input > label {
+      color: #fb8c00; }
+    [phi-input] > label[phi-color-theme=orange], phi-input > label[phi-color-theme=orange] {
+      color: #fb8c00 !important; }
+    [phi-color-theme=pink] [phi-input] > label, [phi-color-theme=pink] phi-input > label {
+      color: #d81b60; }
+    [phi-input] > label[phi-color-theme=pink], phi-input > label[phi-color-theme=pink] {
+      color: #d81b60 !important; }
+    [phi-color-theme=purple] [phi-input] > label, [phi-color-theme=purple] phi-input > label {
+      color: #8e24aa; }
+    [phi-input] > label[phi-color-theme=purple], phi-input > label[phi-color-theme=purple] {
+      color: #8e24aa !important; }
+    [phi-color-theme=red] [phi-input] > label, [phi-color-theme=red] phi-input > label {
+      color: #dd191d; }
+    [phi-input] > label[phi-color-theme=red], phi-input > label[phi-color-theme=red] {
+      color: #dd191d !important; }
+    [phi-color-theme=teal] [phi-input] > label, [phi-color-theme=teal] phi-input > label {
+      color: #00897b; }
+    [phi-input] > label[phi-color-theme=teal], phi-input > label[phi-color-theme=teal] {
+      color: #00897b !important; }
+    [phi-color-theme=yellow] [phi-input] > label, [phi-color-theme=yellow] phi-input > label {
+      color: #fdd835; }
+    [phi-input] > label[phi-color-theme=yellow], phi-input > label[phi-color-theme=yellow] {
+      color: #fdd835 !important; }
+  [phi-input] > input, [phi-input] > textarea, phi-input > input, phi-input > textarea {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    line-height: 1em;
+    min-height: 2em;
+    font-size: 1em;
+    min-width: 100%;
+    font-weight: normal;
+    border-bottom: 1px solid #dbdbdb; }
+    [phi-input] > input:focus, [phi-input] > textarea:focus, phi-input > input:focus, phi-input > textarea:focus {
+      outline: 0; }
+  [phi-input] > hr, phi-input > hr {
+    display: block;
+    height: 2px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    /* 
     carajo Colors for & 
     */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1691,7 +1724,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1704,7 +1737,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1717,7 +1750,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1730,7 +1763,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1743,7 +1776,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1756,7 +1789,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1769,7 +1802,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1782,7 +1815,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1795,7 +1828,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1808,7 +1841,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1821,7 +1854,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1834,7 +1867,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1847,7 +1880,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1860,7 +1893,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1873,7 +1906,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1886,7 +1919,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1899,7 +1932,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1912,7 +1945,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1925,7 +1958,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+    /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1938,104 +1971,104 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  width: 0; }
-  [phi-input] > hr, phi-input > hr {
-    background-color: #2062b3; }
-  [phi-color-theme=amber] [phi-input] > hr, [phi-color-theme=amber] phi-input > hr {
-    background-color: #ff6f00; }
-  [phi-input] > hr[phi-color-theme=amber], phi-input > hr[phi-color-theme=amber] {
-    background-color: #ff6f00 !important; }
-  [phi-color-theme=blue-grey] [phi-input] > hr, [phi-color-theme=blue-grey] phi-input > hr {
-     }
-  [phi-input] > hr[phi-color-theme=blue-grey], phi-input > hr[phi-color-theme=blue-grey] {
-    background-color: !important; }
-  [phi-color-theme=blue] [phi-input] > hr, [phi-color-theme=blue] phi-input > hr {
-    background-color: #2a36b1; }
-  [phi-input] > hr[phi-color-theme=blue], phi-input > hr[phi-color-theme=blue] {
-    background-color: #2a36b1 !important; }
-  [phi-color-theme=brown] [phi-input] > hr, [phi-color-theme=brown] phi-input > hr {
-    background-color: #3e2723; }
-  [phi-input] > hr[phi-color-theme=brown], phi-input > hr[phi-color-theme=brown] {
-    background-color: #3e2723 !important; }
-  [phi-color-theme=cyan] [phi-input] > hr, [phi-color-theme=cyan] phi-input > hr {
-    background-color: #006064; }
-  [phi-input] > hr[phi-color-theme=cyan], phi-input > hr[phi-color-theme=cyan] {
-    background-color: #006064 !important; }
-  [phi-color-theme=deep-orange] [phi-input] > hr, [phi-color-theme=deep-orange] phi-input > hr {
-    background-color: #bf360c; }
-  [phi-input] > hr[phi-color-theme=deep-orange], phi-input > hr[phi-color-theme=deep-orange] {
-    background-color: #bf360c !important; }
-  [phi-color-theme=deep-purple] [phi-input] > hr, [phi-color-theme=deep-purple] phi-input > hr {
-    background-color: #311b92; }
-  [phi-input] > hr[phi-color-theme=deep-purple], phi-input > hr[phi-color-theme=deep-purple] {
-    background-color: #311b92 !important; }
-  [phi-color-theme=default] [phi-input] > hr, [phi-color-theme=default] phi-input > hr {
-    background-color: #2062b3; }
-  [phi-input] > hr[phi-color-theme=default], phi-input > hr[phi-color-theme=default] {
-    background-color: #2062b3 !important; }
-  [phi-color-theme=green] [phi-input] > hr, [phi-color-theme=green] phi-input > hr {
-    background-color: #0d5302; }
-  [phi-input] > hr[phi-color-theme=green], phi-input > hr[phi-color-theme=green] {
-    background-color: #0d5302 !important; }
-  [phi-color-theme=grey] [phi-input] > hr, [phi-color-theme=grey] phi-input > hr {
-    background-color: #212121; }
-  [phi-input] > hr[phi-color-theme=grey], phi-input > hr[phi-color-theme=grey] {
-    background-color: #212121 !important; }
-  [phi-color-theme=indigo] [phi-input] > hr, [phi-color-theme=indigo] phi-input > hr {
-    background-color: #1a237e; }
-  [phi-input] > hr[phi-color-theme=indigo], phi-input > hr[phi-color-theme=indigo] {
-    background-color: #1a237e !important; }
-  [phi-color-theme=light-blue] [phi-input] > hr, [phi-color-theme=light-blue] phi-input > hr {
-    background-color: #01579b; }
-  [phi-input] > hr[phi-color-theme=light-blue], phi-input > hr[phi-color-theme=light-blue] {
-    background-color: #01579b !important; }
-  [phi-color-theme=light-green] [phi-input] > hr, [phi-color-theme=light-green] phi-input > hr {
-    background-color: #33691e; }
-  [phi-input] > hr[phi-color-theme=light-green], phi-input > hr[phi-color-theme=light-green] {
-    background-color: #33691e !important; }
-  [phi-color-theme=lime] [phi-input] > hr, [phi-color-theme=lime] phi-input > hr {
-    background-color: #827717; }
-  [phi-input] > hr[phi-color-theme=lime], phi-input > hr[phi-color-theme=lime] {
-    background-color: #827717 !important; }
-  [phi-color-theme=orange] [phi-input] > hr, [phi-color-theme=orange] phi-input > hr {
-    background-color: #e65100; }
-  [phi-input] > hr[phi-color-theme=orange], phi-input > hr[phi-color-theme=orange] {
-    background-color: #e65100 !important; }
-  [phi-color-theme=pink] [phi-input] > hr, [phi-color-theme=pink] phi-input > hr {
-    background-color: #880e4f; }
-  [phi-input] > hr[phi-color-theme=pink], phi-input > hr[phi-color-theme=pink] {
-    background-color: #880e4f !important; }
-  [phi-color-theme=purple] [phi-input] > hr, [phi-color-theme=purple] phi-input > hr {
-    background-color: #4a148c; }
-  [phi-input] > hr[phi-color-theme=purple], phi-input > hr[phi-color-theme=purple] {
-    background-color: #4a148c !important; }
-  [phi-color-theme=red] [phi-input] > hr, [phi-color-theme=red] phi-input > hr {
-    background-color: #b0120a; }
-  [phi-input] > hr[phi-color-theme=red], phi-input > hr[phi-color-theme=red] {
-    background-color: #b0120a !important; }
-  [phi-color-theme=teal] [phi-input] > hr, [phi-color-theme=teal] phi-input > hr {
-    background-color: #004d40; }
-  [phi-input] > hr[phi-color-theme=teal], phi-input > hr[phi-color-theme=teal] {
-    background-color: #004d40 !important; }
-  [phi-color-theme=yellow] [phi-input] > hr, [phi-color-theme=yellow] phi-input > hr {
-    background-color: #f57f17; }
-  [phi-input] > hr[phi-color-theme=yellow], phi-input > hr[phi-color-theme=yellow] {
-    background-color: #f57f17 !important; }
-[phi-input]:focus, phi-input:focus {
-  outline: 0; }
-[phi-input].phi-input-focused > input, [phi-input].phi-input-focused > textarea, phi-input.phi-input-focused > input, phi-input.phi-input-focused > textarea {
-  border-bottom: 0; }
-[phi-input].phi-input-focused > hr, phi-input.phi-input-focused > hr {
-  width: 100%; }
-[phi-input].phi-input-focused > label, phi-input.phi-input-focused > label {
-  transform: translate3d(0, 0, 0) scale(0.8) !important; }
-[phi-input].phi-input-empty > label, phi-input.phi-input-empty > label {
-  transform: translate3d(0, 23px, 0) scale(1);
-  color: #999; }
+    -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    width: 0; }
+    [phi-input] > hr, phi-input > hr {
+      background-color: #2062b3; }
+    [phi-color-theme=amber] [phi-input] > hr, [phi-color-theme=amber] phi-input > hr {
+      background-color: #ff6f00; }
+    [phi-input] > hr[phi-color-theme=amber], phi-input > hr[phi-color-theme=amber] {
+      background-color: #ff6f00 !important; }
+    [phi-color-theme=blue-grey] [phi-input] > hr, [phi-color-theme=blue-grey] phi-input > hr {
+       }
+    [phi-input] > hr[phi-color-theme=blue-grey], phi-input > hr[phi-color-theme=blue-grey] {
+      background-color: !important; }
+    [phi-color-theme=blue] [phi-input] > hr, [phi-color-theme=blue] phi-input > hr {
+      background-color: #2a36b1; }
+    [phi-input] > hr[phi-color-theme=blue], phi-input > hr[phi-color-theme=blue] {
+      background-color: #2a36b1 !important; }
+    [phi-color-theme=brown] [phi-input] > hr, [phi-color-theme=brown] phi-input > hr {
+      background-color: #3e2723; }
+    [phi-input] > hr[phi-color-theme=brown], phi-input > hr[phi-color-theme=brown] {
+      background-color: #3e2723 !important; }
+    [phi-color-theme=cyan] [phi-input] > hr, [phi-color-theme=cyan] phi-input > hr {
+      background-color: #006064; }
+    [phi-input] > hr[phi-color-theme=cyan], phi-input > hr[phi-color-theme=cyan] {
+      background-color: #006064 !important; }
+    [phi-color-theme=deep-orange] [phi-input] > hr, [phi-color-theme=deep-orange] phi-input > hr {
+      background-color: #bf360c; }
+    [phi-input] > hr[phi-color-theme=deep-orange], phi-input > hr[phi-color-theme=deep-orange] {
+      background-color: #bf360c !important; }
+    [phi-color-theme=deep-purple] [phi-input] > hr, [phi-color-theme=deep-purple] phi-input > hr {
+      background-color: #311b92; }
+    [phi-input] > hr[phi-color-theme=deep-purple], phi-input > hr[phi-color-theme=deep-purple] {
+      background-color: #311b92 !important; }
+    [phi-color-theme=default] [phi-input] > hr, [phi-color-theme=default] phi-input > hr {
+      background-color: #2062b3; }
+    [phi-input] > hr[phi-color-theme=default], phi-input > hr[phi-color-theme=default] {
+      background-color: #2062b3 !important; }
+    [phi-color-theme=green] [phi-input] > hr, [phi-color-theme=green] phi-input > hr {
+      background-color: #0d5302; }
+    [phi-input] > hr[phi-color-theme=green], phi-input > hr[phi-color-theme=green] {
+      background-color: #0d5302 !important; }
+    [phi-color-theme=grey] [phi-input] > hr, [phi-color-theme=grey] phi-input > hr {
+      background-color: #212121; }
+    [phi-input] > hr[phi-color-theme=grey], phi-input > hr[phi-color-theme=grey] {
+      background-color: #212121 !important; }
+    [phi-color-theme=indigo] [phi-input] > hr, [phi-color-theme=indigo] phi-input > hr {
+      background-color: #1a237e; }
+    [phi-input] > hr[phi-color-theme=indigo], phi-input > hr[phi-color-theme=indigo] {
+      background-color: #1a237e !important; }
+    [phi-color-theme=light-blue] [phi-input] > hr, [phi-color-theme=light-blue] phi-input > hr {
+      background-color: #01579b; }
+    [phi-input] > hr[phi-color-theme=light-blue], phi-input > hr[phi-color-theme=light-blue] {
+      background-color: #01579b !important; }
+    [phi-color-theme=light-green] [phi-input] > hr, [phi-color-theme=light-green] phi-input > hr {
+      background-color: #33691e; }
+    [phi-input] > hr[phi-color-theme=light-green], phi-input > hr[phi-color-theme=light-green] {
+      background-color: #33691e !important; }
+    [phi-color-theme=lime] [phi-input] > hr, [phi-color-theme=lime] phi-input > hr {
+      background-color: #827717; }
+    [phi-input] > hr[phi-color-theme=lime], phi-input > hr[phi-color-theme=lime] {
+      background-color: #827717 !important; }
+    [phi-color-theme=orange] [phi-input] > hr, [phi-color-theme=orange] phi-input > hr {
+      background-color: #e65100; }
+    [phi-input] > hr[phi-color-theme=orange], phi-input > hr[phi-color-theme=orange] {
+      background-color: #e65100 !important; }
+    [phi-color-theme=pink] [phi-input] > hr, [phi-color-theme=pink] phi-input > hr {
+      background-color: #880e4f; }
+    [phi-input] > hr[phi-color-theme=pink], phi-input > hr[phi-color-theme=pink] {
+      background-color: #880e4f !important; }
+    [phi-color-theme=purple] [phi-input] > hr, [phi-color-theme=purple] phi-input > hr {
+      background-color: #4a148c; }
+    [phi-input] > hr[phi-color-theme=purple], phi-input > hr[phi-color-theme=purple] {
+      background-color: #4a148c !important; }
+    [phi-color-theme=red] [phi-input] > hr, [phi-color-theme=red] phi-input > hr {
+      background-color: #b0120a; }
+    [phi-input] > hr[phi-color-theme=red], phi-input > hr[phi-color-theme=red] {
+      background-color: #b0120a !important; }
+    [phi-color-theme=teal] [phi-input] > hr, [phi-color-theme=teal] phi-input > hr {
+      background-color: #004d40; }
+    [phi-input] > hr[phi-color-theme=teal], phi-input > hr[phi-color-theme=teal] {
+      background-color: #004d40 !important; }
+    [phi-color-theme=yellow] [phi-input] > hr, [phi-color-theme=yellow] phi-input > hr {
+      background-color: #f57f17; }
+    [phi-input] > hr[phi-color-theme=yellow], phi-input > hr[phi-color-theme=yellow] {
+      background-color: #f57f17 !important; }
+  [phi-input]:focus, phi-input:focus {
+    outline: 0; }
+  [phi-input].phi-input-focused > input, [phi-input].phi-input-focused > textarea, phi-input.phi-input-focused > input, phi-input.phi-input-focused > textarea {
+    border-bottom: 0; }
+  [phi-input].phi-input-focused > hr, phi-input.phi-input-focused > hr {
+    width: 100%; }
+  [phi-input].phi-input-focused > label, phi-input.phi-input-focused > label {
+    transform: translate3d(0, 0, 0) scale(0.8) !important; }
+  [phi-input].phi-input-empty > label, phi-input.phi-input-empty > label {
+    transform: translate3d(0, 23px, 0) scale(1);
+    color: #999; }
 
 phi-menu.phi-menu-colored {
   /* 
@@ -2383,19 +2416,8 @@ phi-menu.phi-menu-colored {
     background: #fdd835; }
   phi-menu.phi-menu-colored[phi-color-theme=yellow] a[active=true] {
     background: #fdd835 !important; }
-  phi-menu.phi-menu-colored a {
-    font-size: 14px;
-    margin: 4px 0;
-    padding: 4px 11px;
-    border-radius: 3px;
-    color: #444;
-    text-decoration: none; }
-    phi-menu.phi-menu-colored a:hover {
-      background: #e0e0e0; }
-    phi-menu.phi-menu-colored a[active=true] {
-      color: #fff; }
-  phi-menu.phi-menu-colored .phi-submenu-label:before {
-    bottom: 6px; }
+  phi-menu.phi-menu-colored a[active=true] {
+    color: #fff; }
   phi-menu.phi-menu-colored phi-submenu[expanded] {
     /* 
     carajo Colors for & 
@@ -3440,13 +3462,21 @@ Elements resulting HTML:
 */
 phi-menu {
   display: block;
-  position: relative; }
+  position: relative;
+  padding: 16px 0; }
   phi-menu a {
     display: block;
     cursor: pointer;
-    padding-left: 25px !important; }
+    padding: 8px 20px !important;
+    text-decoration: none;
+    color: #333; }
+    phi-menu a:hover {
+      background-color: rgba(0, 0, 0, 0.03); }
     phi-menu a:focus {
+      background-color: rgba(0, 0, 0, 0.03);
       outline: 0; }
+    phi-menu a[active=true] {
+      background-color: rgba(0, 0, 0, 0.1); }
 
 phi-submenu {
   display: block; }
@@ -3458,8 +3488,8 @@ phi-submenu {
       cursor: inherit;
       font-style: normal;
       position: absolute;
-      bottom: 2px;
-      left: 2px;
+      top: 9px;
+      right: 16px;
       display: block;
       width: 1em;
       height: 1em;
@@ -3483,6 +3513,21 @@ phi-submenu {
     transform: rotate(90deg); }
   phi-submenu[expanded] > .phi-submenu-contents {
     max-height: 777px; }
+
+phi-menu[phi-texture=xray] a:hover, [phi-texture=xray] phi-menu a:hover {
+  background: rgba(255, 255, 255, 0.3); }
+
+phi-select {
+  display: inline-block;
+  position: relative; }
+  phi-select:before {
+    font-family: FontAwesome;
+    content: "\f0d7";
+    cursor: inherit;
+    font-style: normal;
+    position: absolute;
+    bottom: 12px;
+    right: 8px; }
 
 [phi-boundary] {
   margin: auto;
@@ -4551,101 +4596,101 @@ phi-submenu {
 
 [phi-color-background="50"] {
   background-color: #dae8f8;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="100"] {
   background-color: #c7dcf5;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="200"] {
   background-color: #aeccf1;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="300"] {
   background-color: #94bcec;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="400"] {
   background-color: #7bace8;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="500"] {
   background-color: #619ce3;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="600"] {
   background-color: #5091e0;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="700"] {
   background-color: #3a83dc;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="800"] {
   background-color: #2676d8;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="900"] {
   background-color: #2062b3;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="A100"] {
   background-color: #a5c6ef;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="A200"] {
   background-color: #72a6e6;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="A400"] {
   background-color: #5c98e2;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-background="A700"] {
   background-color: #5c98e2;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-theme=amber] [phi-color-background="50"] {
   background-color: #fff8e1; }
@@ -6257,101 +6302,101 @@ phi-submenu {
 
 [phi-color-font="50"] {
   color: #dae8f8;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="100"] {
   color: #c7dcf5;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="200"] {
   color: #aeccf1;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="300"] {
   color: #94bcec;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="400"] {
   color: #7bace8;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="500"] {
   color: #619ce3;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="600"] {
   color: #5091e0;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="700"] {
   color: #3a83dc;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="800"] {
   color: #2676d8;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="900"] {
   color: #2062b3;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="A100"] {
   color: #a5c6ef;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="A200"] {
   color: #72a6e6;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="A400"] {
   color: #5c98e2;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-font="A700"] {
   color: #5c98e2;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-theme=amber] [phi-color-font="50"] {
   color: #fff8e1; }
@@ -7963,101 +8008,101 @@ phi-submenu {
 
 [phi-color-border="50"] {
   border-color: #dae8f8;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="100"] {
   border-color: #c7dcf5;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="200"] {
   border-color: #aeccf1;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="300"] {
   border-color: #94bcec;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="400"] {
   border-color: #7bace8;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="500"] {
   border-color: #619ce3;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="600"] {
   border-color: #5091e0;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="700"] {
   border-color: #3a83dc;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="800"] {
   border-color: #2676d8;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="900"] {
   border-color: #2062b3;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="A100"] {
   border-color: #a5c6ef;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="A200"] {
   border-color: #72a6e6;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="A400"] {
   border-color: #5c98e2;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-border="A700"] {
   border-color: #5c98e2;
-  -webkit-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s; }
 
 [phi-color-theme=amber] [phi-color-border="50"] {
   border-color: #fff8e1; }
@@ -18476,7 +18521,7 @@ Based on: https://github.com/angular/material/blob/master/src/core/style/layout.
 [phi-padded] {
   padding: 16px 24px; }
 
-[phi-z], [phi-material=paper], [phi-button] {
+[phi-z], [phi-texture=paper], [phi-button] {
   -webkit-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
   -moz-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
   -o-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1) 0s;

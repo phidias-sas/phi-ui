@@ -60,7 +60,7 @@ function MdCheckboxDirective(inputDirective) {
     return {
         restrict: 'E',
         transclude: true,
-        require: '^ngModel',
+        require: '?ngModel',
         template:
             '<div class="phi-container" phi-ink-ripple phi-ink-ripple-checkbox>' +
                 '<div class="phi-icon"></div>' +
@@ -114,7 +114,8 @@ function MdCheckboxDirective(inputDirective) {
             }
 
             function render() {
-                element.toggleClass(CHECKED_CSS, ngModelCtrl.$viewValue);
+                checked = ngModelCtrl.$viewValue;
+                element.toggleClass(CHECKED_CSS, checked);
             }
         };
     }

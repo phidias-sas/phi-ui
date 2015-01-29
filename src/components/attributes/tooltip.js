@@ -1,4 +1,4 @@
-angular.module("phi.ui").directive("phiTooltipFor", [function() {
+angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", function($timeout) {
 
     return {
 
@@ -12,16 +12,7 @@ angular.module("phi.ui").directive("phiTooltipFor", [function() {
 
         link: function(scope, element, attributes)  {
 
-			attributes.$observe("phiTooltipAlign", function(dsa) {
-				setPosition();
-			});
-
-            attributes.$observe("phiTooltipOrigin", function(dsa) {
-				setPosition();
-			});
-
-
-        	setPosition = function() {
+        	scope.reposition = function() {
 
 	        	element.css("position", "absolute");
 
@@ -29,10 +20,22 @@ angular.module("phi.ui").directive("phiTooltipFor", [function() {
 				var parentCoordinates = parentElement.getBoundingClientRect();
 				var localCoordinates  = element[0].getBoundingClientRect();
 
+
 				var coordinates = {
 					top: window.scrollY,
 					left: window.scrollX
 				};
+
+				//compensate for relative parents
+				var offsetTop = (window.scrollY + localCoordinates.top - element[0].offsetTop);
+				var offsetLeft = (window.scrollX + localCoordinates.left - element[0].offsetLeft);
+
+				coordinates.top -= offsetTop;
+				coordinates.left -= offsetLeft;
+
+				//css transform displacements are taken into account, and getBoundingClientRect is run when the element is HIDDEN so
+				//if the visibility css contains a transform, this will be fucked.   Manually subtracting the clss.slide.scss distance here:
+				coordinates.top += 15;
 
 
 				var verticalOrigin   = null;
@@ -116,9 +119,6 @@ angular.module("phi.ui").directive("phiTooltipFor", [function() {
 				}
 
 
-				var elementCoordinates = coordinates;
-
-
 				var elementCoordinates = {
 					top: coordinates.top + "px",
 					left: coordinates.left + "px",
@@ -126,9 +126,29 @@ angular.module("phi.ui").directive("phiTooltipFor", [function() {
 					bottom: coordinates.bottom + "px"
 				};
 
+				if (attributes.phiTooltipMatch == "width") {
+					elementCoordinates.minWidth = parentCoordinates.width + "px";
+				} else if (attributes.phiTooltipMatch == "height") {
+					elementCoordinates.minHeight = parentCoordinates.height + "px";
+				}
+
 	        	element.css(elementCoordinates);
         	};
 
+
+			attributes.$observe("phiVisible", function() {
+				scope.reposition();
+			});
+
+			attributes.$observe("phiTooltipAlign", function() {
+				scope.reposition();
+			});
+
+            attributes.$observe("phiTooltipOrigin", function() {
+				scope.reposition();
+			});
+
+            $timeout(scope.reposition, 0);
         }
     };
 

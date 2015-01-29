@@ -3,7 +3,7 @@
     @each $hue, $rgb in $phi-color-default {
         [#{$selector}="#{$hue}"] {
             #{$property}: $rgb;
-            @include phi-transition($property, 600ms);
+            @include phi-transition($property);
         }
     }
 
