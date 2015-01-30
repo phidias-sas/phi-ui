@@ -6,8 +6,9 @@ phi-select {
     &:before {
         @include phi-icon("fa-caret-down");
         position: absolute;
-        bottom: 12px;
+        bottom: 15px;
         right: 16px;
+        opacity: 0.7;
     }
 
 	& > phi-input {

@@ -2,98 +2,98 @@ $checkbox-width: 18px !default;
 $checkbox-height: $checkbox-width !default;
 
 phi-checkbox {
-  display: block;
-  margin: 15px;
-  white-space: nowrap;
-  cursor: pointer;
-  outline: none;
-  user-select: none;
+    display: block;
+    margin: 15px;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
 
-  .phi-container {
-    position: relative;
-    top: 4px;
-    display: inline-block;
-    width: $checkbox-width;
-    height: $checkbox-height;
+    .phi-container {
+        position: relative;
+        top: 4px;
+        display: inline-block;
+        width: $checkbox-width;
+        height: $checkbox-height;
 
-    &:after {
-      content: '';
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      bottom: -10px;
-      left: -10px;
+        &:after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            bottom: -10px;
+            left: -10px;
+        }
+
+        .phi-ripple-container {
+            position: absolute;
+            display: block;
+            width: auto;
+            height: auto;
+            left: -15px;
+            top: -15px;
+            right: -15px;
+            bottom: -15px;
+        }
     }
 
-    .phi-ripple-container {
-      position: absolute;
-      display: block;
-      width: auto;
-      height: auto;
-      left: -15px;
-      top: -15px;
-      right: -15px;
-      bottom: -15px;
+    // unchecked
+    .phi-icon {
+        transition: 240ms;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $checkbox-width;
+        height: $checkbox-height;
+        border: 2px solid;
+        border-radius: 2px;
     }
-  }
 
-  // unchecked
-  .phi-icon {
-    transition: 240ms;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: $checkbox-width;
-    height: $checkbox-height;
-    border: 2px solid;
-    border-radius: 2px;
-  }
+    &.phi-checked .phi-icon {
+        border: none;
+    }
 
-  &.phi-checked .phi-icon {
-    border: none;
-  }
-
-  @include phi-colors((
-    background-color: 900
-  ), '.phi-checked .phi-icon');
+    @include phi-colors((
+        background-color: 900
+    ), '.phi-checked .phi-icon');
 
 
-  // disabled
-  &[disabled] {
-    cursor: no-drop;
-    opacity: 0.6;
-  }
+    // disabled
+    &[disabled] {
+        cursor: no-drop;
+        opacity: 0.6;
+    }
 
-  // focus
-  &:focus .phi-label:not(:empty) {
-    border-color: black;
-  }
+    // focus
+    &:focus .phi-label:not(:empty) {
+        border-color: black;
+    }
 
 
-  &.phi-checked .phi-icon:after {
-    transform: rotate(45deg);
-    position: absolute;
-    left: 6px;
-    top: 2px;
-    display: table;
-    width: 6px;
-    height: 12px;
-    border: 2px solid;
-    border-top: 0;
-    border-left: 0;
-    content: ' ';
+    &.phi-checked .phi-icon:after {
+        transform: rotate(45deg);
+        position: absolute;
+        left: 6px;
+        top: 2px;
+        display: table;
+        width: 6px;
+        height: 12px;
+        border: 2px solid;
+        border-top: 0;
+        border-left: 0;
+        content: ' ';
 
-    border-color: #fff;
-  }
+        border-color: #fff;
+    }
 
-  .phi-label {
-    border: 1px dotted transparent;
-    position: relative;
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: middle;
-    white-space: normal;
-    pointer-events: none;
-    user-select: text;
-  }
+    .phi-label {
+        border: 1px dotted transparent;
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
+        vertical-align: middle;
+        white-space: normal;
+        pointer-events: none;
+        user-select: text;
+    }
 }

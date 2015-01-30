@@ -35,7 +35,7 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
 
 				//css transform displacements are taken into account, and getBoundingClientRect is run when the element is HIDDEN so
 				//if the visibility css contains a transform, this will be fucked.   Manually subtracting the clss.slide.scss distance here:
-				coordinates.top += 15;
+				coordinates.top += 10;
 
 
 

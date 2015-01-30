@@ -4,50 +4,68 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
         restrict: "A",
 
+        scope: {},
+
         link: function(scope, element, attributes)  {
 
+            element.parent().css("position", "relative");
             element.css("position", "absolute");
 
-            var boundingRect = element[0].getBoundingClientRect();
-            var coordinates  = {};
-            var alignment    = $phiCoordinates.parseAlignmentString(attributes.phiPosition) || {vertical: "top", horizontal: "left"};
+            scope.reposition = function(positionString) {
 
-            switch (alignment.vertical) {
+                var boundingRect = element[0].getBoundingClientRect();
+                var alignment    = $phiCoordinates.parseAlignmentString(positionString) || {vertical: "top", horizontal: "left"};
 
-                case "top":
-                    coordinates.top = "10px";
-                break;
+                var coordinates  = {
+                    top:        "initial",
+                    left:       "initial",
+                    bottom:     "initial",
+                    right:      "initial",
+                    marginTop:  "initial",
+                    marginLeft: "initial"
+                };
 
-                case "center":
-                    coordinates.top       = "50%";
-                    coordinates.marginTop = (boundingRect.height * -0.5) + "px";
-                break;
+                switch (alignment.vertical) {
 
-                case "bottom":
-                    coordinates.bottom = "10px";
-                break;
+                    case "top":
+                        coordinates.top = "10px";
+                    break;
 
-            }
+                    case "center":
+                        coordinates.top       = "50%";
+                        coordinates.marginTop = (boundingRect.height * -0.5) + "px";
+                    break;
 
-            switch (alignment.horizontal) {
+                    case "bottom":
+                        coordinates.bottom = "10px";
+                    break;
 
-                case "left":
-                    coordinates.left = "10px";
-                break;
+                }
 
-                case "center":
-                    coordinates.left       = "50%";
-                    coordinates.marginLeft = (boundingRect.width * -0.5) + "px";
-                break;
+                switch (alignment.horizontal) {
 
-                case "right":
-                    coordinates.right = "10px";
-                break;
+                    case "left":
+                        coordinates.left = "10px";
+                    break;
 
-            }
+                    case "center":
+                        coordinates.left       = "50%";
+                        coordinates.marginLeft = (boundingRect.width * -0.5) + "px";
+                    break;
 
-            element.parent().css("position", "relative");
-            element.css(coordinates);
+                    case "right":
+                        coordinates.right = "10px";
+                    break;
+
+                }
+
+                element.css(coordinates);
+
+            };
+
+            attributes.$observe("phiPosition", function(positionString) {
+                scope.reposition(positionString);
+            });
 
         }
     };

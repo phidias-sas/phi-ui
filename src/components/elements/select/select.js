@@ -4,10 +4,10 @@ Same attributes as polymer's paper-element
 
 angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", function($compile, $document) {
 
-    var phiSelectCounter = 0;
+    var phiSelectCounter = 1;
 
     return {
-        restrict: 'EA',
+        restrict: "E",
 
         scope: {
             name:     "@",
@@ -21,81 +21,111 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
             ngBlur:   "&"
         },
 
-        compile: function(tElement, tAttrs) {
+        transclude: true,
 
-            phiSelectCounter++;
+        template:  '<phi-input id="{{elementId}}" label="{{label}}" name="{{name}}" ng-model="displayValue" ng-focus="focus()" ng-blur="blur()"></phi-input>' +
+                   '<phi-menu ng-transclude phi-tooltip-for="{{elementId}}" phi-tooltip-match="width" phi-visible="{{state.expanded}}" class="phi-visible-slide-bottom phi-texture-paper">' +
+                   '</phi-menu>',
 
-            var elementId = "phi-select-" + phiSelectCounter;
 
-            return function(scope, element, attributes) {
+        controller: ["$scope", function($scope) {
 
-                element.data("phiSelectId", elementId);
+            this.select = function(value) {
+                $scope.ngModel      = value;
+                $scope.displayValue = value;
+                $scope.collapse();
+                $scope.ngChange();
+            };
 
-                scope.options = [];
+        }],
 
-                var children = tElement.children();
-                for (var index = 0; index < children.length; index++) {
-                    option = angular.element(children[index]);
-                    scope.options.push({
-                        label: option.html(),
-                        value: option.attr("value")
-                    });
+
+        link: function(scope, element, attributes) {
+
+            scope.elementId = "phi-select-" + phiSelectCounter++;
+
+            element.data("phiSelectId", scope.elementId);
+            element.attr("tabindex", -1);
+            element.on("focus", function() {
+                element.find("phi-input")[0].focus();
+            });
+
+            scope.state = {
+                expanded: false
+            };
+
+            scope.focus = function() {
+                element.find("input")[0].select();
+                scope.expand();
+                scope.ngFocus();
+            };
+
+            scope.blur = function() {
+                scope.displayValue = scope.ngModel;
+                scope.ngBlur();
+            };
+
+
+            scope.expand = function() {
+                if (scope.state.expanded) {
+                    return;
+                }
+                scope.state.expanded = true;
+                $document.bind('click', scope.documentClicked);
+            };
+
+            scope.collapse = function() {
+                scope.state.expanded = false;
+                $document.unbind('click', scope.documentClicked);
+            };
+
+            scope.documentClicked = function(e) {
+
+                if (angular.element(e.target).inheritedData('phiSelectId') == scope.elementId) {
+                    return;
                 }
 
-                var template = '<phi-input id="' + elementId + '" label="{{label}}" name="{{name}}" ng-model="currentSearch" ng-focus="focus()" ng-blur="blur()"></phi-input>' +
-                               '<phi-menu phi-tooltip-for="' + elementId + '" phi-tooltip-match="width" phi-visible="{{optionsVisible}}" class="phi-visible-slide-bottom phi-texture-paper">' +
-                                   '<a ng-repeat="option in options" ng-bind="option.label" ng-click="select(option)" active="{{ngModel == option.value}}"></a>' +
-                               '</phi-menu>';
-
-                scope.currentSearch = scope.ngModel;
-                scope.optionsVisible = false;
-
-                scope.showOptions = function() {
-
-                    if (scope.optionsVisible) {
-                        return;
-                    }
-
-                    scope.optionsVisible = true;
-                    $document.bind('click', scope.documentClicked);
-                };
-
-                scope.hideOptions = function() {
-                    scope.optionsVisible = false;
-                    $document.unbind('click', scope.documentClicked);
-                };
-
-
-                scope.select = function(option) {
-                    scope.hideOptions();
-                    scope.currentSearch  = option.label;
-                    scope.ngModel        = option.value;
-                    scope.ngChange();
-                };
-
-                scope.focus = function() {
-                    scope.showOptions();
-                    scope.ngFocus();
-                };
-
-                scope.blur = function() {
-                    scope.ngBlur();
-                };
-
-                scope.documentClicked = function(e) {
-
-                    if (angular.element(e.target).inheritedData('phiSelectId') == elementId) {
-                        return;
-                    }
-
-                    scope.hideOptions();
-                    scope.$apply();
-                };
-
-                var e = $compile(template)(scope);
-                element.empty().append(e);
-
+                scope.collapse();
+                scope.$apply();
             };
+
+
+            scope.$watch("ngModel", function(newValue) {
+                scope.displayValue = newValue;
+            });
+
+        }
+
+    };
+
+}]);
+
+
+angular.module("phi.ui").directive("option", ["$compile", "$interpolate", function($compile, $interpolate) {
+
+    return {
+
+        restrict: "E",
+        require:  "^?phiSelect",
+
+        scope: {},
+
+        link: function(scope, element, attributes, phiSelectCtrl) {
+
+            if (!phiSelectCtrl) {
+                return;
+            }
+
+
+            scope.value = attributes.value;
+
+            scope.selectThis = function() {
+                return phiSelectCtrl.select(scope.value);
+            };
+
+            var template = '<a ng-click="selectThis()">' + $interpolate(element.html())(scope.$parent) + '</a>';
+            var e = $compile(template)(scope);
+            element.replaceWith(e);
         }
 
     };

@@ -45,7 +45,13 @@ section > h1 {
     margin-top: 20px;
 }
 
-#layout .blocks > * {
+section#classes p {
+    padding: 10px;
+    margin: 5px 0;
+}
+
+
+#attributes-layout .blocks > * {
     color: #fff;
     padding: 18px;
 }

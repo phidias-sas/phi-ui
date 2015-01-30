@@ -2,73 +2,70 @@
 Same attributes as polymer's paper-element
 */
 
-angular.module("phi.ui").directive("phiInput", ['$timeout', function($timeout) {
+angular.module("phi.ui").directive("phiInput", [function() {
 
-    var phiInputCounter = 0;
+    var phiInputCounter = 1;
 
     return {
-        restrict: 'EA',
+        restrict: "E",
 
         scope: {
             name:     "@",
-            type:     "@",
             label:    "@",
-            error:    "@",
-            invalid:  "@",
-            disabled: "@",
             ngModel:  "=",
-            ngChange: "&",
             ngFocus:  "&",
             ngBlur:   "&"
         },
 
-        template:   '<label for="{{id}}" ng-bind="label"></label>' +
-                    '<input id="{{id}}" ng-if="!multiline" type="text" ng-model="$parent.ngModel" ng-focus="focus()" ng-blur="blur()" ng-change="change()" />' +
-                    '<textarea id="{{id}}" ng-if="multiline" name="{{name}}" ng-model="$parent.ngModel" ng-trim="false" ng-focus="focus()" ng-blur="blur()" ng-disabled="disabled == \'true\'" ng-change="change()"></textarea>' +
+        template:   '<label for="{{elementId}}" ng-bind="label"></label>' +
+
+                    '<input type="text" ng-if="!multiline" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" />' +
+                    '<textarea          ng-if="multiline"  ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false"></textarea>' +
+
                     '<hr />',
 
         link: function(scope, element, attributes)  {
 
-            element.attr("tabindex", -1); //prevent ngAria from setting tabindex
-
-            scope.id = "phi-input-" + ++phiInputCounter;
-
+            scope.elementId     = "phi-input-" + phiInputCounter++;
             scope.floatinglabel = (typeof attributes.floatinglabel !== 'undefined') && attributes.floatinglabel !== 'false' && attributes.floatinglabel !== '0';
             scope.multiline     = (typeof attributes.multiline !== 'undefined') && attributes.multiline !== 'false' && attributes.multiline !== '0';
 
-            //Different states this element can be in
             scope.state = {
-                focused: false,
-                empty: true
+                focused:  false,
+                empty:    true,
+                disabled: (typeof attributes.disabled !== 'undefined') && attributes.disabled !== 'false' && attributes.disabled !== '0'
             };
 
-            scope.focus = function() {
-                scope.focused = true;
-                scope.ngFocus();
+            element.toggleClass("phi-input-disabled", scope.state.disabled);
 
+            element.attr("tabindex", -1);
+
+            element.on("focus", function() {
+                var inputElement = scope.multiline ? element.find("textarea") : element.find("input");
+                inputElement[0].focus();
+            });
+
+
+            scope.focus = function() {
+                scope.state.focused = true;
                 element.toggleClass('phi-input-focused', true);
+                scope.ngFocus();
             };
 
             scope.blur = function() {
-                scope.focused = false;
-                scope.ngBlur();
-
+                scope.state.focused = false;
                 element.toggleClass('phi-input-focused', false);
+                scope.ngBlur();
             };
 
-            //see: http://stackoverflow.com/questions/24754005/how-to-implement-an-ng-change-for-a-custom-directive
-            scope.change = function() {
-                $timeout(scope.ngChange, 0);
-            };
 
             scope.resizeTextarea = function() {
                 if (scope.multiline) {
-                    var textarea = element.find('textarea');
+                    var textarea = element.find("textarea");
                     textarea.css("height", "auto");
-                    textarea.css("height", Math.max(50, textarea[0].scrollHeight, textarea[0].clientHeight) + "px");
+                    textarea.css("height", Math.max(textarea[0].scrollHeight, textarea[0].clientHeight) + "px");
                 }
             };
-
 
             scope.$watch("ngModel", function(newValue, oldValue) {
                 scope.state.empty = newValue == undefined || !newValue.length;

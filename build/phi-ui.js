@@ -85,7 +85,7 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
 
 				//css transform displacements are taken into account, and getBoundingClientRect is run when the element is HIDDEN so
 				//if the visibility css contains a transform, this will be fucked.   Manually subtracting the clss.slide.scss distance here:
-				coordinates.top += 15;
+				coordinates.top += 10;
 
 
 
@@ -188,66 +188,74 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
         restrict: "A",
 
+        scope: {},
+
         link: function(scope, element, attributes)  {
-
-            element.css("position", "absolute");
-
-            var boundingRect = element[0].getBoundingClientRect();
-            var coordinates  = {};
-            var alignment    = $phiCoordinates.parseAlignmentString(attributes.phiPosition) || {vertical: "top", horizontal: "left"};
-
-            switch (alignment.vertical) {
-
-                case "top":
-                    coordinates.top = "10px";
-                break;
-
-                case "center":
-                    coordinates.top       = "50%";
-                    coordinates.marginTop = (boundingRect.height * -0.5) + "px";
-                break;
-
-                case "bottom":
-                    coordinates.bottom = "10px";
-                break;
-
-            }
-
-            switch (alignment.horizontal) {
-
-                case "left":
-                    coordinates.left = "10px";
-                break;
-
-                case "center":
-                    coordinates.left       = "50%";
-                    coordinates.marginLeft = (boundingRect.width * -0.5) + "px";
-                break;
-
-                case "right":
-                    coordinates.right = "10px";
-                break;
-
-            }
 
             element.parent().css("position", "relative");
-            element.css(coordinates);
+            element.css("position", "absolute");
+
+            scope.reposition = function(positionString) {
+
+                var boundingRect = element[0].getBoundingClientRect();
+                var alignment    = $phiCoordinates.parseAlignmentString(positionString) || {vertical: "top", horizontal: "left"};
+
+                var coordinates  = {
+                    top:        "initial",
+                    left:       "initial",
+                    bottom:     "initial",
+                    right:      "initial",
+                    marginTop:  "initial",
+                    marginLeft: "initial"
+                };
+
+                switch (alignment.vertical) {
+
+                    case "top":
+                        coordinates.top = "10px";
+                    break;
+
+                    case "center":
+                        coordinates.top       = "50%";
+                        coordinates.marginTop = (boundingRect.height * -0.5) + "px";
+                    break;
+
+                    case "bottom":
+                        coordinates.bottom = "10px";
+                    break;
+
+                }
+
+                switch (alignment.horizontal) {
+
+                    case "left":
+                        coordinates.left = "10px";
+                    break;
+
+                    case "center":
+                        coordinates.left       = "50%";
+                        coordinates.marginLeft = (boundingRect.width * -0.5) + "px";
+                    break;
+
+                    case "right":
+                        coordinates.right = "10px";
+                    break;
+
+                }
+
+                element.css(coordinates);
+
+            };
+
+            attributes.$observe("phiPosition", function(positionString) {
+                scope.reposition(positionString);
+            });
 
         }
     };
 
 }]);
 
-angular.module("phi.ui").directive("phiCutout", [function() {
-
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
-        }
-    };
-
-}]);
 /**
  * Proof of concept: Port an angular-material element
  */
@@ -376,73 +384,70 @@ function MdCheckboxDirective(inputDirective) {
 Same attributes as polymer's paper-element
 */
 
-angular.module("phi.ui").directive("phiInput", ['$timeout', function($timeout) {
+angular.module("phi.ui").directive("phiInput", [function() {
 
-    var phiInputCounter = 0;
+    var phiInputCounter = 1;
 
     return {
-        restrict: 'EA',
+        restrict: "E",
 
         scope: {
             name:     "@",
-            type:     "@",
             label:    "@",
-            error:    "@",
-            invalid:  "@",
-            disabled: "@",
             ngModel:  "=",
-            ngChange: "&",
             ngFocus:  "&",
             ngBlur:   "&"
         },
 
-        template:   '<label for="{{id}}" ng-bind="label"></label>' +
-                    '<input id="{{id}}" ng-if="!multiline" type="text" ng-model="$parent.ngModel" ng-focus="focus()" ng-blur="blur()" ng-change="change()" />' +
-                    '<textarea id="{{id}}" ng-if="multiline" name="{{name}}" ng-model="$parent.ngModel" ng-trim="false" ng-focus="focus()" ng-blur="blur()" ng-disabled="disabled == \'true\'" ng-change="change()"></textarea>' +
+        template:   '<label for="{{elementId}}" ng-bind="label"></label>' +
+
+                    '<input type="text" ng-if="!multiline" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" />' +
+                    '<textarea          ng-if="multiline"  ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false"></textarea>' +
+
                     '<hr />',
 
         link: function(scope, element, attributes)  {
 
-            element.attr("tabindex", -1); //prevent ngAria from setting tabindex
-
-            scope.id = "phi-input-" + ++phiInputCounter;
-
+            scope.elementId     = "phi-input-" + phiInputCounter++;
             scope.floatinglabel = (typeof attributes.floatinglabel !== 'undefined') && attributes.floatinglabel !== 'false' && attributes.floatinglabel !== '0';
             scope.multiline     = (typeof attributes.multiline !== 'undefined') && attributes.multiline !== 'false' && attributes.multiline !== '0';
 
-            //Different states this element can be in
             scope.state = {
-                focused: false,
-                empty: true
+                focused:  false,
+                empty:    true,
+                disabled: (typeof attributes.disabled !== 'undefined') && attributes.disabled !== 'false' && attributes.disabled !== '0'
             };
 
-            scope.focus = function() {
-                scope.focused = true;
-                scope.ngFocus();
+            element.toggleClass("phi-input-disabled", scope.state.disabled);
 
+            element.attr("tabindex", -1);
+
+            element.on("focus", function() {
+                var inputElement = scope.multiline ? element.find("textarea") : element.find("input");
+                inputElement[0].focus();
+            });
+
+
+            scope.focus = function() {
+                scope.state.focused = true;
                 element.toggleClass('phi-input-focused', true);
+                scope.ngFocus();
             };
 
             scope.blur = function() {
-                scope.focused = false;
-                scope.ngBlur();
-
+                scope.state.focused = false;
                 element.toggleClass('phi-input-focused', false);
+                scope.ngBlur();
             };
 
-            //see: http://stackoverflow.com/questions/24754005/how-to-implement-an-ng-change-for-a-custom-directive
-            scope.change = function() {
-                $timeout(scope.ngChange, 0);
-            };
 
             scope.resizeTextarea = function() {
                 if (scope.multiline) {
-                    var textarea = element.find('textarea');
+                    var textarea = element.find("textarea");
                     textarea.css("height", "auto");
-                    textarea.css("height", Math.max(50, textarea[0].scrollHeight, textarea[0].clientHeight) + "px");
+                    textarea.css("height", Math.max(textarea[0].scrollHeight, textarea[0].clientHeight) + "px");
                 }
             };
-
 
             scope.$watch("ngModel", function(newValue, oldValue) {
                 scope.state.empty = newValue == undefined || !newValue.length;
@@ -531,10 +536,10 @@ Same attributes as polymer's paper-element
 
 angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", function($compile, $document) {
 
-    var phiSelectCounter = 0;
+    var phiSelectCounter = 1;
 
     return {
-        restrict: 'EA',
+        restrict: "E",
 
         scope: {
             name:     "@",
@@ -548,83 +553,123 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
             ngBlur:   "&"
         },
 
-        compile: function(tElement, tAttrs) {
+        transclude: true,
 
-            phiSelectCounter++;
+        template:  '<phi-input id="{{elementId}}" label="{{label}}" name="{{name}}" ng-model="displayValue" ng-focus="focus()" ng-blur="blur()"></phi-input>' +
+                   '<phi-menu ng-transclude phi-tooltip-for="{{elementId}}" phi-tooltip-match="width" phi-visible="{{state.expanded}}" class="phi-visible-slide-bottom phi-texture-paper">' +
+                   '</phi-menu>',
 
-            var elementId = "phi-select-" + phiSelectCounter;
 
-            return function(scope, element, attributes) {
+        controller: ["$scope", function($scope) {
 
-                element.data("phiSelectId", elementId);
+            this.select = function(value) {
+                $scope.ngModel      = value;
+                $scope.displayValue = value;
+                $scope.collapse();
+                $scope.ngChange();
+            };
 
-                scope.options = [];
+        }],
 
-                var children = tElement.children();
-                for (var index = 0; index < children.length; index++) {
-                    option = angular.element(children[index]);
-                    scope.options.push({
-                        label: option.html(),
-                        value: option.attr("value")
-                    });
+
+        link: function(scope, element, attributes) {
+
+            scope.elementId = "phi-select-" + phiSelectCounter++;
+
+            element.data("phiSelectId", scope.elementId);
+            element.attr("tabindex", -1);
+            element.on("focus", function() {
+                element.find("phi-input")[0].focus();
+            });
+
+            scope.state = {
+                expanded: false
+            };
+
+            scope.focus = function() {
+                element.find("input")[0].select();
+                scope.expand();
+                scope.ngFocus();
+            };
+
+            scope.blur = function() {
+                scope.displayValue = scope.ngModel;
+                scope.ngBlur();
+            };
+
+
+            scope.expand = function() {
+                if (scope.state.expanded) {
+                    return;
+                }
+                scope.state.expanded = true;
+                $document.bind('click', scope.documentClicked);
+            };
+
+            scope.collapse = function() {
+                scope.state.expanded = false;
+                $document.unbind('click', scope.documentClicked);
+            };
+
+            scope.documentClicked = function(e) {
+
+                if (angular.element(e.target).inheritedData('phiSelectId') == scope.elementId) {
+                    return;
                 }
 
-                var template = '<phi-input id="' + elementId + '" label="{{label}}" name="{{name}}" ng-model="currentSearch" ng-focus="focus()" ng-blur="blur()"></phi-input>' +
-                               '<phi-menu phi-tooltip-for="' + elementId + '" phi-tooltip-match="width" phi-visible="{{optionsVisible}}" class="phi-visible-slide-bottom phi-texture-paper">' +
-                                   '<a ng-repeat="option in options" ng-bind="option.label" ng-click="select(option)" active="{{ngModel == option.value}}"></a>' +
-                               '</phi-menu>';
-
-                scope.currentSearch = scope.ngModel;
-                scope.optionsVisible = false;
-
-                scope.showOptions = function() {
-
-                    if (scope.optionsVisible) {
-                        return;
-                    }
-
-                    scope.optionsVisible = true;
-                    $document.bind('click', scope.documentClicked);
-                };
-
-                scope.hideOptions = function() {
-                    scope.optionsVisible = false;
-                    $document.unbind('click', scope.documentClicked);
-                };
-
-
-                scope.select = function(option) {
-                    scope.hideOptions();
-                    scope.currentSearch  = option.label;
-                    scope.ngModel        = option.value;
-                    scope.ngChange();
-                };
-
-                scope.focus = function() {
-                    scope.showOptions();
-                    scope.ngFocus();
-                };
-
-                scope.blur = function() {
-                    scope.ngBlur();
-                };
-
-                scope.documentClicked = function(e) {
-
-                    if (angular.element(e.target).inheritedData('phiSelectId') == elementId) {
-                        return;
-                    }
-
-                    scope.hideOptions();
-                    scope.$apply();
-                };
-
-                var e = $compile(template)(scope);
-                element.empty().append(e);
-
+                scope.collapse();
+                scope.$apply();
             };
+
+
+            scope.$watch("ngModel", function(newValue) {
+                scope.displayValue = newValue;
+            });
+
         }
 
+    };
+
+}]);
+
+
+angular.module("phi.ui").directive("option", ["$compile", "$interpolate", function($compile, $interpolate) {
+
+    return {
+
+        restrict: "E",
+        require:  "^?phiSelect",
+
+        scope: {},
+
+        link: function(scope, element, attributes, phiSelectCtrl) {
+
+            if (!phiSelectCtrl) {
+                return;
+            }
+
+
+            scope.value = attributes.value;
+
+            scope.selectThis = function() {
+                return phiSelectCtrl.select(scope.value);
+            };
+
+            var template = '<a ng-click="selectThis()">' + $interpolate(element.html())(scope.$parent) + '</a>';
+            var e = $compile(template)(scope);
+            element.replaceWith(e);
+        }
+
+    };
+
+}]);
+angular.module("phi.ui").directive("phiCutout", [function() {
+
+    return {
+        restrict: "C",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
+        }
     };
 
 }]);
