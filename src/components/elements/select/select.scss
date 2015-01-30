@@ -10,4 +10,8 @@ phi-select {
         right: 16px;
     }
 
+	& > phi-input {
+		display: block;
+	}
+
 }

@@ -43,13 +43,12 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
                 }
 
                 var template = '<phi-input id="' + elementId + '" label="{{label}}" name="{{name}}" ng-model="currentSearch" ng-focus="focus()" ng-blur="blur()"></phi-input>' +
-                               '<phi-menu phi-texture="paper" phi-tooltip-for="' + elementId + '" phi-tooltip-match="width" phi-visible="{{optionsVisible}}" class="phi-visible-slide-bottom">' +
+                               '<phi-menu phi-tooltip-for="' + elementId + '" phi-tooltip-match="width" phi-visible="{{optionsVisible}}" class="phi-visible-slide-bottom phi-texture-paper">' +
                                    '<a ng-repeat="option in options" ng-bind="option.label" ng-click="select(option)" active="{{ngModel == option.value}}"></a>' +
                                '</phi-menu>';
 
                 scope.currentSearch = scope.ngModel;
                 scope.optionsVisible = false;
-
 
                 scope.showOptions = function() {
 

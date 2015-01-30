@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" media="all" href="../build/phi-ui.min.css" />
         <link rel="stylesheet" type="text/css" media="all" href="index.css" />
 
@@ -29,9 +30,9 @@
 
         <div id="contents" phi-boundary phi-layout="row">
 
-            <div style="width: 200px" phi-if-screen="gt-small">
+            <div phi-flex style="max-width: 200px" phi-if-screen="gt-small">
 
-                <phi-menu class="phi-menu-colored" phi-cutout>
+                <phi-menu class="phi-menu-colored phi-cutout">
 
                     <a href="#inputs">Inputs</a>
                     <a href="#buttons">Buttons</a>
@@ -66,24 +67,23 @@
             </div>
 
 
-
-            <div phi-flex phi-padded>
+            <div phi-flex class="phi-padded">
 
                 <section id="sandbox">
                     <h1>Sandbox and stuff</h1>
 
-                    <div phi-texture="paper" phi-padded>
+                    <div class="phi-texture-paper phi-padded">
 
                         <h1>So this is a paper and stuff</h1>
 
                         <h1 id="myButton" phi-color-font="600" ng-click="foo.show = !foo.show" phi-icon="fa-bars" phi-position="top right"></h1>
 
-                        <phi-menu phi-texture="paper"
+                        <phi-menu
                            phi-tooltip-for="myButton"
                            phi-tooltip-align="bottom right"
                            phi-tooltip-origin="top right"
                            phi-visible="{{foo.show}}"
-                           class="phi-visible-slide-bottom"
+                           class="phi-texture-paper phi-visible-slide-bottom"
                         >
 
                             <a href="#" ng-click="foo.show = false">Menu item</a>
@@ -177,7 +177,7 @@
 
                     <button phi-button id="anchor" ng-click="tooltip.shown = !tooltip.shown">Toggle!</button>
 
-                    <div phi-texture="xray"
+                    <div class="phi-texture-xray"
                          phi-visible="{{!!tooltip.shown}}"
                          ng-class="tooltip.classname"
                          phi-tooltip-for="anchor"
@@ -239,8 +239,8 @@
                 <section id="materials">
                     <h1>Materials</h1>
 
-                    <p phi-texture="paper" phi-padded phi-color-font="900">This paragraph is made of paper</p>
-                    <p phi-texture="emboss" phi-padded phi-color-font="900">This paragraph is embossed</p>
+                    <p class="phi-texture-paper phi-padded" phi-color-font="900">This paragraph is made of paper</p>
+                    <p class="phi-texture-emboss phi-padded" phi-color-font="900">This paragraph is embossed</p>
                 </section>
 
                 <section id="buttons">

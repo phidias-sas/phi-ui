@@ -791,844 +791,6 @@ USAGE:
 
 
 */
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('fonts/fontawesome-webfont.eot?v=4.0.3');
-  src: url('fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
-  font-weight: normal;
-  font-style: normal; }
-
-.phi-visible-scale[phi-visible] {
-  overflow: hidden;
-  opacity: 0.6;
-  max-height: 0; }
-
-.phi-visible-scale[phi-visible=true] {
-  opacity: 1;
-  max-height: 300px; }
-
-.phi-visible-slide-top[phi-visible] {
-  opacity: 0;
-  transform: translate(0, -15px); }
-
-.phi-visible-slide-top[phi-visible=true] {
-  opacity: 1;
-  transform: translate(0, 0); }
-
-.phi-visible-slide-bottom[phi-visible] {
-  opacity: 0;
-  transform: translate(0, 15px); }
-
-.phi-visible-slide-bottom[phi-visible=true] {
-  opacity: 1;
-  transform: translate(0, 0); }
-
-.phi-visible-slide-left[phi-visible] {
-  opacity: 0;
-  transform: translate(-15px, 0); }
-
-.phi-visible-slide-left[phi-visible=true] {
-  opacity: 1;
-  transform: translate(0, 0); }
-
-.phi-visible-slide-right[phi-visible] {
-  opacity: 0;
-  transform: translate(15px, 0); }
-
-.phi-visible-slide-right[phi-visible=true] {
-  opacity: 1;
-  transform: translate(0, 0); }
-
-.phi-visible-zoom-in[phi-visible] {
-  opacity: 0;
-  transform: scale(0.9); }
-
-.phi-visible-zoom-in[phi-visible=true] {
-  opacity: 1;
-  transform: scale(1); }
-
-.phi-visible-zoom-out[phi-visible] {
-  opacity: 0;
-  transform: scale(1.1); }
-
-.phi-visible-zoom-out[phi-visible=true] {
-  opacity: 1;
-  transform: scale(1); }
-
-[phi-visible] {
-  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  opacity: 0;
-  z-index: -1; }
-
-[phi-visible=true] {
-  opacity: 1;
-  z-index: 999; }
-
-/* classes specify the visibility effect (describes how it becomes visible) */
-[phi-texture=emboss] {
-  border: 1px solid #dcdcdc;
-  border-radius: 3px;
-  background: #f1f1f1;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #fcfcfc));
-  background: -ms-linear-gradient(bottom, #f1f1f1, #fcfcfc);
-  background: -moz-linear-gradient(center bottom, #f1f1f1 0%, #fcfcfc 100%);
-  background: -o-linear-gradient(#fcfcfc, #f1f1f1);
-  filter: e(% "progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", #fcfcfc, #f1f1f1); }
-
-[phi-texture=paper] {
-  border-radius: 3px;
-  background: #fff; }
-
-[phi-texture=xray] {
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
-  font-weight: normal; }
-  [phi-texture=xray] * {
-    color: #fff !important;
-    font-weight: normal; }
-
-[phi-input], phi-input {
-  display: inline-block;
-  margin: 4px; }
-  [phi-input] > label, phi-input > label {
-    display: block;
-    pointer-events: none;
-    -webkit-font-smoothing: antialased;
-    transform-origin: top left;
-    -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    transform: translate3d(0, 0, 0) scale(0.8);
-    /* 
-    carajo Colors for & 
-    */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=amber] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=amber]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=blue-grey] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=blue-grey]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=blue] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=blue]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=brown] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=brown]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=cyan] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=cyan]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=deep-orange] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=deep-orange]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=deep-purple] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=deep-purple]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=default] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=default]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=green] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=green]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=grey] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=grey]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=indigo] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=indigo]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=light-blue] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=light-blue]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=light-green] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=light-green]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=lime] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=lime]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=orange] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=orange]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=pink] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=pink]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=purple] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=purple]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=red] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=red]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=teal] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=teal]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=yellow] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=yellow]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */ }
-    [phi-input] > label, phi-input > label {
-      color: #5091e0; }
-    [phi-color-theme=amber] [phi-input] > label, [phi-color-theme=amber] phi-input > label {
-      color: #ffb300; }
-    [phi-input] > label[phi-color-theme=amber], phi-input > label[phi-color-theme=amber] {
-      color: #ffb300 !important; }
-    [phi-color-theme=blue-grey] [phi-input] > label, [phi-color-theme=blue-grey] phi-input > label {
-      color: #546e7a; }
-    [phi-input] > label[phi-color-theme=blue-grey], phi-input > label[phi-color-theme=blue-grey] {
-      color: #546e7a !important; }
-    [phi-color-theme=blue] [phi-input] > label, [phi-color-theme=blue] phi-input > label {
-      color: #4e6cef; }
-    [phi-input] > label[phi-color-theme=blue], phi-input > label[phi-color-theme=blue] {
-      color: #4e6cef !important; }
-    [phi-color-theme=brown] [phi-input] > label, [phi-color-theme=brown] phi-input > label {
-      color: #6d4c41; }
-    [phi-input] > label[phi-color-theme=brown], phi-input > label[phi-color-theme=brown] {
-      color: #6d4c41 !important; }
-    [phi-color-theme=cyan] [phi-input] > label, [phi-color-theme=cyan] phi-input > label {
-      color: #00acc1; }
-    [phi-input] > label[phi-color-theme=cyan], phi-input > label[phi-color-theme=cyan] {
-      color: #00acc1 !important; }
-    [phi-color-theme=deep-orange] [phi-input] > label, [phi-color-theme=deep-orange] phi-input > label {
-      color: #f4511e; }
-    [phi-input] > label[phi-color-theme=deep-orange], phi-input > label[phi-color-theme=deep-orange] {
-      color: #f4511e !important; }
-    [phi-color-theme=deep-purple] [phi-input] > label, [phi-color-theme=deep-purple] phi-input > label {
-      color: #5e35b1; }
-    [phi-input] > label[phi-color-theme=deep-purple], phi-input > label[phi-color-theme=deep-purple] {
-      color: #5e35b1 !important; }
-    [phi-color-theme=default] [phi-input] > label, [phi-color-theme=default] phi-input > label {
-      color: #5091e0; }
-    [phi-input] > label[phi-color-theme=default], phi-input > label[phi-color-theme=default] {
-      color: #5091e0 !important; }
-    [phi-color-theme=green] [phi-input] > label, [phi-color-theme=green] phi-input > label {
-      color: #0a8f08; }
-    [phi-input] > label[phi-color-theme=green], phi-input > label[phi-color-theme=green] {
-      color: #0a8f08 !important; }
-    [phi-color-theme=grey] [phi-input] > label, [phi-color-theme=grey] phi-input > label {
-      color: #757575; }
-    [phi-input] > label[phi-color-theme=grey], phi-input > label[phi-color-theme=grey] {
-      color: #757575 !important; }
-    [phi-color-theme=indigo] [phi-input] > label, [phi-color-theme=indigo] phi-input > label {
-      color: #3949ab; }
-    [phi-input] > label[phi-color-theme=indigo], phi-input > label[phi-color-theme=indigo] {
-      color: #3949ab !important; }
-    [phi-color-theme=light-blue] [phi-input] > label, [phi-color-theme=light-blue] phi-input > label {
-      color: #039be5; }
-    [phi-input] > label[phi-color-theme=light-blue], phi-input > label[phi-color-theme=light-blue] {
-      color: #039be5 !important; }
-    [phi-color-theme=light-green] [phi-input] > label, [phi-color-theme=light-green] phi-input > label {
-      color: #7cb342; }
-    [phi-input] > label[phi-color-theme=light-green], phi-input > label[phi-color-theme=light-green] {
-      color: #7cb342 !important; }
-    [phi-color-theme=lime] [phi-input] > label, [phi-color-theme=lime] phi-input > label {
-      color: #c0ca33; }
-    [phi-input] > label[phi-color-theme=lime], phi-input > label[phi-color-theme=lime] {
-      color: #c0ca33 !important; }
-    [phi-color-theme=orange] [phi-input] > label, [phi-color-theme=orange] phi-input > label {
-      color: #fb8c00; }
-    [phi-input] > label[phi-color-theme=orange], phi-input > label[phi-color-theme=orange] {
-      color: #fb8c00 !important; }
-    [phi-color-theme=pink] [phi-input] > label, [phi-color-theme=pink] phi-input > label {
-      color: #d81b60; }
-    [phi-input] > label[phi-color-theme=pink], phi-input > label[phi-color-theme=pink] {
-      color: #d81b60 !important; }
-    [phi-color-theme=purple] [phi-input] > label, [phi-color-theme=purple] phi-input > label {
-      color: #8e24aa; }
-    [phi-input] > label[phi-color-theme=purple], phi-input > label[phi-color-theme=purple] {
-      color: #8e24aa !important; }
-    [phi-color-theme=red] [phi-input] > label, [phi-color-theme=red] phi-input > label {
-      color: #dd191d; }
-    [phi-input] > label[phi-color-theme=red], phi-input > label[phi-color-theme=red] {
-      color: #dd191d !important; }
-    [phi-color-theme=teal] [phi-input] > label, [phi-color-theme=teal] phi-input > label {
-      color: #00897b; }
-    [phi-input] > label[phi-color-theme=teal], phi-input > label[phi-color-theme=teal] {
-      color: #00897b !important; }
-    [phi-color-theme=yellow] [phi-input] > label, [phi-color-theme=yellow] phi-input > label {
-      color: #fdd835; }
-    [phi-input] > label[phi-color-theme=yellow], phi-input > label[phi-color-theme=yellow] {
-      color: #fdd835 !important; }
-  [phi-input] > input, [phi-input] > textarea, phi-input > input, phi-input > textarea {
-    background: transparent;
-    border: 0;
-    margin: 0;
-    line-height: 1em;
-    min-height: 2em;
-    font-size: 1em;
-    min-width: 100%;
-    font-weight: normal;
-    border-bottom: 1px solid #dbdbdb; }
-    [phi-input] > input:focus, [phi-input] > textarea:focus, phi-input > input:focus, phi-input > textarea:focus {
-      outline: 0; }
-  [phi-input] > hr, phi-input > hr {
-    display: block;
-    height: 2px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    /* 
-    carajo Colors for & 
-    */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=amber] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=amber]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=blue-grey] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=blue-grey]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=blue] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=blue]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=brown] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=brown]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=cyan] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=cyan]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=deep-orange] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=deep-orange]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=deep-purple] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=deep-purple]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=default] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=default]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=green] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=green]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=grey] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=grey]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=indigo] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=indigo]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=light-blue] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=light-blue]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=light-green] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=light-green]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=lime] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=lime]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=orange] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=orange]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=pink] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=pink]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=purple] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=purple]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=red] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=red]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=teal] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=teal]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=yellow] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=yellow]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    width: 0; }
-    [phi-input] > hr, phi-input > hr {
-      background-color: #2062b3; }
-    [phi-color-theme=amber] [phi-input] > hr, [phi-color-theme=amber] phi-input > hr {
-      background-color: #ff6f00; }
-    [phi-input] > hr[phi-color-theme=amber], phi-input > hr[phi-color-theme=amber] {
-      background-color: #ff6f00 !important; }
-    [phi-color-theme=blue-grey] [phi-input] > hr, [phi-color-theme=blue-grey] phi-input > hr {
-       }
-    [phi-input] > hr[phi-color-theme=blue-grey], phi-input > hr[phi-color-theme=blue-grey] {
-      background-color: !important; }
-    [phi-color-theme=blue] [phi-input] > hr, [phi-color-theme=blue] phi-input > hr {
-      background-color: #2a36b1; }
-    [phi-input] > hr[phi-color-theme=blue], phi-input > hr[phi-color-theme=blue] {
-      background-color: #2a36b1 !important; }
-    [phi-color-theme=brown] [phi-input] > hr, [phi-color-theme=brown] phi-input > hr {
-      background-color: #3e2723; }
-    [phi-input] > hr[phi-color-theme=brown], phi-input > hr[phi-color-theme=brown] {
-      background-color: #3e2723 !important; }
-    [phi-color-theme=cyan] [phi-input] > hr, [phi-color-theme=cyan] phi-input > hr {
-      background-color: #006064; }
-    [phi-input] > hr[phi-color-theme=cyan], phi-input > hr[phi-color-theme=cyan] {
-      background-color: #006064 !important; }
-    [phi-color-theme=deep-orange] [phi-input] > hr, [phi-color-theme=deep-orange] phi-input > hr {
-      background-color: #bf360c; }
-    [phi-input] > hr[phi-color-theme=deep-orange], phi-input > hr[phi-color-theme=deep-orange] {
-      background-color: #bf360c !important; }
-    [phi-color-theme=deep-purple] [phi-input] > hr, [phi-color-theme=deep-purple] phi-input > hr {
-      background-color: #311b92; }
-    [phi-input] > hr[phi-color-theme=deep-purple], phi-input > hr[phi-color-theme=deep-purple] {
-      background-color: #311b92 !important; }
-    [phi-color-theme=default] [phi-input] > hr, [phi-color-theme=default] phi-input > hr {
-      background-color: #2062b3; }
-    [phi-input] > hr[phi-color-theme=default], phi-input > hr[phi-color-theme=default] {
-      background-color: #2062b3 !important; }
-    [phi-color-theme=green] [phi-input] > hr, [phi-color-theme=green] phi-input > hr {
-      background-color: #0d5302; }
-    [phi-input] > hr[phi-color-theme=green], phi-input > hr[phi-color-theme=green] {
-      background-color: #0d5302 !important; }
-    [phi-color-theme=grey] [phi-input] > hr, [phi-color-theme=grey] phi-input > hr {
-      background-color: #212121; }
-    [phi-input] > hr[phi-color-theme=grey], phi-input > hr[phi-color-theme=grey] {
-      background-color: #212121 !important; }
-    [phi-color-theme=indigo] [phi-input] > hr, [phi-color-theme=indigo] phi-input > hr {
-      background-color: #1a237e; }
-    [phi-input] > hr[phi-color-theme=indigo], phi-input > hr[phi-color-theme=indigo] {
-      background-color: #1a237e !important; }
-    [phi-color-theme=light-blue] [phi-input] > hr, [phi-color-theme=light-blue] phi-input > hr {
-      background-color: #01579b; }
-    [phi-input] > hr[phi-color-theme=light-blue], phi-input > hr[phi-color-theme=light-blue] {
-      background-color: #01579b !important; }
-    [phi-color-theme=light-green] [phi-input] > hr, [phi-color-theme=light-green] phi-input > hr {
-      background-color: #33691e; }
-    [phi-input] > hr[phi-color-theme=light-green], phi-input > hr[phi-color-theme=light-green] {
-      background-color: #33691e !important; }
-    [phi-color-theme=lime] [phi-input] > hr, [phi-color-theme=lime] phi-input > hr {
-      background-color: #827717; }
-    [phi-input] > hr[phi-color-theme=lime], phi-input > hr[phi-color-theme=lime] {
-      background-color: #827717 !important; }
-    [phi-color-theme=orange] [phi-input] > hr, [phi-color-theme=orange] phi-input > hr {
-      background-color: #e65100; }
-    [phi-input] > hr[phi-color-theme=orange], phi-input > hr[phi-color-theme=orange] {
-      background-color: #e65100 !important; }
-    [phi-color-theme=pink] [phi-input] > hr, [phi-color-theme=pink] phi-input > hr {
-      background-color: #880e4f; }
-    [phi-input] > hr[phi-color-theme=pink], phi-input > hr[phi-color-theme=pink] {
-      background-color: #880e4f !important; }
-    [phi-color-theme=purple] [phi-input] > hr, [phi-color-theme=purple] phi-input > hr {
-      background-color: #4a148c; }
-    [phi-input] > hr[phi-color-theme=purple], phi-input > hr[phi-color-theme=purple] {
-      background-color: #4a148c !important; }
-    [phi-color-theme=red] [phi-input] > hr, [phi-color-theme=red] phi-input > hr {
-      background-color: #b0120a; }
-    [phi-input] > hr[phi-color-theme=red], phi-input > hr[phi-color-theme=red] {
-      background-color: #b0120a !important; }
-    [phi-color-theme=teal] [phi-input] > hr, [phi-color-theme=teal] phi-input > hr {
-      background-color: #004d40; }
-    [phi-input] > hr[phi-color-theme=teal], phi-input > hr[phi-color-theme=teal] {
-      background-color: #004d40 !important; }
-    [phi-color-theme=yellow] [phi-input] > hr, [phi-color-theme=yellow] phi-input > hr {
-      background-color: #f57f17; }
-    [phi-input] > hr[phi-color-theme=yellow], phi-input > hr[phi-color-theme=yellow] {
-      background-color: #f57f17 !important; }
-  [phi-input]:focus, phi-input:focus {
-    outline: 0; }
-  [phi-input].phi-input-focused > input, [phi-input].phi-input-focused > textarea, phi-input.phi-input-focused > input, phi-input.phi-input-focused > textarea {
-    border-bottom: 0; }
-  [phi-input].phi-input-focused > hr, phi-input.phi-input-focused > hr {
-    width: 100%; }
-  [phi-input].phi-input-focused > label, phi-input.phi-input-focused > label {
-    transform: translate3d(0, 0, 0) scale(0.8) !important; }
-  [phi-input].phi-input-empty > label, phi-input.phi-input-empty > label {
-    transform: translate3d(0, 23px, 0) scale(1);
-    color: #999; }
-
 phi-checkbox {
   display: block;
   margin: 15px;
@@ -3486,7 +2648,7 @@ phi-submenu {
   phi-submenu[expanded] > .phi-submenu-contents {
     max-height: 777px; }
 
-phi-menu[phi-texture=xray] a:hover, [phi-texture=xray] phi-menu a:hover {
+phi-menu.phi-texture-xray a:hover, .phi-texture-xray phi-menu a:hover {
   background: rgba(255, 255, 255, 0.3); }
 
 phi-select {
@@ -3500,11 +2662,821 @@ phi-select {
     position: absolute;
     bottom: 12px;
     right: 16px; }
+  phi-select > phi-input {
+    display: block; }
 
-[phi-cutout] {
+[phi-input], phi-input {
+  display: inline-block;
+  margin: 4px; }
+  [phi-input] > label, phi-input > label {
+    display: block;
+    pointer-events: none;
+    -webkit-font-smoothing: antialased;
+    transform-origin: top left;
+    -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transform: translate3d(0, 0, 0) scale(0.8);
+    /* 
+    carajo Colors for & 
+    */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=amber] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=amber]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=blue-grey] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=blue-grey]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=blue] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=blue]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=brown] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=brown]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=cyan] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=cyan]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=deep-orange] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=deep-orange]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=deep-purple] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=deep-purple]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=default] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=default]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=green] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=green]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=grey] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=grey]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=indigo] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=indigo]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=light-blue] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=light-blue]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=light-green] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=light-green]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=lime] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=lime]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=orange] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=orange]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=pink] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=pink]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=purple] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=purple]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=red] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=red]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=teal] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=teal]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=yellow] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=yellow]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */ }
+    [phi-input] > label, phi-input > label {
+      color: #5091e0; }
+    [phi-color-theme=amber] [phi-input] > label, [phi-color-theme=amber] phi-input > label {
+      color: #ffb300; }
+    [phi-input] > label[phi-color-theme=amber], phi-input > label[phi-color-theme=amber] {
+      color: #ffb300 !important; }
+    [phi-color-theme=blue-grey] [phi-input] > label, [phi-color-theme=blue-grey] phi-input > label {
+      color: #546e7a; }
+    [phi-input] > label[phi-color-theme=blue-grey], phi-input > label[phi-color-theme=blue-grey] {
+      color: #546e7a !important; }
+    [phi-color-theme=blue] [phi-input] > label, [phi-color-theme=blue] phi-input > label {
+      color: #4e6cef; }
+    [phi-input] > label[phi-color-theme=blue], phi-input > label[phi-color-theme=blue] {
+      color: #4e6cef !important; }
+    [phi-color-theme=brown] [phi-input] > label, [phi-color-theme=brown] phi-input > label {
+      color: #6d4c41; }
+    [phi-input] > label[phi-color-theme=brown], phi-input > label[phi-color-theme=brown] {
+      color: #6d4c41 !important; }
+    [phi-color-theme=cyan] [phi-input] > label, [phi-color-theme=cyan] phi-input > label {
+      color: #00acc1; }
+    [phi-input] > label[phi-color-theme=cyan], phi-input > label[phi-color-theme=cyan] {
+      color: #00acc1 !important; }
+    [phi-color-theme=deep-orange] [phi-input] > label, [phi-color-theme=deep-orange] phi-input > label {
+      color: #f4511e; }
+    [phi-input] > label[phi-color-theme=deep-orange], phi-input > label[phi-color-theme=deep-orange] {
+      color: #f4511e !important; }
+    [phi-color-theme=deep-purple] [phi-input] > label, [phi-color-theme=deep-purple] phi-input > label {
+      color: #5e35b1; }
+    [phi-input] > label[phi-color-theme=deep-purple], phi-input > label[phi-color-theme=deep-purple] {
+      color: #5e35b1 !important; }
+    [phi-color-theme=default] [phi-input] > label, [phi-color-theme=default] phi-input > label {
+      color: #5091e0; }
+    [phi-input] > label[phi-color-theme=default], phi-input > label[phi-color-theme=default] {
+      color: #5091e0 !important; }
+    [phi-color-theme=green] [phi-input] > label, [phi-color-theme=green] phi-input > label {
+      color: #0a8f08; }
+    [phi-input] > label[phi-color-theme=green], phi-input > label[phi-color-theme=green] {
+      color: #0a8f08 !important; }
+    [phi-color-theme=grey] [phi-input] > label, [phi-color-theme=grey] phi-input > label {
+      color: #757575; }
+    [phi-input] > label[phi-color-theme=grey], phi-input > label[phi-color-theme=grey] {
+      color: #757575 !important; }
+    [phi-color-theme=indigo] [phi-input] > label, [phi-color-theme=indigo] phi-input > label {
+      color: #3949ab; }
+    [phi-input] > label[phi-color-theme=indigo], phi-input > label[phi-color-theme=indigo] {
+      color: #3949ab !important; }
+    [phi-color-theme=light-blue] [phi-input] > label, [phi-color-theme=light-blue] phi-input > label {
+      color: #039be5; }
+    [phi-input] > label[phi-color-theme=light-blue], phi-input > label[phi-color-theme=light-blue] {
+      color: #039be5 !important; }
+    [phi-color-theme=light-green] [phi-input] > label, [phi-color-theme=light-green] phi-input > label {
+      color: #7cb342; }
+    [phi-input] > label[phi-color-theme=light-green], phi-input > label[phi-color-theme=light-green] {
+      color: #7cb342 !important; }
+    [phi-color-theme=lime] [phi-input] > label, [phi-color-theme=lime] phi-input > label {
+      color: #c0ca33; }
+    [phi-input] > label[phi-color-theme=lime], phi-input > label[phi-color-theme=lime] {
+      color: #c0ca33 !important; }
+    [phi-color-theme=orange] [phi-input] > label, [phi-color-theme=orange] phi-input > label {
+      color: #fb8c00; }
+    [phi-input] > label[phi-color-theme=orange], phi-input > label[phi-color-theme=orange] {
+      color: #fb8c00 !important; }
+    [phi-color-theme=pink] [phi-input] > label, [phi-color-theme=pink] phi-input > label {
+      color: #d81b60; }
+    [phi-input] > label[phi-color-theme=pink], phi-input > label[phi-color-theme=pink] {
+      color: #d81b60 !important; }
+    [phi-color-theme=purple] [phi-input] > label, [phi-color-theme=purple] phi-input > label {
+      color: #8e24aa; }
+    [phi-input] > label[phi-color-theme=purple], phi-input > label[phi-color-theme=purple] {
+      color: #8e24aa !important; }
+    [phi-color-theme=red] [phi-input] > label, [phi-color-theme=red] phi-input > label {
+      color: #dd191d; }
+    [phi-input] > label[phi-color-theme=red], phi-input > label[phi-color-theme=red] {
+      color: #dd191d !important; }
+    [phi-color-theme=teal] [phi-input] > label, [phi-color-theme=teal] phi-input > label {
+      color: #00897b; }
+    [phi-input] > label[phi-color-theme=teal], phi-input > label[phi-color-theme=teal] {
+      color: #00897b !important; }
+    [phi-color-theme=yellow] [phi-input] > label, [phi-color-theme=yellow] phi-input > label {
+      color: #fdd835; }
+    [phi-input] > label[phi-color-theme=yellow], phi-input > label[phi-color-theme=yellow] {
+      color: #fdd835 !important; }
+  [phi-input] > input, [phi-input] > textarea, phi-input > input, phi-input > textarea {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    line-height: 1em;
+    min-height: 2em;
+    font-size: 1em;
+    min-width: 100%;
+    font-weight: normal;
+    border-bottom: 1px solid #dbdbdb; }
+    [phi-input] > input:focus, [phi-input] > textarea:focus, phi-input > input:focus, phi-input > textarea:focus {
+      outline: 0; }
+  [phi-input] > hr, phi-input > hr {
+    display: block;
+    height: 2px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    /* 
+    carajo Colors for & 
+    */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=amber] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=amber]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=blue-grey] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=blue-grey]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=blue] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=blue]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=brown] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=brown]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=cyan] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=cyan]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=deep-orange] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=deep-orange]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=deep-purple] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=deep-purple]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=default] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=default]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=green] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=green]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=grey] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=grey]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=indigo] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=indigo]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=light-blue] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=light-blue]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=light-green] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=light-green]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=lime] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=lime]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=orange] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=orange]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=pink] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=pink]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=purple] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=purple]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=red] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=red]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=teal] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=teal]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=yellow] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=yellow]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    width: 0; }
+    [phi-input] > hr, phi-input > hr {
+      background-color: #2062b3; }
+    [phi-color-theme=amber] [phi-input] > hr, [phi-color-theme=amber] phi-input > hr {
+      background-color: #ff6f00; }
+    [phi-input] > hr[phi-color-theme=amber], phi-input > hr[phi-color-theme=amber] {
+      background-color: #ff6f00 !important; }
+    [phi-color-theme=blue-grey] [phi-input] > hr, [phi-color-theme=blue-grey] phi-input > hr {
+       }
+    [phi-input] > hr[phi-color-theme=blue-grey], phi-input > hr[phi-color-theme=blue-grey] {
+      background-color: !important; }
+    [phi-color-theme=blue] [phi-input] > hr, [phi-color-theme=blue] phi-input > hr {
+      background-color: #2a36b1; }
+    [phi-input] > hr[phi-color-theme=blue], phi-input > hr[phi-color-theme=blue] {
+      background-color: #2a36b1 !important; }
+    [phi-color-theme=brown] [phi-input] > hr, [phi-color-theme=brown] phi-input > hr {
+      background-color: #3e2723; }
+    [phi-input] > hr[phi-color-theme=brown], phi-input > hr[phi-color-theme=brown] {
+      background-color: #3e2723 !important; }
+    [phi-color-theme=cyan] [phi-input] > hr, [phi-color-theme=cyan] phi-input > hr {
+      background-color: #006064; }
+    [phi-input] > hr[phi-color-theme=cyan], phi-input > hr[phi-color-theme=cyan] {
+      background-color: #006064 !important; }
+    [phi-color-theme=deep-orange] [phi-input] > hr, [phi-color-theme=deep-orange] phi-input > hr {
+      background-color: #bf360c; }
+    [phi-input] > hr[phi-color-theme=deep-orange], phi-input > hr[phi-color-theme=deep-orange] {
+      background-color: #bf360c !important; }
+    [phi-color-theme=deep-purple] [phi-input] > hr, [phi-color-theme=deep-purple] phi-input > hr {
+      background-color: #311b92; }
+    [phi-input] > hr[phi-color-theme=deep-purple], phi-input > hr[phi-color-theme=deep-purple] {
+      background-color: #311b92 !important; }
+    [phi-color-theme=default] [phi-input] > hr, [phi-color-theme=default] phi-input > hr {
+      background-color: #2062b3; }
+    [phi-input] > hr[phi-color-theme=default], phi-input > hr[phi-color-theme=default] {
+      background-color: #2062b3 !important; }
+    [phi-color-theme=green] [phi-input] > hr, [phi-color-theme=green] phi-input > hr {
+      background-color: #0d5302; }
+    [phi-input] > hr[phi-color-theme=green], phi-input > hr[phi-color-theme=green] {
+      background-color: #0d5302 !important; }
+    [phi-color-theme=grey] [phi-input] > hr, [phi-color-theme=grey] phi-input > hr {
+      background-color: #212121; }
+    [phi-input] > hr[phi-color-theme=grey], phi-input > hr[phi-color-theme=grey] {
+      background-color: #212121 !important; }
+    [phi-color-theme=indigo] [phi-input] > hr, [phi-color-theme=indigo] phi-input > hr {
+      background-color: #1a237e; }
+    [phi-input] > hr[phi-color-theme=indigo], phi-input > hr[phi-color-theme=indigo] {
+      background-color: #1a237e !important; }
+    [phi-color-theme=light-blue] [phi-input] > hr, [phi-color-theme=light-blue] phi-input > hr {
+      background-color: #01579b; }
+    [phi-input] > hr[phi-color-theme=light-blue], phi-input > hr[phi-color-theme=light-blue] {
+      background-color: #01579b !important; }
+    [phi-color-theme=light-green] [phi-input] > hr, [phi-color-theme=light-green] phi-input > hr {
+      background-color: #33691e; }
+    [phi-input] > hr[phi-color-theme=light-green], phi-input > hr[phi-color-theme=light-green] {
+      background-color: #33691e !important; }
+    [phi-color-theme=lime] [phi-input] > hr, [phi-color-theme=lime] phi-input > hr {
+      background-color: #827717; }
+    [phi-input] > hr[phi-color-theme=lime], phi-input > hr[phi-color-theme=lime] {
+      background-color: #827717 !important; }
+    [phi-color-theme=orange] [phi-input] > hr, [phi-color-theme=orange] phi-input > hr {
+      background-color: #e65100; }
+    [phi-input] > hr[phi-color-theme=orange], phi-input > hr[phi-color-theme=orange] {
+      background-color: #e65100 !important; }
+    [phi-color-theme=pink] [phi-input] > hr, [phi-color-theme=pink] phi-input > hr {
+      background-color: #880e4f; }
+    [phi-input] > hr[phi-color-theme=pink], phi-input > hr[phi-color-theme=pink] {
+      background-color: #880e4f !important; }
+    [phi-color-theme=purple] [phi-input] > hr, [phi-color-theme=purple] phi-input > hr {
+      background-color: #4a148c; }
+    [phi-input] > hr[phi-color-theme=purple], phi-input > hr[phi-color-theme=purple] {
+      background-color: #4a148c !important; }
+    [phi-color-theme=red] [phi-input] > hr, [phi-color-theme=red] phi-input > hr {
+      background-color: #b0120a; }
+    [phi-input] > hr[phi-color-theme=red], phi-input > hr[phi-color-theme=red] {
+      background-color: #b0120a !important; }
+    [phi-color-theme=teal] [phi-input] > hr, [phi-color-theme=teal] phi-input > hr {
+      background-color: #004d40; }
+    [phi-input] > hr[phi-color-theme=teal], phi-input > hr[phi-color-theme=teal] {
+      background-color: #004d40 !important; }
+    [phi-color-theme=yellow] [phi-input] > hr, [phi-color-theme=yellow] phi-input > hr {
+      background-color: #f57f17; }
+    [phi-input] > hr[phi-color-theme=yellow], phi-input > hr[phi-color-theme=yellow] {
+      background-color: #f57f17 !important; }
+  [phi-input]:focus, phi-input:focus {
+    outline: 0; }
+  [phi-input].phi-input-focused > input, [phi-input].phi-input-focused > textarea, phi-input.phi-input-focused > input, phi-input.phi-input-focused > textarea {
+    border-bottom: 0; }
+  [phi-input].phi-input-focused > hr, phi-input.phi-input-focused > hr {
+    width: 100%; }
+  [phi-input].phi-input-focused > label, phi-input.phi-input-focused > label {
+    transform: translate3d(0, 0, 0) scale(0.8) !important; }
+  [phi-input].phi-input-empty > label, phi-input.phi-input-empty > label {
+    transform: translate3d(0, 23px, 0) scale(1);
+    color: #999; }
+
+.phi-visible-scale[phi-visible] {
+  overflow: hidden;
+  opacity: 0.6;
+  max-height: 0; }
+
+.phi-visible-scale[phi-visible=true] {
+  opacity: 1;
+  max-height: 300px; }
+
+.phi-visible-slide-top[phi-visible] {
+  opacity: 0;
+  transform: translate(0, -15px); }
+
+.phi-visible-slide-top[phi-visible=true] {
+  opacity: 1;
+  transform: translate(0, 0); }
+
+.phi-visible-slide-bottom[phi-visible] {
+  opacity: 0;
+  transform: translate(0, 15px); }
+
+.phi-visible-slide-bottom[phi-visible=true] {
+  opacity: 1;
+  transform: translate(0, 0); }
+
+.phi-visible-slide-left[phi-visible] {
+  opacity: 0;
+  transform: translate(-15px, 0); }
+
+.phi-visible-slide-left[phi-visible=true] {
+  opacity: 1;
+  transform: translate(0, 0); }
+
+.phi-visible-slide-right[phi-visible] {
+  opacity: 0;
+  transform: translate(15px, 0); }
+
+.phi-visible-slide-right[phi-visible=true] {
+  opacity: 1;
+  transform: translate(0, 0); }
+
+.phi-visible-zoom-in[phi-visible] {
+  opacity: 0;
+  transform: scale(0.9); }
+
+.phi-visible-zoom-in[phi-visible=true] {
+  opacity: 1;
+  transform: scale(1); }
+
+.phi-visible-zoom-out[phi-visible] {
+  opacity: 0;
+  transform: scale(1.1); }
+
+.phi-visible-zoom-out[phi-visible=true] {
+  opacity: 1;
+  transform: scale(1); }
+
+[phi-visible] {
+  -webkit-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -moz-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  opacity: 0;
+  z-index: -1; }
+
+[phi-visible=true] {
+  opacity: 1;
+  z-index: 999; }
+
+/* classes specify the visibility effect (describes how it becomes visible) */
+.phi-cutout {
   position: relative; }
 
-.phi-cutout {
+.phi-cutout-ridge {
   position: absolute;
   top: 0;
   right: 0;
@@ -3514,21 +3486,44 @@ phi-select {
   z-index: 9;
   width: 16px;
   border-right: 8px solid #f3f3f3; }
-  .phi-cutout > div {
+  .phi-cutout-ridge > div {
     width: 8px;
     position: absolute; }
-    .phi-cutout > div:nth-child(1) {
+    .phi-cutout-ridge > div:nth-child(1) {
       top: 0;
       height: 100px;
       background: transparent url('img/shadow_top.png') no-repeat 100% 0; }
-    .phi-cutout > div:nth-child(2) {
+    .phi-cutout-ridge > div:nth-child(2) {
       top: 100px;
       bottom: 100px;
       background: transparent url('img/shadow_mid.png') repeat-y 100% 100%; }
-    .phi-cutout > div:nth-child(3) {
+    .phi-cutout-ridge > div:nth-child(3) {
       bottom: 0;
       height: 100px;
       background: transparent url('img/shadow_bottom.png') no-repeat 100% 100%; }
+
+.phi-texture-emboss {
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+  background: #f1f1f1;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #fcfcfc));
+  background: -ms-linear-gradient(bottom, #f1f1f1, #fcfcfc);
+  background: -moz-linear-gradient(center bottom, #f1f1f1 0%, #fcfcfc 100%);
+  background: -o-linear-gradient(#fcfcfc, #f1f1f1);
+  filter: e(% "progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", #fcfcfc, #f1f1f1); }
+
+.phi-texture-paper {
+  border-radius: 3px;
+  background: #fff; }
+
+.phi-texture-xray {
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.95);
+  color: #fff;
+  font-weight: normal; }
+  .phi-texture-xray * {
+    color: #fff !important;
+    font-weight: normal; }
 
 [phi-boundary] {
   margin: auto;
@@ -18519,10 +18514,7 @@ Based on: https://github.com/angular/material/blob/master/src/core/style/layout.
     flex: 0 0 66.66%;
     max-height: 66.66%; } }
 
-[phi-padded] {
-  padding: 16px 24px; }
-
-[phi-z], [phi-texture=paper], [phi-button] {
+[phi-z], .phi-texture-paper, [phi-button] {
   -webkit-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
   -moz-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
   -o-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
@@ -18550,3 +18542,6 @@ Based on: https://github.com/angular/material/blob/master/src/core/style/layout.
 
 [phi-z="5"] {
   box-shadow: 0 19px 36px 0 #8a8a8a; }
+
+.phi-padded {
+  padding: 16px 24px; }
