@@ -13,7 +13,7 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
             scope.reposition = function(positionString) {
 
-                var boundingRect = element[0].getBoundingClientRect();
+                var boundingRect = $phiCoordinates.getBounds(element);
                 var alignment    = $phiCoordinates.parseAlignmentString(positionString) || {vertical: "top", horizontal: "left"};
 
                 var coordinates  = {

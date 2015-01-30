@@ -4,6 +4,29 @@ angular.module("phi.ui").service("$phiCoordinates", [function() {
 
     return {
 
+        /*
+        From angular-material util.js
+        https://github.com/angular/material/blob/master/src/core/util/util.js
+
+        Return the bounding rectangle relative to the offset parent (nearest in the containment hierarchy positioned containing element)
+        */
+        getBounds: function(element, offsetParent) {
+
+            var node       = element[0];
+            offsetParent   = offsetParent || node.offsetParent || document.body;
+            offsetParent   = offsetParent[0] || offsetParent;
+            var nodeRect   = node.getBoundingClientRect();
+            var parentRect = offsetParent.getBoundingClientRect();
+
+            return {
+                left:   nodeRect.left - parentRect.left + offsetParent.scrollLeft,
+                top:    nodeRect.top  - parentRect.top  + offsetParent.scrollTop,
+                width:  nodeRect.width,
+                height: nodeRect.height
+            };
+
+        },
+
         parseAlignmentString: function(string) {
 
             if (string == undefined) {
@@ -66,28 +89,14 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
 
 	        	element.css("position", "absolute");
 
-				var parentElement     = document.getElementById(scope.parentId);
-				var parentCoordinates = parentElement.getBoundingClientRect();
-				var localCoordinates  = element[0].getBoundingClientRect();
-
+				var parentElement     = angular.element(document.getElementById(scope.parentId));
+				var parentCoordinates = $phiCoordinates.getBounds(parentElement);
+				var localCoordinates  = $phiCoordinates.getBounds(element);
 
 				var coordinates = {
-					top: window.scrollY,
-					left: window.scrollX
+					top:  0,
+					left: 0
 				};
-
-				//compensate for relative parents
-				var offsetTop = (window.scrollY + localCoordinates.top - element[0].offsetTop);
-				var offsetLeft = (window.scrollX + localCoordinates.left - element[0].offsetLeft);
-
-				coordinates.top -= offsetTop;
-				coordinates.left -= offsetLeft;
-
-				//css transform displacements are taken into account, and getBoundingClientRect is run when the element is HIDDEN so
-				//if the visibility css contains a transform, this will be fucked.   Manually subtracting the clss.slide.scss distance here:
-				coordinates.top += 10;
-
-
 
 				var alignment = $phiCoordinates.parseAlignmentString(scope.align) || {vertical: "bottom", horizontal: "left"};
 
@@ -144,10 +153,6 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
 				}
 
 
-
-
-
-
 				var elementCoordinates = {
 					top:    coordinates.top+"px",
 					left:   coordinates.left+"px",
@@ -197,7 +202,7 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
             scope.reposition = function(positionString) {
 
-                var boundingRect = element[0].getBoundingClientRect();
+                var boundingRect = $phiCoordinates.getBounds(element);
                 var alignment    = $phiCoordinates.parseAlignmentString(positionString) || {vertical: "top", horizontal: "left"};
 
                 var coordinates  = {
@@ -256,6 +261,16 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
 }]);
 
+angular.module("phi.ui").directive("phiCutout", [function() {
+
+    return {
+        restrict: "C",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
+        }
+    };
+
+}]);
 /**
  * Proof of concept: Port an angular-material element
  */
@@ -660,16 +675,6 @@ angular.module("phi.ui").directive("option", ["$compile", "$interpolate", functi
             element.replaceWith(e);
         }
 
-    };
-
-}]);
-angular.module("phi.ui").directive("phiCutout", [function() {
-
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
-        }
     };
 
 }]);

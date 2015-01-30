@@ -16,28 +16,14 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
 
 	        	element.css("position", "absolute");
 
-				var parentElement     = document.getElementById(scope.parentId);
-				var parentCoordinates = parentElement.getBoundingClientRect();
-				var localCoordinates  = element[0].getBoundingClientRect();
-
+				var parentElement     = angular.element(document.getElementById(scope.parentId));
+				var parentCoordinates = $phiCoordinates.getBounds(parentElement);
+				var localCoordinates  = $phiCoordinates.getBounds(element);
 
 				var coordinates = {
-					top: window.scrollY,
-					left: window.scrollX
+					top:  0,
+					left: 0
 				};
-
-				//compensate for relative parents
-				var offsetTop = (window.scrollY + localCoordinates.top - element[0].offsetTop);
-				var offsetLeft = (window.scrollX + localCoordinates.left - element[0].offsetLeft);
-
-				coordinates.top -= offsetTop;
-				coordinates.left -= offsetLeft;
-
-				//css transform displacements are taken into account, and getBoundingClientRect is run when the element is HIDDEN so
-				//if the visibility css contains a transform, this will be fucked.   Manually subtracting the clss.slide.scss distance here:
-				coordinates.top += 10;
-
-
 
 				var alignment = $phiCoordinates.parseAlignmentString(scope.align) || {vertical: "bottom", horizontal: "left"};
 
@@ -92,10 +78,6 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
 						coordinates.left -= localCoordinates.width/2;
 					break;
 				}
-
-
-
-
 
 
 				var elementCoordinates = {
