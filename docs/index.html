@@ -72,11 +72,13 @@
                 <section id="sandbox">
                     <h1>Sandbox and stuff</h1>
 
-                    <div phi-texture="paper" phi-padded style="min-height: 400px">
+                    <div phi-texture="paper" phi-padded>
+
+                        <h1>So this is a paper and stuff</h1>
 
                         <h1 id="myButton" phi-color-font="600" ng-click="foo.show = !foo.show" phi-icon="fa-bars" phi-position="top right"></h1>
 
-                        <phi-menu phi-texture="xray"
+                        <phi-menu phi-texture="paper"
                            phi-tooltip-for="myButton"
                            phi-tooltip-align="bottom right"
                            phi-tooltip-origin="top right"
@@ -84,16 +86,14 @@
                            class="phi-visible-slide-bottom"
                         >
 
-                            <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
-                            <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
-                            <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
-                            <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
+                            <a href="#" ng-click="foo.show = false">Menu item</a>
+                            <a href="#" ng-click="foo.show = false">Menu item</a>
 
                             <phi-submenu label="more">
-                                <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
-                                <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
-                                <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
-                                <a href="#" ng-click="foo.show = false">I'm an x-ray</a>
+                                <a href="#" ng-click="foo.show = false">Menu item</a>
+                                <a href="#" ng-click="foo.show = false">Menu item</a>
+                                <a href="#" ng-click="foo.show = false">Menu item</a>
+                                <a href="#" ng-click="foo.show = false">Menu item</a>
                             </phi-submenu>
 
                         </phi-menu>
@@ -134,11 +134,11 @@
                 <section id="tooltip">
                     <h1>Visibility</h1>
 
-                    <div phi-layout="row">
+                    <div phi-layout="row" phi-layout-for-small="column">
 
-                        <phi-checkbox ng-init="tooltip.shown = true" ng-model="tooltip.shown" aria-label="make tooltip visible">Visible</phi-checkbox>
+                        <!-- <phi-checkbox ng-init="tooltip.shown = true" ng-model="tooltip.shown" aria-label="make tooltip visible">Visible</phi-checkbox> -->
 
-                        <phi-select label="effect" ng-model="tooltip.classname">
+                        <phi-select phi-flex label="effect" ng-model="tooltip.classname">
                             <option value="">default</option>
                             <option value="phi-visible-zoom-in">zoom-in</option>
                             <option value="phi-visible-zoom-out">zoom-out</option>
@@ -149,7 +149,7 @@
                             <option value="phi-visible-scale">scale</option>
                         </phi-select>
 
-                        <phi-select label="align" ng-model="tooltip.align">
+                        <phi-select phi-flex label="align" ng-model="tooltip.align">
                             <option value="top left">top left</option>
                             <option value="top center">top center</option>
                             <option value="top right">top right</option>
@@ -161,7 +161,7 @@
                             <option value="bottom right">bottom right</option>
                         </phi-select>
 
-                        <phi-select label="origin" ng-model="tooltip.origin">
+                        <phi-select phi-flex label="origin" ng-model="tooltip.origin">
                             <option value="top left">top left</option>
                             <option value="top center">top center</option>
                             <option value="top right">top right</option>
@@ -175,15 +175,15 @@
 
                     </div>
 
-                    <h1 id="anchor" phi-inline>Anchor</h1>
+                    <button phi-button id="anchor" ng-click="tooltip.shown = !tooltip.shown">Toggle!</button>
 
                     <div phi-texture="xray"
                          phi-visible="{{!!tooltip.shown}}"
                          ng-class="tooltip.classname"
                          phi-tooltip-for="anchor"
                          phi-tooltip-align="{{tooltip.align}}"
-                         phi-tooltip-origin="{{tooltip.origin}}"
-                    >
+                         phi-tooltip-origin="{{tooltip.origin}}">
+
                         <phi-menu>
                             <a>Foo</a>
                             <a>Bar</a>

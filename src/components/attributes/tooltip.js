@@ -1,4 +1,4 @@
-angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", function($timeout) {
+angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinates", function($timeout, $phiCoordinates) {
 
     return {
 
@@ -38,21 +38,41 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", function($timeo
 				coordinates.top += 15;
 
 
-				var verticalOrigin   = null;
-				var horizontalOrigin = null;
 
-				if (scope.origin) {
-					var origin       = scope.origin.toLowerCase().split(" ");
-					verticalOrigin   = origin.length ? origin[0] : null;
-					horizontalOrigin = origin.length > 1 ? origin[1] : null;
-				}
+				var alignment = $phiCoordinates.parseAlignmentString(scope.align) || {vertical: "bottom", horizontal: "left"};
 
-				switch (verticalOrigin) {
-
-					default:
+				switch (alignment.vertical) {
 					case "top":
+						coordinates.top += parentCoordinates.top;
 					break;
 
+					case "center":
+						coordinates.top += parentCoordinates.top + parentCoordinates.height/2;
+					break;
+
+					case "bottom":
+						coordinates.top += parentCoordinates.top + parentCoordinates.height;
+					break;
+				}
+
+				switch (alignment.horizontal) {
+					case "left":
+						coordinates.left += parentCoordinates.left;
+					break;
+
+					case "center":
+						coordinates.left += parentCoordinates.left + parentCoordinates.width/2;
+					break;
+
+					case "right":
+						coordinates.left += parentCoordinates.left + parentCoordinates.width;
+					break;
+				}
+
+
+				var origin = $phiCoordinates.parseAlignmentString(scope.origin) || {vertical: "top", horizontal: "left"};
+
+				switch (origin.vertical) {
 					case "bottom":
 						coordinates.top -= localCoordinates.height;
 					break;
@@ -62,11 +82,7 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", function($timeo
 					break;
 				}
 
-				switch (horizontalOrigin) {
-
-					default:
-					case "left":
-					break;
+				switch (origin.horizontal) {
 
 					case "right":
 						coordinates.left -= localCoordinates.width;
@@ -78,58 +94,21 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", function($timeo
 				}
 
 
-				var verticalAlign   = null;
-				var horizontalAlign = null;
-
-				if (scope.align) {
-					var align       = scope.align.toLowerCase().split(" ");
-					verticalAlign   = align.length ? align[0] : null;
-					horizontalAlign = align.length > 1 ? align[1] : null;
-				}
 
 
-				switch (verticalAlign) {
-					case "top":
-						coordinates.top += parentCoordinates.top;
-					break;
-
-					default:
-					case "bottom":
-						coordinates.top += parentCoordinates.top + parentCoordinates.height;
-					break;
-
-					case "center":
-						coordinates.top += parentCoordinates.top + parentCoordinates.height/2;
-					break;
-				}
-
-				switch (horizontalAlign) {
-					default:
-					case "left":
-						coordinates.left += parentCoordinates.left;
-					break;
-
-					case "right":
-						coordinates.left += parentCoordinates.left + parentCoordinates.width;
-					break;
-
-					case "center":
-						coordinates.left += parentCoordinates.left + parentCoordinates.width/2;
-					break;
-				}
 
 
 				var elementCoordinates = {
-					top: coordinates.top + "px",
-					left: coordinates.left + "px",
-					right: coordinates.right + "px",
-					bottom: coordinates.bottom + "px"
+					top:    coordinates.top+"px",
+					left:   coordinates.left+"px",
+					right:  coordinates.right+"px",
+					bottom: coordinates.bottom+"px"
 				};
 
 				if (attributes.phiTooltipMatch == "width") {
-					elementCoordinates.minWidth = parentCoordinates.width + "px";
+					elementCoordinates.minWidth = parentCoordinates.width+"px";
 				} else if (attributes.phiTooltipMatch == "height") {
-					elementCoordinates.minHeight = parentCoordinates.height + "px";
+					elementCoordinates.minHeight = parentCoordinates.height+"px";
 				}
 
 	        	element.css(elementCoordinates);

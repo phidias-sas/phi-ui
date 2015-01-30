@@ -1,6 +1,54 @@
 angular.module("phi.ui", ['ngAria']);
 
-angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", function($timeout) {
+angular.module("phi.ui").service("$phiCoordinates", [function() {
+
+    return {
+
+        parseAlignmentString: function(string) {
+
+            if (string == undefined) {
+                return null;
+            }
+
+            var vertical   = null;
+            var horizontal = null;
+
+            if (string.indexOf("center") != -1) {
+                vertical   = "center";
+                horizontal = "center";
+            }
+
+            if (string.indexOf("top") != -1) {
+                vertical = "top";
+            }
+
+            if (string.indexOf("bottom") != -1) {
+                vertical = "bottom";
+            }
+
+            if (string.indexOf("left") != -1) {
+                horizontal = "left";
+            }
+
+            if (string.indexOf("right") != -1) {
+                horizontal = "right";
+            }
+
+            if (!vertical || !horizontal) {
+                return null;
+            }
+
+            return {
+                vertical: vertical,
+                horizontal: horizontal
+            };
+
+        }
+
+    };
+
+}]);
+angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinates", function($timeout, $phiCoordinates) {
 
     return {
 
@@ -40,21 +88,41 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", function($timeo
 				coordinates.top += 15;
 
 
-				var verticalOrigin   = null;
-				var horizontalOrigin = null;
 
-				if (scope.origin) {
-					var origin       = scope.origin.toLowerCase().split(" ");
-					verticalOrigin   = origin.length ? origin[0] : null;
-					horizontalOrigin = origin.length > 1 ? origin[1] : null;
-				}
+				var alignment = $phiCoordinates.parseAlignmentString(scope.align) || {vertical: "bottom", horizontal: "left"};
 
-				switch (verticalOrigin) {
-
-					default:
+				switch (alignment.vertical) {
 					case "top":
+						coordinates.top += parentCoordinates.top;
 					break;
 
+					case "center":
+						coordinates.top += parentCoordinates.top + parentCoordinates.height/2;
+					break;
+
+					case "bottom":
+						coordinates.top += parentCoordinates.top + parentCoordinates.height;
+					break;
+				}
+
+				switch (alignment.horizontal) {
+					case "left":
+						coordinates.left += parentCoordinates.left;
+					break;
+
+					case "center":
+						coordinates.left += parentCoordinates.left + parentCoordinates.width/2;
+					break;
+
+					case "right":
+						coordinates.left += parentCoordinates.left + parentCoordinates.width;
+					break;
+				}
+
+
+				var origin = $phiCoordinates.parseAlignmentString(scope.origin) || {vertical: "top", horizontal: "left"};
+
+				switch (origin.vertical) {
 					case "bottom":
 						coordinates.top -= localCoordinates.height;
 					break;
@@ -64,11 +132,7 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", function($timeo
 					break;
 				}
 
-				switch (horizontalOrigin) {
-
-					default:
-					case "left":
-					break;
+				switch (origin.horizontal) {
 
 					case "right":
 						coordinates.left -= localCoordinates.width;
@@ -80,58 +144,21 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", function($timeo
 				}
 
 
-				var verticalAlign   = null;
-				var horizontalAlign = null;
-
-				if (scope.align) {
-					var align       = scope.align.toLowerCase().split(" ");
-					verticalAlign   = align.length ? align[0] : null;
-					horizontalAlign = align.length > 1 ? align[1] : null;
-				}
 
 
-				switch (verticalAlign) {
-					case "top":
-						coordinates.top += parentCoordinates.top;
-					break;
-
-					default:
-					case "bottom":
-						coordinates.top += parentCoordinates.top + parentCoordinates.height;
-					break;
-
-					case "center":
-						coordinates.top += parentCoordinates.top + parentCoordinates.height/2;
-					break;
-				}
-
-				switch (horizontalAlign) {
-					default:
-					case "left":
-						coordinates.left += parentCoordinates.left;
-					break;
-
-					case "right":
-						coordinates.left += parentCoordinates.left + parentCoordinates.width;
-					break;
-
-					case "center":
-						coordinates.left += parentCoordinates.left + parentCoordinates.width/2;
-					break;
-				}
 
 
 				var elementCoordinates = {
-					top: coordinates.top + "px",
-					left: coordinates.left + "px",
-					right: coordinates.right + "px",
-					bottom: coordinates.bottom + "px"
+					top:    coordinates.top+"px",
+					left:   coordinates.left+"px",
+					right:  coordinates.right+"px",
+					bottom: coordinates.bottom+"px"
 				};
 
 				if (attributes.phiTooltipMatch == "width") {
-					elementCoordinates.minWidth = parentCoordinates.width + "px";
+					elementCoordinates.minWidth = parentCoordinates.width+"px";
 				} else if (attributes.phiTooltipMatch == "height") {
-					elementCoordinates.minHeight = parentCoordinates.height + "px";
+					elementCoordinates.minHeight = parentCoordinates.height+"px";
 				}
 
 	        	element.css(elementCoordinates);
@@ -165,7 +192,7 @@ angular.module("phi.ui").directive("phiCutout", [function() {
     };
 
 }]);
-angular.module("phi.ui").directive("phiPosition", [function() {
+angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($phiCoordinates) {
 
     return {
 
@@ -173,18 +200,54 @@ angular.module("phi.ui").directive("phiPosition", [function() {
 
         link: function(scope, element, attributes)  {
 
-            element.parent().css("position", "relative");
+            element.css("position", "absolute");
 
-            element.css({
-                position: "absolute",
-                top: "10px",
-                right: "10px"
-            });
+            var boundingRect = element[0].getBoundingClientRect();
+            var coordinates  = {};
+            var alignment    = $phiCoordinates.parseAlignmentString(attributes.phiPosition) || {vertical: "top", horizontal: "left"};
+
+            switch (alignment.vertical) {
+
+                case "top":
+                    coordinates.top = "10px";
+                break;
+
+                case "center":
+                    coordinates.top       = "50%";
+                    coordinates.marginTop = (boundingRect.height * -0.5) + "px";
+                break;
+
+                case "bottom":
+                    coordinates.bottom = "10px";
+                break;
+
+            }
+
+            switch (alignment.horizontal) {
+
+                case "left":
+                    coordinates.left = "10px";
+                break;
+
+                case "center":
+                    coordinates.left       = "50%";
+                    coordinates.marginLeft = (boundingRect.width * -0.5) + "px";
+                break;
+
+                case "right":
+                    coordinates.right = "10px";
+                break;
+
+            }
+
+            element.parent().css("position", "relative");
+            element.css(coordinates);
 
         }
     };
 
 }]);
+
 /**
  * Proof of concept: Port an angular-material element
  */
