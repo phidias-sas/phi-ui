@@ -83,8 +83,8 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
 				var elementCoordinates = {
 					top:    coordinates.top+"px",
 					left:   coordinates.left+"px",
-					right:  coordinates.right+"px",
-					bottom: coordinates.bottom+"px"
+					right:  "auto",
+					bottom: "auto"
 				};
 
 				if (attributes.phiTooltipMatch == "width") {
@@ -109,7 +109,11 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
 				scope.reposition();
 			});
 
-            $timeout(scope.reposition, 0);
+            //Machete !!!
+            $timeout(function() {
+            	scope.reposition();
+            	scope.$apply();
+            }, 200);
         }
     };
 

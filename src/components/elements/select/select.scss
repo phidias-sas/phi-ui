@@ -15,4 +15,10 @@ phi-select {
 		display: block;
 	}
 
+
+    & > phi-menu {
+        max-height: 400px;
+        overflow: auto;
+    }
+
 }

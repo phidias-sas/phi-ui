@@ -156,8 +156,8 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
 				var elementCoordinates = {
 					top:    coordinates.top+"px",
 					left:   coordinates.left+"px",
-					right:  coordinates.right+"px",
-					bottom: coordinates.bottom+"px"
+					right:  "auto",
+					bottom: "auto"
 				};
 
 				if (attributes.phiTooltipMatch == "width") {
@@ -182,7 +182,11 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
 				scope.reposition();
 			});
 
-            $timeout(scope.reposition, 0);
+            //Machete !!!
+            $timeout(function() {
+            	scope.reposition();
+            	scope.$apply();
+            }, 100);
         }
     };
 
@@ -261,16 +265,6 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
 }]);
 
-angular.module("phi.ui").directive("phiCutout", [function() {
-
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
-        }
-    };
-
-}]);
 /**
  * Proof of concept: Port an angular-material element
  */
@@ -675,6 +669,16 @@ angular.module("phi.ui").directive("option", ["$compile", "$interpolate", functi
             element.replaceWith(e);
         }
 
+    };
+
+}]);
+angular.module("phi.ui").directive("phiCutout", [function() {
+
+    return {
+        restrict: "C",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
+        }
     };
 
 }]);
