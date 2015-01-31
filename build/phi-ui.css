@@ -2415,8 +2415,10 @@ phi-menu.phi-menu-colored {
     background: #fdd835; }
   phi-menu.phi-menu-colored[phi-color-theme=yellow] a[active=true] {
     background: #fdd835 !important; }
-  phi-menu.phi-menu-colored a[active=true] {
-    color: #fff; }
+  phi-menu.phi-menu-colored a {
+    border-radius: 3px; }
+    phi-menu.phi-menu-colored a[active=true] {
+      color: #fff; }
   phi-menu.phi-menu-colored phi-submenu[expanded] {
     /* 
     carajo Colors for & 
@@ -3468,8 +3470,7 @@ phi-menu {
     cursor: pointer;
     padding: 8px 20px !important;
     text-decoration: none;
-    color: #333;
-    border-radius: 3px; }
+    color: #333; }
     phi-menu a:hover {
       background-color: rgba(0, 0, 0, 0.03); }
     phi-menu a:focus {

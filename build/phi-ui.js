@@ -186,7 +186,7 @@ angular.module("phi.ui").directive("phiTooltipFor", ["$timeout", "$phiCoordinate
             $timeout(function() {
             	scope.reposition();
             	scope.$apply();
-            }, 100);
+            }, 200);
         }
     };
 
@@ -265,6 +265,16 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
 }]);
 
+angular.module("phi.ui").directive("phiCutout", [function() {
+
+    return {
+        restrict: "C",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
+        }
+    };
+
+}]);
 /**
  * Proof of concept: Port an angular-material element
  */
@@ -669,16 +679,6 @@ angular.module("phi.ui").directive("option", ["$compile", "$interpolate", functi
             element.replaceWith(e);
         }
 
-    };
-
-}]);
-angular.module("phi.ui").directive("phiCutout", [function() {
-
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
-        }
     };
 
 }]);

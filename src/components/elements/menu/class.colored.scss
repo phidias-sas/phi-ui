@@ -5,6 +5,9 @@ phi-menu.phi-menu-colored {
 	), ' a[active=true]');
 
 	a {
+		
+		border-radius: $phi-spacing-radius;
+
 		&[active=true] {
 			color: #fff;
 		}
