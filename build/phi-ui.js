@@ -210,12 +210,12 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
                 var alignment    = $phiCoordinates.parseAlignmentString(positionString) || {vertical: "top", horizontal: "left"};
 
                 var coordinates  = {
-                    top:        "initial",
-                    left:       "initial",
-                    bottom:     "initial",
-                    right:      "initial",
-                    marginTop:  "initial",
-                    marginLeft: "initial"
+                    top:        "auto",
+                    left:       "auto",
+                    bottom:     "auto",
+                    right:      "auto",
+                    marginTop:  0,
+                    marginLeft: 0
                 };
 
                 switch (alignment.vertical) {
