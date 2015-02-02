@@ -57,8 +57,6 @@
                         <a href="#elements-form">Forms</a>
                     </phi-submenu>
 
-                    {{foo.event}}
-
                 </phi-menu>
 
             </div>
@@ -240,9 +238,6 @@
 
                     </div>
 
-
-
-
                 </section>
 
 
@@ -259,7 +254,7 @@
                             <option value="Mrs.">Mrs.</option>
                         </phi-select>
 
-                        <phi-input label="First name" ng-model="form.firstName" placeholder="use unicamente su primer nombre"></phi-input>
+                        <phi-input phi-icon-left="fa-user" label="First name" ng-model="form.firstName" placeholder="use unicamente su primer nombre"></phi-input>
                         <phi-input label="Last name" ng-model="form.lastName" placeholder="nombre de pila, o batería"></phi-input>
                     </div>
 

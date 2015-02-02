@@ -326,454 +326,6 @@ table {
 td, th {
   padding: 0; }
 
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(http://fonts.gstatic.com/s/roboto/v15/0eC6fl06luXEYWpBSJvXCBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U460 -52F, U20B4, U2DE0-2DFF, UA640-A69F; }
-
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(http://fonts.gstatic.com/s/roboto/v15/Fl4y0QdOxyyTHEGMXX8kcRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U400 -45F, U490 -491, U4B0-04B1, U2116; }
-
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(http://fonts.gstatic.com/s/roboto/v15/-L14Jk06m6pUHB-5mXQQnRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U1F00-1FFF; }
-
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(http://fonts.gstatic.com/s/roboto/v15/I3S1wsgSg9YCurV6PUkTORJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U370 -3FF; }
-
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(http://fonts.gstatic.com/s/roboto/v15/NYDWBdD4gIq26G5XYbHsFBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U102 -103, U1EA0-1EF1, U20AB; }
-
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(http://fonts.gstatic.com/s/roboto/v15/Pru33qjShpZSmG3z6VYwnRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U100 -24F, U1E00-1EFF, U20A0-20AB, U20AD-20CF, U2C60-2C7F, UA720-A7FF; }
-
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(http://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
-  unicode-range: U0 0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
-
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/ek4gzZ-GeXAPcSbHtCeQI_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U460 -52F, U20B4, U2DE0-2DFF, UA640-A69F; }
-
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/mErvLBYg_cXG3rLvUsKT_fesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U400 -45F, U490 -491, U4B0-04B1, U2116; }
-
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/-2n2p-_Y08sg57CNWQfKNvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U1F00-1FFF; }
-
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/u0TOpm082MNkS5K0Q4rhqvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U370 -3FF; }
-
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/NdF9MtnOpLzo-noMoG0miPesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U102 -103, U1EA0-1EF1, U20AB; }
-
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/Fcx7Wwv8OzT71A3E1XOAjvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U100 -24F, U1E00-1EFF, U20A0-20AB, U20AD-20CF, U2C60-2C7F, UA720-A7FF; }
-
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');
-  unicode-range: U0 0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
-
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(http://fonts.gstatic.com/s/roboto/v15/ZLqKeelYbATG60EpZBSDyxJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U460 -52F, U20B4, U2DE0-2DFF, UA640-A69F; }
-
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(http://fonts.gstatic.com/s/roboto/v15/oHi30kwQWvpCWqAhzHcCSBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U400 -45F, U490 -491, U4B0-04B1, U2116; }
-
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(http://fonts.gstatic.com/s/roboto/v15/rGvHdJnr2l75qb0YND9NyBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U1F00-1FFF; }
-
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(http://fonts.gstatic.com/s/roboto/v15/mx9Uck6uB63VIKFYnEMXrRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U370 -3FF; }
-
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(http://fonts.gstatic.com/s/roboto/v15/mbmhprMH69Zi6eEPBYVFhRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U102 -103, U1EA0-1EF1, U20AB; }
-
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(http://fonts.gstatic.com/s/roboto/v15/oOeFwZNlrTefzLYmlVV1UBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U100 -24F, U1E00-1EFF, U20A0-20AB, U20AD-20CF, U2C60-2C7F, UA720-A7FF; }
-
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(http://fonts.gstatic.com/s/roboto/v15/RxZJdnzeo3R5zSexge8UUVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
-  unicode-range: U0 0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
-
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(http://fonts.gstatic.com/s/roboto/v15/77FXFjRbGzN4aCrSFhlh3hJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U460 -52F, U20B4, U2DE0-2DFF, UA640-A69F; }
-
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(http://fonts.gstatic.com/s/roboto/v15/isZ-wbCXNKAbnjo6_TwHThJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U400 -45F, U490 -491, U4B0-04B1, U2116; }
-
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(http://fonts.gstatic.com/s/roboto/v15/UX6i4JxQDm3fVTc1CPuwqhJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U1F00-1FFF; }
-
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(http://fonts.gstatic.com/s/roboto/v15/jSN2CGVDbcVyCnfJfjSdfBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U370 -3FF; }
-
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(http://fonts.gstatic.com/s/roboto/v15/PwZc-YbIL414wB9rB1IAPRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U102 -103, U1EA0-1EF1, U20AB; }
-
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(http://fonts.gstatic.com/s/roboto/v15/97uahxiqZRoncBaCEI3aWxJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U100 -24F, U1E00-1EFF, U20A0-20AB, U20AD-20CF, U2C60-2C7F, UA720-A7FF; }
-
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(http://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
-  unicode-range: U0 0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
-
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 300;
-  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(http://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0atzTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');
-  unicode-range: U460 -52F, U20B4, U2DE0-2DFF, UA640-A69F; }
-
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 300;
-  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(http://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0atzUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');
-  unicode-range: U400 -45F, U490 -491, U4B0-04B1, U2116; }
-
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 300;
-  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(http://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at0bcKLIaa1LC45dFaAfauRA.woff2) format('woff2');
-  unicode-range: U1F00-1FFF; }
-
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 300;
-  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(http://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at2o_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');
-  unicode-range: U370 -3FF; }
-
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 300;
-  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(http://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at76up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');
-  unicode-range: U102 -103, U1EA0-1EF1, U20AB; }
-
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 300;
-  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(http://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0atyYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');
-  unicode-range: U100 -24F, U1E00-1EFF, U20A0-20AB, U20AD-20CF, U2C60-2C7F, UA720-A7FF; }
-
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 300;
-  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(http://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at44P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
-  unicode-range: U0 0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
-
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Roboto Italic'), local('Roboto-Italic'), url(http://fonts.gstatic.com/s/roboto/v15/WxrXJa0C3KdtC7lMafG4dRTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
-  unicode-range: U460 -52F, U20B4, U2DE0-2DFF, UA640-A69F; }
-
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Roboto Italic'), local('Roboto-Italic'), url(http://fonts.gstatic.com/s/roboto/v15/OpXUqTo0UgQQhGj_SFdLWBTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
-  unicode-range: U400 -45F, U490 -491, U4B0-04B1, U2116; }
-
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Roboto Italic'), local('Roboto-Italic'), url(http://fonts.gstatic.com/s/roboto/v15/1hZf02POANh32k2VkgEoUBTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
-  unicode-range: U1F00-1FFF; }
-
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Roboto Italic'), local('Roboto-Italic'), url(http://fonts.gstatic.com/s/roboto/v15/cDKhRaXnQTOVbaoxwdOr9xTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
-  unicode-range: U370 -3FF; }
-
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Roboto Italic'), local('Roboto-Italic'), url(http://fonts.gstatic.com/s/roboto/v15/K23cxWVTrIFD6DJsEVi07RTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
-  unicode-range: U102 -103, U1EA0-1EF1, U20AB; }
-
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Roboto Italic'), local('Roboto-Italic'), url(http://fonts.gstatic.com/s/roboto/v15/vSzulfKSK0LLjjfeaxcREhTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
-  unicode-range: U100 -24F, U1E00-1EFF, U20A0-20AB, U20AD-20CF, U2C60-2C7F, UA720-A7FF; }
-
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Roboto Italic'), local('Roboto-Italic'), url(http://fonts.gstatic.com/s/roboto/v15/vPcynSL0qHq_6dX7lKVByfesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U0 0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
-
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 500;
-  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(http://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0TTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');
-  unicode-range: U460 -52F, U20B4, U2DE0-2DFF, UA640-A69F; }
-
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 500;
-  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(http://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0TUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');
-  unicode-range: U400 -45F, U490 -491, U4B0-04B1, U2116; }
-
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 500;
-  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(http://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0UbcKLIaa1LC45dFaAfauRA.woff2) format('woff2');
-  unicode-range: U1F00-1FFF; }
-
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 500;
-  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(http://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0Wo_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');
-  unicode-range: U370 -3FF; }
-
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 500;
-  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(http://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0b6up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');
-  unicode-range: U102 -103, U1EA0-1EF1, U20AB; }
-
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 500;
-  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(http://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0SYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');
-  unicode-range: U100 -24F, U1E00-1EFF, U20A0-20AB, U20AD-20CF, U2C60-2C7F, UA720-A7FF; }
-
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 500;
-  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(http://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0Y4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
-  unicode-range: U0 0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
-
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(http://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcCzTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');
-  unicode-range: U460 -52F, U20B4, U2DE0-2DFF, UA640-A69F; }
-
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(http://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcCzUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');
-  unicode-range: U400 -45F, U490 -491, U4B0-04B1, U2116; }
-
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(http://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC0bcKLIaa1LC45dFaAfauRA.woff2) format('woff2');
-  unicode-range: U1F00-1FFF; }
-
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(http://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC2o_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');
-  unicode-range: U370 -3FF; }
-
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(http://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC76up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');
-  unicode-range: U102 -103, U1EA0-1EF1, U20AB; }
-
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(http://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcCyYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');
-  unicode-range: U100 -24F, U1E00-1EFF, U20A0-20AB, U20AD-20CF, U2C60-2C7F, UA720-A7FF; }
-
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(http://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC44P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
-  unicode-range: U0 0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
-
 /*
 USAGE:
 
@@ -913,25 +465,17 @@ USAGE:
     color: #fff !important;
     font-weight: normal; }
 
-[phi-input], phi-input {
-  display: inline-block;
-  vertical-align: bottom;
-  border-bottom: 1px solid #ccc;
-  margin: 4px; }
-  [phi-input] > label, phi-input > label {
-    display: block;
-    pointer-events: none;
-    -webkit-font-smoothing: antialased;
-    transform-origin: top left;
-    -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    transform: translate3d(0, 0, 0) scale(0.8);
-    /* 
+phi-checkbox {
+  display: block;
+  margin: 15px;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  /* 
     carajo Colors for & 
     */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -944,7 +488,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -957,7 +501,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -970,7 +514,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -983,7 +527,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -996,7 +540,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1009,7 +553,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1022,7 +566,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1035,7 +579,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1048,7 +592,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1061,7 +605,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1074,7 +618,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1087,7 +631,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1100,7 +644,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1113,7 +657,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1126,7 +670,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1139,7 +683,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1152,7 +696,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1165,7 +709,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1178,7 +722,7 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-    /*
+  /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -1191,494 +735,148 @@ USAGE:
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */ }
-    [phi-input] > label, phi-input > label {
-      color: #5091e0; }
-    [phi-color-theme=amber] [phi-input] > label, [phi-color-theme=amber] phi-input > label {
-      color: #ffb300; }
-    [phi-input] > label[phi-color-theme=amber], phi-input > label[phi-color-theme=amber] {
-      color: #ffb300 !important; }
-    [phi-color-theme=blue-grey] [phi-input] > label, [phi-color-theme=blue-grey] phi-input > label {
-      color: #546e7a; }
-    [phi-input] > label[phi-color-theme=blue-grey], phi-input > label[phi-color-theme=blue-grey] {
-      color: #546e7a !important; }
-    [phi-color-theme=blue] [phi-input] > label, [phi-color-theme=blue] phi-input > label {
-      color: #4e6cef; }
-    [phi-input] > label[phi-color-theme=blue], phi-input > label[phi-color-theme=blue] {
-      color: #4e6cef !important; }
-    [phi-color-theme=brown] [phi-input] > label, [phi-color-theme=brown] phi-input > label {
-      color: #6d4c41; }
-    [phi-input] > label[phi-color-theme=brown], phi-input > label[phi-color-theme=brown] {
-      color: #6d4c41 !important; }
-    [phi-color-theme=cyan] [phi-input] > label, [phi-color-theme=cyan] phi-input > label {
-      color: #00acc1; }
-    [phi-input] > label[phi-color-theme=cyan], phi-input > label[phi-color-theme=cyan] {
-      color: #00acc1 !important; }
-    [phi-color-theme=deep-orange] [phi-input] > label, [phi-color-theme=deep-orange] phi-input > label {
-      color: #f4511e; }
-    [phi-input] > label[phi-color-theme=deep-orange], phi-input > label[phi-color-theme=deep-orange] {
-      color: #f4511e !important; }
-    [phi-color-theme=deep-purple] [phi-input] > label, [phi-color-theme=deep-purple] phi-input > label {
-      color: #5e35b1; }
-    [phi-input] > label[phi-color-theme=deep-purple], phi-input > label[phi-color-theme=deep-purple] {
-      color: #5e35b1 !important; }
-    [phi-color-theme=default] [phi-input] > label, [phi-color-theme=default] phi-input > label {
-      color: #5091e0; }
-    [phi-input] > label[phi-color-theme=default], phi-input > label[phi-color-theme=default] {
-      color: #5091e0 !important; }
-    [phi-color-theme=green] [phi-input] > label, [phi-color-theme=green] phi-input > label {
-      color: #0a8f08; }
-    [phi-input] > label[phi-color-theme=green], phi-input > label[phi-color-theme=green] {
-      color: #0a8f08 !important; }
-    [phi-color-theme=grey] [phi-input] > label, [phi-color-theme=grey] phi-input > label {
-      color: #757575; }
-    [phi-input] > label[phi-color-theme=grey], phi-input > label[phi-color-theme=grey] {
-      color: #757575 !important; }
-    [phi-color-theme=indigo] [phi-input] > label, [phi-color-theme=indigo] phi-input > label {
-      color: #3949ab; }
-    [phi-input] > label[phi-color-theme=indigo], phi-input > label[phi-color-theme=indigo] {
-      color: #3949ab !important; }
-    [phi-color-theme=light-blue] [phi-input] > label, [phi-color-theme=light-blue] phi-input > label {
-      color: #039be5; }
-    [phi-input] > label[phi-color-theme=light-blue], phi-input > label[phi-color-theme=light-blue] {
-      color: #039be5 !important; }
-    [phi-color-theme=light-green] [phi-input] > label, [phi-color-theme=light-green] phi-input > label {
-      color: #7cb342; }
-    [phi-input] > label[phi-color-theme=light-green], phi-input > label[phi-color-theme=light-green] {
-      color: #7cb342 !important; }
-    [phi-color-theme=lime] [phi-input] > label, [phi-color-theme=lime] phi-input > label {
-      color: #c0ca33; }
-    [phi-input] > label[phi-color-theme=lime], phi-input > label[phi-color-theme=lime] {
-      color: #c0ca33 !important; }
-    [phi-color-theme=orange] [phi-input] > label, [phi-color-theme=orange] phi-input > label {
-      color: #fb8c00; }
-    [phi-input] > label[phi-color-theme=orange], phi-input > label[phi-color-theme=orange] {
-      color: #fb8c00 !important; }
-    [phi-color-theme=pink] [phi-input] > label, [phi-color-theme=pink] phi-input > label {
-      color: #d81b60; }
-    [phi-input] > label[phi-color-theme=pink], phi-input > label[phi-color-theme=pink] {
-      color: #d81b60 !important; }
-    [phi-color-theme=purple] [phi-input] > label, [phi-color-theme=purple] phi-input > label {
-      color: #8e24aa; }
-    [phi-input] > label[phi-color-theme=purple], phi-input > label[phi-color-theme=purple] {
-      color: #8e24aa !important; }
-    [phi-color-theme=red] [phi-input] > label, [phi-color-theme=red] phi-input > label {
-      color: #dd191d; }
-    [phi-input] > label[phi-color-theme=red], phi-input > label[phi-color-theme=red] {
-      color: #dd191d !important; }
-    [phi-color-theme=teal] [phi-input] > label, [phi-color-theme=teal] phi-input > label {
-      color: #00897b; }
-    [phi-input] > label[phi-color-theme=teal], phi-input > label[phi-color-theme=teal] {
-      color: #00897b !important; }
-    [phi-color-theme=yellow] [phi-input] > label, [phi-color-theme=yellow] phi-input > label {
-      color: #fdd835; }
-    [phi-input] > label[phi-color-theme=yellow], phi-input > label[phi-color-theme=yellow] {
-      color: #fdd835 !important; }
-  [phi-input] > input, [phi-input] > textarea, phi-input > input, phi-input > textarea {
-    background: transparent;
-    border: 0;
-    margin: 0;
-    padding: 2px 4px;
-    line-height: 1em;
-    min-height: 2em;
-    font-size: 1em;
-    width: 100%;
-    font-weight: normal;
-    outline: 0; }
-    [phi-input] > input::-webkit-input-placeholder, [phi-input] > textarea::-webkit-input-placeholder, phi-input > input::-webkit-input-placeholder, phi-input > textarea::-webkit-input-placeholder {
-      /* WebKit browsers */
-      opacity: 0; }
-    [phi-input] > input:-moz-placeholder, [phi-input] > textarea:-moz-placeholder, phi-input > input:-moz-placeholder, phi-input > textarea:-moz-placeholder {
-      /* Mozilla Firefox 4 to 18 */
-      opacity: 0; }
-    [phi-input] > input::-moz-placeholder, [phi-input] > textarea::-moz-placeholder, phi-input > input::-moz-placeholder, phi-input > textarea::-moz-placeholder {
-      /* Mozilla Firefox 19+ */
-      opacity: 0; }
-    [phi-input] > input:-ms-input-placeholder, [phi-input] > textarea:-ms-input-placeholder, phi-input > input:-ms-input-placeholder, phi-input > textarea:-ms-input-placeholder {
-      /* Internet Explorer 10+ */
-      opacity: 0; }
-  [phi-input] > hr, phi-input > hr {
-    display: block;
-    height: 2px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    /* 
-    carajo Colors for & 
-    */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=amber] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=amber]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=blue-grey] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=blue-grey]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=blue] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=blue]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=brown] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=brown]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=cyan] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=cyan]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=deep-orange] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=deep-orange]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=deep-purple] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=deep-purple]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=default] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=default]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=green] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=green]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=grey] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=grey]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=indigo] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=indigo]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=light-blue] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=light-blue]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=light-green] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=light-green]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=lime] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=lime]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=orange] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=orange]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=pink] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=pink]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=purple] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=purple]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=red] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=red]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=teal] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=teal]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    /*
-        The idea here is that themes specified via a selector get
-        assigned to the PARENT selector.
-
-        i.e.
-        .parent h1  ---->   .parent[phi-color-theme=yellow] h1
-
-        What this is doing is appending the theme selector to the LAST element:
-        .parent h1  ---->   .parent h1[phi-color-theme=yellow]
-
-        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
-        for phi-colors() declared within children
-        */
-    -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    width: 0; }
-    [phi-input] > hr, phi-input > hr {
-      background-color: #2062b3; }
-    [phi-color-theme=amber] [phi-input] > hr, [phi-color-theme=amber] phi-input > hr {
-      background-color: #ff6f00; }
-    [phi-input] > hr[phi-color-theme=amber], phi-input > hr[phi-color-theme=amber] {
-      background-color: #ff6f00 !important; }
-    [phi-color-theme=blue-grey] [phi-input] > hr, [phi-color-theme=blue-grey] phi-input > hr {
-       }
-    [phi-input] > hr[phi-color-theme=blue-grey], phi-input > hr[phi-color-theme=blue-grey] {
-      background-color: !important; }
-    [phi-color-theme=blue] [phi-input] > hr, [phi-color-theme=blue] phi-input > hr {
-      background-color: #2a36b1; }
-    [phi-input] > hr[phi-color-theme=blue], phi-input > hr[phi-color-theme=blue] {
-      background-color: #2a36b1 !important; }
-    [phi-color-theme=brown] [phi-input] > hr, [phi-color-theme=brown] phi-input > hr {
-      background-color: #3e2723; }
-    [phi-input] > hr[phi-color-theme=brown], phi-input > hr[phi-color-theme=brown] {
-      background-color: #3e2723 !important; }
-    [phi-color-theme=cyan] [phi-input] > hr, [phi-color-theme=cyan] phi-input > hr {
-      background-color: #006064; }
-    [phi-input] > hr[phi-color-theme=cyan], phi-input > hr[phi-color-theme=cyan] {
-      background-color: #006064 !important; }
-    [phi-color-theme=deep-orange] [phi-input] > hr, [phi-color-theme=deep-orange] phi-input > hr {
-      background-color: #bf360c; }
-    [phi-input] > hr[phi-color-theme=deep-orange], phi-input > hr[phi-color-theme=deep-orange] {
-      background-color: #bf360c !important; }
-    [phi-color-theme=deep-purple] [phi-input] > hr, [phi-color-theme=deep-purple] phi-input > hr {
-      background-color: #311b92; }
-    [phi-input] > hr[phi-color-theme=deep-purple], phi-input > hr[phi-color-theme=deep-purple] {
-      background-color: #311b92 !important; }
-    [phi-color-theme=default] [phi-input] > hr, [phi-color-theme=default] phi-input > hr {
-      background-color: #2062b3; }
-    [phi-input] > hr[phi-color-theme=default], phi-input > hr[phi-color-theme=default] {
-      background-color: #2062b3 !important; }
-    [phi-color-theme=green] [phi-input] > hr, [phi-color-theme=green] phi-input > hr {
-      background-color: #0d5302; }
-    [phi-input] > hr[phi-color-theme=green], phi-input > hr[phi-color-theme=green] {
-      background-color: #0d5302 !important; }
-    [phi-color-theme=grey] [phi-input] > hr, [phi-color-theme=grey] phi-input > hr {
-      background-color: #212121; }
-    [phi-input] > hr[phi-color-theme=grey], phi-input > hr[phi-color-theme=grey] {
-      background-color: #212121 !important; }
-    [phi-color-theme=indigo] [phi-input] > hr, [phi-color-theme=indigo] phi-input > hr {
-      background-color: #1a237e; }
-    [phi-input] > hr[phi-color-theme=indigo], phi-input > hr[phi-color-theme=indigo] {
-      background-color: #1a237e !important; }
-    [phi-color-theme=light-blue] [phi-input] > hr, [phi-color-theme=light-blue] phi-input > hr {
-      background-color: #01579b; }
-    [phi-input] > hr[phi-color-theme=light-blue], phi-input > hr[phi-color-theme=light-blue] {
-      background-color: #01579b !important; }
-    [phi-color-theme=light-green] [phi-input] > hr, [phi-color-theme=light-green] phi-input > hr {
-      background-color: #33691e; }
-    [phi-input] > hr[phi-color-theme=light-green], phi-input > hr[phi-color-theme=light-green] {
-      background-color: #33691e !important; }
-    [phi-color-theme=lime] [phi-input] > hr, [phi-color-theme=lime] phi-input > hr {
-      background-color: #827717; }
-    [phi-input] > hr[phi-color-theme=lime], phi-input > hr[phi-color-theme=lime] {
-      background-color: #827717 !important; }
-    [phi-color-theme=orange] [phi-input] > hr, [phi-color-theme=orange] phi-input > hr {
-      background-color: #e65100; }
-    [phi-input] > hr[phi-color-theme=orange], phi-input > hr[phi-color-theme=orange] {
-      background-color: #e65100 !important; }
-    [phi-color-theme=pink] [phi-input] > hr, [phi-color-theme=pink] phi-input > hr {
-      background-color: #880e4f; }
-    [phi-input] > hr[phi-color-theme=pink], phi-input > hr[phi-color-theme=pink] {
-      background-color: #880e4f !important; }
-    [phi-color-theme=purple] [phi-input] > hr, [phi-color-theme=purple] phi-input > hr {
-      background-color: #4a148c; }
-    [phi-input] > hr[phi-color-theme=purple], phi-input > hr[phi-color-theme=purple] {
-      background-color: #4a148c !important; }
-    [phi-color-theme=red] [phi-input] > hr, [phi-color-theme=red] phi-input > hr {
-      background-color: #b0120a; }
-    [phi-input] > hr[phi-color-theme=red], phi-input > hr[phi-color-theme=red] {
-      background-color: #b0120a !important; }
-    [phi-color-theme=teal] [phi-input] > hr, [phi-color-theme=teal] phi-input > hr {
-      background-color: #004d40; }
-    [phi-input] > hr[phi-color-theme=teal], phi-input > hr[phi-color-theme=teal] {
-      background-color: #004d40 !important; }
-    [phi-color-theme=yellow] [phi-input] > hr, [phi-color-theme=yellow] phi-input > hr {
-      background-color: #f57f17; }
-    [phi-input] > hr[phi-color-theme=yellow], phi-input > hr[phi-color-theme=yellow] {
-      background-color: #f57f17 !important; }
-  [phi-input]:focus, phi-input:focus {
-    outline: 0; }
-  [phi-input].phi-input-disabled, phi-input.phi-input-disabled {
-    opacity: 0.7; }
-    [phi-input].phi-input-disabled > *, phi-input.phi-input-disabled > * {
-      cursor: no-drop !important; }
-  [phi-input].phi-input-focused, phi-input.phi-input-focused {
-    border-bottom: 1px solid transparent; }
-    [phi-input].phi-input-focused > hr, phi-input.phi-input-focused > hr {
-      width: 100%; }
-    [phi-input].phi-input-focused > label, phi-input.phi-input-focused > label {
-      transform: translate3d(0, 0, 0) scale(0.8) !important; }
-    [phi-input].phi-input-focused > input::-webkit-input-placeholder, [phi-input].phi-input-focused > textarea::-webkit-input-placeholder, phi-input.phi-input-focused > input::-webkit-input-placeholder, phi-input.phi-input-focused > textarea::-webkit-input-placeholder {
-      /* WebKit browsers */
-      opacity: 0.7; }
-    [phi-input].phi-input-focused > input:-moz-placeholder, [phi-input].phi-input-focused > textarea:-moz-placeholder, phi-input.phi-input-focused > input:-moz-placeholder, phi-input.phi-input-focused > textarea:-moz-placeholder {
-      /* Mozilla Firefox 4 to 18 */
-      opacity: 0.7; }
-    [phi-input].phi-input-focused > input::-moz-placeholder, [phi-input].phi-input-focused > textarea::-moz-placeholder, phi-input.phi-input-focused > input::-moz-placeholder, phi-input.phi-input-focused > textarea::-moz-placeholder {
-      /* Mozilla Firefox 19+ */
-      opacity: 0.7; }
-    [phi-input].phi-input-focused > input:-ms-input-placeholder, [phi-input].phi-input-focused > textarea:-ms-input-placeholder, phi-input.phi-input-focused > input:-ms-input-placeholder, phi-input.phi-input-focused > textarea:-ms-input-placeholder {
-      /* Internet Explorer 10+ */
-      opacity: 0.7; }
-  [phi-input].phi-input-empty > label, phi-input.phi-input-empty > label {
-    transform: translate3d(0, 23px, 0) scale(1);
-    color: #999; }
+  phi-checkbox .phi-container {
+    position: relative;
+    top: 4px;
+    display: inline-block;
+    width: 18px;
+    height: 18px; }
+    phi-checkbox .phi-container:after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      bottom: -10px;
+      left: -10px; }
+    phi-checkbox .phi-container .phi-ripple-container {
+      position: absolute;
+      display: block;
+      width: auto;
+      height: auto;
+      left: -15px;
+      top: -15px;
+      right: -15px;
+      bottom: -15px; }
+  phi-checkbox .phi-icon {
+    transition: 240ms;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid;
+    border-radius: 2px; }
+  phi-checkbox.phi-checked .phi-icon {
+    border: none; }
+  phi-checkbox.phi-checked .phi-icon {
+    background-color: #2062b3; }
+  [phi-color-theme=amber] phi-checkbox.phi-checked .phi-icon {
+    background-color: #ff6f00; }
+  phi-checkbox[phi-color-theme=amber].phi-checked .phi-icon {
+    background-color: #ff6f00 !important; }
+  [phi-color-theme=blue-grey] phi-checkbox.phi-checked .phi-icon {
+     }
+  phi-checkbox[phi-color-theme=blue-grey].phi-checked .phi-icon {
+    background-color: !important; }
+  [phi-color-theme=blue] phi-checkbox.phi-checked .phi-icon {
+    background-color: #2a36b1; }
+  phi-checkbox[phi-color-theme=blue].phi-checked .phi-icon {
+    background-color: #2a36b1 !important; }
+  [phi-color-theme=brown] phi-checkbox.phi-checked .phi-icon {
+    background-color: #3e2723; }
+  phi-checkbox[phi-color-theme=brown].phi-checked .phi-icon {
+    background-color: #3e2723 !important; }
+  [phi-color-theme=cyan] phi-checkbox.phi-checked .phi-icon {
+    background-color: #006064; }
+  phi-checkbox[phi-color-theme=cyan].phi-checked .phi-icon {
+    background-color: #006064 !important; }
+  [phi-color-theme=deep-orange] phi-checkbox.phi-checked .phi-icon {
+    background-color: #bf360c; }
+  phi-checkbox[phi-color-theme=deep-orange].phi-checked .phi-icon {
+    background-color: #bf360c !important; }
+  [phi-color-theme=deep-purple] phi-checkbox.phi-checked .phi-icon {
+    background-color: #311b92; }
+  phi-checkbox[phi-color-theme=deep-purple].phi-checked .phi-icon {
+    background-color: #311b92 !important; }
+  [phi-color-theme=default] phi-checkbox.phi-checked .phi-icon {
+    background-color: #2062b3; }
+  phi-checkbox[phi-color-theme=default].phi-checked .phi-icon {
+    background-color: #2062b3 !important; }
+  [phi-color-theme=green] phi-checkbox.phi-checked .phi-icon {
+    background-color: #0d5302; }
+  phi-checkbox[phi-color-theme=green].phi-checked .phi-icon {
+    background-color: #0d5302 !important; }
+  [phi-color-theme=grey] phi-checkbox.phi-checked .phi-icon {
+    background-color: #212121; }
+  phi-checkbox[phi-color-theme=grey].phi-checked .phi-icon {
+    background-color: #212121 !important; }
+  [phi-color-theme=indigo] phi-checkbox.phi-checked .phi-icon {
+    background-color: #1a237e; }
+  phi-checkbox[phi-color-theme=indigo].phi-checked .phi-icon {
+    background-color: #1a237e !important; }
+  [phi-color-theme=light-blue] phi-checkbox.phi-checked .phi-icon {
+    background-color: #01579b; }
+  phi-checkbox[phi-color-theme=light-blue].phi-checked .phi-icon {
+    background-color: #01579b !important; }
+  [phi-color-theme=light-green] phi-checkbox.phi-checked .phi-icon {
+    background-color: #33691e; }
+  phi-checkbox[phi-color-theme=light-green].phi-checked .phi-icon {
+    background-color: #33691e !important; }
+  [phi-color-theme=lime] phi-checkbox.phi-checked .phi-icon {
+    background-color: #827717; }
+  phi-checkbox[phi-color-theme=lime].phi-checked .phi-icon {
+    background-color: #827717 !important; }
+  [phi-color-theme=orange] phi-checkbox.phi-checked .phi-icon {
+    background-color: #e65100; }
+  phi-checkbox[phi-color-theme=orange].phi-checked .phi-icon {
+    background-color: #e65100 !important; }
+  [phi-color-theme=pink] phi-checkbox.phi-checked .phi-icon {
+    background-color: #880e4f; }
+  phi-checkbox[phi-color-theme=pink].phi-checked .phi-icon {
+    background-color: #880e4f !important; }
+  [phi-color-theme=purple] phi-checkbox.phi-checked .phi-icon {
+    background-color: #4a148c; }
+  phi-checkbox[phi-color-theme=purple].phi-checked .phi-icon {
+    background-color: #4a148c !important; }
+  [phi-color-theme=red] phi-checkbox.phi-checked .phi-icon {
+    background-color: #b0120a; }
+  phi-checkbox[phi-color-theme=red].phi-checked .phi-icon {
+    background-color: #b0120a !important; }
+  [phi-color-theme=teal] phi-checkbox.phi-checked .phi-icon {
+    background-color: #004d40; }
+  phi-checkbox[phi-color-theme=teal].phi-checked .phi-icon {
+    background-color: #004d40 !important; }
+  [phi-color-theme=yellow] phi-checkbox.phi-checked .phi-icon {
+    background-color: #f57f17; }
+  phi-checkbox[phi-color-theme=yellow].phi-checked .phi-icon {
+    background-color: #f57f17 !important; }
+  phi-checkbox[disabled] {
+    cursor: no-drop;
+    opacity: 0.6; }
+  phi-checkbox:focus .phi-label:not(:empty) {
+    border-color: black; }
+  phi-checkbox.phi-checked .phi-icon:after {
+    transform: rotate(45deg);
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    display: table;
+    width: 6px;
+    height: 12px;
+    border: 2px solid;
+    border-top: 0;
+    border-left: 0;
+    content: ' ';
+    border-color: #fff; }
+  phi-checkbox .phi-label {
+    border: 1px dotted transparent;
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+    white-space: normal;
+    pointer-events: none;
+    user-select: text; }
 
 phi-menu.phi-menu-colored {
   /* 
@@ -3142,23 +2340,35 @@ phi-select {
     bottom: 15px;
     right: 16px;
     opacity: 0.7; }
-  phi-select > phi-input {
-    display: block; }
   phi-select > phi-menu {
     max-height: 400px;
     overflow: auto; }
 
-phi-checkbox {
-  display: block;
-  margin: 15px;
-  white-space: nowrap;
-  cursor: pointer;
-  outline: none;
-  user-select: none;
-  /* 
+[phi-input], phi-input {
+  display: inline-block;
+  vertical-align: bottom;
+  border-bottom: 1px solid #ccc;
+  margin: 4px;
+  white-space: nowrap; }
+  [phi-input] > div, phi-input > div {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 100%; }
+    [phi-input] > div > label, phi-input > div > label {
+      display: block;
+      pointer-events: none;
+      -webkit-font-smoothing: antialased;
+      transform-origin: top left;
+      -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      transform: translate3d(0, 0, 0) scale(0.8);
+      /* 
     carajo Colors for & 
     */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3171,7 +2381,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3184,7 +2394,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3197,7 +2407,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3210,7 +2420,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3223,7 +2433,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3236,7 +2446,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3249,7 +2459,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3262,7 +2472,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3275,7 +2485,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3288,7 +2498,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3301,7 +2511,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3314,7 +2524,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3327,7 +2537,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3340,7 +2550,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3353,7 +2563,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3366,7 +2576,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3379,7 +2589,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3392,7 +2602,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3405,7 +2615,7 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */
-  /*
+      /*
         The idea here is that themes specified via a selector get
         assigned to the PARENT selector.
 
@@ -3418,148 +2628,494 @@ phi-checkbox {
         And until SASS allows us to target the FIRST element in the parent selector list, this will not work
         for phi-colors() declared within children
         */ }
-  phi-checkbox .phi-container {
-    position: relative;
-    top: 4px;
-    display: inline-block;
-    width: 18px;
-    height: 18px; }
-    phi-checkbox .phi-container:after {
-      content: '';
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      bottom: -10px;
-      left: -10px; }
-    phi-checkbox .phi-container .phi-ripple-container {
-      position: absolute;
-      display: block;
-      width: auto;
-      height: auto;
-      left: -15px;
-      top: -15px;
-      right: -15px;
-      bottom: -15px; }
-  phi-checkbox .phi-icon {
-    transition: 240ms;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 18px;
-    height: 18px;
-    border: 2px solid;
-    border-radius: 2px; }
-  phi-checkbox.phi-checked .phi-icon {
-    border: none; }
-  phi-checkbox.phi-checked .phi-icon {
-    background-color: #2062b3; }
-  [phi-color-theme=amber] phi-checkbox.phi-checked .phi-icon {
-    background-color: #ff6f00; }
-  phi-checkbox[phi-color-theme=amber].phi-checked .phi-icon {
-    background-color: #ff6f00 !important; }
-  [phi-color-theme=blue-grey] phi-checkbox.phi-checked .phi-icon {
-     }
-  phi-checkbox[phi-color-theme=blue-grey].phi-checked .phi-icon {
-    background-color: !important; }
-  [phi-color-theme=blue] phi-checkbox.phi-checked .phi-icon {
-    background-color: #2a36b1; }
-  phi-checkbox[phi-color-theme=blue].phi-checked .phi-icon {
-    background-color: #2a36b1 !important; }
-  [phi-color-theme=brown] phi-checkbox.phi-checked .phi-icon {
-    background-color: #3e2723; }
-  phi-checkbox[phi-color-theme=brown].phi-checked .phi-icon {
-    background-color: #3e2723 !important; }
-  [phi-color-theme=cyan] phi-checkbox.phi-checked .phi-icon {
-    background-color: #006064; }
-  phi-checkbox[phi-color-theme=cyan].phi-checked .phi-icon {
-    background-color: #006064 !important; }
-  [phi-color-theme=deep-orange] phi-checkbox.phi-checked .phi-icon {
-    background-color: #bf360c; }
-  phi-checkbox[phi-color-theme=deep-orange].phi-checked .phi-icon {
-    background-color: #bf360c !important; }
-  [phi-color-theme=deep-purple] phi-checkbox.phi-checked .phi-icon {
-    background-color: #311b92; }
-  phi-checkbox[phi-color-theme=deep-purple].phi-checked .phi-icon {
-    background-color: #311b92 !important; }
-  [phi-color-theme=default] phi-checkbox.phi-checked .phi-icon {
-    background-color: #2062b3; }
-  phi-checkbox[phi-color-theme=default].phi-checked .phi-icon {
-    background-color: #2062b3 !important; }
-  [phi-color-theme=green] phi-checkbox.phi-checked .phi-icon {
-    background-color: #0d5302; }
-  phi-checkbox[phi-color-theme=green].phi-checked .phi-icon {
-    background-color: #0d5302 !important; }
-  [phi-color-theme=grey] phi-checkbox.phi-checked .phi-icon {
-    background-color: #212121; }
-  phi-checkbox[phi-color-theme=grey].phi-checked .phi-icon {
-    background-color: #212121 !important; }
-  [phi-color-theme=indigo] phi-checkbox.phi-checked .phi-icon {
-    background-color: #1a237e; }
-  phi-checkbox[phi-color-theme=indigo].phi-checked .phi-icon {
-    background-color: #1a237e !important; }
-  [phi-color-theme=light-blue] phi-checkbox.phi-checked .phi-icon {
-    background-color: #01579b; }
-  phi-checkbox[phi-color-theme=light-blue].phi-checked .phi-icon {
-    background-color: #01579b !important; }
-  [phi-color-theme=light-green] phi-checkbox.phi-checked .phi-icon {
-    background-color: #33691e; }
-  phi-checkbox[phi-color-theme=light-green].phi-checked .phi-icon {
-    background-color: #33691e !important; }
-  [phi-color-theme=lime] phi-checkbox.phi-checked .phi-icon {
-    background-color: #827717; }
-  phi-checkbox[phi-color-theme=lime].phi-checked .phi-icon {
-    background-color: #827717 !important; }
-  [phi-color-theme=orange] phi-checkbox.phi-checked .phi-icon {
-    background-color: #e65100; }
-  phi-checkbox[phi-color-theme=orange].phi-checked .phi-icon {
-    background-color: #e65100 !important; }
-  [phi-color-theme=pink] phi-checkbox.phi-checked .phi-icon {
-    background-color: #880e4f; }
-  phi-checkbox[phi-color-theme=pink].phi-checked .phi-icon {
-    background-color: #880e4f !important; }
-  [phi-color-theme=purple] phi-checkbox.phi-checked .phi-icon {
-    background-color: #4a148c; }
-  phi-checkbox[phi-color-theme=purple].phi-checked .phi-icon {
-    background-color: #4a148c !important; }
-  [phi-color-theme=red] phi-checkbox.phi-checked .phi-icon {
-    background-color: #b0120a; }
-  phi-checkbox[phi-color-theme=red].phi-checked .phi-icon {
-    background-color: #b0120a !important; }
-  [phi-color-theme=teal] phi-checkbox.phi-checked .phi-icon {
-    background-color: #004d40; }
-  phi-checkbox[phi-color-theme=teal].phi-checked .phi-icon {
-    background-color: #004d40 !important; }
-  [phi-color-theme=yellow] phi-checkbox.phi-checked .phi-icon {
-    background-color: #f57f17; }
-  phi-checkbox[phi-color-theme=yellow].phi-checked .phi-icon {
-    background-color: #f57f17 !important; }
-  phi-checkbox[disabled] {
-    cursor: no-drop;
-    opacity: 0.6; }
-  phi-checkbox:focus .phi-label:not(:empty) {
-    border-color: black; }
-  phi-checkbox.phi-checked .phi-icon:after {
-    transform: rotate(45deg);
-    position: absolute;
-    left: 6px;
-    top: 2px;
-    display: table;
-    width: 6px;
-    height: 12px;
-    border: 2px solid;
-    border-top: 0;
-    border-left: 0;
-    content: ' ';
-    border-color: #fff; }
-  phi-checkbox .phi-label {
-    border: 1px dotted transparent;
-    position: relative;
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: middle;
-    white-space: normal;
-    pointer-events: none;
-    user-select: text; }
+      [phi-input] > div > label, phi-input > div > label {
+        color: #5091e0; }
+      [phi-color-theme=amber] [phi-input] > div > label, [phi-color-theme=amber] phi-input > div > label {
+        color: #ffb300; }
+      [phi-input] > div > label[phi-color-theme=amber], phi-input > div > label[phi-color-theme=amber] {
+        color: #ffb300 !important; }
+      [phi-color-theme=blue-grey] [phi-input] > div > label, [phi-color-theme=blue-grey] phi-input > div > label {
+        color: #546e7a; }
+      [phi-input] > div > label[phi-color-theme=blue-grey], phi-input > div > label[phi-color-theme=blue-grey] {
+        color: #546e7a !important; }
+      [phi-color-theme=blue] [phi-input] > div > label, [phi-color-theme=blue] phi-input > div > label {
+        color: #4e6cef; }
+      [phi-input] > div > label[phi-color-theme=blue], phi-input > div > label[phi-color-theme=blue] {
+        color: #4e6cef !important; }
+      [phi-color-theme=brown] [phi-input] > div > label, [phi-color-theme=brown] phi-input > div > label {
+        color: #6d4c41; }
+      [phi-input] > div > label[phi-color-theme=brown], phi-input > div > label[phi-color-theme=brown] {
+        color: #6d4c41 !important; }
+      [phi-color-theme=cyan] [phi-input] > div > label, [phi-color-theme=cyan] phi-input > div > label {
+        color: #00acc1; }
+      [phi-input] > div > label[phi-color-theme=cyan], phi-input > div > label[phi-color-theme=cyan] {
+        color: #00acc1 !important; }
+      [phi-color-theme=deep-orange] [phi-input] > div > label, [phi-color-theme=deep-orange] phi-input > div > label {
+        color: #f4511e; }
+      [phi-input] > div > label[phi-color-theme=deep-orange], phi-input > div > label[phi-color-theme=deep-orange] {
+        color: #f4511e !important; }
+      [phi-color-theme=deep-purple] [phi-input] > div > label, [phi-color-theme=deep-purple] phi-input > div > label {
+        color: #5e35b1; }
+      [phi-input] > div > label[phi-color-theme=deep-purple], phi-input > div > label[phi-color-theme=deep-purple] {
+        color: #5e35b1 !important; }
+      [phi-color-theme=default] [phi-input] > div > label, [phi-color-theme=default] phi-input > div > label {
+        color: #5091e0; }
+      [phi-input] > div > label[phi-color-theme=default], phi-input > div > label[phi-color-theme=default] {
+        color: #5091e0 !important; }
+      [phi-color-theme=green] [phi-input] > div > label, [phi-color-theme=green] phi-input > div > label {
+        color: #0a8f08; }
+      [phi-input] > div > label[phi-color-theme=green], phi-input > div > label[phi-color-theme=green] {
+        color: #0a8f08 !important; }
+      [phi-color-theme=grey] [phi-input] > div > label, [phi-color-theme=grey] phi-input > div > label {
+        color: #757575; }
+      [phi-input] > div > label[phi-color-theme=grey], phi-input > div > label[phi-color-theme=grey] {
+        color: #757575 !important; }
+      [phi-color-theme=indigo] [phi-input] > div > label, [phi-color-theme=indigo] phi-input > div > label {
+        color: #3949ab; }
+      [phi-input] > div > label[phi-color-theme=indigo], phi-input > div > label[phi-color-theme=indigo] {
+        color: #3949ab !important; }
+      [phi-color-theme=light-blue] [phi-input] > div > label, [phi-color-theme=light-blue] phi-input > div > label {
+        color: #039be5; }
+      [phi-input] > div > label[phi-color-theme=light-blue], phi-input > div > label[phi-color-theme=light-blue] {
+        color: #039be5 !important; }
+      [phi-color-theme=light-green] [phi-input] > div > label, [phi-color-theme=light-green] phi-input > div > label {
+        color: #7cb342; }
+      [phi-input] > div > label[phi-color-theme=light-green], phi-input > div > label[phi-color-theme=light-green] {
+        color: #7cb342 !important; }
+      [phi-color-theme=lime] [phi-input] > div > label, [phi-color-theme=lime] phi-input > div > label {
+        color: #c0ca33; }
+      [phi-input] > div > label[phi-color-theme=lime], phi-input > div > label[phi-color-theme=lime] {
+        color: #c0ca33 !important; }
+      [phi-color-theme=orange] [phi-input] > div > label, [phi-color-theme=orange] phi-input > div > label {
+        color: #fb8c00; }
+      [phi-input] > div > label[phi-color-theme=orange], phi-input > div > label[phi-color-theme=orange] {
+        color: #fb8c00 !important; }
+      [phi-color-theme=pink] [phi-input] > div > label, [phi-color-theme=pink] phi-input > div > label {
+        color: #d81b60; }
+      [phi-input] > div > label[phi-color-theme=pink], phi-input > div > label[phi-color-theme=pink] {
+        color: #d81b60 !important; }
+      [phi-color-theme=purple] [phi-input] > div > label, [phi-color-theme=purple] phi-input > div > label {
+        color: #8e24aa; }
+      [phi-input] > div > label[phi-color-theme=purple], phi-input > div > label[phi-color-theme=purple] {
+        color: #8e24aa !important; }
+      [phi-color-theme=red] [phi-input] > div > label, [phi-color-theme=red] phi-input > div > label {
+        color: #dd191d; }
+      [phi-input] > div > label[phi-color-theme=red], phi-input > div > label[phi-color-theme=red] {
+        color: #dd191d !important; }
+      [phi-color-theme=teal] [phi-input] > div > label, [phi-color-theme=teal] phi-input > div > label {
+        color: #00897b; }
+      [phi-input] > div > label[phi-color-theme=teal], phi-input > div > label[phi-color-theme=teal] {
+        color: #00897b !important; }
+      [phi-color-theme=yellow] [phi-input] > div > label, [phi-color-theme=yellow] phi-input > div > label {
+        color: #fdd835; }
+      [phi-input] > div > label[phi-color-theme=yellow], phi-input > div > label[phi-color-theme=yellow] {
+        color: #fdd835 !important; }
+    [phi-input] > div > input, [phi-input] > div > textarea, phi-input > div > input, phi-input > div > textarea {
+      background: transparent;
+      border: 0;
+      margin: 0;
+      padding: 2px 4px;
+      line-height: 1em;
+      min-height: 2em;
+      font-size: 1em;
+      width: 100%;
+      font-weight: normal;
+      outline: 0; }
+      [phi-input] > div > input::-webkit-input-placeholder, [phi-input] > div > textarea::-webkit-input-placeholder, phi-input > div > input::-webkit-input-placeholder, phi-input > div > textarea::-webkit-input-placeholder {
+        /* WebKit browsers */
+        opacity: 0; }
+      [phi-input] > div > input:-moz-placeholder, [phi-input] > div > textarea:-moz-placeholder, phi-input > div > input:-moz-placeholder, phi-input > div > textarea:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        opacity: 0; }
+      [phi-input] > div > input::-moz-placeholder, [phi-input] > div > textarea::-moz-placeholder, phi-input > div > input::-moz-placeholder, phi-input > div > textarea::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        opacity: 0; }
+      [phi-input] > div > input:-ms-input-placeholder, [phi-input] > div > textarea:-ms-input-placeholder, phi-input > div > input:-ms-input-placeholder, phi-input > div > textarea:-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        opacity: 0; }
+  [phi-input] > hr, phi-input > hr {
+    display: block;
+    height: 2px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    /* 
+    carajo Colors for & 
+    */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=amber] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=amber]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=blue-grey] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=blue-grey]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=blue] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=blue]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=brown] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=brown]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=cyan] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=cyan]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=deep-orange] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=deep-orange]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=deep-purple] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=deep-purple]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=default] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=default]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=green] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=green]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=grey] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=grey]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=indigo] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=indigo]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=light-blue] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=light-blue]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=light-green] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=light-green]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=lime] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=lime]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=orange] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=orange]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=pink] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=pink]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=purple] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=purple]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=red] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=red]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=teal] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=teal]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    /*
+        The idea here is that themes specified via a selector get
+        assigned to the PARENT selector.
+
+        i.e.
+        .parent h1  ---->   .parent[phi-color-theme=yellow] h1
+
+        What this is doing is appending the theme selector to the LAST element:
+        .parent h1  ---->   .parent h1[phi-color-theme=yellow]
+
+        And until SASS allows us to target the FIRST element in the parent selector list, this will not work
+        for phi-colors() declared within children
+        */
+    -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    width: 0; }
+    [phi-input] > hr, phi-input > hr {
+      background-color: #2062b3; }
+    [phi-color-theme=amber] [phi-input] > hr, [phi-color-theme=amber] phi-input > hr {
+      background-color: #ff6f00; }
+    [phi-input] > hr[phi-color-theme=amber], phi-input > hr[phi-color-theme=amber] {
+      background-color: #ff6f00 !important; }
+    [phi-color-theme=blue-grey] [phi-input] > hr, [phi-color-theme=blue-grey] phi-input > hr {
+       }
+    [phi-input] > hr[phi-color-theme=blue-grey], phi-input > hr[phi-color-theme=blue-grey] {
+      background-color: !important; }
+    [phi-color-theme=blue] [phi-input] > hr, [phi-color-theme=blue] phi-input > hr {
+      background-color: #2a36b1; }
+    [phi-input] > hr[phi-color-theme=blue], phi-input > hr[phi-color-theme=blue] {
+      background-color: #2a36b1 !important; }
+    [phi-color-theme=brown] [phi-input] > hr, [phi-color-theme=brown] phi-input > hr {
+      background-color: #3e2723; }
+    [phi-input] > hr[phi-color-theme=brown], phi-input > hr[phi-color-theme=brown] {
+      background-color: #3e2723 !important; }
+    [phi-color-theme=cyan] [phi-input] > hr, [phi-color-theme=cyan] phi-input > hr {
+      background-color: #006064; }
+    [phi-input] > hr[phi-color-theme=cyan], phi-input > hr[phi-color-theme=cyan] {
+      background-color: #006064 !important; }
+    [phi-color-theme=deep-orange] [phi-input] > hr, [phi-color-theme=deep-orange] phi-input > hr {
+      background-color: #bf360c; }
+    [phi-input] > hr[phi-color-theme=deep-orange], phi-input > hr[phi-color-theme=deep-orange] {
+      background-color: #bf360c !important; }
+    [phi-color-theme=deep-purple] [phi-input] > hr, [phi-color-theme=deep-purple] phi-input > hr {
+      background-color: #311b92; }
+    [phi-input] > hr[phi-color-theme=deep-purple], phi-input > hr[phi-color-theme=deep-purple] {
+      background-color: #311b92 !important; }
+    [phi-color-theme=default] [phi-input] > hr, [phi-color-theme=default] phi-input > hr {
+      background-color: #2062b3; }
+    [phi-input] > hr[phi-color-theme=default], phi-input > hr[phi-color-theme=default] {
+      background-color: #2062b3 !important; }
+    [phi-color-theme=green] [phi-input] > hr, [phi-color-theme=green] phi-input > hr {
+      background-color: #0d5302; }
+    [phi-input] > hr[phi-color-theme=green], phi-input > hr[phi-color-theme=green] {
+      background-color: #0d5302 !important; }
+    [phi-color-theme=grey] [phi-input] > hr, [phi-color-theme=grey] phi-input > hr {
+      background-color: #212121; }
+    [phi-input] > hr[phi-color-theme=grey], phi-input > hr[phi-color-theme=grey] {
+      background-color: #212121 !important; }
+    [phi-color-theme=indigo] [phi-input] > hr, [phi-color-theme=indigo] phi-input > hr {
+      background-color: #1a237e; }
+    [phi-input] > hr[phi-color-theme=indigo], phi-input > hr[phi-color-theme=indigo] {
+      background-color: #1a237e !important; }
+    [phi-color-theme=light-blue] [phi-input] > hr, [phi-color-theme=light-blue] phi-input > hr {
+      background-color: #01579b; }
+    [phi-input] > hr[phi-color-theme=light-blue], phi-input > hr[phi-color-theme=light-blue] {
+      background-color: #01579b !important; }
+    [phi-color-theme=light-green] [phi-input] > hr, [phi-color-theme=light-green] phi-input > hr {
+      background-color: #33691e; }
+    [phi-input] > hr[phi-color-theme=light-green], phi-input > hr[phi-color-theme=light-green] {
+      background-color: #33691e !important; }
+    [phi-color-theme=lime] [phi-input] > hr, [phi-color-theme=lime] phi-input > hr {
+      background-color: #827717; }
+    [phi-input] > hr[phi-color-theme=lime], phi-input > hr[phi-color-theme=lime] {
+      background-color: #827717 !important; }
+    [phi-color-theme=orange] [phi-input] > hr, [phi-color-theme=orange] phi-input > hr {
+      background-color: #e65100; }
+    [phi-input] > hr[phi-color-theme=orange], phi-input > hr[phi-color-theme=orange] {
+      background-color: #e65100 !important; }
+    [phi-color-theme=pink] [phi-input] > hr, [phi-color-theme=pink] phi-input > hr {
+      background-color: #880e4f; }
+    [phi-input] > hr[phi-color-theme=pink], phi-input > hr[phi-color-theme=pink] {
+      background-color: #880e4f !important; }
+    [phi-color-theme=purple] [phi-input] > hr, [phi-color-theme=purple] phi-input > hr {
+      background-color: #4a148c; }
+    [phi-input] > hr[phi-color-theme=purple], phi-input > hr[phi-color-theme=purple] {
+      background-color: #4a148c !important; }
+    [phi-color-theme=red] [phi-input] > hr, [phi-color-theme=red] phi-input > hr {
+      background-color: #b0120a; }
+    [phi-input] > hr[phi-color-theme=red], phi-input > hr[phi-color-theme=red] {
+      background-color: #b0120a !important; }
+    [phi-color-theme=teal] [phi-input] > hr, [phi-color-theme=teal] phi-input > hr {
+      background-color: #004d40; }
+    [phi-input] > hr[phi-color-theme=teal], phi-input > hr[phi-color-theme=teal] {
+      background-color: #004d40 !important; }
+    [phi-color-theme=yellow] [phi-input] > hr, [phi-color-theme=yellow] phi-input > hr {
+      background-color: #f57f17; }
+    [phi-input] > hr[phi-color-theme=yellow], phi-input > hr[phi-color-theme=yellow] {
+      background-color: #f57f17 !important; }
+  [phi-input]:focus, phi-input:focus {
+    outline: 0; }
+  [phi-input].phi-input-disabled, phi-input.phi-input-disabled {
+    opacity: 0.7; }
+    [phi-input].phi-input-disabled > *, phi-input.phi-input-disabled > * {
+      cursor: no-drop !important; }
+  [phi-input].phi-input-focused, phi-input.phi-input-focused {
+    border-bottom: 1px solid transparent; }
+    [phi-input].phi-input-focused > div > label, phi-input.phi-input-focused > div > label {
+      transform: translate3d(0, 0, 0) scale(0.8) !important; }
+    [phi-input].phi-input-focused > div > input::-webkit-input-placeholder, [phi-input].phi-input-focused > div > textarea::-webkit-input-placeholder, phi-input.phi-input-focused > div > input::-webkit-input-placeholder, phi-input.phi-input-focused > div > textarea::-webkit-input-placeholder {
+      /* WebKit browsers */
+      opacity: 0.7; }
+    [phi-input].phi-input-focused > div > input:-moz-placeholder, [phi-input].phi-input-focused > div > textarea:-moz-placeholder, phi-input.phi-input-focused > div > input:-moz-placeholder, phi-input.phi-input-focused > div > textarea:-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      opacity: 0.7; }
+    [phi-input].phi-input-focused > div > input::-moz-placeholder, [phi-input].phi-input-focused > div > textarea::-moz-placeholder, phi-input.phi-input-focused > div > input::-moz-placeholder, phi-input.phi-input-focused > div > textarea::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      opacity: 0.7; }
+    [phi-input].phi-input-focused > div > input:-ms-input-placeholder, [phi-input].phi-input-focused > div > textarea:-ms-input-placeholder, phi-input.phi-input-focused > div > input:-ms-input-placeholder, phi-input.phi-input-focused > div > textarea:-ms-input-placeholder {
+      /* Internet Explorer 10+ */
+      opacity: 0.7; }
+    [phi-input].phi-input-focused > hr, phi-input.phi-input-focused > hr {
+      width: 100%; }
+  [phi-input].phi-input-empty > div > label, phi-input.phi-input-empty > div > label {
+    transform: translate3d(0, 23px, 0) scale(1);
+    color: #999; }
 
 [phi-boundary] {
   margin: auto;

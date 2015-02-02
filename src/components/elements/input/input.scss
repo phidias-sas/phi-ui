@@ -2,57 +2,65 @@
 
     display: inline-block;
     vertical-align: bottom;
-
     border-bottom: 1px solid #ccc;
-
     margin: $phi-spacing-gutter * 0.5;
+    white-space: nowrap;
 
-    & > label {
+    & > div {
 
-        display: block;
-        pointer-events: none;
-        -webkit-font-smoothing: antialased;
-
-        transform-origin: top left;
-        @include phi-transition(transform, 200ms);
-
-        transform: translate3d(0, 0, 0) scale(0.8);
-        @include phi-colors((
-            color: 600
-        ));
-
-    }
-
-    & > input,
-    & > textarea {
-
-        background: transparent;
-        border: 0;
+        display: inline-block;
         margin: 0;
-        padding: 2px 4px;
-        line-height: 1em;
-        min-height: 2em;
-        font-size: 1em;
+        padding: 0;
         width: 100%;
-        font-weight: normal;
 
-        outline: 0;
+        & > label {
 
+            display: block;
+            pointer-events: none;
+            -webkit-font-smoothing: antialased;
 
-        &::-webkit-input-placeholder { /* WebKit browsers */
-            opacity: 0;
+            transform-origin: top left;
+            @include phi-transition(transform, 200ms);
+
+            transform: translate3d(0, 0, 0) scale(0.8);
+            @include phi-colors((
+                color: 600
+            ));
+
         }
 
-        &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-           opacity: 0;
-        }
+        & > input,
+        & > textarea {
 
-        &::-moz-placeholder { /* Mozilla Firefox 19+ */
-           opacity: 0;
-        }
+            background: transparent;
+            border: 0;
+            margin: 0;
+            padding: 2px 4px;
+            line-height: 1em;
+            min-height: 2em;
+            font-size: 1em;
+            width: 100%;
+            font-weight: normal;
 
-        &:-ms-input-placeholder { /* Internet Explorer 10+ */
-           opacity: 0;
+            outline: 0;
+
+
+            &::-webkit-input-placeholder { /* WebKit browsers */
+                opacity: 0;
+            }
+
+            &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+               opacity: 0;
+            }
+
+            &::-moz-placeholder { /* Mozilla Firefox 19+ */
+               opacity: 0;
+            }
+
+            &:-ms-input-placeholder { /* Internet Explorer 10+ */
+               opacity: 0;
+            }
+
         }
 
     }
@@ -74,6 +82,8 @@
         width: 0;
     }
 
+
+
     &:focus {
         outline: 0;
     }
@@ -93,33 +103,37 @@
 
         border-bottom: 1px solid transparent;
 
+        & > div {
+
+            & > label {
+                transform: translate3d(0, 0, 0) scale(0.8) !important;
+            }
+
+            & > input,
+            & > textarea {
+
+                &::-webkit-input-placeholder { /* WebKit browsers */
+                    opacity: 0.7;
+                }
+
+                &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                   opacity: 0.7;
+                }
+
+                &::-moz-placeholder { /* Mozilla Firefox 19+ */
+                   opacity: 0.7;
+                }
+
+                &:-ms-input-placeholder { /* Internet Explorer 10+ */
+                   opacity: 0.7;
+                }
+
+            }
+
+        }
+
         & > hr {
             width: 100%;
-        }
-
-        & > label {
-            transform: translate3d(0, 0, 0) scale(0.8) !important;
-        }
-
-        & > input,
-        & > textarea {
-
-            &::-webkit-input-placeholder { /* WebKit browsers */
-                opacity: 0.7;
-            }
-
-            &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-               opacity: 0.7;
-            }
-
-            &::-moz-placeholder { /* Mozilla Firefox 19+ */
-               opacity: 0.7;
-            }
-
-            &:-ms-input-placeholder { /* Internet Explorer 10+ */
-               opacity: 0.7;
-            }
-
         }
 
     }
@@ -127,7 +141,7 @@
 
     &.phi-input-empty {
 
-        & > label {
+        & > div > label {
             transform: translate3d(0, 23px, 0) scale(1);
             color: #999;
         }
