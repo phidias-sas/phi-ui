@@ -32,15 +32,17 @@
 
             <div style="max-width: 200px" phi-if-screen="gt-small">
 
-                <phi-menu class="phi-menu-colored phi-cutout">
+                <phi-menu class="phi-menu-colored phi-cutout" style="width: 200px"
+                          ng-init="foo.style = {}" ng-style="foo.style"
+                          phi-scrollby="foo.style = event.direction == 'down' ? {position: 'fixed', top: 0} : {}">
 
-                    <a href="#introduction" active="true">Introduction</a>
+                    <a href="#" active="{{$location.url() == '/'}}">Introduction</a>
 
                     <phi-submenu label="Classes">
-                        <a href="#classes">Overview</a>
-                        <a href="#classes-spacing">Spacing</a>
-                        <a href="#classes-color">Color</a>
-                        <a href="#classes-texture">Texture</a>
+                        <a href="#classes" active="{{$location.url() == '/classes'}}">Overview</a>
+                        <a href="#classes-spacing" active="{{$location.url() == '/classes-spacing'}}">Spacing</a>
+                        <a href="#classes-color" active="{{$location.url() == '/classes-color'}}">Color</a>
+                        <a href="#classes-texture" active="{{$location.url() == '/classes-texture'}}">Texture</a>
                     </phi-submenu>
 
                     <phi-submenu label="Attributes">
@@ -65,42 +67,42 @@
                     <h1>Color themes</h1>
                     <p>Change the document's color theme</p>
                     <phi-select ng-model="theme">
-                        <option value="default"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="default" class="phi-color-background-500"></span> <span>default</span></option>
-                        <option value="amber"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="amber" class="phi-color-background-500"></span> <span>amber</span></option>
-                        <option value="blue-grey"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="grey" class="phi-color-background-500"></span> <span>blue-grey</span></option>
-                        <option value="blue"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="blue" class="phi-color-background-500"></span> <span>blue</span></option>
-                        <option value="brown"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="brown" class="phi-color-background-500"></span> <span>brown</span></option>
-                        <option value="cyan"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="cyan" class="phi-color-background-500"></span> <span>cyan</span></option>
-                        <option value="deep-orange"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="orange" class="phi-color-background-500"></span> <span>deep-orange</span></option>
-                        <option value="deep-purple"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="purple" class="phi-color-background-500"></span> <span>deep-purple</span></option>
-                        <option value="green"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="green" class="phi-color-background-500"></span> <span>green</span></option>
-                        <option value="grey"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="grey" class="phi-color-background-500"></span> <span>grey</span></option>
-                        <option value="indigo"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="indigo" class="phi-color-background-500"></span> <span>indigo</span></option>
-                        <option value="light-blue"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="blue" class="phi-color-background-500"></span> <span>light-blue</span></option>
-                        <option value="light-green"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="green" class="phi-color-background-500"></span> <span>light-green</span></option>
-                        <option value="lime"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="lime" class="phi-color-background-500"></span> <span>lime</span></option>
-                        <option value="orange"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="orange" class="phi-color-background-500"></span> <span>orange</span></option>
-                        <option value="pink"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="pink" class="phi-color-background-500"></span> <span>pink</span></option>
-                        <option value="purple"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="purple" class="phi-color-background-500"></span> <span>purple</span></option>
-                        <option value="red"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="red" class="phi-color-background-500"></span> <span>red</span></option>
-                        <option value="teal"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="teal" class="phi-color-background-500"></span> <span>teal</span></option>
-                        <option value="yellow"><span style="display:inline-block; width: 1em; height: 1em;" phi-color-theme="yellow" class="phi-color-background-500"></span> <span>yellow</span></option>
+                        <option value="default"><span phi-color-theme="default" class="phi-color-background-500"></span> <span>default</span></option>
+                        <option value="amber"><span phi-color-theme="amber" class="phi-color-background-500"></span> <span>amber</span></option>
+                        <option value="blue-grey"><span phi-color-theme="grey" class="phi-color-background-500"></span> <span>blue-grey</span></option>
+                        <option value="blue"><span phi-color-theme="blue" class="phi-color-background-500"></span> <span>blue</span></option>
+                        <option value="brown"><span phi-color-theme="brown" class="phi-color-background-500"></span> <span>brown</span></option>
+                        <option value="cyan"><span phi-color-theme="cyan" class="phi-color-background-500"></span> <span>cyan</span></option>
+                        <option value="deep-orange"><span phi-color-theme="orange" class="phi-color-background-500"></span> <span>deep-orange</span></option>
+                        <option value="deep-purple"><span phi-color-theme="purple" class="phi-color-background-500"></span> <span>deep-purple</span></option>
+                        <option value="green"><span phi-color-theme="green" class="phi-color-background-500"></span> <span>green</span></option>
+                        <option value="grey"><span phi-color-theme="grey" class="phi-color-background-500"></span> <span>grey</span></option>
+                        <option value="indigo"><span phi-color-theme="indigo" class="phi-color-background-500"></span> <span>indigo</span></option>
+                        <option value="light-blue"><span phi-color-theme="blue" class="phi-color-background-500"></span> <span>light-blue</span></option>
+                        <option value="light-green"><span phi-color-theme="green" class="phi-color-background-500"></span> <span>light-green</span></option>
+                        <option value="lime"><span phi-color-theme="lime" class="phi-color-background-500"></span> <span>lime</span></option>
+                        <option value="orange"><span phi-color-theme="orange" class="phi-color-background-500"></span> <span>orange</span></option>
+                        <option value="pink"><span phi-color-theme="pink" class="phi-color-background-500"></span> <span>pink</span></option>
+                        <option value="purple"><span phi-color-theme="purple" class="phi-color-background-500"></span> <span>purple</span></option>
+                        <option value="red"><span phi-color-theme="red" class="phi-color-background-500"></span> <span>red</span></option>
+                        <option value="teal"><span phi-color-theme="teal" class="phi-color-background-500"></span> <span>teal</span></option>
+                        <option value="yellow"><span phi-color-theme="yellow" class="phi-color-background-500"></span> <span>yellow</span></option>
                     </phi-select>
                 </section>
 
 
-                <section id="classes">
+                <section id="classes" phi-waypoint="$location.url('classes')">
                     <h1>Classes</h1>
                     <p>So, classes and stuff.  Classes declare <em>styling</em> of the element.  That is, how the element <em>looks</em>.  They are independent from position and behaviour</p>
 
-                    <section id="classes-spacing">
+                    <section id="classes-spacing" phi-waypoint="$location.url('classes-spacing')">
                         <h2>Spacing</h2>
 
                         <p class="phi-padded">.phi-padded</p>
                         <p class="phi-rounded">.phi-rounded</p>
                     </section>
 
-                    <section id="classes-color">
+                    <section id="classes-color" phi-waypoint="$location.url('classes-color')">
                         <h2>Color</h2>
 
                         <p class="phi-color-font-500">.phi-color-font-500</p>
@@ -116,7 +118,7 @@
                         <p class="phi-color-background-900">.phi-color-background-900</p>
                     </section>
 
-                    <section id="classes-texture">
+                    <section id="classes-texture" phi-waypoint="$location.url('classes-texture')">
                         <h2>Texture</h2>
 
                         <p class="phi-texture-paper">.phi-texture-paper</p>

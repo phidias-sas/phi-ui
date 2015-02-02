@@ -55,3 +55,19 @@ section#classes p {
     color: #fff;
     padding: 18px;
 }
+
+#themes > phi-select > phi-menu > a {
+    position: relative;
+    padding-left: 30px !important;
+}
+
+#themes > phi-select > phi-menu > a > span.phi-color-background-500 {
+
+    display: block;
+
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    width: 20px;
+}

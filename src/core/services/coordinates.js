@@ -17,8 +17,8 @@ angular.module("phi.ui").service("$phiCoordinates", [function() {
             var parentRect = offsetParent.getBoundingClientRect();
 
             return {
-                left:   nodeRect.left - parentRect.left + offsetParent.scrollLeft,
-                top:    nodeRect.top  - parentRect.top  + offsetParent.scrollTop,
+                left:   nodeRect.left - parentRect.left,// + offsetParent.scrollLeft,
+                top:    nodeRect.top  - parentRect.top,//  + offsetParent.scrollTop,
                 width:  nodeRect.width,
                 height: nodeRect.height
             };

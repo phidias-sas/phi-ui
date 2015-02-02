@@ -42,6 +42,7 @@ phi-submenu {
 		position: relative;
 
 		&:before {
+
 			@include phi-icon("fa-caret-right");
 
 			position: absolute;
@@ -54,6 +55,7 @@ phi-submenu {
 			line-height: 1em;
 
 			text-align: center;
+			color: #666;
 
 			transform: rotate(0);
 			transform-origin: center;
