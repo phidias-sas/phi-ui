@@ -33,8 +33,9 @@
             <div style="max-width: 200px" phi-if-screen="gt-small">
 
                 <phi-menu class="phi-menu-colored phi-cutout" style="width: 200px"
-                          ng-init="foo.style = {}" ng-style="foo.style"
-                          phi-scrollby="foo.style = event.direction == 'down' ? {position: 'fixed', top: 0} : {}">
+                          phi-viewport-leave="foo.style = {position: 'fixed', top: 0}"
+                          phi-viewport-enter-end="foo.style = {}"
+                          ng-style="foo.style">
 
                     <a href="#" active="{{$location.url() == '/'}}">Introduction</a>
 
@@ -55,6 +56,8 @@
                     <phi-submenu label="Elements">
                         <a href="#elements-form">Forms</a>
                     </phi-submenu>
+
+                    {{foo.event}}
 
                 </phi-menu>
 
@@ -275,6 +278,7 @@
                 </section>
 
             </div>
+
 
         </div> <!-- /#contents -->
 
