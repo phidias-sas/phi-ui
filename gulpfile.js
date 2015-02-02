@@ -9,7 +9,7 @@ var minifyCSS = require('gulp-minify-css');
 var uglify    = require('gulp-uglify');
 
 //error handler to log errors without interrupting 'watch'
-function swallowError (error) {
+function logError(error) {
     console.log(error.toString());
     this.emit('end');
 }
@@ -18,7 +18,8 @@ function swallowError (error) {
 gulp.task('sass', function() {
     return gulp.src(['src/core/styles/normalize/*.scss', 'src/core/styles/mixins/**/*.scss', 'src/components/**/*.scss'])
     	.pipe(concat('phi-ui.css'))
-        .pipe(sass()).on('error', swallowError)
+        .pipe(sass())
+            .on('error', logError)
         .pipe(gulp.dest('build'))
         .pipe(rename('phi-ui.min.css'))
         .pipe(minifyCSS())
@@ -32,6 +33,7 @@ gulp.task('js', function() {
         .pipe(gulp.dest('build'))
         .pipe(rename('phi-ui.min.js'))
         .pipe(uglify())
+            .on('error', logError)
         .pipe(gulp.dest('build'));
 });
 
