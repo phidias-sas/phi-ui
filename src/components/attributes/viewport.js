@@ -12,25 +12,18 @@ angular.module("phi.ui").directive("phiViewportLeave", ["$window", "$phiCoordina
 
         link: function(scope, element, attributes) {
 
-            $timeout(function() {
-                var bounds = $phiCoordinates.getBounds(element);
-                element.data("phi-viewport-element-top",    bounds.top);
-                element.data("phi-viewport-element-bottom", bounds.top + bounds.height);
-            }, 0);
-
             var lastY = $window.scrollY;
 
             angular.element($window).bind("scroll", function() {
 
-                var elementTop    = element.data("phi-viewport-element-top");
-                var elementBottom = element.data("phi-viewport-element-bottom");
-                var leaveEvent    = null;
+                var bounds     = $phiCoordinates.getBounds(element);
+                var leaveEvent = null;
 
-                if (lastY < elementTop && elementTop <= $window.scrollY) { //leaving from the top
+                if (lastY < bounds.top && bounds.top <= $window.scrollY) { //leaving from the top
                     leaveEvent = {
                         direction: "up"
                     }
-                } else if (lastY + $window.innerHeight > elementBottom && elementBottom >= $window.scrollY + $window.innerHeight) { //leaving from the bottom
+                } else if (lastY + $window.innerHeight > bounds.bottom && bounds.bottom >= $window.scrollY + $window.innerHeight) { //leaving from the bottom
                     leaveEvent = {
                         direction: "down"
                     }
@@ -42,7 +35,6 @@ angular.module("phi.ui").directive("phiViewportLeave", ["$window", "$phiCoordina
                 }
 
                 lastY = $window.scrollY;
-                return;
 
             });
 
@@ -63,25 +55,18 @@ angular.module("phi.ui").directive("phiViewportLeaveEnd", ["$window", "$phiCoord
 
         link: function(scope, element, attributes) {
 
-            $timeout(function() {
-                var bounds = $phiCoordinates.getBounds(element);
-                element.data("phi-viewport-element-top",    bounds.top);
-                element.data("phi-viewport-element-bottom", bounds.top + bounds.height);
-            }, 0);
-
             var lastY = $window.scrollY;
 
             angular.element($window).bind("scroll", function() {
 
-                var elementTop    = element.data("phi-viewport-element-top");
-                var elementBottom = element.data("phi-viewport-element-bottom");
-                var leaveEvent    = null;
+                var bounds     = $phiCoordinates.getBounds(element);
+                var leaveEvent = null;
 
-                if (lastY < elementBottom && elementBottom <= $window.scrollY) { //leaving from the top
+                if (lastY < bounds.bottom && bounds.bottom <= $window.scrollY) { //leaving from the top
                     leaveEvent = {
                         direction: "up"
                     }
-                } else if (lastY + $window.innerHeight > elementTop && elementTop >= $window.scrollY + $window.innerHeight) { //leaving from the bottom
+                } else if (lastY + $window.innerHeight > bounds.top && bounds.top >= $window.scrollY + $window.innerHeight) { //leaving from the bottom
                     leaveEvent = {
                         direction: "down"
                     }
@@ -93,7 +78,6 @@ angular.module("phi.ui").directive("phiViewportLeaveEnd", ["$window", "$phiCoord
                 }
 
                 lastY = $window.scrollY;
-                return;
 
             });
 
@@ -115,25 +99,18 @@ angular.module("phi.ui").directive("phiViewportEnter", ["$window", "$phiCoordina
 
         link: function(scope, element, attributes) {
 
-            $timeout(function() {
-                var bounds = $phiCoordinates.getBounds(element);
-                element.data("phi-viewport-element-top",    bounds.top);
-                element.data("phi-viewport-element-bottom", bounds.top + bounds.height);
-            }, 0);
-
             var lastY = $window.scrollY;
 
             angular.element($window).bind("scroll", function() {
 
-                var elementTop    = element.data("phi-viewport-element-top");
-                var elementBottom = element.data("phi-viewport-element-bottom");
-                var enterEvent    = null;
+                var bounds     = $phiCoordinates.getBounds(element);
+                var enterEvent = null;
 
-                if (lastY + $window.innerHeight < elementTop && elementTop <= $window.scrollY + $window.innerHeight) { //entering from the top
+                if (lastY + $window.innerHeight < bounds.top && bounds.top <= $window.scrollY + $window.innerHeight) { //entering from the top
                     enterEvent = {
                         direction: "up"
                     }
-                } else if (lastY > elementBottom && elementBottom >= $window.scrollY) { //entering from the bottom
+                } else if (lastY > bounds.bottom && bounds.bottom >= $window.scrollY) { //entering from the bottom
                     enterEvent = {
                         direction: "down"
                     }
@@ -145,7 +122,6 @@ angular.module("phi.ui").directive("phiViewportEnter", ["$window", "$phiCoordina
                 }
 
                 lastY = $window.scrollY;
-                return;
 
             });
 
@@ -168,25 +144,18 @@ angular.module("phi.ui").directive("phiViewportEnterEnd", ["$window", "$phiCoord
 
         link: function(scope, element, attributes) {
 
-            $timeout(function() {
-                var bounds = $phiCoordinates.getBounds(element);
-                element.data("phi-viewport-element-top",    bounds.top);
-                element.data("phi-viewport-element-bottom", bounds.top + bounds.height);
-            }, 0);
-
             var lastY = $window.scrollY;
 
             angular.element($window).bind("scroll", function() {
 
-                var elementTop    = element.data("phi-viewport-element-top");
-                var elementBottom = element.data("phi-viewport-element-bottom");
-                var enterEvent    = null;
+                var bounds     = $phiCoordinates.getBounds(element);
+                var enterEvent = null;
 
-                if (lastY + $window.innerHeight < elementBottom && elementBottom <= $window.scrollY + $window.innerHeight) { //entering from the top
+                if (lastY + $window.innerHeight < bounds.bottom && bounds.bottom <= $window.scrollY + $window.innerHeight) { //entering from the top
                     enterEvent = {
                         direction: "up"
                     }
-                } else if (lastY > elementTop && elementTop >= $window.scrollY) { //entering from the bottom
+                } else if (lastY > bounds.top && bounds.top >= $window.scrollY) { //entering from the bottom
                     enterEvent = {
                         direction: "down"
                     }
@@ -198,7 +167,6 @@ angular.module("phi.ui").directive("phiViewportEnterEnd", ["$window", "$phiCoord
                 }
 
                 lastY = $window.scrollY;
-                return;
 
             });
 

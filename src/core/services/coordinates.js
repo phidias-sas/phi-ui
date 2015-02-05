@@ -1,29 +1,52 @@
-angular.module("phi.ui").service("$phiCoordinates", [function() {
+angular.module("phi.ui").service("$phiCoordinates", ["$timeout", function($timeout) {
 
     return {
 
+
+        clearBoundsTimeout: null,
+
+
         /*
-        From angular-material util.js
+        Based on angular-material util.js
         https://github.com/angular/material/blob/master/src/core/util/util.js
 
         Return the bounding rectangle relative to the offset parent (nearest in the containment hierarchy positioned containing element)
+
+        Caches results every 500ms, so it's safe to call it continuously (like inside a window.scroll event)
+
         */
         getBounds: function(element, offsetParent) {
 
-            var node       = element[0];
-            offsetParent   = offsetParent || node.offsetParent || document.body;
-            offsetParent   = offsetParent[0] || offsetParent;
-            var nodeRect   = node.getBoundingClientRect();
-            var parentRect = offsetParent.getBoundingClientRect();
+            $timeout.cancel(this.clearBoundsTimeout);
 
-            return {
-                left:   nodeRect.left - parentRect.left,// + offsetParent.scrollLeft,
-                top:    nodeRect.top  - parentRect.top,//  + offsetParent.scrollTop,
-                width:  nodeRect.width,
-                height: nodeRect.height
-            };
+            this.clearBoundsTimeout = $timeout(function() {
+                element.data("phi-coordinates-bounds", null);
+            }, 500);
+
+            var bounds = element.data("phi-coordinates-bounds");
+
+            if (!bounds) {
+                var node       = element[0];
+                offsetParent   = offsetParent || node.offsetParent || document.body;
+                offsetParent   = offsetParent[0] || offsetParent;
+                var nodeRect   = node.getBoundingClientRect();
+                var parentRect = offsetParent.getBoundingClientRect();
+
+                bounds = {
+                    left:   nodeRect.left - parentRect.left,
+                    top:    nodeRect.top - parentRect.top,
+                    width:  nodeRect.width,
+                    height: nodeRect.height,
+                    bottom: nodeRect.top - parentRect.top + nodeRect.height
+                };
+
+                element.data("phi-coordinates-bounds", bounds);
+            }
+
+            return bounds;
 
         },
+
 
         parseAlignmentString: function(string) {
 

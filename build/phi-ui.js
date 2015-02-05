@@ -3,32 +3,55 @@ angular.module("phi.ui", ['ngAria']);
 angular.module('phi.ui').run(["$rootScope", "$location", function($rootScope, $location) {
 	$rootScope.$location = $location;
 }]);
-angular.module("phi.ui").service("$phiCoordinates", [function() {
+angular.module("phi.ui").service("$phiCoordinates", ["$timeout", function($timeout) {
 
     return {
 
+
+        clearBoundsTimeout: null,
+
+
         /*
-        From angular-material util.js
+        Based on angular-material util.js
         https://github.com/angular/material/blob/master/src/core/util/util.js
 
         Return the bounding rectangle relative to the offset parent (nearest in the containment hierarchy positioned containing element)
+
+        Caches results every 500ms, so it's safe to call it continuously (like inside a window.scroll event)
+
         */
         getBounds: function(element, offsetParent) {
 
-            var node       = element[0];
-            offsetParent   = offsetParent || node.offsetParent || document.body;
-            offsetParent   = offsetParent[0] || offsetParent;
-            var nodeRect   = node.getBoundingClientRect();
-            var parentRect = offsetParent.getBoundingClientRect();
+            $timeout.cancel(this.clearBoundsTimeout);
 
-            return {
-                left:   nodeRect.left - parentRect.left,// + offsetParent.scrollLeft,
-                top:    nodeRect.top  - parentRect.top,//  + offsetParent.scrollTop,
-                width:  nodeRect.width,
-                height: nodeRect.height
-            };
+            this.clearBoundsTimeout = $timeout(function() {
+                element.data("phi-coordinates-bounds", null);
+            }, 500);
+
+            var bounds = element.data("phi-coordinates-bounds");
+
+            if (!bounds) {
+                var node       = element[0];
+                offsetParent   = offsetParent || node.offsetParent || document.body;
+                offsetParent   = offsetParent[0] || offsetParent;
+                var nodeRect   = node.getBoundingClientRect();
+                var parentRect = offsetParent.getBoundingClientRect();
+
+                bounds = {
+                    left:   nodeRect.left - parentRect.left,
+                    top:    nodeRect.top - parentRect.top,
+                    width:  nodeRect.width,
+                    height: nodeRect.height,
+                    bottom: nodeRect.top - parentRect.top + nodeRect.height
+                };
+
+                element.data("phi-coordinates-bounds", bounds);
+            }
+
+            return bounds;
 
         },
+
 
         parseAlignmentString: function(string) {
 
@@ -208,25 +231,18 @@ angular.module("phi.ui").directive("phiViewportLeave", ["$window", "$phiCoordina
 
         link: function(scope, element, attributes) {
 
-            $timeout(function() {
-                var bounds = $phiCoordinates.getBounds(element);
-                element.data("phi-viewport-element-top",    bounds.top);
-                element.data("phi-viewport-element-bottom", bounds.top + bounds.height);
-            }, 0);
-
             var lastY = $window.scrollY;
 
             angular.element($window).bind("scroll", function() {
 
-                var elementTop    = element.data("phi-viewport-element-top");
-                var elementBottom = element.data("phi-viewport-element-bottom");
-                var leaveEvent    = null;
+                var bounds     = $phiCoordinates.getBounds(element);
+                var leaveEvent = null;
 
-                if (lastY < elementTop && elementTop <= $window.scrollY) { //leaving from the top
+                if (lastY < bounds.top && bounds.top <= $window.scrollY) { //leaving from the top
                     leaveEvent = {
                         direction: "up"
                     }
-                } else if (lastY + $window.innerHeight > elementBottom && elementBottom >= $window.scrollY + $window.innerHeight) { //leaving from the bottom
+                } else if (lastY + $window.innerHeight > bounds.bottom && bounds.bottom >= $window.scrollY + $window.innerHeight) { //leaving from the bottom
                     leaveEvent = {
                         direction: "down"
                     }
@@ -238,7 +254,6 @@ angular.module("phi.ui").directive("phiViewportLeave", ["$window", "$phiCoordina
                 }
 
                 lastY = $window.scrollY;
-                return;
 
             });
 
@@ -259,25 +274,18 @@ angular.module("phi.ui").directive("phiViewportLeaveEnd", ["$window", "$phiCoord
 
         link: function(scope, element, attributes) {
 
-            $timeout(function() {
-                var bounds = $phiCoordinates.getBounds(element);
-                element.data("phi-viewport-element-top",    bounds.top);
-                element.data("phi-viewport-element-bottom", bounds.top + bounds.height);
-            }, 0);
-
             var lastY = $window.scrollY;
 
             angular.element($window).bind("scroll", function() {
 
-                var elementTop    = element.data("phi-viewport-element-top");
-                var elementBottom = element.data("phi-viewport-element-bottom");
-                var leaveEvent    = null;
+                var bounds     = $phiCoordinates.getBounds(element);
+                var leaveEvent = null;
 
-                if (lastY < elementBottom && elementBottom <= $window.scrollY) { //leaving from the top
+                if (lastY < bounds.bottom && bounds.bottom <= $window.scrollY) { //leaving from the top
                     leaveEvent = {
                         direction: "up"
                     }
-                } else if (lastY + $window.innerHeight > elementTop && elementTop >= $window.scrollY + $window.innerHeight) { //leaving from the bottom
+                } else if (lastY + $window.innerHeight > bounds.top && bounds.top >= $window.scrollY + $window.innerHeight) { //leaving from the bottom
                     leaveEvent = {
                         direction: "down"
                     }
@@ -289,7 +297,6 @@ angular.module("phi.ui").directive("phiViewportLeaveEnd", ["$window", "$phiCoord
                 }
 
                 lastY = $window.scrollY;
-                return;
 
             });
 
@@ -311,25 +318,18 @@ angular.module("phi.ui").directive("phiViewportEnter", ["$window", "$phiCoordina
 
         link: function(scope, element, attributes) {
 
-            $timeout(function() {
-                var bounds = $phiCoordinates.getBounds(element);
-                element.data("phi-viewport-element-top",    bounds.top);
-                element.data("phi-viewport-element-bottom", bounds.top + bounds.height);
-            }, 0);
-
             var lastY = $window.scrollY;
 
             angular.element($window).bind("scroll", function() {
 
-                var elementTop    = element.data("phi-viewport-element-top");
-                var elementBottom = element.data("phi-viewport-element-bottom");
-                var enterEvent    = null;
+                var bounds     = $phiCoordinates.getBounds(element);
+                var enterEvent = null;
 
-                if (lastY + $window.innerHeight < elementTop && elementTop <= $window.scrollY + $window.innerHeight) { //entering from the top
+                if (lastY + $window.innerHeight < bounds.top && bounds.top <= $window.scrollY + $window.innerHeight) { //entering from the top
                     enterEvent = {
                         direction: "up"
                     }
-                } else if (lastY > elementBottom && elementBottom >= $window.scrollY) { //entering from the bottom
+                } else if (lastY > bounds.bottom && bounds.bottom >= $window.scrollY) { //entering from the bottom
                     enterEvent = {
                         direction: "down"
                     }
@@ -341,7 +341,6 @@ angular.module("phi.ui").directive("phiViewportEnter", ["$window", "$phiCoordina
                 }
 
                 lastY = $window.scrollY;
-                return;
 
             });
 
@@ -364,25 +363,18 @@ angular.module("phi.ui").directive("phiViewportEnterEnd", ["$window", "$phiCoord
 
         link: function(scope, element, attributes) {
 
-            $timeout(function() {
-                var bounds = $phiCoordinates.getBounds(element);
-                element.data("phi-viewport-element-top",    bounds.top);
-                element.data("phi-viewport-element-bottom", bounds.top + bounds.height);
-            }, 0);
-
             var lastY = $window.scrollY;
 
             angular.element($window).bind("scroll", function() {
 
-                var elementTop    = element.data("phi-viewport-element-top");
-                var elementBottom = element.data("phi-viewport-element-bottom");
-                var enterEvent    = null;
+                var bounds     = $phiCoordinates.getBounds(element);
+                var enterEvent = null;
 
-                if (lastY + $window.innerHeight < elementBottom && elementBottom <= $window.scrollY + $window.innerHeight) { //entering from the top
+                if (lastY + $window.innerHeight < bounds.bottom && bounds.bottom <= $window.scrollY + $window.innerHeight) { //entering from the top
                     enterEvent = {
                         direction: "up"
                     }
-                } else if (lastY > elementTop && elementTop >= $window.scrollY) { //entering from the bottom
+                } else if (lastY > bounds.top && bounds.top >= $window.scrollY) { //entering from the bottom
                     enterEvent = {
                         direction: "down"
                     }
@@ -394,7 +386,6 @@ angular.module("phi.ui").directive("phiViewportEnterEnd", ["$window", "$phiCoord
                 }
 
                 lastY = $window.scrollY;
-                return;
 
             });
 
@@ -699,75 +690,6 @@ angular.module("phi.ui").directive("phiInput", [function() {
 Same attributes as polymer's paper-element
 */
 
-angular.module("phi.ui").directive("phiMenu", [function() {
-
-    return {
-        restrict: "E",
-
-        link: function(scope, element, attributes)  {
-
-        }
-
-    };
-
-}]);
-
-
-angular.module("phi.ui").directive("phiSubmenu", [function() {
-
-    return {
-        restrict: "E",
-
-        scope: {
-            "label": "@"
-        },
-
-        transclude: true,
-
-        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
-                  '<div class="phi-submenu-contents" ng-transclude></div>',
-
-        link: function(scope, element, attributes)  {
-
-            scope.setExpanded = function(expanded) {
-
-                scope.expanded = expanded;
-
-                if (scope.expanded) {
-                    element.attr("expanded", "expanded");
-                    element.find("div").find("a").attr("tabindex", 0);
-                } else {
-                    element.removeAttr("expanded");
-                    element.find("div").find("a").attr("tabindex", -1);
-                }
-            };
-
-            scope.toggle = function() {
-                scope.setExpanded(!scope.expanded);
-            };
-
-            scope.setExpanded(false);
-
-            var items = element.find('a');
-            for (var index = 0; index < items.length; index++) {
-                if (angular.element(items[index]).attr("active") !== undefined) {
-                    scope.setExpanded(true);
-                    break;
-                }
-            }
-
-
-
-        }
-
-    };
-
-}]);
-
-/*
-Same attributes as polymer's paper-element
-*/
-
 angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", function($compile, $document) {
 
     var phiSelectCounter = 1;
@@ -892,6 +814,74 @@ angular.module("phi.ui").directive("option", ["$compile", "$interpolate", functi
             var template = '<a ng-click="selectThis()">' + $interpolate(element.html())(scope.$parent) + '</a>';
             var e = $compile(template)(scope);
             element.replaceWith(e);
+        }
+
+    };
+
+}]);
+/*
+Same attributes as polymer's paper-element
+*/
+
+angular.module("phi.ui").directive("phiMenu", [function() {
+
+    return {
+        restrict: "E",
+
+        link: function(scope, element, attributes)  {
+
+        }
+
+    };
+
+}]);
+
+
+angular.module("phi.ui").directive("phiSubmenu", [function() {
+
+    return {
+        restrict: "E",
+
+        scope: {
+            "label": "@"
+        },
+
+        transclude: true,
+
+        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
+                  '<div class="phi-submenu-contents" ng-transclude></div>',
+
+        link: function(scope, element, attributes)  {
+
+            scope.setExpanded = function(expanded) {
+
+                scope.expanded = expanded;
+
+                if (scope.expanded) {
+                    element.attr("expanded", "expanded");
+                    element.find("div").find("a").attr("tabindex", 0);
+                } else {
+                    element.removeAttr("expanded");
+                    element.find("div").find("a").attr("tabindex", -1);
+                }
+            };
+
+            scope.toggle = function() {
+                scope.setExpanded(!scope.expanded);
+            };
+
+            scope.setExpanded(false);
+
+            var items = element.find('a');
+            for (var index = 0; index < items.length; index++) {
+                if (angular.element(items[index]).attr("active") !== undefined) {
+                    scope.setExpanded(true);
+                    break;
+                }
+            }
+
+
+
         }
 
     };

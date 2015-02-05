@@ -1652,6 +1652,22 @@ phi-checkbox {
     transform: translate3d(0, 23px, 0) scale(1);
     color: #999; }
 
+phi-select {
+  display: inline-block;
+  position: relative; }
+  phi-select:before {
+    font-family: FontAwesome;
+    content: "\f0d7";
+    cursor: inherit;
+    font-style: normal;
+    position: absolute;
+    bottom: 15px;
+    right: 16px;
+    opacity: 0.7; }
+  phi-select > phi-menu {
+    max-height: 400px;
+    overflow: auto; }
+
 phi-menu.phi-menu-colored {
   /* 
     carajo Colors for & 
@@ -3101,22 +3117,6 @@ phi-submenu {
 
 phi-menu.phi-texture-xray a:hover, .phi-texture-xray phi-menu a:hover {
   background: rgba(255, 255, 255, 0.3); }
-
-phi-select {
-  display: inline-block;
-  position: relative; }
-  phi-select:before {
-    font-family: FontAwesome;
-    content: "\f0d7";
-    cursor: inherit;
-    font-style: normal;
-    position: absolute;
-    bottom: 15px;
-    right: 16px;
-    opacity: 0.7; }
-  phi-select > phi-menu {
-    max-height: 400px;
-    overflow: auto; }
 
 [phi-boundary] {
   margin: auto;
