@@ -7,10 +7,6 @@ angular.module("phi.ui").service("$phiCoordinates", ["$timeout", function($timeo
 
     return {
 
-
-        clearBoundsTimeout: null,
-
-
         /*
         Based on angular-material util.js
         https://github.com/angular/material/blob/master/src/core/util/util.js
@@ -22,11 +18,11 @@ angular.module("phi.ui").service("$phiCoordinates", ["$timeout", function($timeo
         */
         getBounds: function(element, offsetParent) {
 
-            $timeout.cancel(this.clearBoundsTimeout);
+            $timeout.cancel(element.clearBoundsTimeout);
 
-            this.clearBoundsTimeout = $timeout(function() {
+            element.clearBoundsTimeout = $timeout(function() {
                 element.data("phi-coordinates-bounds", null);
-            }, 500);
+            }, 750);
 
             var bounds = element.data("phi-coordinates-bounds");
 
@@ -470,16 +466,6 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
 }]);
 
-angular.module("phi.ui").directive("phiCutout", [function() {
-
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
-        }
-    };
-
-}]);
 /**
  * Proof of concept: Port an angular-material element
  */
@@ -690,6 +676,75 @@ angular.module("phi.ui").directive("phiInput", [function() {
 Same attributes as polymer's paper-element
 */
 
+angular.module("phi.ui").directive("phiMenu", [function() {
+
+    return {
+        restrict: "E",
+
+        link: function(scope, element, attributes)  {
+
+        }
+
+    };
+
+}]);
+
+
+angular.module("phi.ui").directive("phiSubmenu", [function() {
+
+    return {
+        restrict: "E",
+
+        scope: {
+            "label": "@"
+        },
+
+        transclude: true,
+
+        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
+                  '<div class="phi-submenu-contents" ng-transclude></div>',
+
+        link: function(scope, element, attributes)  {
+
+            scope.setExpanded = function(expanded) {
+
+                scope.expanded = expanded;
+
+                if (scope.expanded) {
+                    element.attr("expanded", "expanded");
+                    element.find("div").find("a").attr("tabindex", 0);
+                } else {
+                    element.removeAttr("expanded");
+                    element.find("div").find("a").attr("tabindex", -1);
+                }
+            };
+
+            scope.toggle = function() {
+                scope.setExpanded(!scope.expanded);
+            };
+
+            scope.setExpanded(false);
+
+            var items = element.find('a');
+            for (var index = 0; index < items.length; index++) {
+                if (angular.element(items[index]).attr("active") !== undefined) {
+                    scope.setExpanded(true);
+                    break;
+                }
+            }
+
+
+
+        }
+
+    };
+
+}]);
+
+/*
+Same attributes as polymer's paper-element
+*/
+
 angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", function($compile, $document) {
 
     var phiSelectCounter = 1;
@@ -819,71 +874,13 @@ angular.module("phi.ui").directive("option", ["$compile", "$interpolate", functi
     };
 
 }]);
-/*
-Same attributes as polymer's paper-element
-*/
-
-angular.module("phi.ui").directive("phiMenu", [function() {
+angular.module("phi.ui").directive("phiCutout", [function() {
 
     return {
-        restrict: "E",
-
+        restrict: "C",
         link: function(scope, element, attributes)  {
-
+            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
         }
-
-    };
-
-}]);
-
-
-angular.module("phi.ui").directive("phiSubmenu", [function() {
-
-    return {
-        restrict: "E",
-
-        scope: {
-            "label": "@"
-        },
-
-        transclude: true,
-
-        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
-                  '<div class="phi-submenu-contents" ng-transclude></div>',
-
-        link: function(scope, element, attributes)  {
-
-            scope.setExpanded = function(expanded) {
-
-                scope.expanded = expanded;
-
-                if (scope.expanded) {
-                    element.attr("expanded", "expanded");
-                    element.find("div").find("a").attr("tabindex", 0);
-                } else {
-                    element.removeAttr("expanded");
-                    element.find("div").find("a").attr("tabindex", -1);
-                }
-            };
-
-            scope.toggle = function() {
-                scope.setExpanded(!scope.expanded);
-            };
-
-            scope.setExpanded(false);
-
-            var items = element.find('a');
-            for (var index = 0; index < items.length; index++) {
-                if (angular.element(items[index]).attr("active") !== undefined) {
-                    scope.setExpanded(true);
-                    break;
-                }
-            }
-
-
-
-        }
-
     };
 
 }]);

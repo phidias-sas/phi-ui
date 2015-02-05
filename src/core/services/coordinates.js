@@ -2,10 +2,6 @@ angular.module("phi.ui").service("$phiCoordinates", ["$timeout", function($timeo
 
     return {
 
-
-        clearBoundsTimeout: null,
-
-
         /*
         Based on angular-material util.js
         https://github.com/angular/material/blob/master/src/core/util/util.js
@@ -17,11 +13,11 @@ angular.module("phi.ui").service("$phiCoordinates", ["$timeout", function($timeo
         */
         getBounds: function(element, offsetParent) {
 
-            $timeout.cancel(this.clearBoundsTimeout);
+            $timeout.cancel(element.clearBoundsTimeout);
 
-            this.clearBoundsTimeout = $timeout(function() {
+            element.clearBoundsTimeout = $timeout(function() {
                 element.data("phi-coordinates-bounds", null);
-            }, 500);
+            }, 750);
 
             var bounds = element.data("phi-coordinates-bounds");
 
