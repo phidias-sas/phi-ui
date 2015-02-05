@@ -1,3 +1,4 @@
+@import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
 /* http://css-tricks.com/international-box-sizing-awareness-day/ */
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
@@ -893,7 +894,7 @@ phi-checkbox {
       display: block;
       pointer-events: none;
       -webkit-font-smoothing: antialased;
-      transform-origin: top left;
+      transform-origin: bottom left;
       -webkit-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
       -moz-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
       -o-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
@@ -1248,7 +1249,7 @@ phi-checkbox {
       background: transparent;
       border: 0;
       margin: 0;
-      padding: 2px 4px;
+      padding: 2px 0;
       line-height: 1em;
       min-height: 2em;
       font-size: 1em;
@@ -1650,22 +1651,6 @@ phi-checkbox {
   [phi-input].phi-input-empty > div > label, phi-input.phi-input-empty > div > label {
     transform: translate3d(0, 23px, 0) scale(1);
     color: #999; }
-
-phi-select {
-  display: inline-block;
-  position: relative; }
-  phi-select:before {
-    font-family: FontAwesome;
-    content: "\f0d7";
-    cursor: inherit;
-    font-style: normal;
-    position: absolute;
-    bottom: 15px;
-    right: 16px;
-    opacity: 0.7; }
-  phi-select > phi-menu {
-    max-height: 400px;
-    overflow: auto; }
 
 phi-menu.phi-menu-colored {
   /* 
@@ -3116,6 +3101,22 @@ phi-submenu {
 
 phi-menu.phi-texture-xray a:hover, .phi-texture-xray phi-menu a:hover {
   background: rgba(255, 255, 255, 0.3); }
+
+phi-select {
+  display: inline-block;
+  position: relative; }
+  phi-select:before {
+    font-family: FontAwesome;
+    content: "\f0d7";
+    cursor: inherit;
+    font-style: normal;
+    position: absolute;
+    bottom: 15px;
+    right: 16px;
+    opacity: 0.7; }
+  phi-select > phi-menu {
+    max-height: 400px;
+    overflow: auto; }
 
 [phi-boundary] {
   margin: auto;
