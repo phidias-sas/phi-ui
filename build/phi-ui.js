@@ -480,6 +480,75 @@ angular.module("phi.ui").directive("phiCutout", [function() {
     };
 
 }]);
+/*
+Same attributes as polymer's paper-element
+*/
+
+angular.module("phi.ui").directive("phiMenu", [function() {
+
+    return {
+        restrict: "E",
+
+        link: function(scope, element, attributes)  {
+
+        }
+
+    };
+
+}]);
+
+
+angular.module("phi.ui").directive("phiSubmenu", [function() {
+
+    return {
+        restrict: "E",
+
+        scope: {
+            "label": "@"
+        },
+
+        transclude: true,
+
+        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
+                  '<div class="phi-submenu-contents" ng-transclude></div>',
+
+        link: function(scope, element, attributes)  {
+
+            scope.setExpanded = function(expanded) {
+
+                scope.expanded = expanded;
+
+                if (scope.expanded) {
+                    element.attr("expanded", "expanded");
+                    element.find("div").find("a").attr("tabindex", 0);
+                } else {
+                    element.removeAttr("expanded");
+                    element.find("div").find("a").attr("tabindex", -1);
+                }
+            };
+
+            scope.toggle = function() {
+                scope.setExpanded(!scope.expanded);
+            };
+
+            scope.setExpanded(false);
+
+            var items = element.find('a');
+            for (var index = 0; index < items.length; index++) {
+                if (angular.element(items[index]).attr("active") !== undefined) {
+                    scope.setExpanded(true);
+                    break;
+                }
+            }
+
+
+
+        }
+
+    };
+
+}]);
+
 /**
  * Proof of concept: Port an angular-material element
  */
@@ -690,75 +759,6 @@ angular.module("phi.ui").directive("phiInput", [function() {
 Same attributes as polymer's paper-element
 */
 
-angular.module("phi.ui").directive("phiMenu", [function() {
-
-    return {
-        restrict: "E",
-
-        link: function(scope, element, attributes)  {
-
-        }
-
-    };
-
-}]);
-
-
-angular.module("phi.ui").directive("phiSubmenu", [function() {
-
-    return {
-        restrict: "E",
-
-        scope: {
-            "label": "@"
-        },
-
-        transclude: true,
-
-        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
-                  '<div class="phi-submenu-contents" ng-transclude></div>',
-
-        link: function(scope, element, attributes)  {
-
-            scope.setExpanded = function(expanded) {
-
-                scope.expanded = expanded;
-
-                if (scope.expanded) {
-                    element.attr("expanded", "expanded");
-                    element.find("div").find("a").attr("tabindex", 0);
-                } else {
-                    element.removeAttr("expanded");
-                    element.find("div").find("a").attr("tabindex", -1);
-                }
-            };
-
-            scope.toggle = function() {
-                scope.setExpanded(!scope.expanded);
-            };
-
-            scope.setExpanded(false);
-
-            var items = element.find('a');
-            for (var index = 0; index < items.length; index++) {
-                if (angular.element(items[index]).attr("active") !== undefined) {
-                    scope.setExpanded(true);
-                    break;
-                }
-            }
-
-
-
-        }
-
-    };
-
-}]);
-
-/*
-Same attributes as polymer's paper-element
-*/
-
 angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", function($compile, $document) {
 
     var phiSelectCounter = 1;
@@ -779,11 +779,7 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
 
         transclude: true,
 
-        template:  '<div id="{{elementId}}">' +
-                       '<label ng-bind="label"></label>' +
-                       '<a class="selection"></a>' +
-                       '<input type="text" tabindex="-1" ng-model="query" />' +
-                   '</div>' +
+        template:  '<phi-input id="{{elementId}}" label="{{label}}" ng-model="query" tabindex="-1" ng-focus="expand()"></phi-input>' +
                    '<phi-menu ng-transclude phi-tooltip-for="{{elementId}}" phi-tooltip-match="width" phi-visible="{{state.expanded}}" class="phi-visible-slide-bottom phi-texture-paper"></phi-menu>',
 
         controller: ["$scope", "$element", function($scope, $element) {
@@ -792,7 +788,6 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
                 $scope.ngModel = value;
                 $scope.collapse();
                 $scope.ngChange();
-                $element[0].querySelector('.selection').innerHTML = element[0].innerHTML;
             };
 
         }],
@@ -800,22 +795,17 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
 
         link: function(scope, element, attributes) {
 
-            scope.elementId = "phi-select-" + phiSelectCounter++;
+            element.attr("tabindex", -1);
 
+            scope.elementId = "phi-select-" + phiSelectCounter++;
             element.data("phiSelectId", scope.elementId);
 
-            element.attr("tabindex", 0);
-
-            element.on("focus", function() {
-                scope.expand();
-                scope.$apply();
-            });
+            scope.query = null;
 
             scope.state = {
                 expanded: false
             };
 
-            scope.query = null;
 
             scope.expand = function() {
 
@@ -826,14 +816,12 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
                 scope.query = '';
 
                 scope.state.expanded = true;
-                element.toggleClass("phi-select-expanded", scope.state.expanded);
-                element.find("input")[0].focus();
                 $document.bind('click', scope.documentClicked);
             };
 
             scope.collapse = function() {
                 scope.state.expanded = false;
-                element.toggleClass("phi-select-expanded", scope.state.expanded);
+                scope.query          = scope.ngModel;
                 $document.unbind('click', scope.documentClicked);
             };
 
@@ -849,15 +837,16 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
 
             scope.$watch("query", function(newValue, oldValue) {
 
-                if (newValue == oldValue) {
+                if (newValue == oldValue || newValue == scope.ngModel) {
                     return;
                 }
                 scope.onSearch({query: newValue});
 
             });
 
+
             scope.$watch("ngModel", function(newValue, oldValue) {
-                element.toggleClass("phi-select-empty", !newValue || !newValue.length);
+                scope.query = newValue;
             });
 
         }

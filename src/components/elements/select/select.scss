@@ -4,126 +4,21 @@ phi-select {
 
     display: inline-block;
     vertical-align: bottom;
-    border-bottom: 1px solid #ccc;
-    white-space: nowrap;
-
     margin: 0;
     padding: 0;
+    white-space: nowrap;
 
     &:after {
         @include phi-icon("fa-caret-down");
         position: absolute;
         bottom: 7px;
-        right: 0;
+        right: 2px;
         opacity: 0.7;
     }
 
     & > phi-menu {
         max-height: 400px;
         overflow: auto;
-    }
-
-    & > div {
-
-        margin: 0;
-        padding: 0 20px 0 0;
-
-        cursor: text;
-
-        & > .selection {
-            display: block;
-            padding: 2px 0;
-            min-height: 24px;
-        }
-
-
-        & > label {
-
-            display: block;
-            pointer-events: none;
-            -webkit-font-smoothing: antialased;
-
-            transform-origin: bottom left;
-            @include phi-transition(transform, 200ms);
-
-            transform: translate3d(0, 0, 0) scale(0.8);
-            @include phi-colors((
-                color: 600
-            ));
-
-        }
-
-        & > input {
-
-            display: none;
-
-            width: 100%;
-            margin: 0;
-            padding: 2px 0;
-
-            background: transparent;
-            border: 0;
-            line-height: 1em;
-            min-height: 2em;
-            font-size: 1em;
-            font-weight: normal;
-
-            outline: 0;
-
-            &::-webkit-input-placeholder { /* WebKit browsers */
-                opacity: 0;
-            }
-
-            &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-               opacity: 0;
-            }
-
-            &::-moz-placeholder { /* Mozilla Firefox 19+ */
-               opacity: 0;
-            }
-
-            &:-ms-input-placeholder { /* Internet Explorer 10+ */
-               opacity: 0;
-            }
-
-        }
-
-    }
-
-    &.phi-select-empty {
-
-        & > div {
-
-            & > label {
-                transform: translate3d(0, 1.2em, 0) scale(1);
-                color: #999;
-            }
-
-        }
-
-    }
-
-
-    &.phi-select-expanded {
-
-        & > div {
-
-            & > label {
-                transform: translate3d(0, 0, 0) scale(0.8);
-                color: #999;
-            }
-
-            & > .selection {
-                display: none;
-            }
-
-
-            & > input {
-                display: block;
-            }
-
-        }
-
     }
 
 }
