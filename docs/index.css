@@ -58,12 +58,12 @@ section#classes p {
     padding: 18px;
 }
 
-#themes > phi-select > phi-menu > a {
+#themes > phi-select a {
     position: relative;
     padding-left: 30px !important;
 }
 
-#themes > phi-select > phi-menu > a > span.phi-color-background-500 {
+#themes > phi-select a > span.phi-color-background-500 {
 
     display: block;
 

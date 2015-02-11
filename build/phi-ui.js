@@ -1,7 +1,11 @@
 angular.module("phi.ui", ['ngAria']);
 
 angular.module('phi.ui').run(["$rootScope", "$location", function($rootScope, $location) {
+
 	$rootScope.$location = $location;
+
+	$rootScope.cities = ['cyan', 'default', 'amber', 'blue-grey', 'blue', 'brown', 'deep-orange', 'deep-purple', 'green', 'grey', 'indigo', 'light-blue', 'light-green', 'lime', 'orange', 'pink', 'purple', 'red', 'teal', 'yellow'];
+
 }]);
 angular.module("phi.ui").service("$phiCoordinates", ["$timeout", function($timeout) {
 
@@ -466,130 +470,16 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
 }]);
 
-/**
- * Proof of concept: Port an angular-material element
- */
-
-(function() {
-'use strict';
-
-/**
- * @ngdoc module
- * @name material.components.checkbox
- * @description Checkbox module!
- */
-angular.module('phi.ui')
-    .directive('phiCheckbox', ['inputDirective', MdCheckboxDirective]);
-
-/**
- * @ngdoc directive
- * @name mdCheckbox
- * @module material.components.checkbox
- * @restrict E
- *
- * @description
- * The checkbox directive is used like the normal [angular checkbox](https://docs.angularjs.org/api/ng/input/input%5Bcheckbox%5D).
- *
- * As per the [material design spec](http://www.google.com/design/spec/style/color.html#color-ui-color-application)
- * the checkbox is in the accent color by default. The primary color palette may be used with
- * the `phi-primary` class.
- *
- * @param {string} ng-model Assignable angular expression to data-bind to.
- * @param {string=} name Property name of the form under which the control is published.
- * @param {expression=} ng-true-value The value to which the expression should be set when selected.
- * @param {expression=} ng-false-value The value to which the expression should be set when not selected.
- * @param {string=} ng-change Angular expression to be executed when input changes due to user interaction with the input element.
- * @param {boolean=} phi-no-ink Use of attribute indicates use of ripple ink effects
- * @param {string=} aria-label Adds label to checkbox for accessibility.
- * Defaults to checkbox's text. If no default text is found, a warning will be logged.
- *
- * @usage
- * <hljs lang="html">
- * <phi-checkbox ng-model="isChecked" aria-label="Finished?">
- *     Finished ?
- * </phi-checkbox>
- *
- * <phi-checkbox phi-no-ink ng-model="hasInk" aria-label="No Ink Effects">
- *     No Ink Effects
- * </phi-checkbox>
- *
- * <phi-checkbox ng-disabled="true" ng-model="isDisabled" aria-label="Disabled">
- *     Disabled
- * </phi-checkbox>
- *
- * </hljs>
- *
- */
-function MdCheckboxDirective(inputDirective) {
-
-    inputDirective = inputDirective[0];
-    var CHECKED_CSS = 'phi-checked';
+angular.module("phi.ui").directive("phiCutout", [function() {
 
     return {
-        restrict: 'E',
-        transclude: true,
-        require: '?ngModel',
-        template:
-            '<div class="phi-container" phi-ink-ripple phi-ink-ripple-checkbox>' +
-                '<div class="phi-icon"></div>' +
-            '</div>' +
-            '<div ng-transclude class="phi-label"></div>',
-        compile: compile
+        restrict: "C",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
+        }
     };
 
-    // **********************************************************
-    // Private Methods
-    // **********************************************************
-
-    function compile (tElement, tAttrs) {
-
-        tAttrs.type     = 'checkbox';
-        tAttrs.tabIndex = 0;
-        tElement.attr('role', tAttrs.type);
-
-        return function postLink(scope, element, attr, ngModelCtrl) {
-
-            var checked = false;
-
-            // Reuse the original input[type=checkbox] directive from Angular core.
-            // This is a bit hacky as we need our own event listener and own render
-            // function.
-            inputDirective.link.pre(scope, {
-                on: angular.noop,
-                0: {}
-            }, attr, [ngModelCtrl]);
-
-            element.on('click', listener)
-                   .on('keypress', keypressHandler);
-
-            ngModelCtrl.$render = render;
-
-            function keypressHandler(ev) {
-                if(ev.which === 32) {
-                    ev.preventDefault();
-                    listener(ev);
-                }
-            }
-
-            function listener(ev) {
-                if (element[0].hasAttribute('disabled')) return;
-
-                scope.$apply(function() {
-                    checked = !checked;
-                    ngModelCtrl.$setViewValue(checked, ev && ev.type);
-                    ngModelCtrl.$render();
-                });
-            }
-
-            function render() {
-                checked = ngModelCtrl.$viewValue;
-                element.toggleClass(CHECKED_CSS, checked);
-            }
-        };
-    }
-}
-
-})();
+}]);
 /*
 Same attributes as polymer's paper-element
 */
@@ -741,6 +631,130 @@ angular.module("phi.ui").directive("phiSubmenu", [function() {
 
 }]);
 
+/**
+ * Proof of concept: Port an angular-material element
+ */
+
+(function() {
+'use strict';
+
+/**
+ * @ngdoc module
+ * @name material.components.checkbox
+ * @description Checkbox module!
+ */
+angular.module('phi.ui')
+    .directive('phiCheckbox', ['inputDirective', MdCheckboxDirective]);
+
+/**
+ * @ngdoc directive
+ * @name mdCheckbox
+ * @module material.components.checkbox
+ * @restrict E
+ *
+ * @description
+ * The checkbox directive is used like the normal [angular checkbox](https://docs.angularjs.org/api/ng/input/input%5Bcheckbox%5D).
+ *
+ * As per the [material design spec](http://www.google.com/design/spec/style/color.html#color-ui-color-application)
+ * the checkbox is in the accent color by default. The primary color palette may be used with
+ * the `phi-primary` class.
+ *
+ * @param {string} ng-model Assignable angular expression to data-bind to.
+ * @param {string=} name Property name of the form under which the control is published.
+ * @param {expression=} ng-true-value The value to which the expression should be set when selected.
+ * @param {expression=} ng-false-value The value to which the expression should be set when not selected.
+ * @param {string=} ng-change Angular expression to be executed when input changes due to user interaction with the input element.
+ * @param {boolean=} phi-no-ink Use of attribute indicates use of ripple ink effects
+ * @param {string=} aria-label Adds label to checkbox for accessibility.
+ * Defaults to checkbox's text. If no default text is found, a warning will be logged.
+ *
+ * @usage
+ * <hljs lang="html">
+ * <phi-checkbox ng-model="isChecked" aria-label="Finished?">
+ *     Finished ?
+ * </phi-checkbox>
+ *
+ * <phi-checkbox phi-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+ *     No Ink Effects
+ * </phi-checkbox>
+ *
+ * <phi-checkbox ng-disabled="true" ng-model="isDisabled" aria-label="Disabled">
+ *     Disabled
+ * </phi-checkbox>
+ *
+ * </hljs>
+ *
+ */
+function MdCheckboxDirective(inputDirective) {
+
+    inputDirective = inputDirective[0];
+    var CHECKED_CSS = 'phi-checked';
+
+    return {
+        restrict: 'E',
+        transclude: true,
+        require: '?ngModel',
+        template:
+            '<div class="phi-container" phi-ink-ripple phi-ink-ripple-checkbox>' +
+                '<div class="phi-icon"></div>' +
+            '</div>' +
+            '<div ng-transclude class="phi-label"></div>',
+        compile: compile
+    };
+
+    // **********************************************************
+    // Private Methods
+    // **********************************************************
+
+    function compile (tElement, tAttrs) {
+
+        tAttrs.type     = 'checkbox';
+        tAttrs.tabIndex = 0;
+        tElement.attr('role', tAttrs.type);
+
+        return function postLink(scope, element, attr, ngModelCtrl) {
+
+            var checked = false;
+
+            // Reuse the original input[type=checkbox] directive from Angular core.
+            // This is a bit hacky as we need our own event listener and own render
+            // function.
+            inputDirective.link.pre(scope, {
+                on: angular.noop,
+                0: {}
+            }, attr, [ngModelCtrl]);
+
+            element.on('click', listener)
+                   .on('keypress', keypressHandler);
+
+            ngModelCtrl.$render = render;
+
+            function keypressHandler(ev) {
+                if(ev.which === 32) {
+                    ev.preventDefault();
+                    listener(ev);
+                }
+            }
+
+            function listener(ev) {
+                if (element[0].hasAttribute('disabled')) return;
+
+                scope.$apply(function() {
+                    checked = !checked;
+                    ngModelCtrl.$setViewValue(checked, ev && ev.type);
+                    ngModelCtrl.$render();
+                });
+            }
+
+            function render() {
+                checked = ngModelCtrl.$viewValue;
+                element.toggleClass(CHECKED_CSS, checked);
+            }
+        };
+    }
+}
+
+})();
 /*
 Same attributes as polymer's paper-element
 */
@@ -755,29 +769,30 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
         scope: {
             name:     "@",
             label:    "@",
-            error:    "@",
-            invalid:  "@",
-            disabled: "@",
             ngModel:  "=",
             ngChange: "&",
             ngFocus:  "&",
-            ngBlur:   "&"
+            ngBlur:   "&",
+            onSearch: "&"
+
         },
 
         transclude: true,
 
-        template:  '<phi-input id="{{elementId}}" label="{{label}}" name="{{name}}" ng-model="displayValue" ng-focus="focus()" ng-blur="blur()"></phi-input>' +
-                   '<phi-menu ng-transclude phi-tooltip-for="{{elementId}}" phi-tooltip-match="width" phi-visible="{{state.expanded}}" class="phi-visible-slide-bottom phi-texture-paper">' +
-                   '</phi-menu>',
+        template:  '<a class="selection"></a>' +
+                   '<phi-input id="{{elementId}}" label="{{label}}" name="{{name}}" ng-model="query" ng-focus="focus()" ng-blur="blur()" ng-keyup="onSearch({query: query})"></phi-input>' +
+                   '<phi-menu ng-transclude phi-tooltip-for="{{elementId}}" phi-tooltip-match="width" phi-visible="{{state.expanded}}" class="phi-visible-slide-bottom phi-texture-paper"></phi-menu>',
 
+        controller: ["$scope", "$element", function($scope, $element) {
 
-        controller: ["$scope", function($scope) {
-
-            this.select = function(value) {
-                $scope.ngModel      = value;
-                $scope.displayValue = value;
+            this.select = function(value, element) {
+                $scope.ngModel = value;
+                $scope.query   = value;
                 $scope.collapse();
                 $scope.ngChange();
+
+
+                $element[0].querySelector('.selection').innerHTML = element[0].innerHTML;
             };
 
         }],
@@ -788,7 +803,9 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
             scope.elementId = "phi-select-" + phiSelectCounter++;
 
             element.data("phiSelectId", scope.elementId);
+
             element.attr("tabindex", -1);
+
             element.on("focus", function() {
                 element.find("phi-input")[0].focus();
             });
@@ -804,7 +821,7 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
             };
 
             scope.blur = function() {
-                scope.displayValue = scope.ngModel;
+                scope.query = scope.ngModel;
                 scope.ngBlur();
             };
 
@@ -834,7 +851,7 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
 
 
             scope.$watch("ngModel", function(newValue) {
-                scope.displayValue = newValue;
+                scope.query = newValue;
             });
 
         }
@@ -847,11 +864,16 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
 angular.module("phi.ui").directive("option", ["$compile", "$interpolate", function($compile, $interpolate) {
 
     return {
-
         restrict: "E",
         require:  "^?phiSelect",
 
-        scope: {},
+        scope: {
+            value: "="
+        },
+
+        template:   '<a ng-click="select()" ng-transclude></a>',
+        transclude: true,
+        replace:    true,
 
         link: function(scope, element, attributes, phiSelectCtrl) {
 
@@ -859,27 +881,10 @@ angular.module("phi.ui").directive("option", ["$compile", "$interpolate", functi
                 return;
             }
 
-
-            scope.value = attributes.value;
-
-            scope.selectThis = function() {
-                return phiSelectCtrl.select(scope.value);
+            scope.select = function() {
+                return phiSelectCtrl.select(scope.value, element);
             };
 
-            var template = '<a ng-click="selectThis()">' + $interpolate(element.html())(scope.$parent) + '</a>';
-            var e = $compile(template)(scope);
-            element.replaceWith(e);
-        }
-
-    };
-
-}]);
-angular.module("phi.ui").directive("phiCutout", [function() {
-
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
         }
     };
 

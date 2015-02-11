@@ -344,6 +344,35 @@ USAGE:
 
 
 */
+.phi-cutout {
+  position: relative; }
+
+.phi-cutout-ridge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 200px;
+  overflow: hidden;
+  z-index: 9;
+  width: 16px;
+  border-right: 8px solid #f3f3f3; }
+  .phi-cutout-ridge > div {
+    width: 8px;
+    position: absolute; }
+    .phi-cutout-ridge > div:nth-child(1) {
+      top: 0;
+      height: 100px;
+      background: transparent url('img/shadow_top.png') no-repeat 100% 0; }
+    .phi-cutout-ridge > div:nth-child(2) {
+      top: 100px;
+      bottom: 100px;
+      background: transparent url('img/shadow_mid.png') repeat-y 100% 100%; }
+    .phi-cutout-ridge > div:nth-child(3) {
+      bottom: 0;
+      height: 100px;
+      background: transparent url('img/shadow_bottom.png') no-repeat 100% 100%; }
+
 .phi-visible-scale[phi-visible] {
   overflow: hidden;
   opacity: 0.6;
@@ -407,13 +436,38 @@ USAGE:
   -o-transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
   transition: all 380ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
   opacity: 0;
-  z-index: -1; }
+  z-index: -1;
+  visibility: hidden; }
 
 [phi-visible=true] {
   opacity: 1;
-  z-index: 999; }
+  z-index: 999;
+  visibility: visible; }
 
 /* classes specify the visibility effect (describes how it becomes visible) */
+.phi-texture-emboss {
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+  background: #f1f1f1;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #fcfcfc));
+  background: -ms-linear-gradient(bottom, #f1f1f1, #fcfcfc);
+  background: -moz-linear-gradient(center bottom, #f1f1f1 0%, #fcfcfc 100%);
+  background: -o-linear-gradient(#fcfcfc, #f1f1f1);
+  filter: e(% "progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", #fcfcfc, #f1f1f1); }
+
+.phi-texture-paper {
+  border-radius: 3px;
+  background: #fff; }
+
+.phi-texture-xray {
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.92);
+  color: #fff;
+  font-weight: normal; }
+  .phi-texture-xray * {
+    color: #fff !important;
+    font-weight: normal; }
+
 phi-checkbox {
   display: block;
   margin: 15px;
@@ -1597,7 +1651,7 @@ phi-checkbox {
     [phi-input].phi-input-focused > hr, phi-input.phi-input-focused > hr {
       width: 100%; }
   [phi-input].phi-input-empty > div > label, phi-input.phi-input-empty > div > label {
-    transform: translate3d(0, 23px, 0) scale(1);
+    transform: translate3d(0, 27px, 0) scale(1);
     color: #999; }
 
 phi-menu.phi-menu-colored {
@@ -3053,7 +3107,7 @@ phi-menu.phi-texture-xray a:hover, .phi-texture-xray phi-menu a:hover {
 phi-select {
   display: inline-block;
   position: relative; }
-  phi-select:before {
+  phi-select:after {
     font-family: FontAwesome;
     content: "\f0d7";
     cursor: inherit;
@@ -3062,61 +3116,11 @@ phi-select {
     bottom: 15px;
     right: 16px;
     opacity: 0.7; }
+  phi-select > .selection {
+    display: block; }
   phi-select > phi-menu {
     max-height: 400px;
     overflow: auto; }
-
-.phi-cutout {
-  position: relative; }
-
-.phi-cutout-ridge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  min-height: 200px;
-  overflow: hidden;
-  z-index: 9;
-  width: 16px;
-  border-right: 8px solid #f3f3f3; }
-  .phi-cutout-ridge > div {
-    width: 8px;
-    position: absolute; }
-    .phi-cutout-ridge > div:nth-child(1) {
-      top: 0;
-      height: 100px;
-      background: transparent url('img/shadow_top.png') no-repeat 100% 0; }
-    .phi-cutout-ridge > div:nth-child(2) {
-      top: 100px;
-      bottom: 100px;
-      background: transparent url('img/shadow_mid.png') repeat-y 100% 100%; }
-    .phi-cutout-ridge > div:nth-child(3) {
-      bottom: 0;
-      height: 100px;
-      background: transparent url('img/shadow_bottom.png') no-repeat 100% 100%; }
-
-.phi-texture-emboss {
-  border: 1px solid #dcdcdc;
-  border-radius: 3px;
-  background: #f1f1f1;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #fcfcfc));
-  background: -ms-linear-gradient(bottom, #f1f1f1, #fcfcfc);
-  background: -moz-linear-gradient(center bottom, #f1f1f1 0%, #fcfcfc 100%);
-  background: -o-linear-gradient(#fcfcfc, #f1f1f1);
-  filter: e(% "progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", #fcfcfc, #f1f1f1); }
-
-.phi-texture-paper {
-  border-radius: 3px;
-  background: #fff; }
-
-.phi-texture-xray {
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.92);
-  color: #fff;
-  font-weight: normal; }
-  .phi-texture-xray * {
-    color: #fff !important;
-    font-weight: normal; }
 
 [phi-boundary] {
   margin: auto;
