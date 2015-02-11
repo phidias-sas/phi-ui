@@ -16,25 +16,25 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
             ngChange: "&",
             ngFocus:  "&",
             ngBlur:   "&",
-            onSearch: "&"
+            onSearch: "&phiOnSearch"
 
         },
 
         transclude: true,
 
-        template:  '<a class="selection"></a>' +
-                   '<phi-input id="{{elementId}}" label="{{label}}" name="{{name}}" ng-model="query" ng-focus="focus()" ng-blur="blur()" ng-keyup="onSearch({query: query})"></phi-input>' +
+        template:  '<div id="{{elementId}}">' +
+                       '<label ng-bind="label"></label>' +
+                       '<a class="selection"></a>' +
+                       '<input type="text" tabindex="-1" ng-model="query" />' +
+                   '</div>' +
                    '<phi-menu ng-transclude phi-tooltip-for="{{elementId}}" phi-tooltip-match="width" phi-visible="{{state.expanded}}" class="phi-visible-slide-bottom phi-texture-paper"></phi-menu>',
 
         controller: ["$scope", "$element", function($scope, $element) {
 
             this.select = function(value, element) {
                 $scope.ngModel = value;
-                $scope.query   = value;
                 $scope.collapse();
                 $scope.ngChange();
-
-
                 $element[0].querySelector('.selection').innerHTML = element[0].innerHTML;
             };
 
@@ -47,38 +47,36 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
 
             element.data("phiSelectId", scope.elementId);
 
-            element.attr("tabindex", -1);
+            element.attr("tabindex", 0);
 
             element.on("focus", function() {
-                element.find("phi-input")[0].focus();
+                scope.expand();
+                scope.$apply();
             });
 
             scope.state = {
                 expanded: false
             };
 
-            scope.focus = function() {
-                element.find("input")[0].select();
-                scope.expand();
-                scope.ngFocus();
-            };
-
-            scope.blur = function() {
-                scope.query = scope.ngModel;
-                scope.ngBlur();
-            };
-
+            scope.query = null;
 
             scope.expand = function() {
+
                 if (scope.state.expanded) {
                     return;
                 }
+
+                scope.query = '';
+
                 scope.state.expanded = true;
+                element.toggleClass("phi-select-expanded", scope.state.expanded);
+                element.find("input")[0].focus();
                 $document.bind('click', scope.documentClicked);
             };
 
             scope.collapse = function() {
                 scope.state.expanded = false;
+                element.toggleClass("phi-select-expanded", scope.state.expanded);
                 $document.unbind('click', scope.documentClicked);
             };
 
@@ -92,9 +90,17 @@ angular.module("phi.ui").directive("phiSelect", ["$compile", "$document", functi
                 scope.$apply();
             };
 
+            scope.$watch("query", function(newValue, oldValue) {
 
-            scope.$watch("ngModel", function(newValue) {
-                scope.query = newValue;
+                if (newValue == oldValue) {
+                    return;
+                }
+                scope.onSearch({query: newValue});
+
+            });
+
+            scope.$watch("ngModel", function(newValue, oldValue) {
+                element.toggleClass("phi-select-empty", !newValue || !newValue.length);
             });
 
         }

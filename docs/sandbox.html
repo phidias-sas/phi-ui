@@ -12,10 +12,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-aria.min.js" type="text/javascript"></script>
         <script src="../build/phi-ui.min.js" type="text/javascript"></script>
-
     </head>
 
-    <body ng-init="theme = 'default'" phi-color-theme="{{theme}}">
+    <body phi-color-theme="{{theme}}" ng-init="theme = 'green'">
 
         <div id="cover" class="phi-color-background-600">
             <div phi-boundary>
@@ -35,8 +34,8 @@
                 <h1>Color themes</h1>
                 <p>Change the document's color theme</p>
 
-                <phi-select ng-model="theme">
-                    <option ng-repeat="city in cities" value="city">
+                <phi-select label="Color theme" ng-model="theme" ng-init="filter = ''" phi-on-search="filter = query">
+                    <option ng-repeat="city in cities | filter:filter" value="city">
                         <span phi-color-theme="{{city}}" class="phi-color-background-500"></span> <span ng-bind="city"></span>
                     </option>
                 </phi-select>

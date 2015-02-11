@@ -17,7 +17,7 @@ angular.module("phi.ui").service("$phiCoordinates", ["$timeout", function($timeo
 
             element.clearBoundsTimeout = $timeout(function() {
                 element.data("phi-coordinates-bounds", null);
-            }, 750);
+            }, 500);
 
             var bounds = element.data("phi-coordinates-bounds");
 
