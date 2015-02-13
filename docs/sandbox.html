@@ -27,20 +27,23 @@
             </div>
         </div>
 
-        <div id="contents" phi-boundary>
+        <div id="contents" phi-boundary ng-init="controls = {}; foo = [10,11,12];">
 
-            <section id="themes">
+            <ul phi-gallery="controls" phi-gallery-shown-class="active">
+                <li>Soy el link 1</li>
+                <li>Soy el link 2</li>
+                <li>Soy el link 3</li>
+                <li ng-repeat="cont in foo">ngRepeat {{cont}}</li>
+            </ul>
 
-                <h1>Color themes</h1>
-                <p>Change the document's color theme</p>
+            <button ng-click="controls.show(3)">show 3</button>
 
-                <phi-select label="Color theme" ng-model="theme" ng-init="filter = ''" phi-on-search="filter = query">
-                    <option ng-repeat="city in cities | filter:filter" value="city">
-                        <span phi-color-theme="{{city}}" class="phi-color-background-500"></span> <span ng-bind="city"></span>
-                    </option>
-                </phi-select>
+            <button ng-click="controls.previous()" ng-disabled="!controls.hasPrevious()">prev</button>
+            <button ng-click="controls.next()" ng-disabled="!controls.hasNext()">next</button>
 
-            </section>
+            <button ng-click="foo = foo.concat([13,14,15,16])">Push stuff</button>
+
+            <div>{{controls}}</div>
 
 
         </div> <!-- /#contents -->

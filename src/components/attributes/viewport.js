@@ -57,7 +57,7 @@ angular.module("phi.ui").directive("phiViewportLeaveEnd", ["$window", "$phiCoord
 
             var lastY = $window.scrollY;
 
-            angular.element($window).bind("scroll", function() {
+            scope.scrollListener = function() {
 
                 var bounds     = $phiCoordinates.getBounds(element);
                 var leaveEvent = null;
@@ -78,7 +78,13 @@ angular.module("phi.ui").directive("phiViewportLeaveEnd", ["$window", "$phiCoord
                 }
 
                 lastY = $window.scrollY;
+            };
 
+
+            angular.element($window).bind("scroll", scope.scrollListener);
+
+            element.on('$destroy', function() {
+                angular.element($window).unbind("scroll", scope.scrollListener);
             });
 
         }

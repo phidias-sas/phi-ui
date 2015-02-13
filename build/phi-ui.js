@@ -276,7 +276,7 @@ angular.module("phi.ui").directive("phiViewportLeaveEnd", ["$window", "$phiCoord
 
             var lastY = $window.scrollY;
 
-            angular.element($window).bind("scroll", function() {
+            scope.scrollListener = function() {
 
                 var bounds     = $phiCoordinates.getBounds(element);
                 var leaveEvent = null;
@@ -297,7 +297,13 @@ angular.module("phi.ui").directive("phiViewportLeaveEnd", ["$window", "$phiCoord
                 }
 
                 lastY = $window.scrollY;
+            };
 
+
+            angular.element($window).bind("scroll", scope.scrollListener);
+
+            element.on('$destroy', function() {
+                angular.element($window).unbind("scroll", scope.scrollListener);
             });
 
         }
@@ -396,6 +402,133 @@ angular.module("phi.ui").directive("phiViewportEnterEnd", ["$window", "$phiCoord
 
 }]);
 
+/*
+This directive will simply set the "phi-gallery-shown" class (and optionally the class you specify via phi-gallery-shown-class="") to one child element at a time and provide controls
+to select the shown item.  All styling should be defined in your stylesheets
+
+Usage:
+
+//have a local variable "controls" which will be populated with the gallery's controls functions:
+
+<div phi-gallery="controls" phi-gallery-shown-class="myOwnClass">
+    <div>Element 1</div>
+    <div>Element 2</div>
+    ....
+</div>
+
+<h1>Now showing {{controls.selectedIndex}}</h1>
+
+<button ng-click="controls.show(2)">See index 2</button>
+<button ng-click="controls.previous()" ng-disabled="!controls.hasPrevious()">prev</button>
+<button ng-click="controls.next()" ng-disabled="!controls.hasNext()">next</button>
+
+*/
+
+angular.module("phi.ui").directive("phiGallery", ["$timeout", function($timeout) {
+
+    return {
+
+        restrict: "A",
+
+        scope: {
+            controls: "=phiGallery",
+            customClassName: "@phiGalleryShownClass"
+        },
+
+
+        link: function(scope, element, attributes)  {
+
+            var items  = [];
+
+            scope.controls   = scope.controls != undefined ? scope.controls : {};
+            scope.shownClass = "phi-gallery-shown" + (scope.customClassName ? " "+scope.customClassName : "");
+
+            scope.controls = {
+
+                selectedIndex: null,
+                length:        0,
+
+                show: function(index) {
+
+                    if (!items.length) {
+                        return;
+                    }
+
+                    //only allow from 0 to items.length
+                    index = Math.min(Math.max(index, 0), items.length);
+
+                    if (items[index] == undefined) {
+                        return;
+                    }
+
+                    if (scope.controls.selectedIndex !== null && items[scope.controls.selectedIndex] != undefined) {
+                        angular.element(items[scope.controls.selectedIndex]).removeClass(scope.shownClass);
+                    }
+
+                    angular.element(items[index]).addClass(scope.shownClass);
+                    scope.controls.selectedIndex = index;
+                },
+
+                next: function() {
+                    scope.controls.show(scope.controls.selectedIndex + 1);
+                },
+
+                previous: function() {
+                    scope.controls.show(scope.controls.selectedIndex - 1);
+                },
+
+                hasNext: function() {
+                    return items[scope.controls.selectedIndex + 1] != undefined;
+                },
+
+                hasPrevious: function() {
+                    return items[scope.controls.selectedIndex - 1] != undefined;
+                }
+
+            };
+
+
+
+            scope.$watch(function () {
+
+                items                 = element.children();
+                scope.controls.length = items.length;
+
+                if (scope.controls.selectedIndex == null) {
+                    scope.controls.selectedIndex = 0;
+                }
+
+                if (items[scope.controls.selectedIndex] != undefined) {
+                    angular.element(items[scope.controls.selectedIndex]).addClass(scope.shownClass);
+                }
+
+
+            });
+
+
+        }
+    };
+
+}]);
+
+/*
+The phi-modal attribute only moves the element to the bottom of the body.
+visibility can be established with the phi-visible attribute, and styling
+is entirely up to the document
+*/
+
+angular.module("phi.ui").directive("phiModal", ["$document", function($document) {
+
+    return {
+
+        restrict: "A",
+
+        link: function(scope, element, attributes)  {
+        	angular.element($document[0].body).append(element);
+        }
+    };
+
+}]);
 angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($phiCoordinates) {
 
     return {
@@ -480,75 +613,6 @@ angular.module("phi.ui").directive("phiCutout", [function() {
     };
 
 }]);
-/*
-Same attributes as polymer's paper-element
-*/
-
-angular.module("phi.ui").directive("phiMenu", [function() {
-
-    return {
-        restrict: "E",
-
-        link: function(scope, element, attributes)  {
-
-        }
-
-    };
-
-}]);
-
-
-angular.module("phi.ui").directive("phiSubmenu", [function() {
-
-    return {
-        restrict: "E",
-
-        scope: {
-            "label": "@"
-        },
-
-        transclude: true,
-
-        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
-                  '<div class="phi-submenu-contents" ng-transclude></div>',
-
-        link: function(scope, element, attributes)  {
-
-            scope.setExpanded = function(expanded) {
-
-                scope.expanded = expanded;
-
-                if (scope.expanded) {
-                    element.attr("expanded", "expanded");
-                    element.find("div").find("a").attr("tabindex", 0);
-                } else {
-                    element.removeAttr("expanded");
-                    element.find("div").find("a").attr("tabindex", -1);
-                }
-            };
-
-            scope.toggle = function() {
-                scope.setExpanded(!scope.expanded);
-            };
-
-            scope.setExpanded(false);
-
-            var items = element.find('a');
-            for (var index = 0; index < items.length; index++) {
-                if (angular.element(items[index]).attr("active") !== undefined) {
-                    scope.setExpanded(true);
-                    break;
-                }
-            }
-
-
-
-        }
-
-    };
-
-}]);
-
 /**
  * Proof of concept: Port an angular-material element
  */
@@ -755,6 +819,75 @@ angular.module("phi.ui").directive("phiInput", [function() {
     };
 
 }]);
+/*
+Same attributes as polymer's paper-element
+*/
+
+angular.module("phi.ui").directive("phiMenu", [function() {
+
+    return {
+        restrict: "E",
+
+        link: function(scope, element, attributes)  {
+
+        }
+
+    };
+
+}]);
+
+
+angular.module("phi.ui").directive("phiSubmenu", [function() {
+
+    return {
+        restrict: "E",
+
+        scope: {
+            "label": "@"
+        },
+
+        transclude: true,
+
+        template: '<a class="phi-submenu-label" ng-bind="label" tabindex="0" ng-click="toggle()"></a>' +
+                  '<div class="phi-submenu-contents" ng-transclude></div>',
+
+        link: function(scope, element, attributes)  {
+
+            scope.setExpanded = function(expanded) {
+
+                scope.expanded = expanded;
+
+                if (scope.expanded) {
+                    element.attr("expanded", "expanded");
+                    element.find("div").find("a").attr("tabindex", 0);
+                } else {
+                    element.removeAttr("expanded");
+                    element.find("div").find("a").attr("tabindex", -1);
+                }
+            };
+
+            scope.toggle = function() {
+                scope.setExpanded(!scope.expanded);
+            };
+
+            scope.setExpanded(false);
+
+            var items = element.find('a');
+            for (var index = 0; index < items.length; index++) {
+                if (angular.element(items[index]).attr("active") !== undefined) {
+                    scope.setExpanded(true);
+                    break;
+                }
+            }
+
+
+
+        }
+
+    };
+
+}]);
+
 /*
 Same attributes as polymer's paper-element
 */
