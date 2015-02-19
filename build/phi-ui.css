@@ -452,6 +452,29 @@ USAGE:
       height: 100px;
       background: transparent url('img/shadow_bottom.png') no-repeat 100% 100%; }
 
+.phi-texture-emboss {
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+  background: #f1f1f1;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #fcfcfc));
+  background: -ms-linear-gradient(bottom, #f1f1f1, #fcfcfc);
+  background: -moz-linear-gradient(center bottom, #f1f1f1 0%, #fcfcfc 100%);
+  background: -o-linear-gradient(#fcfcfc, #f1f1f1);
+  filter: e(% "progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", #fcfcfc, #f1f1f1); }
+
+.phi-texture-paper {
+  border-radius: 3px;
+  background: #fff; }
+
+.phi-texture-xray {
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.92);
+  color: #fff;
+  font-weight: normal; }
+  .phi-texture-xray * {
+    color: #fff !important;
+    font-weight: normal; }
+
 phi-checkbox {
   display: block;
   margin: 15px;
@@ -864,29 +887,6 @@ phi-checkbox {
     white-space: normal;
     pointer-events: none;
     user-select: text; }
-
-.phi-texture-emboss {
-  border: 1px solid #dcdcdc;
-  border-radius: 3px;
-  background: #f1f1f1;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #fcfcfc));
-  background: -ms-linear-gradient(bottom, #f1f1f1, #fcfcfc);
-  background: -moz-linear-gradient(center bottom, #f1f1f1 0%, #fcfcfc 100%);
-  background: -o-linear-gradient(#fcfcfc, #f1f1f1);
-  filter: e(% "progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", #fcfcfc, #f1f1f1); }
-
-.phi-texture-paper {
-  border-radius: 3px;
-  background: #fff; }
-
-.phi-texture-xray {
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.92);
-  color: #fff;
-  font-weight: normal; }
-  .phi-texture-xray * {
-    color: #fff !important;
-    font-weight: normal; }
 
 [phi-input], phi-input {
   display: inline-block;
@@ -3123,7 +3123,8 @@ phi-select {
     min-height: 1.5em;
     padding: 0 20px 0 0;
     border-bottom: 1px solid #ccc;
-    cursor: text; }
+    cursor: text;
+    position: relative; }
     phi-select .phi-select-header:after {
       font-family: FontAwesome;
       content: "\f0d7";
@@ -3131,7 +3132,7 @@ phi-select {
       font-style: normal;
       position: absolute;
       bottom: 7px;
-      right: 2px;
+      right: 7px;
       opacity: 0.7; }
     phi-select .phi-select-header input {
       background: transparent;
