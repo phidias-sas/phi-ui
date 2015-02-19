@@ -11,6 +11,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-aria.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-sanitize.min.js" type="text/javascript"></script>
         <script src="../build/phi-ui.min.js" type="text/javascript"></script>
     </head>
 
@@ -27,24 +28,24 @@
             </div>
         </div>
 
-        <div id="contents" phi-boundary ng-init="controls = {}; foo = [10,11,12];">
+        <div id="contents" phi-boundary ng-init="foo = 9; counter = [1,2,3,4,5];">
 
-            <ul phi-gallery="controls" phi-gallery-shown-class="active">
-                <li>Soy el link 1</li>
-                <li>Soy el link 2</li>
-                <li>Soy el link 3</li>
-                <li ng-repeat="cont in foo">ngRepeat {{cont}}</li>
-            </ul>
+            <select ng-model="foo">
+                <option value="">nada</option>
+                <option ng-repeat="cont in counter" value="{{cont}}">La opción {{cont}}</option>
+            </select>
 
-            <button ng-click="controls.show(3)">show 3</button>
+            <phi-select ng-model="foo">
+                <phi-option value="">nada</phi-option>
+                <phi-option ng-repeat="cont in counter" value="{{cont}}">La opción <strong ng-bind="cont"></strong></phi-option>
+            </phi-select>
 
-            <button ng-click="controls.previous()" ng-disabled="!controls.hasPrevious()">prev</button>
-            <button ng-click="controls.next()" ng-disabled="!controls.hasNext()">next</button>
+            <phi-input label="aja"></phi-input>
+            <phi-input label="eje"></phi-input>
 
-            <button ng-click="foo = foo.concat([13,14,15,16])">Push stuff</button>
+            <button ng-click="counter = counter.concat([6,7,8,9])">push</button>
 
-            <div>{{controls}}</div>
-
+            <h1>Now selected: {{foo}}</h1>
 
         </div> <!-- /#contents -->
 

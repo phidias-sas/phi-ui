@@ -1259,7 +1259,7 @@ phi-checkbox {
       margin: 0;
       padding: 2px 0;
       line-height: 1em;
-      min-height: 2em;
+      min-height: 1em;
       font-size: 1em;
       width: 100%;
       font-weight: normal;
@@ -1657,7 +1657,7 @@ phi-checkbox {
     [phi-input].phi-input-focused > hr, phi-input.phi-input-focused > hr {
       width: 100%; }
   [phi-input].phi-input-empty > div > label, phi-input.phi-input-empty > div > label {
-    transform: translate3d(0, 27px, 0) scale(1);
+    transform: translate3d(0, 1.4em, 0) scale(1);
     color: #999; }
 
 phi-menu.phi-menu-colored {
@@ -3116,16 +3116,36 @@ phi-select {
   vertical-align: bottom;
   margin: 0;
   padding: 0;
-  white-space: nowrap; }
-  phi-select:after {
-    font-family: FontAwesome;
-    content: "\f0d7";
-    cursor: inherit;
-    font-style: normal;
-    position: absolute;
-    bottom: 7px;
-    right: 2px;
-    opacity: 0.7; }
+  white-space: nowrap;
+  outline: 0; }
+  phi-select .phi-select-header {
+    min-width: 100px;
+    min-height: 1.5em;
+    padding: 0 20px 0 0;
+    border-bottom: 1px solid #ccc;
+    cursor: text; }
+    phi-select .phi-select-header:after {
+      font-family: FontAwesome;
+      content: "\f0d7";
+      cursor: inherit;
+      font-style: normal;
+      position: absolute;
+      bottom: 7px;
+      right: 2px;
+      opacity: 0.7; }
+    phi-select .phi-select-header input {
+      background: transparent;
+      border: 0;
+      margin: 0;
+      padding: 0;
+      line-height: 1em;
+      min-height: 1.5em;
+      font-size: 1em;
+      font-weight: normal;
+      width: 100%;
+      outline: 0; }
+  phi-select > phi-input {
+    border: 0; }
   phi-select > phi-menu {
     max-height: 400px;
     overflow: auto; }
