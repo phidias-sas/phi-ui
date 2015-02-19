@@ -35,13 +35,20 @@
                 <option ng-repeat="cont in counter" value="{{cont}}">La opción {{cont}}</option>
             </select>
 
+            <select ng-model="foo">
+                <option value="">nada</option>
+                <option ng-repeat="cont in counter" value="{{cont}}">La opción {{cont}}</option>
+            </select>
+
             <phi-select ng-model="foo">
                 <phi-option value="">nada</phi-option>
-                <phi-option ng-repeat="cont in counter" value="{{cont}}">La opción <strong ng-bind="cont"></strong></phi-option>
+                <phi-option ng-repeat="cont in counter" value="{{cont}}">La opción {{cont}}</phi-option>
             </phi-select>
 
-            <phi-input label="aja"></phi-input>
-            <phi-input label="eje"></phi-input>
+            <phi-select ng-model="foo">
+                <phi-option value="">nada</phi-option>
+                <phi-option ng-repeat="cont in counter" value="{{cont}}">La opción {{cont}}</phi-option>
+            </phi-select>
 
             <button ng-click="counter = counter.concat([6,7,8,9])">push</button>
 
