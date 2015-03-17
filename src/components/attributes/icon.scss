@@ -9,14 +9,14 @@
     [phi-icon-left=#{$icon-name}] {
         &:before {
             @include phi-icon($icon-name);
-            margin-right: 1ex;
+            margin-right: 0.5em;
         }
     }
 
     [phi-icon-right=#{$icon-name}] {
         &:after {
             @include phi-icon($icon-name);
-            margin-left: 1ex;
+            margin-left: 0.5em;
         }
     }
 

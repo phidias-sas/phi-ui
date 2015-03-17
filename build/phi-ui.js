@@ -599,16 +599,6 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
 }]);
 
-angular.module("phi.ui").directive("phiCutout", [function() {
-
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
-        }
-    };
-
-}]);
 /**
  * Proof of concept: Port an angular-material element
  */
@@ -1048,6 +1038,16 @@ angular.module("phi.ui").directive("phiOption", ["$compile", "$interpolate", fun
                 return phiSelectCtrl.handleOptionClick(element);
             };
 
+        }
+    };
+
+}]);
+angular.module("phi.ui").directive("phiCutout", [function() {
+
+    return {
+        restrict: "C",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
         }
     };
 
