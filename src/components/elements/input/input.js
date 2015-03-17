@@ -11,6 +11,7 @@ angular.module("phi.ui").directive("phiInput", [function() {
 
         scope: {
             name:        "@",
+            type:        "@",
             label:       "@",
             placeholder: "@",
             ngModel:     "=",
@@ -20,8 +21,8 @@ angular.module("phi.ui").directive("phiInput", [function() {
 
         template:   '<div>' +
                         '<label for="{{elementId}}" ng-bind="label"></label>' +
-                        '<input type="text" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" />' +
-                        '<textarea          ng-if="multiline"  placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false"></textarea>' +
+                        '<input type="{{type||\'text\'}}" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" />' +
+                        '<textarea ng-if="multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false"></textarea>' +
                     '</div>' +
                     '<hr />',
 

@@ -784,8 +784,6 @@ phi-checkbox {
     background-color: #ff6f00; }
   phi-checkbox[phi-color-theme=amber].phi-checked .phi-icon {
     background-color: #ff6f00 !important; }
-  [phi-color-theme=blue-grey] phi-checkbox.phi-checked .phi-icon {
-     }
   phi-checkbox[phi-color-theme=blue-grey].phi-checked .phi-icon {
     background-color: !important; }
   [phi-color-theme=blue] phi-checkbox.phi-checked .phi-icon {
@@ -1556,8 +1554,6 @@ phi-checkbox {
       background-color: #ff6f00; }
     [phi-input] > hr[phi-color-theme=amber], phi-input > hr[phi-color-theme=amber] {
       background-color: #ff6f00 !important; }
-    [phi-color-theme=blue-grey] [phi-input] > hr, [phi-color-theme=blue-grey] phi-input > hr {
-       }
     [phi-input] > hr[phi-color-theme=blue-grey], phi-input > hr[phi-color-theme=blue-grey] {
       background-color: !important; }
     [phi-color-theme=blue] [phi-input] > hr, [phi-color-theme=blue] phi-input > hr {

@@ -599,6 +599,16 @@ angular.module("phi.ui").directive("phiPosition", ["$phiCoordinates", function($
 
 }]);
 
+angular.module("phi.ui").directive("phiCutout", [function() {
+
+    return {
+        restrict: "C",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
+        }
+    };
+
+}]);
 /**
  * Proof of concept: Port an angular-material element
  */
@@ -736,6 +746,7 @@ angular.module("phi.ui").directive("phiInput", [function() {
 
         scope: {
             name:        "@",
+            type:        "@",
             label:       "@",
             placeholder: "@",
             ngModel:     "=",
@@ -745,8 +756,8 @@ angular.module("phi.ui").directive("phiInput", [function() {
 
         template:   '<div>' +
                         '<label for="{{elementId}}" ng-bind="label"></label>' +
-                        '<input type="text" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" />' +
-                        '<textarea          ng-if="multiline"  placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false"></textarea>' +
+                        '<input type="{{type||\'text\'}}" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" />' +
+                        '<textarea ng-if="multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false"></textarea>' +
                     '</div>' +
                     '<hr />',
 
@@ -1037,16 +1048,6 @@ angular.module("phi.ui").directive("phiOption", ["$compile", "$interpolate", fun
                 return phiSelectCtrl.handleOptionClick(element);
             };
 
-        }
-    };
-
-}]);
-angular.module("phi.ui").directive("phiCutout", [function() {
-
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
         }
     };
 
