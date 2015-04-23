@@ -1,0 +1,94 @@
+.phi-api-folder {
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+
+        display: inline-block;
+        margin: 4px;
+
+        cursor: pointer;
+        border-radius: 3px;
+
+		position: relative;
+
+        &.selected {
+            background: #ddd;
+        }
+
+		.delete {
+			display: block;
+			width: 22px;
+			height: 22px;
+
+			background: transparent url("../img/corner.png") no-repeat center;
+
+			position: absolute;
+			top: 0;
+			right: 0;
+
+			color: #900;
+
+			&:before {
+				position: absolute;
+				top: 0;
+				right: 0;
+				font-size: 12px;
+				line-height: 12px;
+			}
+
+		}
+
+		progress {
+			height: 10px;
+		}
+
+        .thumbnail {
+
+            text-align: center;
+
+            width: 128px;
+            height: 128px;
+            line-height: 72px;
+            overflow: hidden;
+
+            img, canvas {
+                width: 100%;
+                margin: auto;
+            }
+
+        }
+
+
+
+    }
+
+    .dropzone {
+
+		& > div {
+
+			cursor: pointer;
+
+	        padding: 12px 16px;
+	        background: #eee;
+	        border-radius: 3px;
+	        border: 2px dashed #ccc;
+
+	        text-align: center;
+		}
+
+
+
+        &.nv-file-over > div {
+        	border: 2px solid red;
+        }
+    }
+
+    & > input {
+    	display: none;
+    }
+}

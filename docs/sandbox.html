@@ -5,14 +5,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" media="all" href="../build/phi-ui.min.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="../public/build/phi-ui.min.css" />
         <link rel="stylesheet" type="text/css" media="all" href="index.css" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-aria.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-sanitize.min.js" type="text/javascript"></script>
-        <script src="../build/phi-ui.min.js" type="text/javascript"></script>
+        <script src="../public/build/phi-ui.js" type="text/javascript"></script>
     </head>
 
     <body phi-color-theme="{{theme}}" ng-init="theme = 'green'">
@@ -28,7 +27,9 @@
             </div>
         </div>
 
-        <div id="contents" phi-boundary ng-init="foo = 9; counter = [1,2,3,4,5];">
+        <div id="contents" phi-boundary ng-init="foo = 1; counter = [1,2,3,4,5];">
+            
+            <a href="#">focus me</a>
 
             <select ng-model="foo">
                 <option value="">nada</option>
@@ -53,6 +54,7 @@
             <button ng-click="counter = counter.concat([6,7,8,9])">push</button>
 
             <h1>Now selected: {{foo}}</h1>
+
 
         </div> <!-- /#contents -->
 

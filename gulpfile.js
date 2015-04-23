@@ -1,6 +1,9 @@
 //Global installation
 //npm install gulp gulp-concat gulp-rename gulp-sass gulp-minify-css gulp-uglify 
 
+// Base name for generated files
+var name = "phi-ui";
+
 // Set the full path to the folder (only necessary when running gulp outside the project folder)
 var basedir = "";
 
@@ -22,32 +25,57 @@ function logError(error) {
 
 // Compile and minify Sass
 gulp.task('sass', function() {
-    return gulp.src([basedir+'src/core/styles/normalize/*.scss', basedir+'src/core/styles/mixins/**/*.scss', basedir+'src/components/**/*.scss'])
-    	.pipe(concat('phi-ui.css'))
+
+    return gulp.src([
+            basedir+'/src/style/**/*.scss',
+            basedir+'/src/components/**/*.scss',
+            basedir+'/src/states/**/*.scss'
+        ])
+
+        .pipe(concat(name+'.css'))
         .pipe(sass())
             .on('error', logError)
-        .pipe(gulp.dest(basedir+'build'))
-        .pipe(rename('phi-ui.min.css'))
+        .pipe(gulp.dest(basedir+'/public/build'))
+        .pipe(rename(name+'.min.css'))
         .pipe(minifyCSS())
-        .pipe(gulp.dest(basedir+'build'));
+        .pipe(gulp.dest(basedir+'/public/build'));
+});
+
+// Copy all .html files in public/partials
+gulp.task('html', function() {
+    return gulp.src(basedir+'/src/states/**/*.html')
+        .pipe(gulp.dest(basedir+'/public/partials'));
 });
 
 // Concatenate and minify javascript
 gulp.task('js', function() {
-    return gulp.src([basedir+'src/core/**/*.js', basedir+'src/components/**/*.js'])
-        .pipe(concat('phi-ui.js'))
-        .pipe(gulp.dest(basedir+'build'))
-        .pipe(rename('phi-ui.min.js'))
+
+    return gulp.src([
+
+            basedir+'/src/vendor/**/*.js',
+
+            basedir+'/src/module.js',
+            basedir+'/src/config.js',
+            basedir+'/src/run.js',
+            basedir+'/src/components/**/*.js',
+            basedir+'/src/states/**/*.js'
+        ])
+
+        .pipe(concat(name+'.js'))
+        .pipe(gulp.dest(basedir+'/public/build'))
+        .pipe(rename(name+'.min.js'))
         .pipe(uglify())
             .on('error', logError)
-        .pipe(gulp.dest(basedir+'build'));
+        .pipe(gulp.dest(basedir+'/public/build'));
 });
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch(basedir+'src/**/*.scss', ['sass']);
-    gulp.watch(basedir+'src/**/*.js', ['js']);
+    gulp.watch(basedir+'/src/**/*.js',   ['js']);
+    gulp.watch(basedir+'/src/**/*.html', ['html']);
+    gulp.watch(basedir+'/src/**/*.scss', ['sass']);
+
 });
 
 // Fly!
-gulp.task('default', ['sass', 'js', 'watch']);
+gulp.task('default', ['js', 'html', 'sass', 'watch']);

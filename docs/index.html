@@ -5,14 +5,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" media="all" href="../build/phi-ui.min.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="../public/build/phi-ui.min.css" />
         <link rel="stylesheet" type="text/css" media="all" href="index.css" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-aria.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-sanitize.min.js" type="text/javascript"></script>
-        <script src="../build/phi-ui.min.js" type="text/javascript"></script>
+        <script src="../public/build/phi-ui.min.js" type="text/javascript"></script>
 
     </head>
 
@@ -64,6 +63,64 @@
 
 
             <div class="phi-padded">
+
+                <section id="foo">
+                    <h1>Inbox buttons</h1>
+
+
+                    <div>
+
+                        <button 
+                          id="control-selection"
+                          phi-icon-right="fa-chevron-down"
+                          class="phi-texture-emboss"
+                          ng-click="selection.expanded = !selection.expanded"
+                        >
+                            <span ng-show="!selection.count" phi-icon-left="fa-square-o"></span>
+                            <span ng-show="0 < selection.count && selection.count < 20" phi-icon-left="fa-minus-square-o" ng-bind="selection.count"></span>
+                            <span ng-show="selection.count == 20" phi-icon-left="fa-check-square-o" ng-bind="selection.count"></span>
+                        </button>
+
+                        <button phi-icon="fa-repeat" class="phi-texture-emboss"></button>
+
+                        <span class="phi-group">
+                               <button class="phi-texture-emboss">archivar</button><!--
+                            --><button class="phi-texture-emboss">eliminar</button><!--
+                            --><button id="control-actions" class="phi-texture-emboss" phi-icon-right="fa-chevron-down" ng-click="actions.expanded = !actions.expanded">acciones</button>
+                        </span>
+
+                        <phi-menu 
+                            class="phi-texture-paper" 
+                            phi-tooltip-for="control-selection"
+                            phi-visible="{{selection.expanded}}"
+                            phi-visible-animation="slide-top">
+
+                            <a ng-click="selection.count = 20">todos</a>
+                            <a ng-click="selection.count = 0">ninguno</a>
+                            <a ng-click="selection.count = 15">leídos</a>
+                            <a ng-click="selection.count = 5">no leídos</a>
+                        </phi-menu>
+
+                        <phi-menu 
+                            class="phi-texture-paper" 
+                            phi-tooltip-for="control-actions"
+                            phi-tooltip-align="bottom right"
+                            phi-tooltip-origin="top right"
+                            phi-visible="{{actions.expanded}}"
+                            phi-visible-animation="slide-top">
+
+                            <a ng-click="restore()">mover al inbox</a>
+                            <a ng-click="markAsRead()">marcar como leído</a>
+                            <a ng-click="markAsUnread()">marcar como no leído</a>
+                            <a ng-click="archive()">archivar</a>
+                            <a ng-click="trash()">eliminar</a>
+                        </phi-menu>
+
+
+                    </div>
+
+                </section>
+
 
                 <section id="themes">
                     <h1>Color themes</h1>
@@ -156,8 +213,8 @@
 
                     <h1>Position</h1>
 
-                    <div class="phi-texture-paper phi-padded" style="height: 200px">
-                        <div phi-position="{{position.value}}" class="phi-color-background-500 phi-padded phi-rounded" style="text-align: center; color: #fff">
+                    <div class="phi-texture-paper" style="height: 200px">
+                        <div phi-position="{{position.value}}" class="phi-color-background-500 phi-rounded" style="text-align: center; color: #fff">
                             <h1 phi-icon="fa-heart"></h1>
                             <p>[phi-position="{{position.value}}"]</p>
                         </div>
@@ -186,7 +243,7 @@
 
                         <h1 id="anchor" phi-position="center" phi-icon="fa-heart" class="phi-color-font-500"></h1>
 
-                        <div class="phi-texture-xray phi-padded"
+                        <div class="phi-texture-xray"
                              phi-visible="{{!!tooltip.shown}}"
                              ng-class="tooltip.classname"
                              phi-tooltip-for="anchor"
