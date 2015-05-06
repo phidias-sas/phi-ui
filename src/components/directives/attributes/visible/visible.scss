@@ -23,7 +23,9 @@ $phi-visible-transition-duration: 260ms;
     z-index: 99;
     visibility: visible;
 
-    transition: opacity $phi-visible-transition-duration, -webkit-transform $phi-visible-transition-duration;
+    transition: opacity $phi-visible-transition-duration, 
+                max-height $phi-visible-transition-duration, 
+                -webkit-transform $phi-visible-transition-duration;
 }
 
 /* classes specify the visibility effect (describes how it becomes visible) */

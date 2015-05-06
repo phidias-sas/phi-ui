@@ -1305,6 +1305,16 @@ function MdCheckboxDirective(inputDirective) {
 }
 
 })();
+/*
+phi-cover is esentially a shorthand way of creating a <div> with a background-image css property
+
+<phi-cover src="foo.jpg" />
+
+will produce
+
+<div style="background-image: url('foo.jpg')"></div>
+*/
+
 (function() {
     'use strict';
 
@@ -1315,14 +1325,124 @@ function MdCheckboxDirective(inputDirective) {
 
         return {
             restrict: 'E',
-            transclude: true,
-            template: '<div ng-transclude></div>',
 
             link: function(scope, element, attributes) {
 
                 attributes.$observe("src", function(src) {
                     element.css("background-image", "url('"+src+"')");
                 });
+
+            }
+        };
+
+    };
+
+})();
+(function() {
+    'use strict';
+
+    angular.module("phi.ui")
+        .directive("phiGallery", phiGallery)
+        .directive("phiGalleryImage", phiGalleryImage);
+
+    function phiGallery() {
+
+        return {
+            restrict: 'E',
+
+            transclude: true,
+
+            template: '<ul class="phi-gallery-thumbnails" ng-transclude></ul>' + 
+
+                      '<div phi-modal class="phi-gallery-modal" phi-visible="{{gallery.modalShown}}" ng-click="gallery.modalShown = false">' +
+
+                          '<div class="phi-gallery-modal-navigation">' + 
+                                '<a class="previous"' + 
+                                   'phi-icon-left="fa-caret-left"' + 
+                                   'ng-class="{disabled: !gallery.control.hasPrevious()}"' + 
+                                   'ng-click="gallery.control.previous(); $event.stopPropagation();">' + 
+                                   'anterior' + 
+                                '</a>' + 
+
+                                '<span>{{gallery.control.selectedIndex+1}} de {{gallery.control.length}}</span>' + 
+
+                                '<a class="next"' + 
+                                   'phi-icon-right="fa-caret-right"' + 
+                                   'ng-class="{disabled: !gallery.control.hasNext()}"' + 
+                                   'ng-click="gallery.control.next(); $event.stopPropagation();">' + 
+                                   'siguiente' + 
+                                '</a>' + 
+                          '</div>' + 
+
+                          '<div class="phi-gallery-modal-contents" phi-gallery="gallery.control">' + 
+                                '<div ng-repeat="image in gallery.images">' + 
+                                    '<img ng-src="{{image.src}}" />' + 
+                                    '<p ng-bind="image.description"></p>' + 
+                                '</div>' + 
+                          '</div>' + 
+                      '</div>',
+
+            controller:   phiGalleryController,
+            controllerAs: "gallery"
+
+        };
+
+        phiGalleryController.$inject = ["$scope"];
+        function phiGalleryController($scope) {
+
+            var imageCount = 0;
+
+            var gallery = this;
+
+            gallery.control  = null;
+
+            gallery.title    = "foo";
+            gallery.images   = [];
+            gallery.addImage = addImage;
+
+            gallery.modalShown = false;
+
+            function addImage(galleryImage, element) {
+
+                galleryImage.key = imageCount++;
+
+                gallery.images.push(galleryImage);
+
+                element.on("click", function() {
+                    $scope.$apply(function() {
+                        gallery.control.show(galleryImage.key);
+                        gallery.modalShown = true;
+                    });
+                });
+            }
+
+        }
+
+
+
+    };
+
+    function phiGalleryImage() {
+
+        return {
+            restrict: 'E',
+            require: '^phiGallery',
+            template: '<li><img ng-src="{{thumbnail}}" alt="{{alt}}" /></li>',
+            replace: true,
+
+            scope: {
+                "thumbnail": "@",
+                "alt":       "@"
+            },
+
+            link: function(scope, element, attributes, phiGallery) {
+
+                var galleryImage = {
+                    src:         attributes.src,
+                    thumbnail:   attributes.thumbnail
+                };
+
+                phiGallery.addImage(galleryImage, element);
 
             }
         };
@@ -1678,5 +1798,35 @@ function phiOption() {
 
 };
 
+
+})();
+/*
+Creates a containing element tinted with the given hue
+
+<div phi-color-tint="[hue]">
+*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
+        .directive("phiColorTint", phiColorTint);
+
+
+    function phiColorTint() {
+
+        return {
+            restrict: "A",
+            // template: '<div class="phi-color-tint phi-color-background-{{hue}}" ng-transclude></div>',
+            // transclude: true,
+
+            link: function(scope, element, attributes) {
+                var hue   = attributes.phiColorTint;
+                var theme = attributes.phiColorTheme;
+                element.prepend('<div phi-color-theme="'+theme+'" class="phi-color-tint phi-color-background-'+hue+'" />');
+            }
+        };
+    };
 
 })();

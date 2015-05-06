@@ -11319,6 +11319,49 @@ Set colors based on current color theme
 [phi-color-theme="yellow"][phi-color-border="A700"] {
   border-color: #ffd600 !important; }
 
+[phi-icon-animation="spin"][phi-icon-left]:before, [phi-icon-animation="spin"][phi-icon-right]:after {
+  display: inline-block;
+  -webkit-animation: phi-animation-spin 750ms infinite linear;
+  -moz-animation: phi-animation-spin 750ms infinite linear;
+  -o-animation: phi-animation-spin 750ms infinite linear;
+  animation: phi-animation-spin 750ms infinite linear;
+  -webkit-animation-fill-mode: forwards; }
+
+@-moz-keyframes phi-animation-spin {
+  0% {
+    -moz-transform: rotateZ(0deg); }
+
+  100% {
+    -moz-transform: rotateZ(359deg); } }
+
+@-webkit-keyframes phi-animation-spin {
+  0% {
+    -webkit-transform: rotateZ(0deg); }
+
+  100% {
+    -webkit-transform: rotateZ(359deg); } }
+
+@-o-keyframes phi-animation-spin {
+  0% {
+    -o-transform: rotateZ(0deg); }
+
+  100% {
+    -o-transform: rotateZ(359deg); } }
+
+@-ms-keyframes phi-animation-spin {
+  0% {
+    -ms-transform: rotateZ(0deg); }
+
+  100% {
+    -ms-transform: rotateZ(359deg); } }
+
+@keyframes phi-animation-spin {
+  0% {
+    transform: rotateZ(0deg); }
+
+  100% {
+    transform: rotateZ(359deg); } }
+
 [phi-icon=fa-glass]:before {
   font-family: FontAwesome;
   content: "\f000";
@@ -20240,7 +20283,7 @@ Based on: https://github.com/angular/material/blob/master/src/core/style/layout.
   opacity: 1;
   z-index: 99;
   visibility: visible;
-  transition: opacity 260ms, -webkit-transform 260ms; }
+  transition: opacity 260ms, max-height 260ms, -webkit-transform 260ms; }
 
 /* classes specify the visibility effect (describes how it becomes visible) */
 [phi-z], [phi-button], [phi-texture="paper"] {
@@ -20770,11 +20813,84 @@ phi-content {
   height: 100%; }
 
 phi-cover {
-  background-size: cover;
   display: block;
-  color: #fff; }
-  phi-cover * {
+  background-size: cover; }
+
+phi-gallery {
+  display: block; }
+
+.phi-gallery-thumbnails {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .phi-gallery-thumbnails > li {
+    display: inline-block;
+    width: 140px;
+    height: 105px;
+    line-height: 105px;
+    margin: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transform-origin: center;
+    transition: all 0.3s;
+    text-align: center; }
+    .phi-gallery-thumbnails > li > img {
+      height: 100%;
+      vertical-align: middle; }
+    .phi-gallery-thumbnails > li > p {
+      display: none; }
+    .phi-gallery-thumbnails > li:hover {
+      transform: scale(1.05); }
+
+.phi-gallery-modal {
+  background-color: rgba(0, 0, 0, 0.9);
+  text-align: center; }
+  .phi-gallery-modal > .phi-gallery-modal-navigation {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 32px auto;
+    max-width: 800px;
+    min-height: 60px;
     color: #fff; }
+    .phi-gallery-modal > .phi-gallery-modal-navigation span {
+      display: inline-block;
+      padding: 16px 22px; }
+    .phi-gallery-modal > .phi-gallery-modal-navigation a {
+      color: #fff;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.2em;
+      padding: 16px 22px;
+      border-radius: 3px; }
+      .phi-gallery-modal > .phi-gallery-modal-navigation a:hover {
+        background-color: rgba(255, 255, 255, 0.1); }
+      .phi-gallery-modal > .phi-gallery-modal-navigation a.disabled {
+        cursor: default;
+        opacity: 0.6; }
+  .phi-gallery-modal > .phi-gallery-modal-contents {
+    position: relative; }
+    .phi-gallery-modal > .phi-gallery-modal-contents > div {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      transition: all 0.3s;
+      transform-origin: center;
+      opacity: 0;
+      transform: scale(0.95); }
+      .phi-gallery-modal > .phi-gallery-modal-contents > div.phi-gallery-shown {
+        opacity: 1;
+        transform: scale(1); }
+    .phi-gallery-modal > .phi-gallery-modal-contents img {
+      max-width: 1000px; }
+    .phi-gallery-modal > .phi-gallery-modal-contents p {
+      font-size: 1.5em;
+      color: #fff;
+      font-weight: normal;
+      padding: 8px 0; }
 
 [phi-input], phi-input {
   display: inline-block;
@@ -23048,6 +23164,19 @@ phi-toolbar {
     color: #fff;
     font-weight: normal;
     margin: 0 1em; }
+
+[phi-color-tint] {
+  position: relative; }
+  [phi-color-tint] > * {
+    position: relative; }
+
+.phi-color-tint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  opacity: 0.4; }
 
 [phi-texture="emboss"] {
   border: 1px solid #dcdcdc;
