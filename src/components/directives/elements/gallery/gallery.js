@@ -69,6 +69,7 @@
                 gallery.images.push(galleryImage);
 
                 element.on("click", function() {
+                    // !!! For some reason, the following code causes an error when minified
                     $scope.$apply(function() {
                         gallery.control.show(galleryImage.key);
                         gallery.modalShown = true;

@@ -20230,7 +20230,7 @@ Based on: https://github.com/angular/material/blob/master/src/core/style/layout.
 [phi-visible-animation="scale"][phi-visible="true"] {
   overflow: hidden;
   opacity: 1;
-  max-height: 300px; }
+  max-height: 500px; }
 
 [phi-visible-animation="slide-top"][phi-visible="false"] {
   -webkit-transform: translate(0, -15px); }
@@ -20289,7 +20289,7 @@ Based on: https://github.com/angular/material/blob/master/src/core/style/layout.
 [phi-z], [phi-button], [phi-texture="paper"] {
   box-shadow: 0 1px 3px 0 #bbb; }
 
-[phi-z="0"], [phi-button]:active {
+[phi-z="0"], [phi-button]:active, [phi-button].cancel {
   box-shadow: 0 0 0 0 #bbb !important; }
 
 [phi-z="1"] {
@@ -20398,6 +20398,12 @@ phi-avatar {
     height: 100%; }
     phi-avatar > div > img {
       width: 100%; }
+
+[phi-button].cancel {
+  background: transparent !important;
+  color: #444; }
+  [phi-button].cancel:hover {
+    color: #900; }
 
 phi-checkbox {
   display: block;

@@ -15,7 +15,8 @@
 
             scope: {
                 "url":      "@",
-                "onSelect": "&"
+                "onSelect": "&",
+                "onChange": "&"
             },
 
             template:   '<div class="phi-api-folder" ng-if="uploader">' +
@@ -50,10 +51,10 @@
 
             scope.reload = function() {
 
-                phiApi.get(scope.url)
-                    .success(function (data) {
-                        scope.items = data;
-                    });
+                return phiApi.get(scope.url)
+                        .success(function (data) {
+                            scope.items = data;
+                        });
 
             };
 
@@ -68,6 +69,7 @@
                 phiApi.delete(scope.url + "/" + item.name)
                     .success(function (data) {
                         scope.items.splice(scope.items.indexOf(item), 1);
+                        scope.onChange({items: scope.items});
                     });
 
             };
@@ -89,10 +91,11 @@
                 };
 
                 scope.uploader.onCompleteAll = function() {
-                    scope.reload();
                     scope.uploader.clearQueue();
+                    scope.reload().success(function() {
+                        scope.onChange({items: scope.items});
+                    });
                 };
-
 
                 scope.reload();
 

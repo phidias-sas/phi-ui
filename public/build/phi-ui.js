@@ -36,6 +36,34 @@ return a+c}})}),function(a){a(vb)}(function(a){return a.defineLocale("en-gb",{mo
 
     angular
         .module("phi.ui")
+        .filter("lines", lines);
+
+    function lines() {
+        return function(text) {
+
+            var retval = [];
+
+            if (text == undefined) {
+                return retval;
+            }
+
+            text.split("\n").map(function(line) {
+                var trimmed = line.trim();
+                if (trimmed.length > 0) {
+                    retval.push(trimmed);
+                }
+            });
+
+            return retval;
+        };
+    }
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
         .filter("momentCalendar", calendar)
         .filter("momentFromNow", fromNow);
 
@@ -104,7 +132,8 @@ return a+c}})}),function(a){a(vb)}(function(a){return a.defineLocale("en-gb",{mo
                 put:      put,
                 patch:    patch,
                 options:  options,
-                "delete": deleteFn
+                "delete": deleteFn,
+                remove:   deleteFn  //alias, when phiApi.delete() causes a syntax error ("delete" is a reserved JS keyword)
             }
 
             return angular.extend(provider, service);
@@ -1059,7 +1088,8 @@ angular.module("phi.ui").directive("phiCutout", [function() {
 
             scope: {
                 "url":      "@",
-                "onSelect": "&"
+                "onSelect": "&",
+                "onChange": "&"
             },
 
             template:   '<div class="phi-api-folder" ng-if="uploader">' +
@@ -1094,10 +1124,10 @@ angular.module("phi.ui").directive("phiCutout", [function() {
 
             scope.reload = function() {
 
-                phiApi.get(scope.url)
-                    .success(function (data) {
-                        scope.items = data;
-                    });
+                return phiApi.get(scope.url)
+                        .success(function (data) {
+                            scope.items = data;
+                        });
 
             };
 
@@ -1112,6 +1142,7 @@ angular.module("phi.ui").directive("phiCutout", [function() {
                 phiApi.delete(scope.url + "/" + item.name)
                     .success(function (data) {
                         scope.items.splice(scope.items.indexOf(item), 1);
+                        scope.onChange({items: scope.items});
                     });
 
             };
@@ -1133,10 +1164,11 @@ angular.module("phi.ui").directive("phiCutout", [function() {
                 };
 
                 scope.uploader.onCompleteAll = function() {
-                    scope.reload();
                     scope.uploader.clearQueue();
+                    scope.reload().success(function() {
+                        scope.onChange({items: scope.items});
+                    });
                 };
-
 
                 scope.reload();
 
@@ -1179,6 +1211,155 @@ angular.module("phi.ui").directive("phiCutout", [function() {
         };
 
     };
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
+        .directive("phiBlock", phiBlock);
+
+
+    phiBlock.$inject = ["$controller", "$compile"];
+    function phiBlock($controller, $compile) {
+
+        return {
+
+            restrict: "E",
+
+            scope: {
+                ngModel:            "=",
+                settings:           "=",
+                assignControllerTo: "=",
+                onCreate:           "&",
+                onDestroy:          "&"
+            },
+
+            controller:   phiBlockController,
+            controllerAs: "vm"
+        };
+
+
+        phiBlockController.$inject = ["$scope", "$element"];
+        function phiBlockController($scope, $element) {
+
+            var blockService  = loadBlockService($scope.ngModel.type);
+
+            var blockScope     = $scope.$new(true);
+            blockScope.ngModel = $scope.ngModel;
+
+            var vm = this;
+
+            vm.settings      = $scope.settings;
+            
+            vm.currentAction = null;
+            vm.openAction    = openAction;
+            
+            vm.create        = create;
+            vm.destroy       = destroy;
+
+            initialize();
+
+
+            //////////////////////
+
+
+            function loadBlockService(type) {
+                var serviceName = "phiBlock" + type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+                return angular.element(document.body).injector().get(serviceName);
+            };
+
+
+            function initialize() {
+
+                $element.addClass($scope.ngModel.type);
+
+                /* Assign controller to assign-controller-to attribute, if specified */
+                if ($scope.assignControllerTo !== undefined) {
+                    $scope.assignControllerTo = vm;
+                }
+
+                if (blockService.initialize) {
+                    $controller(blockService.initialize, {'$scope': blockScope, 'phiBlockController': vm});
+                }
+
+                if (!vm.currentAction) {
+                    vm.openAction("default");
+                }
+
+            };
+
+
+            function openAction(actionName) {
+
+                if (!actionName) {
+                    actionName = "default";
+                }
+
+                if (blockService.actions[actionName] === undefined || vm.currentAction == actionName) {
+                    return;
+                }
+
+                $element.removeClass("action-"+vm.currentAction);
+                $element.addClass("action-"+actionName);
+
+                vm.currentAction = actionName;
+
+                var action = blockService.actions[actionName];
+
+                if (action.controller) {
+                    var controllerObj = $controller(action.controller, {'$scope': blockScope, 'phiBlockController': vm});
+                    if (action.controllerAs) {
+                        blockScope[action.controllerAs] = controllerObj;
+                    }
+                }
+
+                if (action.template) {
+                    var e = $compile(action.template)(blockScope);
+                    $element.empty().append(e);
+                }
+
+            };
+
+
+            function create() {
+                $scope.onCreate();
+            };
+
+
+            function destroy() {
+                $element.empty();
+                blockScope.$destroy();
+
+                $scope.onDestroy();
+                $scope.$destroy();
+            };
+
+
+        };
+
+    };
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
+        .directive("phiButton", phiButtonDirective);
+
+
+    function phiButtonDirective() {
+
+        return {
+            restrict:   "E",
+            transclude: true,
+            template:   "<button phi-button ng-transclude></button>",
+            replace:    true
+        }
+
+    }
 
 })();
 /**
@@ -1409,6 +1590,7 @@ will produce
                 gallery.images.push(galleryImage);
 
                 element.on("click", function() {
+                    // !!! For some reason, the following code causes an error when minified
                     $scope.$apply(function() {
                         gallery.control.show(galleryImage.key);
                         gallery.modalShown = true;

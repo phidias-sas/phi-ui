@@ -36,7 +36,8 @@
                 put:      put,
                 patch:    patch,
                 options:  options,
-                "delete": deleteFn
+                "delete": deleteFn,
+                remove:   deleteFn  //alias, when phiApi.delete() causes a syntax error ("delete" is a reserved JS keyword)
             }
 
             return angular.extend(provider, service);
