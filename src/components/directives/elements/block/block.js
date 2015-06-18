@@ -15,7 +15,6 @@
 
             scope: {
                 ngModel:            "=",
-                settings:           "=",
                 assignControllerTo: "=",
                 onCreate:           "&",
                 onDestroy:          "&"
@@ -34,13 +33,9 @@
             var blockScope     = $scope.$new(true);
             blockScope.ngModel = $scope.ngModel;
 
-            var vm = this;
-
-            vm.settings      = $scope.settings;
-            
+            var vm           = this;
             vm.currentAction = null;
             vm.openAction    = openAction;
-            
             vm.create        = create;
             vm.destroy       = destroy;
 

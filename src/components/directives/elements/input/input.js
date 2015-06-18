@@ -10,19 +10,21 @@ angular.module("phi.ui").directive("phiInput", [function() {
         restrict: "E",
 
         scope: {
-            name:        "@",
-            type:        "@",
-            label:       "@",
-            placeholder: "@",
-            ngModel:     "=",
-            ngFocus:     "&",
-            ngBlur:      "&"
+            name:           "@",
+            type:           "@",
+            label:          "@",
+            placeholder:    "@",
+            ngModel:        "=",
+            ngModelOptions: "=",
+            ngChange:       "&",
+            ngFocus:        "&",
+            ngBlur:         "&"
         },
 
         template:   '<div>' +
                         '<label for="{{elementId}}" ng-bind="label"></label>' +
-                        '<input type="{{type||\'text\'}}" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" />' +
-                        '<textarea ng-if="multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false"></textarea>' +
+                        '<input type="{{type||\'text\'}}" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-model-options="ngModelOptions||{}" />' +
+                        '<textarea ng-if="multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false" ng-model-options="ngModelOptions||{}"></textarea>' +
                     '</div>' +
                     '<hr />',
 
@@ -73,6 +75,10 @@ angular.module("phi.ui").directive("phiInput", [function() {
                 scope.state.empty = newValue == undefined || !newValue.length;
                 element.toggleClass('phi-input-empty', scope.state.empty);
                 scope.resizeTextarea();
+
+                if (newValue != oldValue) {
+                    scope.ngChange();
+                }
             });
 
 

@@ -109,7 +109,7 @@ phi-gallery {
             opacity: 0;
             transform: scale(0.95);
 
-            &.phi-gallery-shown {
+            &.phi-switch-active {
 
                 opacity: 1;
                 transform: scale(1);

@@ -38,7 +38,12 @@
 
             function reposition() {
 
-                var parentElement     = angular.element(document.getElementById(attributes.phiTooltipFor));
+                var parentElement = angular.element(document.getElementById(attributes.phiTooltipFor));
+
+                if (!parentElement.length) {
+                    return;
+                }
+
                 var parentCoordinates = phiCoordinates.getBounds(parentElement);
                 var localCoordinates  = phiCoordinates.getBounds(element);
 

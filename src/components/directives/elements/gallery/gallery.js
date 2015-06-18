@@ -11,6 +11,7 @@
             restrict: 'E',
 
             transclude: true,
+            scope: true,
 
             template: '<ul class="phi-gallery-thumbnails" ng-transclude></ul>' + 
 
@@ -24,7 +25,7 @@
                                    'anterior' + 
                                 '</a>' + 
 
-                                '<span>{{gallery.control.selectedIndex+1}} de {{gallery.control.length}}</span>' + 
+                                '<span>{{gallery.control.activeIndex+1}} de {{gallery.control.length}}</span>' + 
 
                                 '<a class="next"' + 
                                    'phi-icon-right="fa-caret-right"' + 
@@ -34,7 +35,7 @@
                                 '</a>' + 
                           '</div>' + 
 
-                          '<div class="phi-gallery-modal-contents" phi-gallery="gallery.control">' + 
+                          '<div class="phi-gallery-modal-contents" phi-switch="gallery.control">' + 
                                 '<div ng-repeat="image in gallery.images">' + 
                                     '<img ng-src="{{image.src}}" />' + 
                                     '<p ng-bind="image.description"></p>' + 
@@ -71,7 +72,7 @@
                 element.on("click", function() {
                     // !!! For some reason, the following code causes an error when minified
                     $scope.$apply(function() {
-                        gallery.control.show(galleryImage.key);
+                        gallery.control.select(galleryImage.key);
                         gallery.modalShown = true;
                     });
                 });

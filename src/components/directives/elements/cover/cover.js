@@ -19,10 +19,21 @@ will produce
         return {
             restrict: 'E',
 
+            scope: {
+                src: "@",
+                'default': "@"
+            },
+
             link: function(scope, element, attributes) {
 
                 attributes.$observe("src", function(src) {
-                    element.css("background-image", "url('"+src+"')");
+
+                    var backgroundImage = "url('"+src+"')";
+                    if (scope['default']) {
+                        backgroundImage += ", url('"+scope['default']+"')";
+                    }
+
+                    element.css("background-image", backgroundImage);
                 });
 
             }

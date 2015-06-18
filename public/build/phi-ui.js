@@ -86,11 +86,17 @@ return a+c}})}),function(a){a(vb)}(function(a){return a.defineLocale("en-gb",{mo
 
     angular
         .module('phi.ui')
-        .filter('trustAsResourceUrl', trustAsResourceUrl);
+        .filter('trustAsResourceUrl', trustAsResourceUrl)
+        .filter('trustAsUrl', trustAsUrl);
 
     trustAsResourceUrl.$inject = ["$sce"];
     function trustAsResourceUrl($sce) {
         return $sce.trustAsResourceUrl;
+    }
+
+    trustAsUrl.$inject = ["$sce"];
+    function trustAsUrl($sce) {
+        return $sce.trustAsUrl;
     }
 
 })();
@@ -169,7 +175,7 @@ return a+c}})}),function(a){a(vb)}(function(a){return a.defineLocale("en-gb",{mo
 
                 var request = {
                     method: method,
-                    url:    "http://" + provider.host + "/" + resource,
+                    url:    provider.host + "/" + resource,
                     data:   data
                 };
 
@@ -535,115 +541,6 @@ phiStorage.local.retrieve("name", defaultValue);
 
 })();
 /*
-This directive will simply set the "phi-gallery-shown" class (and optionally the class you specify via phi-gallery-shown-class="") to one child element at a time and provide controls
-to select the shown item.  All styling should be defined in your stylesheets
-
-Usage:
-
-//have a local variable "controls" which will be populated with the gallery's controls functions:
-
-<div phi-gallery="controls" phi-gallery-shown-class="myOwnClass">
-    <div>Element 1</div>
-    <div>Element 2</div>
-    ....
-</div>
-
-<h1>Now showing {{controls.selectedIndex}}</h1>
-
-<button ng-click="controls.show(2)">See index 2</button>
-<button ng-click="controls.previous()" ng-disabled="!controls.hasPrevious()">prev</button>
-<button ng-click="controls.next()" ng-disabled="!controls.hasNext()">next</button>
-
-*/
-
-angular.module("phi.ui").directive("phiGallery", ["$timeout", function($timeout) {
-
-    return {
-
-        restrict: "A",
-
-        scope: {
-            controls: "=phiGallery",
-            customClassName: "@phiGalleryShownClass"
-        },
-
-
-        link: function(scope, element, attributes)  {
-
-            var items  = [];
-
-            scope.controls   = scope.controls != undefined ? scope.controls : {};
-            scope.shownClass = "phi-gallery-shown" + (scope.customClassName ? " "+scope.customClassName : "");
-
-            scope.controls = {
-
-                selectedIndex: null,
-                length:        0,
-
-                show: function(index) {
-
-                    if (!items.length) {
-                        return;
-                    }
-
-                    //only allow from 0 to items.length
-                    index = Math.min(Math.max(index, 0), items.length);
-
-                    if (items[index] == undefined) {
-                        return;
-                    }
-
-                    if (scope.controls.selectedIndex !== null && items[scope.controls.selectedIndex] != undefined) {
-                        angular.element(items[scope.controls.selectedIndex]).removeClass(scope.shownClass);
-                    }
-
-                    angular.element(items[index]).addClass(scope.shownClass);
-                    scope.controls.selectedIndex = index;
-                },
-
-                next: function() {
-                    scope.controls.show(scope.controls.selectedIndex + 1);
-                },
-
-                previous: function() {
-                    scope.controls.show(scope.controls.selectedIndex - 1);
-                },
-
-                hasNext: function() {
-                    return items[scope.controls.selectedIndex + 1] != undefined;
-                },
-
-                hasPrevious: function() {
-                    return items[scope.controls.selectedIndex - 1] != undefined;
-                }
-
-            };
-
-
-
-            scope.$watch(function () {
-
-                items                 = element.children();
-                scope.controls.length = items.length;
-
-                if (scope.controls.selectedIndex == null) {
-                    scope.controls.selectedIndex = 0;
-                }
-
-                if (items[scope.controls.selectedIndex] != undefined) {
-                    angular.element(items[scope.controls.selectedIndex]).addClass(scope.shownClass);
-                }
-
-
-            });
-
-
-        }
-    };
-
-}]);
-
-/*
 The phi-modal attribute only moves the element to the bottom of the body.
 visibility can be established with the phi-visible attribute, and styling
 is entirely up to the document
@@ -749,6 +646,140 @@ angular.module("phi.ui").directive("phiPosition", ["phiCoordinates", function(ph
 
 }]);
 
+/*
+This directive will simply set the "phi-switch-active" class (and optionally the class you specify via phi-switch-active-class="") to one child element at a time 
+and provide controls to select the active item.  All styling should be defined in your stylesheets
+
+Usage:
+
+//have a local variable "controls" which will be populated with the switch's controls functions:
+
+<div phi-switch="controls" phi-switch-active-class="myOwnClass">
+    <div>Element 1</div>
+    <div>Element 2</div>
+    ....
+</div>
+
+<h1>Now showing {{controls.activeIndex}}</h1>
+
+<button ng-click="controls.select(2)">See index 2</button>
+<button ng-click="controls.previous()" ng-disabled="!controls.hasPrevious()">prev</button>
+<button ng-click="controls.next()" ng-disabled="!controls.hasNext()">next</button>
+
+*/
+
+
+(function() {
+    'use strict';
+
+
+    angular
+        .module("phi.ui")
+        .directive("phiSwitch", phiSwitch);
+
+
+    phiSwitch.$inject = ["$timeout"];
+    function phiSwitch($timeout) {
+
+        return {
+
+            restrict: "A",
+
+            scope: {
+                controls:        "=phiSwitch",
+                customClassName: "@phiSwitchActiveClass"
+            },
+
+            link: phiSwitchLink
+        };
+
+
+        function phiSwitchLink(scope, element, attributes)  {
+
+            var items  = [];
+
+            scope.activeClass = "phi-switch-active" + (scope.customClassName ? " "+scope.customClassName : "");
+            scope.controls    = scope.controls != undefined ? scope.controls : {};
+
+            scope.controls = {
+
+                activeIndex: null,
+                length:      0,
+
+                select: function(targetIndex) {
+
+                    items       = element.children();
+                    this.length = items.length;
+
+                    if (!items.length) {
+                        return;
+                    }
+
+                    //only allow from 0 to items.length
+                    //targetIndex = Math.min(Math.max(targetIndex, 0), items.length);
+
+                    //cycle
+                    if (targetIndex >= items.length) {
+                        targetIndex = targetIndex % items.length;
+                    } else if (targetIndex < 0) {
+                        targetIndex = items.length + targetIndex;
+                    }
+
+                    if (items[targetIndex] == undefined) {
+                        return;
+                    }
+
+                    if (this.activeIndex !== null && items[this.activeIndex] != undefined) {
+                        angular.element(items[this.activeIndex]).removeClass(scope.activeClass);
+                    }
+
+                    angular.element(items[targetIndex]).addClass(scope.activeClass);
+                    this.activeIndex = targetIndex;
+                },
+
+                next: function() {
+                    scope.controls.select(scope.controls.activeIndex + 1);
+                },
+
+                previous: function() {
+                    scope.controls.select(scope.controls.activeIndex - 1);
+                },
+
+                hasNext: function() {
+                    return items[scope.controls.activeIndex + 1] != undefined;
+                },
+
+                hasPrevious: function() {
+                    return items[scope.controls.activeIndex - 1] != undefined;
+                }
+
+            };
+
+
+
+            // scope.$watch(function () {
+
+            //     items                 = element.children();
+            //     scope.controls.length = items.length;
+
+            //     if (scope.controls.activeIndex == null) {
+            //         scope.controls.activeIndex = 0;
+            //     }
+
+            //     if (items[scope.controls.activeIndex] != undefined) {
+            //         angular.element(items[scope.controls.activeIndex]).addClass(scope.activeClass);
+            //     }
+
+
+            // });
+
+
+        };
+
+    };
+
+})();
+
 (function() {
     'use strict';
 
@@ -789,7 +820,12 @@ angular.module("phi.ui").directive("phiPosition", ["phiCoordinates", function(ph
 
             function reposition() {
 
-                var parentElement     = angular.element(document.getElementById(attributes.phiTooltipFor));
+                var parentElement = angular.element(document.getElementById(attributes.phiTooltipFor));
+
+                if (!parentElement.length) {
+                    return;
+                }
+
                 var parentCoordinates = phiCoordinates.getBounds(parentElement);
                 var localCoordinates  = phiCoordinates.getBounds(element);
 
@@ -1157,7 +1193,7 @@ angular.module("phi.ui").directive("phiCutout", [function() {
 
             attributes.$observe("url", function(url) {
 
-                scope.uploader = new FileUploader({url: "http://"+phiApi.host+"/"+scope.url});
+                scope.uploader = new FileUploader({url: phiApi.host+"/"+scope.url});
 
                 scope.uploader.onAfterAddingAll = function(addedItems) {
                     scope.uploader.uploadAll();
@@ -1230,7 +1266,6 @@ angular.module("phi.ui").directive("phiCutout", [function() {
 
             scope: {
                 ngModel:            "=",
-                settings:           "=",
                 assignControllerTo: "=",
                 onCreate:           "&",
                 onDestroy:          "&"
@@ -1249,13 +1284,9 @@ angular.module("phi.ui").directive("phiCutout", [function() {
             var blockScope     = $scope.$new(true);
             blockScope.ngModel = $scope.ngModel;
 
-            var vm = this;
-
-            vm.settings      = $scope.settings;
-            
+            var vm           = this;
             vm.currentAction = null;
             vm.openAction    = openAction;
-            
             vm.create        = create;
             vm.destroy       = destroy;
 
@@ -1507,10 +1538,21 @@ will produce
         return {
             restrict: 'E',
 
+            scope: {
+                src: "@",
+                'default': "@"
+            },
+
             link: function(scope, element, attributes) {
 
                 attributes.$observe("src", function(src) {
-                    element.css("background-image", "url('"+src+"')");
+
+                    var backgroundImage = "url('"+src+"')";
+                    if (scope['default']) {
+                        backgroundImage += ", url('"+scope['default']+"')";
+                    }
+
+                    element.css("background-image", backgroundImage);
                 });
 
             }
@@ -1532,6 +1574,7 @@ will produce
             restrict: 'E',
 
             transclude: true,
+            scope: true,
 
             template: '<ul class="phi-gallery-thumbnails" ng-transclude></ul>' + 
 
@@ -1545,7 +1588,7 @@ will produce
                                    'anterior' + 
                                 '</a>' + 
 
-                                '<span>{{gallery.control.selectedIndex+1}} de {{gallery.control.length}}</span>' + 
+                                '<span>{{gallery.control.activeIndex+1}} de {{gallery.control.length}}</span>' + 
 
                                 '<a class="next"' + 
                                    'phi-icon-right="fa-caret-right"' + 
@@ -1555,7 +1598,7 @@ will produce
                                 '</a>' + 
                           '</div>' + 
 
-                          '<div class="phi-gallery-modal-contents" phi-gallery="gallery.control">' + 
+                          '<div class="phi-gallery-modal-contents" phi-switch="gallery.control">' + 
                                 '<div ng-repeat="image in gallery.images">' + 
                                     '<img ng-src="{{image.src}}" />' + 
                                     '<p ng-bind="image.description"></p>' + 
@@ -1592,7 +1635,7 @@ will produce
                 element.on("click", function() {
                     // !!! For some reason, the following code causes an error when minified
                     $scope.$apply(function() {
-                        gallery.control.show(galleryImage.key);
+                        gallery.control.select(galleryImage.key);
                         gallery.modalShown = true;
                     });
                 });
@@ -1644,19 +1687,21 @@ angular.module("phi.ui").directive("phiInput", [function() {
         restrict: "E",
 
         scope: {
-            name:        "@",
-            type:        "@",
-            label:       "@",
-            placeholder: "@",
-            ngModel:     "=",
-            ngFocus:     "&",
-            ngBlur:      "&"
+            name:           "@",
+            type:           "@",
+            label:          "@",
+            placeholder:    "@",
+            ngModel:        "=",
+            ngModelOptions: "=",
+            ngChange:       "&",
+            ngFocus:        "&",
+            ngBlur:         "&"
         },
 
         template:   '<div>' +
                         '<label for="{{elementId}}" ng-bind="label"></label>' +
-                        '<input type="{{type||\'text\'}}" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" />' +
-                        '<textarea ng-if="multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false"></textarea>' +
+                        '<input type="{{type||\'text\'}}" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-model-options="ngModelOptions||{}" />' +
+                        '<textarea ng-if="multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false" ng-model-options="ngModelOptions||{}"></textarea>' +
                     '</div>' +
                     '<hr />',
 
@@ -1707,6 +1752,10 @@ angular.module("phi.ui").directive("phiInput", [function() {
                 scope.state.empty = newValue == undefined || !newValue.length;
                 element.toggleClass('phi-input-empty', scope.state.empty);
                 scope.resizeTextarea();
+
+                if (newValue != oldValue) {
+                    scope.ngChange();
+                }
             });
 
 
@@ -1809,6 +1858,206 @@ angular.module("phi.ui").directive("phiInput", [function() {
 
 })();
 
+/*
+
+post = {
+
+    id: "15913gfq",
+    url: "nodes/9xaib1v/posts/process/15913gfq",
+    editable: true,
+
+    blocks: [
+        {
+            type: "html",
+            url: "nodes/9xaib1v/media/html/1591chpq",
+            id: "1591cimg",
+            allowed: ["modify", "delete"]
+        },
+
+        {
+            type: "form",
+            url: "data/entities/1591x70r",
+            id: "1591x8p9",
+            allowed: ["modify", "delete"]
+        },
+
+        {
+            type: "html",
+            url: "nodes/9xaib1v/media/html/15s1ibga",
+            id: "15s1idb4",
+            allowed: ["modify", "delete"]
+        }
+    ],
+
+    insertable: {
+        html: {
+            endpoint: "nodes/9xaib1v/media/html"
+        },
+
+        video: {
+            endpoint: "nodes/9xaib1v/media/videos"
+        },
+
+        form: {
+            endpoint: "nodes/9xaib1v/data/entities"
+        }
+    }            
+};
+
+<phi-post ng-model="post"></phi-post>
+
+*/
+
+
+(function() {
+
+    angular
+        .module("phi.ui")
+        .directive("phiPost", phiPost);
+
+
+    function phiPost() {
+
+        return {
+
+            restrict: "E",
+
+            scope: {
+                ngModel: "="
+            },
+
+            template:   '<div class="phi-post">' + 
+
+                            '<div class="phi-post-blocks" sv-root sv-part="vm.post.blocks" sv-on-sort="vm.reorder()">' + 
+
+                                '<div ng-repeat="(key, block) in vm.post.blocks" ng-init="block.ctrl = {}" class="phi-block" sv-element>' + 
+
+                                    '<div ng-show="vm.post.editable" class="phi-block-toolbar" sv-handle>' + 
+
+                                        '<div class="phi-block-menu">' + 
+                                            '<button ng-blur="block.menuShown = false" id="menu_toggler_{{post.id}}_{{key}}" ng-show="block.ctrl.currentAction == \'default\'" ng-click="block.menuShown = !block.menuShown" phi-icon="fa-ellipsis-v"></button>' + 
+                                            '<button ng-blur="block.menuShown = false" ng-show="block.ctrl.currentAction != \'default\'" ng-click="block.ctrl.openAction()" phi-icon="fa-times"></button>' + 
+
+                                            '<div phi-tooltip-for="menu_toggler_{{post.id}}_{{key}}" phi-tooltip-origin="top right" phi-tooltip-align="bottom right" phi-visible="{{block.menuShown}}" phi-visible-animation="slide-bottom">' +
+                                                '<phi-menu phi-texture="paper">' +
+                                                    '<phi-menu-item phi-icon-left="fa-pencil" ng-click="block.ctrl.openAction(\'modify\')">Modificar</phi-menu-item>' +
+                                                    '<phi-menu-item phi-icon-left="fa-trash-o" ng-click="block.ctrl.openAction(\'remove\')">Eliminar</phi-menu-item>' +
+                                                '</phi-menu>' +
+                                            '</div>' +
+                                        '</div>' + 
+
+                                    '</div>' + 
+
+                                    '<phi-block ' + 
+                                        'ng-model="block" ' + 
+                                        'assign-controller-to="block.ctrl"' + 
+                                        'on-create="vm.attachBlock(block)"' + 
+                                        'on-destroy="vm.removeBlock(block)"' + 
+                                    '>' + 
+                                    '</phi-block>' + 
+
+                                '</div>' + 
+
+
+
+                            '</div>' + 
+
+
+                            '<div class="phi-block-adder" ng-show="vm.post.editable">' +
+                                '<ul>' +
+                                    '<li ng-if="vm.post.insertable.html" class="html" phi-icon="fa-font" ng-click="vm.addBlock(\'html\')">texto</li>' +
+                                    '<li ng-if="vm.post.insertable.video" class="video" phi-icon="fa-youtube-play" ng-click="vm.addBlock(\'video\')">video</li>' +
+                                    '<li ng-if="vm.post.insertable.form" class="form" phi-icon="fa-pencil-square-o" ng-click="vm.addBlock(\'form\')">formulario</li>' +
+                                    '<li ng-if="vm.post.insertable.gallery" class="gallery" phi-icon="fa-picture-o" ng-click="vm.addBlock(\'gallery\')">galer&iacute;a</li>' +
+                                '</ul>' +
+                            '</div>' +
+
+                        '</div>',
+
+            controller:   phiPostController,
+            controllerAs: "vm"
+
+        };
+
+
+        phiPostController.$inject = ["$scope", "phiApi"];
+        function phiPostController($scope, phiApi) {
+
+            var vm         = this;
+            vm.post        = $scope.ngModel;
+
+            vm.addBlock    = addBlock;
+            vm.attachBlock = attachBlock;
+            vm.removeBlock = removeBlock;
+            vm.reorder     = reorder;
+
+            $scope.$watch("ngModel", function(current, previous) {
+                if (current == previous) {
+                    return;
+                }
+                vm.post = current;
+            });
+
+
+            ///////////////////////
+
+
+            function addBlock(blockType) {
+
+                if (!vm.post.blocks) {
+                    vm.post.blocks = [];
+                }
+
+                var newBlock = {
+                    type: blockType,
+                    order: vm.post.blocks.length
+                };
+
+                for (var property in vm.post.insertable[blockType]) {
+                    newBlock[property] = vm.post.insertable[blockType][property];
+                }
+
+                vm.post.blocks.push(newBlock);
+            };
+
+            function attachBlock(block) {
+                phiApi.post(vm.post.url + "/blocks", block)
+                    .success(function(response) {
+                        block.id = response.id;
+                    });
+            };
+
+            function removeBlock(block) {
+
+                if (block.id) {
+
+                    phiApi.remove(vm.post.url + "/blocks/" + block.id)
+                        .success(function() {
+                            vm.post.blocks.splice(vm.post.blocks.indexOf(block), 1);
+                        });
+
+                } else {
+                    vm.post.blocks.splice(vm.post.blocks.indexOf(block), 1);
+                }
+
+            };
+
+            function reorder() {
+                var blockIds = [];
+                for (var cont = 0; cont < vm.post.blocks.length; cont++) {
+                    blockIds.push(vm.post.blocks[cont].id);
+                }
+                phiApi.put(vm.post.url+"/blocks/", blockIds);
+            };
+
+
+        };
+
+
+    };
+
+
+})();
 /* Based on http://www.bennadel.com/blog/2756-experimenting-with-ngmodel-and-ngmodelcontroller-in-angularjs.htm */
 
 (function() {
@@ -1980,6 +2229,880 @@ function phiOption() {
 
 };
 
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
+        .factory("phiBlockForm", phiBlockForm);
+
+
+    phiBlockForm.$inject = ["phiApi"];
+    function phiBlockForm(phiApi) {
+
+        var formTemplate = '<form class="builder">' +
+                                '<fieldset>' + 
+                                    '<phi-input ng-model="form.name" label="t&iacute;tulo"></phi-input>' + 
+                                    '<phi-input multiline ng-model="form.description" label="descripci&oacute;n"></phi-input>' + 
+                                '</fieldset>' + 
+
+                                '<fieldset class="fields" data-as-sortable="{containment: \'.fields\'}" ng-model="form.fields">' + 
+
+                                    '<div ng-repeat="field in form.fields" data-as-sortable-item class="field">' + 
+
+                                        '<div class="toolbar" data-as-sortable-item-handle>' + 
+                                            '<a phi-icon="fa-times" ng-click="vm.removeField(field)" href="">&nbsp;</a>' + 
+                                        '</div>' + 
+
+                                        '<div class="rendered" ng-switch="field.type">' + 
+
+                                            '<div ng-switch-when="text">' + 
+                                                '<phi-input label="{{field.title}}"></phi-input>' + 
+                                            '</div>' + 
+
+                                            '<div ng-switch-when="textarea">' + 
+                                                '<phi-input multiline label="{{field.title}}"></phi-input>' + 
+                                            '</div>' + 
+
+                                            '<div ng-switch-when="select">' + 
+                                                '<label ng-bind="field.title"></label>' + 
+                                                '<select>' + 
+                                                    '<option value="">---</option>' + 
+                                                    '<option ng-repeat="line in field.options | lines" value="{{line}}">{{line}}</option>' + 
+                                                '</select>' + 
+                                            '</div>' + 
+
+                                            '<div ng-switch-when="checkbox">' + 
+                                                '<input type="checkbox">{{field.title}}</input>' + 
+                                            '</div>' + 
+
+                                            '<p class="notice" ng-bind="field.description"></p>' + 
+
+                                        '</div>' + 
+
+                                        '<div class="controls">' + 
+                                            '<phi-select label="tipo" ng-model="field.type">' + 
+                                                '<phi-option value="text">texto</phi-option>' + 
+                                                '<phi-option value="textarea">textarea</phi-option>' + 
+                                                '<phi-option value="select">lista</phi-option>' + 
+                                                '<phi-option value="checkbox">checkbox</phi-option>' + 
+                                            '</phi-select>' + 
+                                            '<phi-input label="titulo" ng-model="field.title"></phi-input>' + 
+                                            '<phi-input multiline label="descripci&oacute;n" ng-model="field.description"></phi-input>' + 
+                                            '<div ng-show="field.type == \'select\'">' + 
+                                                '<phi-input multiline label="opciones" ng-model="field.options"></phi-input>' + 
+                                                '<p class="notice">Escribe una opci&oacute;n por l&iacute;nea</p>' + 
+                                            '</div>' + 
+                                        '</div>' + 
+
+                                    '</div>' + 
+
+                                    '<button class="field-adder" phi-icon-left="fa-plus" ng-click="vm.addField()">Agregar campo</button>' + 
+
+                                '</fieldset>' + 
+
+                                '<footer>' + 
+                                    '<phi-button ng-click="vm.save()">guardar</phi-button>' + 
+                                    '<phi-button class="cancel" ng-click="vm.cancel()">cancelar</phi-button>' + 
+                                '</footer>' + 
+                            '</form>';
+
+
+
+        var service = {
+
+            type:        "form",
+            title:       "Formulario",
+            description: "",
+
+            initialize: initializeController,
+
+            actions: {
+
+                default: {
+
+                    template:   '<form class="face">' +
+
+                                    '<h1 ng-bind="form.name"></h1>' + 
+                                    '<p ng-bind="form.description"></p>' + 
+
+                                    '<fieldset class="fields">' + 
+
+                                        '<div class="rendered" ng-repeat="field in form.fields">' + 
+
+                                            '<div ng-switch="field.type">' + 
+
+                                                '<div ng-switch-when="text">' + 
+                                                    '<phi-input label="{{field.title}}"></phi-input>' + 
+                                                '</div>' + 
+
+                                                '<div ng-switch-when="textarea">' + 
+                                                    '<phi-input multiline label="{{field.title}}"></phi-input>' + 
+                                                '</div>' + 
+
+                                                '<div ng-switch-when="select">' + 
+                                                    '<label ng-bind="field.title"></label>' + 
+                                                    '<select>' + 
+                                                        '<option value="">---</option>' + 
+                                                        '<option ng-repeat="line in field.options | lines" value="{{line}}">{{line}}</option>' + 
+                                                    '</select>' + 
+                                                '</div>' + 
+
+                                                '<div ng-switch-when="checkbox">' + 
+                                                    '<input type="checkbox">{{field.title}}</input>' + 
+                                                '</div>' + 
+
+                                                '<p class="notice" ng-bind="field.description"></p>' + 
+
+                                            '</div>' + 
+
+                                        '</div>' + 
+
+                                    '</fieldset>' + 
+
+                                '</form>',
+
+                    controller: mainController
+
+                },
+
+
+                create: {
+
+                    template:     formTemplate,
+                    controller:   mainController,
+                    controllerAs: "vm"
+                },
+
+                modify: {
+
+                    template:     formTemplate,
+                    controller:   mainController,
+                    controllerAs: "vm"
+                },
+
+                remove: {
+
+                    template:   '<div>' + 
+                                    '<h3>Eliminar este formulario ?</h3>' +  
+                                    '<button ng-click="vm.doDelete()">eliminar</button>' + 
+                                    '<button ng-click="vm.cancel()">cancelar</button>' + 
+                                '</div>',
+
+                    controller:   mainController,
+                    controllerAs: "vm"
+                }
+
+            }
+
+        };
+
+        return service;
+
+
+        //////////////////
+
+
+
+        initializeController.$inject = ["$scope", "phiBlockController"];
+        function initializeController($scope, phiBlockController) {
+
+            if ($scope.ngModel.url) {
+
+                phiApi.get($scope.ngModel.url)
+                    .success(function(response) {
+                        $scope.form = response;
+                    });
+
+            } else {
+
+                $scope.form = {
+                    id: null,
+                    fields: []
+                };
+
+                phiBlockController.openAction("create");
+
+            }
+
+        };
+
+
+        mainController.$inject = ["$scope", "phiBlockController"];
+        function mainController($scope, phiBlockController) {
+
+            var vm = this;
+
+            vm.addField    = addField;
+            vm.removeField = removeField;
+
+            vm.save     = save;
+            vm.destroy  = destroy;
+            vm.doDelete = doDelete;
+            vm.cancel   = cancel;
+
+            //////////////
+
+            function addField() {
+                $scope.form.fields.push({
+                    type: "text"
+                });
+            };
+
+            function removeField(field) {
+                if (confirm('Deseas eliminar este campo ?')) {
+                    $scope.form.fields.splice($scope.form.fields.indexOf(field), 1)
+                }
+            };
+
+
+            function save() {
+
+                if (!$scope.ngModel.url) {
+
+                    if (!$scope.ngModel.endpoint) {
+                        //well, that was not configured properly
+                        return;
+                    }
+
+                    phiApi.post($scope.ngModel.endpoint, $scope.form)
+                        .success(function(response, code, headers) {
+                            $scope.ngModel.url = headers("location");
+                            phiBlockController.openAction("default");
+                            phiBlockController.create();
+                        });
+
+
+                } else {
+
+                    phiApi.put($scope.ngModel.url, $scope.form)
+                        .success(function(response, code, headers) {
+                            phiBlockController.openAction("default");
+                        });
+
+                }
+
+
+            };
+
+            function destroy() {
+                phiBlockController.destroy();
+            };
+
+            function doDelete() {
+                phiApi.remove($scope.ngModel.url)
+                    .success(function(response, code, headers) {
+                        vm.destroy();
+                    });
+            };
+
+            function cancel() {
+
+                if (!$scope.ngModel.url) {
+                    vm.destroy();
+                } else {
+                    phiBlockController.openAction("default");
+                }
+
+            };
+
+        };
+
+    }
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
+        .factory("phiBlockGallery", phiBlockGallery);
+
+
+    phiBlockGallery.$inject = ["phiApi"];
+    function phiBlockGallery(phiApi) {
+
+        var service = {
+
+            type:        "gallery",
+            title:       "Galeria",
+            description: "",
+
+            initialize: initializeController,
+
+            actions: {
+
+                default: {
+
+                    template:   '<div>' +
+
+                                    '<div ng-show="!gallery.pictures.length">' + 
+                                        'no hay nada' + 
+                                    '</div>' + 
+
+                                    '<phi-gallery>' + 
+                                        '<phi-gallery-image ng-repeat="picture in gallery.pictures" src="{{picture.url}}" thumbnail="{{picture.thumbnail}}"></phi-gallery-image>' + 
+                                    '</phi-gallery>' + 
+                                '</div>'
+
+                },
+
+
+                create: {
+
+                    template:   '<form>' +
+                                    '<fieldset>' + 
+                                        '<select ng-model="gallery.class">' + 
+                                            '<option value="regular">regular</option>' + 
+                                            '<option value="foo">foo</option>' + 
+                                            '<option value="bar">bar</option>' + 
+                                        '</select>' + 
+                                    '</fieldset>' + 
+
+                                    '<footer>' + 
+                                        '<phi-button ng-click="vm.create()">crear</phi-button>' +
+                                        '<phi-button ng-click="vm.destroy()" class="cancel">cancelar</phi-button>' + 
+                                    '</footer>' + 
+                                '</form>',
+
+                    controller:   mainController,
+                    controllerAs: "vm"
+                },
+
+                modify: {
+
+                    template:   '<form>' +
+                                    '<fieldset>' + 
+                                        '<select ng-model="gallery.class" ng-change="vm.save()">' + 
+                                            '<option value="regular">regular</option>' + 
+                                            '<option value="foo">foo</option>' + 
+                                            '<option value="bar">bar</option>' + 
+                                        '</select>' + 
+                                    '</fieldset>' + 
+
+                                    '<phi-api-folder url="{{ngModel.url}}/files" on-change="vm.reload()"></phi-api-folder>' + 
+
+                                    '<footer>' + 
+                                        //'<phi-button ng-click="vm.save()">guardar</phi-button>' +
+                                        '<phi-button ng-click="vm.cancel()" class="cancel">aceptar</phi-button>' + 
+                                    '</footer>' + 
+                                '</form>',
+
+                    controller:   mainController,
+                    controllerAs: "vm"
+                },
+
+                remove: {
+
+                    template:   '<form>' + 
+                                    '<h1>Eliminar esta galer&iacute;a ?</h1>' +
+                                    '<footer>' + 
+                                        '<phi-button ng-click="vm.remove()">eliminar</phi-button>' + 
+                                        '<phi-button ng-click="vm.cancel()" class="cancel">cancelar</phi-button>' + 
+                                    '</footer>' + 
+                                '</form>',
+
+                    controller:   mainController,
+                    controllerAs: "vm"
+                }
+
+            }
+
+        };
+
+        return service;
+
+
+        //////////////////
+
+        initializeController.$inject = ["$scope", "phiBlockController"];
+        function initializeController($scope, phiBlockController) {
+
+            if ($scope.ngModel.url) {
+
+                phiApi.get($scope.ngModel.url)
+                    .success(function(response) {
+                        $scope.gallery = response;
+
+                        phiApi.get($scope.ngModel.url+"/files")
+                            .success(function(response) {
+                                $scope.gallery.pictures = response;
+                            });
+
+                    });
+
+            } else {
+
+                $scope.gallery = {
+                    pictures: []
+                };
+
+                phiBlockController.openAction("create");
+
+            }
+
+        };
+
+        mainController.$inject = ["$scope", "phiBlockController"];
+        function mainController($scope, phiBlockController) {
+
+            var vm     = this;
+            vm.cancel  = cancel;
+            vm.create  = create;
+            vm.save    = save;
+            vm.remove  = remove;
+            vm.destroy = destroy;
+            vm.reload  = reload;
+
+            function reload() {
+                phiApi.get($scope.ngModel.url+"/files")
+                    .success(function(response) {
+                        $scope.gallery.pictures = response;
+                    });                
+            }
+
+            function cancel() {
+                phiBlockController.openAction("default");
+            }
+
+            function create() {
+
+                if (!$scope.ngModel.endpoint) {
+                    //well, that was not configured properly
+                    return;
+                }
+
+                phiApi.post($scope.ngModel.endpoint, $scope.gallery)
+                    .success(function(response, code, headers) {
+                        $scope.ngModel.url = headers("location");
+                        phiBlockController.openAction("modify");
+                        phiBlockController.create();
+                    });
+
+            }
+
+            function save() {
+
+                phiApi.put($scope.ngModel.url, $scope.gallery)
+                    .success(function(response, code, headers) {
+                        phiBlockController.openAction("default");
+                    });
+
+            }
+
+            function remove() {
+
+                phiApi.remove($scope.ngModel.url)
+                    .success(function(response, code, headers) {
+                        phiBlockController.destroy();
+                    });
+
+            }
+
+            function destroy() {
+                phiBlockController.destroy();
+            }
+
+        };
+
+
+
+    }
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
+        .factory("phiBlockHtml", phiBlockHtml);
+
+
+
+    phiBlockHtml.$inject = ["phiApi"];
+    function phiBlockHtml(phiApi) {
+
+        var service = {
+
+            type:        "html",
+            title:       "texto html",
+            description: "",
+
+            initialize: initializeController,
+
+            actions: {
+
+                default: {
+                    template: '<div ng-bind-html="html.body"></div>'
+                },
+
+                create: {
+
+                    template:   '<form>' + 
+                                    '<fieldset>' + 
+                                        //'<phi-input multiline ng-model="html.body"></phi-input>' + 
+                                        '<div text-angular ng-model="html.body"></div>' + 
+                                    '</fieldset>' + 
+                                    '<footer>' + 
+                                        '<phi-button ng-click="vm.create()">crear</phi-button>' + 
+                                        '<phi-button class="cancel" ng-click="vm.destroy()">cancelar</phi-button>' + 
+                                    '</footer>' + 
+                                '</form>',
+
+                    controller:   mainController,
+                    controllerAs: "vm"
+                },
+
+                modify: {
+
+                    template:   '<form>' + 
+                                    '<fieldset>' + 
+                                        //'<phi-input multiline ng-model="html.body"></phi-input>' + 
+                                        '<div text-angular ng-model="html.body"></div>' + 
+                                    '</fieldset>' + 
+                                    '<footer>' + 
+                                        '<phi-button ng-click="vm.save()">guardar</phi-button>' + 
+                                        '<phi-button class="cancel" ng-click="vm.cancel()">cancelar</phi-button>' + 
+                                    '</footer>' + 
+                                '</form>',
+
+                    controller:   mainController,
+                    controllerAs: "vm"
+                },
+
+                remove: {
+
+                    template:   '<div>' + 
+                                    '<h1>Eliminar este texto ?</h1>' +  
+                                    '<footer>' + 
+                                        '<phi-button ng-click="vm.remove()">eliminar</phi-button>' + 
+                                        '<phi-button class="cancel" ng-click="vm.cancel()">cancelar</phi-button>' + 
+                                    '</footer>' +                                         
+                                '</div>',
+
+                    controller:   mainController,
+                    controllerAs: "vm"
+                }
+
+            }
+
+        };
+
+        return service;
+
+
+        //////////////////
+
+        initializeController.$inject = ["$scope", "phiBlockController"];
+        function initializeController($scope, phiBlockController) {
+
+            if ($scope.ngModel.url) {
+
+                phiApi.get($scope.ngModel.url)
+                    .success(function(response) {
+                        $scope.html = response;
+                    });
+
+            } else {
+
+                $scope.html = {
+                    id:   null,
+                    body: null
+                };
+
+                phiBlockController.openAction("create");
+
+            }
+
+        };
+
+
+        mainController.$inject = ["$scope", "phiBlockController"];
+        function mainController($scope, phiBlockController) {
+
+            var vm     = this;
+            vm.cancel  = cancel;
+            vm.create  = create;
+            vm.save    = save;
+            vm.remove  = remove;
+            vm.destroy = destroy;
+
+
+            function cancel() {
+                phiBlockController.openAction("default");
+            }
+
+
+            function create() {
+
+                if (!$scope.ngModel.endpoint) {
+                    //well, that was not configured properly
+                    return;
+                }
+
+                phiApi.post($scope.ngModel.endpoint, $scope.html)
+                    .success(function(response, code, headers) {
+                        $scope.html.id     = response.id;
+                        $scope.ngModel.url = headers("location");
+                        phiBlockController.openAction("default");
+                        phiBlockController.create();
+                    });
+
+            }
+
+
+            function save() {
+
+                phiApi.put($scope.ngModel.url, $scope.html)
+                    .success(function(response, code, headers) {
+                        phiBlockController.openAction("default");
+                    });
+
+            }
+
+
+            function remove() {
+
+                phiApi.remove($scope.ngModel.url)
+                    .success(function(response, code, headers) {
+                        phiBlockController.destroy();
+                    });
+
+            }
+
+
+            function destroy() {
+                phiBlockController.destroy();
+            }
+
+
+        };
+
+
+    }
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
+        .factory("phiBlockVideo", phiBlockVideo);
+
+
+
+    phiBlockVideo.$inject = ["phiApi"];
+    function phiBlockVideo(phiApi) {
+
+        var service = {
+
+            type:        "video",
+            title:       "YouTube",
+            description: "",
+
+            initialize: initializeController,
+
+            actions: {
+
+                default: {
+
+                    template:   '<div>' +
+                                    '<p ng-show="!video.videoId">El v&iacute;deo no es v&aacute;lido</p>' +
+                                    '<p ng-show="!!video.videoId" ng-bind="video.title"></p>' +
+                                    '<iframe ng-if="!!video.videoId" width="100%" height="420" ng-src="{{\'http://www.youtube.com/embed/\' + video.videoId | trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>' + 
+                                '</div>'
+
+                },
+
+
+                create: {
+
+                    template:   '<form>' +
+                                    '<fieldset>' + 
+                                        '<phi-input ng-model="video.url" label="URL de youtube"></phi-input>' +
+
+                                        '<p ng-show="!video.videoId" class="notice">Debes ingresar una direcci&oacute;n v&aacute;lida de YouTube</p>' +
+
+                                        '<div ng-show="!!video.videoId" class="description">' + 
+                                            '<img ng-if="!!video.thumbnail" ng-src="{{video.thumbnail}}" />' +
+                                            '<phi-input multiline ng-model="video.title" label="descripci&oacute;n"></phi-input>' +
+                                        '</div>' + 
+                                    '</fieldset>' + 
+
+                                    '<footer>' + 
+                                        '<phi-button ng-show="!!video.videoId" ng-click="vm.create()">guardar</phi-button>' +
+                                        '<phi-button ng-click="vm.destroy()" class="cancel">cancelar</phi-button>' + 
+                                    '</footer>' + 
+                                '</form>',
+
+                    controller:   mainController,
+                    controllerAs: "vm"
+                },
+
+                modify: {
+
+                    template:   '<form>' +
+                                    '<fieldset>' + 
+                                        '<phi-input ng-model="video.url" label="URL de youtube"></phi-input>' +
+
+                                        '<p ng-show="!video.videoId" class="notice">Debes ingresar una direcci&oacute;n v&aacute;lida de YouTube</p>' +
+
+                                        '<div ng-show="!!video.videoId" class="description">' + 
+                                            '<img ng-if="!!video.thumbnail" ng-src="{{video.thumbnail}}" />' +
+                                            '<phi-input multiline ng-model="video.title" label="descripci&oacute;n"></phi-input>' +
+                                        '</div>' + 
+                                    '</fieldset>' + 
+
+                                    '<footer>' + 
+                                        '<phi-button ng-show="!!video.videoId" ng-click="vm.save()">guardar</phi-button>' +
+                                        '<phi-button ng-click="vm.cancel()" class="cancel">cancelar</phi-button>' + 
+                                    '</footer>' + 
+                                '</form>',
+
+                    controller:   mainController,
+                    controllerAs: "vm"
+                },
+
+                remove: {
+
+                    template:   '<form>' + 
+                                    '<h1>Eliminar este video ?</h1>' +
+                                    '<footer>' + 
+                                        '<phi-button ng-click="vm.remove()">eliminar</phi-button>' + 
+                                        '<phi-button ng-click="vm.cancel()" class="cancel">cancelar</phi-button>' + 
+                                    '</footer>' + 
+                                '</form>',
+
+                    controller:   mainController,
+                    controllerAs: "vm"
+                }
+
+            }
+
+        };
+
+        return service;
+
+
+        //////////////////
+
+        initializeController.$inject = ["$scope", "phiBlockController"];
+        function initializeController($scope, phiBlockController) {
+
+            if ($scope.ngModel.url) {
+
+                phiApi.get($scope.ngModel.url)
+                    .success(function(response) {
+                        $scope.video = response;
+                    });
+
+            } else {
+
+                $scope.video = {
+                    id:        null,
+                    source:    "YouTube",
+                    title:     null,
+                    url:       null,
+                    videoId:   null,
+                    thumbnail: null,
+                    isInvalid: false
+                };
+
+                phiBlockController.openAction("create");
+
+            }
+
+
+            $scope.$watch("video.url", function(current, previous) {
+
+                if (current == previous) {
+                    return;
+                }
+
+                $scope.video.videoId   = getYoutubeId(current);
+                $scope.video.isInvalid = !!current && !$scope.video.videoId;
+                $scope.video.thumbnail = $scope.video.videoId ? "http://img.youtube.com/vi/" + $scope.video.videoId + "/0.jpg" : null;
+
+            });
+
+
+            function getYoutubeId(url) {
+
+                if (!url.trim().length) {
+                    return null;
+                }
+
+                var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                var match  = url.match(regExp);
+                if (match && match[2].length == 11) {
+                    return match[2];
+                } else {
+                    return null;
+                }
+            };
+
+
+        };
+
+        mainController.$inject = ["$scope", "phiBlockController"];
+        function mainController($scope, phiBlockController) {
+
+            var vm     = this;
+            vm.cancel  = cancel;
+            vm.create  = create;
+            vm.save    = save;
+            vm.remove  = remove;
+            vm.destroy = destroy;
+
+            function cancel() {
+                phiBlockController.openAction("default");
+            }
+
+            function create() {
+
+                if (!$scope.ngModel.endpoint) {
+                    //well, that was not configured properly
+                    return;
+                }
+
+                phiApi.post($scope.ngModel.endpoint, $scope.video)
+                    .success(function(response, code, headers) {
+                        $scope.ngModel.url = headers("location");
+                        phiBlockController.openAction("default");
+                        phiBlockController.create();
+                    });
+
+            }
+
+            function save() {
+
+                phiApi.put($scope.ngModel.url, $scope.video)
+                    .success(function(response, code, headers) {
+                        phiBlockController.openAction("default");
+                    });
+
+            }
+
+            function remove() {
+
+                phiApi.remove($scope.ngModel.url)
+                    .success(function(response, code, headers) {
+                        phiBlockController.destroy();
+                    });
+
+            }
+
+            function destroy() {
+                phiBlockController.destroy();
+            }
+
+        };
+
+
+
+    }
 
 })();
 /*

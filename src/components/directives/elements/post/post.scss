@@ -1,0 +1,67 @@
+$phi-block-toolbar-height: 42px;
+
+.phi-post {
+
+
+    .phi-block-adder {
+
+        padding: 12px;
+        border-top: 1px dashed #ccc;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+
+                cursor: pointer;
+
+                display: inline-block;
+                width: 120px;
+                text-align: center;
+
+                &:before {
+                    display: block;
+                    font-size: 36px;
+                }
+            }
+        }
+
+    }
+
+
+}
+
+.phi-block {
+
+    .phi-block-toolbar {
+
+        position: relative;
+        height: $phi-block-toolbar-height;
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.065);
+
+        cursor: move;
+
+        & > h3 {
+            font-size: 12px;
+            line-height: $phi-block-toolbar-height;
+            padding-left: 12px;
+        }
+
+        .phi-block-menu {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            button {
+                background: transparent;
+                border: 0;
+                padding: 6px 22px;
+                height: $phi-block-toolbar-height;
+            }
+        }
+    }
+
+}

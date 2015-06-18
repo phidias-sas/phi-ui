@@ -73,7 +73,7 @@
 
                 var request = {
                     method: method,
-                    url:    "http://" + provider.host + "/" + resource,
+                    url:    provider.host + "/" + resource,
                     data:   data
                 };
 

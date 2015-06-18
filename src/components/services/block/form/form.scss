@@ -1,0 +1,110 @@
+phi-block.form {
+
+    form {
+
+        & > h1 {
+            margin: 0;
+            padding: 0;
+        }
+
+        & > p {
+            margin: 0;
+            padding: 0;
+            opacity: 0.8;
+        }
+
+        fieldset {
+            padding: 12px;
+        }
+
+        .rendered {
+
+            margin-bottom: 24px;
+
+            phi-input {
+                margin: 0;
+            }
+
+            select {
+                display: block;
+            }
+
+            .notice {
+                margin: 0;
+                padding: 6px 0;
+                font-size: 12px;
+                opacity: 0.6;
+            }
+            
+        }
+
+    }
+
+
+    .builder {
+
+        .field-adder {
+            margin: 12px 0;
+            background: transparent;
+            border: 0;
+            padding: 12px 24px;
+        }
+
+        .field {
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+
+            .toolbar {
+                position: relative;
+                height: 30px;
+                border-radius: 4px;
+                background-color: rgba(0, 100, 0, 0.1);
+                margin-bottom: 6px;
+
+                a {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+
+                    display: block;
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 0 8px;
+                }
+            }
+
+            .rendered,
+            .controls {
+                display: inline-block;
+                width: 47%;
+                vertical-align: top;
+            }
+
+            .rendered {
+                margin-right: 5%;
+            }
+
+            .controls {
+                background: #f3f3f3;
+                padding: 12px;
+                border: 1px dashed #ccc;
+                border-radius: 4px;
+
+                .notice {
+                    font-size: 12px;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+
+        }
+
+
+        footer {
+            margin-top: 24px;
+        }
+
+    }
+
+}

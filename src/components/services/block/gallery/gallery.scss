@@ -1,0 +1,44 @@
+phi-block.video {
+
+    form {
+
+        phi-input {
+            margin: 0;
+        }
+
+        p.notice {
+            margin: 8px 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .description  {
+
+            margin-top: 24px;
+
+            img, 
+            phi-input {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            phi-input {
+                min-width: 500px;
+            }
+
+            img {
+                float: left;
+                width: 150px;
+                margin-right: 24px;
+            }
+
+        }
+
+        footer {
+            margin-top: 24px;
+        }
+
+    }
+
+
+}

@@ -1,4 +1,22 @@
 @import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+.ta-toolbar {
+  background-color: rgba(0, 0, 0, 0.065);
+  padding: 6px 0; }
+  .ta-toolbar .btn-group {
+    display: inline-block;
+    margin: 0 6px; }
+    .ta-toolbar .btn-group .btn {
+      position: relative;
+      float: left;
+      margin-left: -1px; }
+  .ta-toolbar .btn {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 6px 12px; }
+
+.ta-editor {
+  background-color: #fff; }
+
 /*
 
 Set colors based on current color theme
@@ -20399,6 +20417,9 @@ phi-avatar {
     phi-avatar > div > img {
       width: 100%; }
 
+phi-block {
+  display: block; }
+
 [phi-button].cancel {
   background: transparent !important;
   color: #444; }
@@ -20887,7 +20908,7 @@ phi-gallery {
       transform-origin: center;
       opacity: 0;
       transform: scale(0.95); }
-      .phi-gallery-modal > .phi-gallery-modal-contents > div.phi-gallery-shown {
+      .phi-gallery-modal > .phi-gallery-modal-contents > div.phi-switch-active {
         opacity: 1;
         transform: scale(1); }
     .phi-gallery-modal > .phi-gallery-modal-contents img {
@@ -23097,6 +23118,42 @@ phi-submenu {
 phi-menu.phi-texture-xray a:hover, .phi-texture-xray phi-menu a:hover {
   background: rgba(255, 255, 255, 0.3); }
 
+.phi-post .phi-block-adder {
+  padding: 12px;
+  border-top: 1px dashed #ccc; }
+  .phi-post .phi-block-adder ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .phi-post .phi-block-adder ul li {
+      cursor: pointer;
+      display: inline-block;
+      width: 120px;
+      text-align: center; }
+      .phi-post .phi-block-adder ul li:before {
+        display: block;
+        font-size: 36px; }
+
+.phi-block .phi-block-toolbar {
+  position: relative;
+  height: 42px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.065);
+  cursor: move; }
+  .phi-block .phi-block-toolbar > h3 {
+    font-size: 12px;
+    line-height: 42px;
+    padding-left: 12px; }
+  .phi-block .phi-block-toolbar .phi-block-menu {
+    position: absolute;
+    top: 0;
+    right: 0; }
+    .phi-block .phi-block-toolbar .phi-block-menu button {
+      background: transparent;
+      border: 0;
+      padding: 6px 22px;
+      height: 42px; }
+
 phi-select {
   position: relative;
   display: inline-block;
@@ -23170,6 +23227,107 @@ phi-toolbar {
     color: #fff;
     font-weight: normal;
     margin: 0 1em; }
+
+phi-block.form form > h1 {
+  margin: 0;
+  padding: 0; }
+phi-block.form form > p {
+  margin: 0;
+  padding: 0;
+  opacity: 0.8; }
+phi-block.form form fieldset {
+  padding: 12px; }
+phi-block.form form .rendered {
+  margin-bottom: 24px; }
+  phi-block.form form .rendered phi-input {
+    margin: 0; }
+  phi-block.form form .rendered select {
+    display: block; }
+  phi-block.form form .rendered .notice {
+    margin: 0;
+    padding: 6px 0;
+    font-size: 12px;
+    opacity: 0.6; }
+phi-block.form .builder .field-adder {
+  margin: 12px 0;
+  background: transparent;
+  border: 0;
+  padding: 12px 24px; }
+phi-block.form .builder .field {
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 12px;
+  margin-bottom: 24px; }
+  phi-block.form .builder .field .toolbar {
+    position: relative;
+    height: 30px;
+    border-radius: 4px;
+    background-color: rgba(0, 100, 0, 0.1);
+    margin-bottom: 6px; }
+    phi-block.form .builder .field .toolbar a {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 8px; }
+  phi-block.form .builder .field .rendered, phi-block.form .builder .field .controls {
+    display: inline-block;
+    width: 47%;
+    vertical-align: top; }
+  phi-block.form .builder .field .rendered {
+    margin-right: 5%; }
+  phi-block.form .builder .field .controls {
+    background: #f3f3f3;
+    padding: 12px;
+    border: 1px dashed #ccc;
+    border-radius: 4px; }
+    phi-block.form .builder .field .controls .notice {
+      font-size: 12px;
+      margin: 0;
+      padding: 0; }
+phi-block.form .builder footer {
+  margin-top: 24px; }
+
+phi-block.video form phi-input {
+  margin: 0; }
+phi-block.video form p.notice {
+  margin: 8px 0;
+  font-size: 12px;
+  opacity: 0.8; }
+phi-block.video form .description {
+  margin-top: 24px; }
+  phi-block.video form .description img, phi-block.video form .description phi-input {
+    display: inline-block;
+    vertical-align: top; }
+  phi-block.video form .description phi-input {
+    min-width: 500px; }
+  phi-block.video form .description img {
+    float: left;
+    width: 150px;
+    margin-right: 24px; }
+phi-block.video form footer {
+  margin-top: 24px; }
+
+phi-block.video form phi-input {
+  margin: 0; }
+phi-block.video form p.notice {
+  margin: 8px 0;
+  font-size: 12px;
+  opacity: 0.8; }
+phi-block.video form .description {
+  margin-top: 24px; }
+  phi-block.video form .description img, phi-block.video form .description phi-input {
+    display: inline-block;
+    vertical-align: top; }
+  phi-block.video form .description phi-input {
+    min-width: 500px; }
+  phi-block.video form .description img {
+    float: left;
+    width: 150px;
+    margin-right: 24px; }
+phi-block.video form footer {
+  margin-top: 24px; }
 
 [phi-color-tint] {
   position: relative; }

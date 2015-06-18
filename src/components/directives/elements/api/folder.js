@@ -84,7 +84,7 @@
 
             attributes.$observe("url", function(url) {
 
-                scope.uploader = new FileUploader({url: "http://"+phiApi.host+"/"+scope.url});
+                scope.uploader = new FileUploader({url: phiApi.host+"/"+scope.url});
 
                 scope.uploader.onAfterAddingAll = function(addedItems) {
                     scope.uploader.uploadAll();
