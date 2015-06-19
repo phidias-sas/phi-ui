@@ -28,7 +28,7 @@
                                     '</div>' + 
 
                                     '<phi-gallery>' + 
-                                        '<phi-gallery-image ng-repeat="picture in gallery.pictures" src="{{picture.url}}" thumbnail="{{picture.thumbnail}}"></phi-gallery-image>' + 
+                                        '<phi-gallery-image ng-repeat="picture in gallery.pictures" src="{{picture.url|trustAsResourceUrl}}" thumbnail="{{picture.thumbnail|trustAsResourceUrl}}"></phi-gallery-image>' + 
                                     '</phi-gallery>' + 
                                 '</div>'
 

@@ -28,12 +28,20 @@ will produce
 
                 attributes.$observe("src", function(src) {
 
-                    var backgroundImage = "url('"+src+"')";
-                    if (scope['default']) {
-                        backgroundImage += ", url('"+scope['default']+"')";
+                    var backgrounds = [];
+
+                    if (src) {
+                        backgrounds.push("url('"+src+"')");
                     }
 
-                    element.css("background-image", backgroundImage);
+                    if (scope['default']) {
+                        backgrounds.push("url('"+scope['default']+"')");
+                    }
+
+                    if (backgrounds.length) {
+                        element.css("background-image", backgrounds.join());
+                    }
+
                 });
 
             }

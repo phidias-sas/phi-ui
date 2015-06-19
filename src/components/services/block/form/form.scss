@@ -17,16 +17,23 @@ phi-block.form {
             padding: 12px;
         }
 
-        .rendered {
+        .preview {
 
-            margin-bottom: 24px;
+            padding: 24px;
 
-            phi-input {
+            label {
+                display: block;
+            }
+
+            phi-input,
+            input,
+            textarea,
+            select {
                 margin: 0;
             }
 
-            select {
-                display: block;
+            input[type="checkbox"] {
+                marign-right: 1em;
             }
 
             .notice {
@@ -56,10 +63,11 @@ phi-block.form {
             margin-bottom: 24px;
 
             .toolbar {
+                cursor: move;
                 position: relative;
                 height: 30px;
                 border-radius: 4px;
-                background-color: rgba(0, 100, 0, 0.1);
+                background-color: #f0f0f0;
                 margin-bottom: 6px;
 
                 a {
@@ -74,14 +82,14 @@ phi-block.form {
                 }
             }
 
-            .rendered,
+            .preview,
             .controls {
                 display: inline-block;
                 width: 47%;
                 vertical-align: top;
             }
 
-            .rendered {
+            .controls {
                 margin-right: 5%;
             }
 

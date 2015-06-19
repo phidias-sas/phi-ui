@@ -23237,13 +23237,15 @@ phi-block.form form > p {
   opacity: 0.8; }
 phi-block.form form fieldset {
   padding: 12px; }
-phi-block.form form .rendered {
-  margin-bottom: 24px; }
-  phi-block.form form .rendered phi-input {
-    margin: 0; }
-  phi-block.form form .rendered select {
+phi-block.form form .preview {
+  padding: 24px; }
+  phi-block.form form .preview label {
     display: block; }
-  phi-block.form form .rendered .notice {
+  phi-block.form form .preview phi-input, phi-block.form form .preview input, phi-block.form form .preview textarea, phi-block.form form .preview select {
+    margin: 0; }
+  phi-block.form form .preview input[type="checkbox"] {
+    marign-right: 1em; }
+  phi-block.form form .preview .notice {
     margin: 0;
     padding: 6px 0;
     font-size: 12px;
@@ -23258,10 +23260,11 @@ phi-block.form .builder .field {
   padding-bottom: 12px;
   margin-bottom: 24px; }
   phi-block.form .builder .field .toolbar {
+    cursor: move;
     position: relative;
     height: 30px;
     border-radius: 4px;
-    background-color: rgba(0, 100, 0, 0.1);
+    background-color: #f0f0f0;
     margin-bottom: 6px; }
     phi-block.form .builder .field .toolbar a {
       position: absolute;
@@ -23271,11 +23274,11 @@ phi-block.form .builder .field {
       height: 30px;
       line-height: 30px;
       padding: 0 8px; }
-  phi-block.form .builder .field .rendered, phi-block.form .builder .field .controls {
+  phi-block.form .builder .field .preview, phi-block.form .builder .field .controls {
     display: inline-block;
     width: 47%;
     vertical-align: top; }
-  phi-block.form .builder .field .rendered {
+  phi-block.form .builder .field .controls {
     margin-right: 5%; }
   phi-block.form .builder .field .controls {
     background: #f3f3f3;

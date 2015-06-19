@@ -9,44 +9,49 @@
     phiBlockForm.$inject = ["phiApi"];
     function phiBlockForm(phiApi) {
 
+
+        var fieldPreviewTemplate = '<div class="preview" ng-switch="field.type">' + 
+
+                                        '<div ng-switch-when="text">' + 
+                                            //'<phi-input label="{{field.title}}"></phi-input>' + 
+                                            '<label ng-bind="field.title"></label>' + 
+                                            '<input type="text" />' + 
+                                        '</div>' + 
+
+                                        '<div ng-switch-when="textarea">' + 
+                                            //'<phi-input multiline label="{{field.title}}"></phi-input>' + 
+                                            '<label ng-bind="field.title"></label>' + 
+                                            '<textarea></textarea>' +
+                                        '</div>' + 
+
+                                        '<div ng-switch-when="select">' + 
+                                            '<label ng-bind="field.title"></label>' + 
+                                            '<select>' + 
+                                                '<option value="">---</option>' + 
+                                                '<option ng-repeat="line in field.options | lines" value="{{line}}">{{line}}</option>' + 
+                                            '</select>' + 
+                                        '</div>' + 
+
+                                        '<div ng-switch-when="checkbox">' + 
+                                            '<input type="checkbox">{{field.title}}</input>' + 
+                                        '</div>' + 
+
+                                        '<p class="notice" ng-bind="field.description"></p>' + 
+
+                                    '</div>';
+
+
         var formTemplate = '<form class="builder">' +
                                 '<fieldset>' + 
-                                    '<phi-input ng-model="form.name" label="t&iacute;tulo"></phi-input>' + 
                                     '<phi-input multiline ng-model="form.description" label="descripci&oacute;n"></phi-input>' + 
                                 '</fieldset>' + 
 
-                                '<fieldset class="fields" data-as-sortable="{containment: \'.fields\'}" ng-model="form.fields">' + 
+                                '<fieldset class="fields" sv-root sv-part="form.fields">' + 
 
-                                    '<div ng-repeat="field in form.fields" data-as-sortable-item class="field">' + 
+                                    '<div ng-repeat="field in form.fields" sv-element class="field">' + 
 
-                                        '<div class="toolbar" data-as-sortable-item-handle>' + 
+                                        '<div class="toolbar" sv-handle>' + 
                                             '<a phi-icon="fa-times" ng-click="vm.removeField(field)" href="">&nbsp;</a>' + 
-                                        '</div>' + 
-
-                                        '<div class="rendered" ng-switch="field.type">' + 
-
-                                            '<div ng-switch-when="text">' + 
-                                                '<phi-input label="{{field.title}}"></phi-input>' + 
-                                            '</div>' + 
-
-                                            '<div ng-switch-when="textarea">' + 
-                                                '<phi-input multiline label="{{field.title}}"></phi-input>' + 
-                                            '</div>' + 
-
-                                            '<div ng-switch-when="select">' + 
-                                                '<label ng-bind="field.title"></label>' + 
-                                                '<select>' + 
-                                                    '<option value="">---</option>' + 
-                                                    '<option ng-repeat="line in field.options | lines" value="{{line}}">{{line}}</option>' + 
-                                                '</select>' + 
-                                            '</div>' + 
-
-                                            '<div ng-switch-when="checkbox">' + 
-                                                '<input type="checkbox">{{field.title}}</input>' + 
-                                            '</div>' + 
-
-                                            '<p class="notice" ng-bind="field.description"></p>' + 
-
                                         '</div>' + 
 
                                         '<div class="controls">' + 
@@ -63,6 +68,8 @@
                                                 '<p class="notice">Escribe una opci&oacute;n por l&iacute;nea</p>' + 
                                             '</div>' + 
                                         '</div>' + 
+
+                                        fieldPreviewTemplate + 
 
                                     '</div>' + 
 
@@ -92,39 +99,12 @@
 
                     template:   '<form class="face">' +
 
-                                    '<h1 ng-bind="form.name"></h1>' + 
                                     '<p ng-bind="form.description"></p>' + 
 
                                     '<fieldset class="fields">' + 
 
-                                        '<div class="rendered" ng-repeat="field in form.fields">' + 
-
-                                            '<div ng-switch="field.type">' + 
-
-                                                '<div ng-switch-when="text">' + 
-                                                    '<phi-input label="{{field.title}}"></phi-input>' + 
-                                                '</div>' + 
-
-                                                '<div ng-switch-when="textarea">' + 
-                                                    '<phi-input multiline label="{{field.title}}"></phi-input>' + 
-                                                '</div>' + 
-
-                                                '<div ng-switch-when="select">' + 
-                                                    '<label ng-bind="field.title"></label>' + 
-                                                    '<select>' + 
-                                                        '<option value="">---</option>' + 
-                                                        '<option ng-repeat="line in field.options | lines" value="{{line}}">{{line}}</option>' + 
-                                                    '</select>' + 
-                                                '</div>' + 
-
-                                                '<div ng-switch-when="checkbox">' + 
-                                                    '<input type="checkbox">{{field.title}}</input>' + 
-                                                '</div>' + 
-
-                                                '<p class="notice" ng-bind="field.description"></p>' + 
-
-                                            '</div>' + 
-
+                                        '<div ng-repeat="field in form.fields">' + 
+                                            fieldPreviewTemplate + 
                                         '</div>' + 
 
                                     '</fieldset>' + 
