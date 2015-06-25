@@ -20,7 +20,9 @@
             setToken:       setToken,
             setCredentials: setCredentials,
             login:          login,
-            logout:         logout
+            logout:         logout,
+
+            signup:         signup
 
         };
 
@@ -86,6 +88,13 @@
 
             phiApi.setToken(null);
             phiStorage.session.clear("phiAuthentication.token");
+        };
+
+
+        function signup(accountData) {
+
+            return phiApi.post("accounts", accountData);
+
         };
 
     }

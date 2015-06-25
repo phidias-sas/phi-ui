@@ -74,9 +74,9 @@ angular.module("phi.ui").directive("phiInput", [function() {
             scope.$watch("ngModel", function(newValue, oldValue) {
                 scope.state.empty = newValue == undefined || !newValue.length;
                 element.toggleClass('phi-input-empty', scope.state.empty);
-                scope.resizeTextarea();
 
                 if (newValue != oldValue) {
+                    scope.resizeTextarea();
                     scope.ngChange();
                 }
             });
