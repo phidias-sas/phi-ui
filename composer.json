@@ -1,0 +1,11 @@
+{
+    "name": "phidias/ui.client",
+    "description": "UI kit consisting of CSS and Angular.js components",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Santiago Cortés",
+            "email": "santiago.cortes@phidias.com"
+        }
+    ]
+}
