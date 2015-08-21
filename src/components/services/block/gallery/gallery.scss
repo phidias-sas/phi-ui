@@ -1,44 +1,34 @@
-phi-block.video {
+phi-block.gallery {
 
-    form {
+    .gallery-class-picker {
+        list-style: none;
+        margin: 0;
+        padding: 16px;
 
-        phi-input {
-            margin: 0;
-        }
+        text-align: center;
 
-        p.notice {
-            margin: 8px 0;
-            font-size: 12px;
-            opacity: 0.8;
-        }
+        & > li {
 
-        .description  {
+            cursor: pointer;
 
-            margin-top: 24px;
+            display: inline-block;
+            width: 180px;
 
-            img, 
-            phi-input {
-                display: inline-block;
-                vertical-align: top;
+            padding: 16px;
+            margin: 0 1em;
+            background-color: #eee;
+            border-radius: 4px;
+
+            h1 {
+                font-size: 32px;
+                margin-bottom: 6px;
+                color: #333;
             }
 
-            phi-input {
-                min-width: 500px;
-            }
-
-            img {
-                float: left;
-                width: 150px;
-                margin-right: 24px;
+            &:hover {
+                background-color: #ddd;
             }
 
         }
-
-        footer {
-            margin-top: 24px;
-        }
-
     }
-
-
 }

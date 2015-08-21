@@ -1,11 +1,11 @@
 //Global installation
 //npm install gulp gulp-concat gulp-rename gulp-sass gulp-minify-css gulp-uglify 
 
-// Base name for generated files
-var name = "phi-ui";
+// Set the full path to the phi-ui folder (only necessary when running gulp outside the project folder)
+var projectFolder = "";
 
-// Set the full path to the folder (only necessary when running gulp outside the project folder)
-var basedir = "";
+// Folder to store the compiled files
+var buildFolder = projectFolder + '/public/build';
 
 // Include gulp
 var gulp = require('gulp');
@@ -27,24 +27,24 @@ function logError(error) {
 gulp.task('sass', function() {
 
     return gulp.src([
-            basedir+'/src/style/**/*.scss',
-            basedir+'/src/components/**/*.scss',
-            basedir+'/src/states/**/*.scss'
+            projectFolder+'/src/style/**/*.scss',
+            projectFolder+'/src/components/**/*.scss',
+            projectFolder+'/src/states/**/*.scss'
         ])
 
-        .pipe(concat(name+'.css'))
+        .pipe(concat('phi-ui.css'))
         .pipe(sass())
             .on('error', logError)
-        .pipe(gulp.dest(basedir+'/public/build'))
-        .pipe(rename(name+'.min.css'))
+        .pipe(gulp.dest(buildFolder))
+        .pipe(rename('phi-ui.min.css'))
         .pipe(minifyCSS())
-        .pipe(gulp.dest(basedir+'/public/build'));
+        .pipe(gulp.dest(buildFolder));
 });
 
 // Copy all .html files in public/partials
 gulp.task('html', function() {
-    return gulp.src(basedir+'/src/states/**/*.html')
-        .pipe(gulp.dest(basedir+'/public/partials'));
+    return gulp.src(projectFolder+'/src/states/**/*.html')
+        .pipe(gulp.dest(projectFolder+'/public/partials'));
 });
 
 // Concatenate and minify javascript
@@ -52,28 +52,28 @@ gulp.task('js', function() {
 
     return gulp.src([
 
-            basedir+'/src/vendor/**/*.js',
+            projectFolder+'/src/vendor/**/*.js',
 
-            basedir+'/src/module.js',
-            basedir+'/src/config.js',
-            basedir+'/src/run.js',
-            basedir+'/src/components/**/*.js',
-            basedir+'/src/states/**/*.js'
+            projectFolder+'/src/module.js',
+            projectFolder+'/src/config.js',
+            projectFolder+'/src/run.js',
+            projectFolder+'/src/components/**/*.js',
+            projectFolder+'/src/states/**/*.js'
         ])
 
-        .pipe(concat(name+'.js'))
-        .pipe(gulp.dest(basedir+'/public/build'))
-        .pipe(rename(name+'.min.js'))
+        .pipe(concat('phi-ui.js'))
+        .pipe(gulp.dest(buildFolder))
+        .pipe(rename('phi-ui.min.js'))
         .pipe(uglify())
             .on('error', logError)
-        .pipe(gulp.dest(basedir+'/public/build'));
+        .pipe(gulp.dest(buildFolder));
 });
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch(basedir+'/src/**/*.js',   ['js']);
-    gulp.watch(basedir+'/src/**/*.html', ['html']);
-    gulp.watch(basedir+'/src/**/*.scss', ['sass']);
+    gulp.watch(projectFolder+'/src/**/*.js',   ['js']);
+    gulp.watch(projectFolder+'/src/**/*.html', ['html']);
+    gulp.watch(projectFolder+'/src/**/*.scss', ['sass']);
 
 });
 

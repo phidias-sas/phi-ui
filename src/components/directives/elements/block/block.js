@@ -1,3 +1,23 @@
+/*
+A BLOCK is a Json object (tipically contained within a Phidias post)
+which specifies a type and URL
+
+e.g.
+someBlock = {
+    "type": "html",
+    "url": "nodes\/208elsox\/media\/html\/20925fn5",
+}
+
+This directive will take a block object as its ng-model and invoke a
+service (phiBlock<type>) which will fetch the url and render its
+contents.
+
+e.g.:
+
+<phi-block ng-model="someBlock"></phi-block>
+
+
+*/
 (function() {
     'use strict';
 

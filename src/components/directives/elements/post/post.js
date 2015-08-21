@@ -106,9 +106,9 @@ post = {
                             '<div class="phi-block-adder" ng-show="vm.post.editable">' +
                                 '<ul>' +
                                     '<li ng-if="vm.post.insertable.html" class="html" phi-icon="fa-font" ng-click="vm.addBlock(\'html\')">texto</li>' +
+                                    '<li ng-if="vm.post.insertable.gallery" class="gallery" phi-icon="fa-files-o" ng-click="vm.addBlock(\'gallery\')">archivos</li>' +
                                     '<li ng-if="vm.post.insertable.video" class="video" phi-icon="fa-youtube-play" ng-click="vm.addBlock(\'video\')">video</li>' +
                                     '<li ng-if="vm.post.insertable.form" class="form" phi-icon="fa-pencil-square-o" ng-click="vm.addBlock(\'form\')">formulario</li>' +
-                                    '<li ng-if="vm.post.insertable.gallery" class="gallery" phi-icon="fa-picture-o" ng-click="vm.addBlock(\'gallery\')">galer&iacute;a</li>' +
                                 '</ul>' +
                             '</div>' +
 

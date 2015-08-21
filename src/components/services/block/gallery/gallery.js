@@ -24,7 +24,7 @@
                     template:   '<div>' +
 
                                     '<div ng-show="!gallery.pictures.length">' + 
-                                        'no hay nada' + 
+                                        'No se han subido archivos' + 
                                     '</div>' + 
 
                                     '<phi-gallery>' + 
@@ -39,15 +39,22 @@
 
                     template:   '<form>' +
                                     '<fieldset>' + 
-                                        '<select ng-model="gallery.class">' + 
-                                            '<option value="regular">regular</option>' + 
-                                            '<option value="foo">foo</option>' + 
-                                            '<option value="bar">bar</option>' + 
-                                        '</select>' + 
+                                        '<ul class="gallery-class-picker">' + 
+
+                                            '<li ng-click="vm.create(\'gallery\')">' + 
+                                                '<h1 phi-icon="fa-picture-o"></h1>' + 
+                                                '<span>Galer&iacute;a de im&aacute;genes</span>' + 
+                                            '</li>' + 
+
+                                            '<li ng-click="vm.create(\'folder\')">' + 
+                                                '<h1 phi-icon="fa-files-o"></h1>' + 
+                                                '<span>Lista de archivos</span>' + 
+                                            '</li>' + 
+
+                                        '</ul>' + 
                                     '</fieldset>' + 
 
                                     '<footer>' + 
-                                        '<phi-button ng-click="vm.create()">crear</phi-button>' +
                                         '<phi-button ng-click="vm.destroy()" class="cancel">cancelar</phi-button>' + 
                                     '</footer>' + 
                                 '</form>',
@@ -59,18 +66,10 @@
                 modify: {
 
                     template:   '<form>' +
-                                    '<fieldset>' + 
-                                        '<select ng-model="gallery.class" ng-change="vm.save()">' + 
-                                            '<option value="regular">regular</option>' + 
-                                            '<option value="foo">foo</option>' + 
-                                            '<option value="bar">bar</option>' + 
-                                        '</select>' + 
-                                    '</fieldset>' + 
 
                                     '<phi-api-folder url="{{ngModel.url}}/files" on-change="vm.reload()"></phi-api-folder>' + 
 
                                     '<footer>' + 
-                                        //'<phi-button ng-click="vm.save()">guardar</phi-button>' +
                                         '<phi-button ng-click="vm.cancel()" class="cancel">aceptar</phi-button>' + 
                                     '</footer>' + 
                                 '</form>',
@@ -152,7 +151,9 @@
                 phiBlockController.openAction("default");
             }
 
-            function create() {
+            function create(type) {
+
+                $scope.gallery.type = type;
 
                 if (!$scope.ngModel.endpoint) {
                     //well, that was not configured properly
