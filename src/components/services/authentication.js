@@ -62,11 +62,7 @@
 
         function login(username, password) {
 
-            return phiApi.post("oauth/token",
-                    {
-                        grant_type: "client_credentials"
-                    },
-
+            return phiApi.post("oauth/token", "grant_type=client_credentials",
                     {
                         headers: {
                             "Authorization": "Basic " + btoa(username + ":" + password),

@@ -35,75 +35,6 @@ return a+c}})}),function(a){a(vb)}(function(a){return a.defineLocale("en-gb",{mo
     'use strict';
 
     angular
-        .module("phi.ui")
-        .filter("lines", lines);
-
-    function lines() {
-        return function(text) {
-
-            var retval = [];
-
-            if (text == undefined) {
-                return retval;
-            }
-
-            text.split("\n").map(function(line) {
-                var trimmed = line.trim();
-                if (trimmed.length > 0) {
-                    retval.push(trimmed);
-                }
-            });
-
-            return retval;
-        };
-    }
-
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module("phi.ui")
-        .filter("momentCalendar", calendar)
-        .filter("momentFromNow", fromNow);
-
-    function calendar() {
-        return function(timestamp) {
-            return moment(timestamp*1000).calendar();
-        };
-    }
-
-    function fromNow() {
-        return function(timestamp) {
-            return moment(timestamp*1000).fromNow();
-        };
-    }
-
-
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('phi.ui')
-        .filter('trustAsResourceUrl', trustAsResourceUrl)
-        .filter('trustAsUrl', trustAsUrl);
-
-    trustAsResourceUrl.$inject = ["$sce"];
-    function trustAsResourceUrl($sce) {
-        return $sce.trustAsResourceUrl;
-    }
-
-    trustAsUrl.$inject = ["$sce"];
-    function trustAsUrl($sce) {
-        return $sce.trustAsUrl;
-    }
-
-})();
-(function() {
-    'use strict';
-
-    angular
         .module('phi.ui')
         .provider('phiApi', phiApi);
 
@@ -293,11 +224,7 @@ return a+c}})}),function(a){a(vb)}(function(a){return a.defineLocale("en-gb",{mo
 
         function login(username, password) {
 
-            return phiApi.post("oauth/token",
-                    {
-                        grant_type: "client_credentials"
-                    },
-
+            return phiApi.post("oauth/token", "grant_type=client_credentials",
                     {
                         headers: {
                             "Authorization": "Basic " + btoa(username + ":" + password),
@@ -549,6 +476,85 @@ phiStorage.local.retrieve("name", defaultValue);
     }
 
 })();
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
+        .filter("lines", lines);
+
+    function lines() {
+        return function(text) {
+
+            var retval = [];
+
+            if (text == undefined) {
+                return retval;
+            }
+
+            text.split("\n").map(function(line) {
+                var trimmed = line.trim();
+                if (trimmed.length > 0) {
+                    retval.push(trimmed);
+                }
+            });
+
+            return retval;
+        };
+    }
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
+        .filter("momentCalendar", calendar)
+        .filter("momentFromNow", fromNow);
+
+    function calendar() {
+        return function(timestamp) {
+            return moment(timestamp*1000).calendar();
+        };
+    }
+
+    function fromNow() {
+        return function(timestamp) {
+            return moment(timestamp*1000).fromNow();
+        };
+    }
+
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('phi.ui')
+        .filter('trustAsResourceUrl', trustAsResourceUrl)
+        .filter('trustAsUrl', trustAsUrl);
+
+    trustAsResourceUrl.$inject = ["$sce"];
+    function trustAsResourceUrl($sce) {
+        return $sce.trustAsResourceUrl;
+    }
+
+    trustAsUrl.$inject = ["$sce"];
+    function trustAsUrl($sce) {
+        return $sce.trustAsUrl;
+    }
+
+})();
+angular.module("phi.ui").directive("phiCutout", [function() {
+
+    return {
+        restrict: "C",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
+        }
+    };
+
+}]);
 /*
 The phi-modal attribute only moves the element to the bottom of the body.
 visibility can be established with the phi-visible attribute, and styling
@@ -1106,16 +1112,6 @@ angular.module("phi.ui").directive("phiViewportEnterEnd", ["$window", "phiCoordi
 
 }]);
 
-angular.module("phi.ui").directive("phiCutout", [function() {
-
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
-        }
-    };
-
-}]);
 (function() {
     'use strict';
 
@@ -1258,6 +1254,26 @@ angular.module("phi.ui").directive("phiCutout", [function() {
     };
 
 })();
+/*
+A BLOCK is a Json object (tipically contained within a Phidias post)
+which specifies a type and URL
+
+e.g.
+someBlock = {
+    "type": "html",
+    "url": "nodes\/208elsox\/media\/html\/20925fn5",
+}
+
+This directive will take a block object as its ng-model and invoke a
+service (phiBlock<type>) which will fetch the url and render its
+contents.
+
+e.g.:
+
+<phi-block ng-model="someBlock"></phi-block>
+
+
+*/
 (function() {
     'use strict';
 
@@ -1578,95 +1594,6 @@ will produce
     };
 
 })();
-/*
-Same attributes as polymer's paper-element
-*/
-
-angular.module("phi.ui").directive("phiInput", [function() {
-
-    var phiInputCounter = 1;
-
-    return {
-        restrict: "E",
-
-        scope: {
-            name:           "@",
-            type:           "@",
-            label:          "@",
-            placeholder:    "@",
-            ngModel:        "=",
-            ngModelOptions: "=",
-            ngChange:       "&",
-            ngFocus:        "&",
-            ngBlur:         "&"
-        },
-
-        template:   '<div>' +
-                        '<label for="{{elementId}}" ng-bind="label"></label>' +
-                        '<input type="{{type||\'text\'}}" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-model-options="ngModelOptions||{}" />' +
-                        '<textarea ng-if="multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false" ng-model-options="ngModelOptions||{}"></textarea>' +
-                    '</div>' +
-                    '<hr />',
-
-        link: function(scope, element, attributes)  {
-
-            scope.elementId     = "phi-input-" + phiInputCounter++;
-            scope.floatinglabel = (typeof attributes.floatinglabel !== 'undefined') && attributes.floatinglabel !== 'false' && attributes.floatinglabel !== '0';
-            scope.multiline     = (typeof attributes.multiline !== 'undefined') && attributes.multiline !== 'false' && attributes.multiline !== '0';
-
-            scope.state = {
-                focused:  false,
-                empty:    true,
-                disabled: (typeof attributes.disabled !== 'undefined') && attributes.disabled !== 'false' && attributes.disabled !== '0'
-            };
-
-            element.toggleClass("phi-input-disabled", scope.state.disabled);
-
-            element.attr("tabindex", -1);
-
-            element.on("focus", function() {
-                var inputElement = scope.multiline ? element.find("textarea") : element.find("input");
-                inputElement[0].focus();
-            });
-
-
-            scope.focus = function() {
-                scope.state.focused = true;
-                element.toggleClass('phi-input-focused', true);
-                scope.ngFocus();
-            };
-
-            scope.blur = function() {
-                scope.state.focused = false;
-                element.toggleClass('phi-input-focused', false);
-                scope.ngBlur();
-            };
-
-
-            scope.resizeTextarea = function() {
-                if (scope.multiline) {
-                    var textarea = element.find("textarea");
-                    textarea.css("height", "auto");
-                    textarea.css("height", Math.max(textarea[0].scrollHeight, textarea[0].clientHeight) + "px");
-                }
-            };
-
-            scope.$watch("ngModel", function(newValue, oldValue) {
-                scope.state.empty = newValue == undefined || !newValue.length;
-                element.toggleClass('phi-input-empty', scope.state.empty);
-
-                if (newValue != oldValue) {
-                    scope.resizeTextarea();
-                    scope.ngChange();
-                }
-            });
-
-
-        }
-
-    };
-
-}]);
 (function() {
     'use strict';
 
@@ -1781,6 +1708,95 @@ angular.module("phi.ui").directive("phiInput", [function() {
     };
 
 })();
+/*
+Same attributes as polymer's paper-element
+*/
+
+angular.module("phi.ui").directive("phiInput", [function() {
+
+    var phiInputCounter = 1;
+
+    return {
+        restrict: "E",
+
+        scope: {
+            name:           "@",
+            type:           "@",
+            label:          "@",
+            placeholder:    "@",
+            ngModel:        "=",
+            ngModelOptions: "=",
+            ngChange:       "&",
+            ngFocus:        "&",
+            ngBlur:         "&"
+        },
+
+        template:   '<div>' +
+                        '<label for="{{elementId}}" ng-bind="label"></label>' +
+                        '<input type="{{type||\'text\'}}" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-model-options="ngModelOptions||{}" />' +
+                        '<textarea ng-if="multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false" ng-model-options="ngModelOptions||{}"></textarea>' +
+                    '</div>' +
+                    '<hr />',
+
+        link: function(scope, element, attributes)  {
+
+            scope.elementId     = "phi-input-" + phiInputCounter++;
+            scope.floatinglabel = (typeof attributes.floatinglabel !== 'undefined') && attributes.floatinglabel !== 'false' && attributes.floatinglabel !== '0';
+            scope.multiline     = (typeof attributes.multiline !== 'undefined') && attributes.multiline !== 'false' && attributes.multiline !== '0';
+
+            scope.state = {
+                focused:  false,
+                empty:    true,
+                disabled: (typeof attributes.disabled !== 'undefined') && attributes.disabled !== 'false' && attributes.disabled !== '0'
+            };
+
+            element.toggleClass("phi-input-disabled", scope.state.disabled);
+
+            element.attr("tabindex", -1);
+
+            element.on("focus", function() {
+                var inputElement = scope.multiline ? element.find("textarea") : element.find("input");
+                inputElement[0].focus();
+            });
+
+
+            scope.focus = function() {
+                scope.state.focused = true;
+                element.toggleClass('phi-input-focused', true);
+                scope.ngFocus();
+            };
+
+            scope.blur = function() {
+                scope.state.focused = false;
+                element.toggleClass('phi-input-focused', false);
+                scope.ngBlur();
+            };
+
+
+            scope.resizeTextarea = function() {
+                if (scope.multiline) {
+                    var textarea = element.find("textarea");
+                    textarea.css("height", "auto");
+                    textarea.css("height", Math.max(textarea[0].scrollHeight, textarea[0].clientHeight) + "px");
+                }
+            };
+
+            scope.$watch("ngModel", function(newValue, oldValue) {
+                scope.state.empty = newValue == undefined || !newValue.length;
+                element.toggleClass('phi-input-empty', scope.state.empty);
+
+                if (newValue != oldValue) {
+                    scope.resizeTextarea();
+                    scope.ngChange();
+                }
+            });
+
+
+        }
+
+    };
+
+}]);
 (function() {
     'use strict';
 
@@ -1983,9 +1999,9 @@ post = {
                             '<div class="phi-block-adder" ng-show="vm.post.editable">' +
                                 '<ul>' +
                                     '<li ng-if="vm.post.insertable.html" class="html" phi-icon="fa-font" ng-click="vm.addBlock(\'html\')">texto</li>' +
+                                    '<li ng-if="vm.post.insertable.gallery" class="gallery" phi-icon="fa-files-o" ng-click="vm.addBlock(\'gallery\')">archivos</li>' +
                                     '<li ng-if="vm.post.insertable.video" class="video" phi-icon="fa-youtube-play" ng-click="vm.addBlock(\'video\')">video</li>' +
                                     '<li ng-if="vm.post.insertable.form" class="form" phi-icon="fa-pencil-square-o" ng-click="vm.addBlock(\'form\')">formulario</li>' +
-                                    '<li ng-if="vm.post.insertable.gallery" class="gallery" phi-icon="fa-picture-o" ng-click="vm.addBlock(\'gallery\')">galer&iacute;a</li>' +
                                 '</ul>' +
                             '</div>' +
 
@@ -2536,7 +2552,7 @@ function phiOption() {
                     template:   '<div>' +
 
                                     '<div ng-show="!gallery.pictures.length">' + 
-                                        'no hay nada' + 
+                                        'No se han subido archivos' + 
                                     '</div>' + 
 
                                     '<phi-gallery>' + 
@@ -2551,15 +2567,22 @@ function phiOption() {
 
                     template:   '<form>' +
                                     '<fieldset>' + 
-                                        '<select ng-model="gallery.class">' + 
-                                            '<option value="regular">regular</option>' + 
-                                            '<option value="foo">foo</option>' + 
-                                            '<option value="bar">bar</option>' + 
-                                        '</select>' + 
+                                        '<ul class="gallery-class-picker">' + 
+
+                                            '<li ng-click="vm.create(\'gallery\')">' + 
+                                                '<h1 phi-icon="fa-picture-o"></h1>' + 
+                                                '<span>Galer&iacute;a de im&aacute;genes</span>' + 
+                                            '</li>' + 
+
+                                            '<li ng-click="vm.create(\'folder\')">' + 
+                                                '<h1 phi-icon="fa-files-o"></h1>' + 
+                                                '<span>Lista de archivos</span>' + 
+                                            '</li>' + 
+
+                                        '</ul>' + 
                                     '</fieldset>' + 
 
                                     '<footer>' + 
-                                        '<phi-button ng-click="vm.create()">crear</phi-button>' +
                                         '<phi-button ng-click="vm.destroy()" class="cancel">cancelar</phi-button>' + 
                                     '</footer>' + 
                                 '</form>',
@@ -2571,18 +2594,10 @@ function phiOption() {
                 modify: {
 
                     template:   '<form>' +
-                                    '<fieldset>' + 
-                                        '<select ng-model="gallery.class" ng-change="vm.save()">' + 
-                                            '<option value="regular">regular</option>' + 
-                                            '<option value="foo">foo</option>' + 
-                                            '<option value="bar">bar</option>' + 
-                                        '</select>' + 
-                                    '</fieldset>' + 
 
                                     '<phi-api-folder url="{{ngModel.url}}/files" on-change="vm.reload()"></phi-api-folder>' + 
 
                                     '<footer>' + 
-                                        //'<phi-button ng-click="vm.save()">guardar</phi-button>' +
                                         '<phi-button ng-click="vm.cancel()" class="cancel">aceptar</phi-button>' + 
                                     '</footer>' + 
                                 '</form>',
@@ -2664,7 +2679,9 @@ function phiOption() {
                 phiBlockController.openAction("default");
             }
 
-            function create() {
+            function create(type) {
+
+                $scope.gallery.type = type;
 
                 if (!$scope.ngModel.endpoint) {
                     //well, that was not configured properly

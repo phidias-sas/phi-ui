@@ -5,12 +5,6 @@ phi-toolbar {
     display: block;
     height: $phi-toolbar-height;
 
-    & > * {
-        display: inline-block;
-        margin: 0;
-        vertical-align: middle;
-    }
-
     & > button {
         background: transparent;
         border: 0;
