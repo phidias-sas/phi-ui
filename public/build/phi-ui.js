@@ -35,6 +35,75 @@ return a+c}})}),function(a){a(vb)}(function(a){return a.defineLocale("en-gb",{mo
     'use strict';
 
     angular
+        .module("phi.ui")
+        .filter("lines", lines);
+
+    function lines() {
+        return function(text) {
+
+            var retval = [];
+
+            if (text == undefined) {
+                return retval;
+            }
+
+            text.split("\n").map(function(line) {
+                var trimmed = line.trim();
+                if (trimmed.length > 0) {
+                    retval.push(trimmed);
+                }
+            });
+
+            return retval;
+        };
+    }
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module("phi.ui")
+        .filter("momentCalendar", calendar)
+        .filter("momentFromNow", fromNow);
+
+    function calendar() {
+        return function(timestamp) {
+            return moment(timestamp*1000).calendar();
+        };
+    }
+
+    function fromNow() {
+        return function(timestamp) {
+            return moment(timestamp*1000).fromNow();
+        };
+    }
+
+
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('phi.ui')
+        .filter('trustAsResourceUrl', trustAsResourceUrl)
+        .filter('trustAsUrl', trustAsUrl);
+
+    trustAsResourceUrl.$inject = ["$sce"];
+    function trustAsResourceUrl($sce) {
+        return $sce.trustAsResourceUrl;
+    }
+
+    trustAsUrl.$inject = ["$sce"];
+    function trustAsUrl($sce) {
+        return $sce.trustAsUrl;
+    }
+
+})();
+(function() {
+    'use strict';
+
+    angular
         .module('phi.ui')
         .provider('phiApi', phiApi);
 
@@ -476,85 +545,6 @@ phiStorage.local.retrieve("name", defaultValue);
     }
 
 })();
-(function() {
-    'use strict';
-
-    angular
-        .module("phi.ui")
-        .filter("lines", lines);
-
-    function lines() {
-        return function(text) {
-
-            var retval = [];
-
-            if (text == undefined) {
-                return retval;
-            }
-
-            text.split("\n").map(function(line) {
-                var trimmed = line.trim();
-                if (trimmed.length > 0) {
-                    retval.push(trimmed);
-                }
-            });
-
-            return retval;
-        };
-    }
-
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module("phi.ui")
-        .filter("momentCalendar", calendar)
-        .filter("momentFromNow", fromNow);
-
-    function calendar() {
-        return function(timestamp) {
-            return moment(timestamp*1000).calendar();
-        };
-    }
-
-    function fromNow() {
-        return function(timestamp) {
-            return moment(timestamp*1000).fromNow();
-        };
-    }
-
-
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('phi.ui')
-        .filter('trustAsResourceUrl', trustAsResourceUrl)
-        .filter('trustAsUrl', trustAsUrl);
-
-    trustAsResourceUrl.$inject = ["$sce"];
-    function trustAsResourceUrl($sce) {
-        return $sce.trustAsResourceUrl;
-    }
-
-    trustAsUrl.$inject = ["$sce"];
-    function trustAsUrl($sce) {
-        return $sce.trustAsUrl;
-    }
-
-})();
-angular.module("phi.ui").directive("phiCutout", [function() {
-
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes)  {
-            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
-        }
-    };
-
-}]);
 /*
 The phi-modal attribute only moves the element to the bottom of the body.
 visibility can be established with the phi-visible attribute, and styling
@@ -1112,6 +1102,16 @@ angular.module("phi.ui").directive("phiViewportEnterEnd", ["$window", "phiCoordi
 
 }]);
 
+angular.module("phi.ui").directive("phiCutout", [function() {
+
+    return {
+        restrict: "C",
+        link: function(scope, element, attributes)  {
+            element.prepend(angular.element('<div class="phi-cutout-ridge"><div></div><div></div><div></div></div>'));
+        }
+    };
+
+}]);
 (function() {
     'use strict';
 
