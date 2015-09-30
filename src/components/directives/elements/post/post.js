@@ -66,7 +66,16 @@ post = {
                 ngModel: "="
             },
 
-            template:   '<div class="phi-post">' + 
+            controller:   phiPostController,
+            controllerAs: "vm",
+
+            template:   '<phi-blocks>' + 
+                            '<phi-api-resource ng-repeat="block in vm.post.blocks" type="{{block.type}}" src="{{block.url}}"></phi-api-resource>' + 
+                        '</phi-blocks>',
+
+
+
+            OLDtemplate:   '<div class="phi-post">' + 
 
                             '<div class="phi-post-blocks" sv-root sv-part="vm.post.blocks" sv-on-sort="vm.reorder()">' + 
 
@@ -112,10 +121,7 @@ post = {
                                 '</ul>' +
                             '</div>' +
 
-                        '</div>',
-
-            controller:   phiPostController,
-            controllerAs: "vm"
+                        '</div>'
 
         };
 

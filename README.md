@@ -15,3 +15,26 @@ Ease to style
 
 
 This is a work in progress.
+
+
+The main docs page is build with phi.ui itself.
+
+It showcases every element, and looks like this:
+
+'''
+<phi-app>
+
+    <!-- global modal -->
+    <phi-modal phi-visible="false"></phi-modal>
+
+    <!-- The current page (which is just a card) -->
+    <phi-card>
+
+        <phi-cover>
+        </phi-cover>
+
+        <phi-contents>
+        </phi-contents>
+    </phi-card>
+
+</phi-app>

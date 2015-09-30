@@ -62,7 +62,7 @@ function MdCheckboxDirective(inputDirective) {
         transclude: true,
         require: '?ngModel',
         template:
-            '<div class="phi-container" phi-ink-ripple phi-ink-ripple-checkbox>' +
+            '<div class="phi-container">' +
                 '<div class="phi-icon"></div>' +
             '</div>' +
             '<div ng-transclude class="phi-label"></div>',
