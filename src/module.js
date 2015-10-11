@@ -3,7 +3,8 @@
 
     angular
         .module("phi.ui", [
-            "ngAria"
+            "ngAria",
+            "textAngular"
         ]);
 
 })();

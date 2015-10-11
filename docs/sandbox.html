@@ -7,28 +7,110 @@
 
         <link rel="stylesheet" type="text/css" media="all" href="../public/build/phi-ui.min.css" />
         <link rel="stylesheet" type="text/css" media="all" href="index.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="../src/vendor/textangular/textAngular.css" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-aria.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-sanitize.min.js" type="text/javascript"></script>
+
+        <script src="../src/vendor/textangular/textAngular-rangy.min.js"></script>
+        <script src="../src/vendor/textangular/textAngular-sanitize.min.js"></script>
+        <script src="../src/vendor/textangular/textAngular.min.js"></script>
+
         <script src="../public/build/phi-ui.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+
+            angular
+                .module("phi.ui")
+                .controller("statesTest", statesTest);
+
+            statesTest.$inject = ["phiApi"];
+            function statesTest(phiApi) {
+
+                var vm = this;
+
+
+                var pageUrl = "http://127.0.0.1/v4/nodes/2jttml3b/posts/2jue5kfl"
+                vm.page     = false;
+
+                phiApi.get(pageUrl)
+                    .success(function(response) {
+
+                        vm.page     = response;
+                        vm.page.url = pageUrl;
+
+                        // post process the blocks :)
+                        vm.page.blocks.map(function(block) {
+                            block.menu = [
+                                {
+                                    state: "editor",
+                                    title: "editar",
+                                    icon: "fa-pencil"
+                                },
+
+                                {
+                                    state: "delete",
+                                    title: "eliminar",
+                                    icon: "fa-trash-o"
+                                }
+                            ];
+                        });
+
+                    });
+
+                vm.insertable = [
+                    {
+                        type: "html",
+                        title: "texto HTML",
+                        icon: "fa-font",
+
+                        collectionUrl: 'http://127.0.0.1/v4/posts/2k6jrofj/resources/media/html',
+
+                        menu: [
+                            {
+                                state: "editor",
+                                title: "editar",
+                                icon: "fa-pencil"
+                            },
+
+                            {
+                                state: "delete",
+                                title: "eliminar",
+                                icon: "fa-trash-o"
+                            }
+                        ]
+                    }
+                ];
+
+
+            }
+
+        </script>
+
+
+        <style type="text/css">
+        #page-editor {
+            max-width: 800px;
+        }
+        </style>
+
     </head>
 
-    <body phi-color-theme="{{theme}}" ng-init="theme = 'green'">
+    <body>
 
-        <div id="cover" class="phi-color-background-600">
-            <div phi-boundary>
-                <h1>Phi UI</h1>
-                <h2>A CSS toolkit</h2>
+        <div ng-controller="statesTest as vm">
 
-                <h3 phi-if-screen="small">Your screen is small</h3>
-                <h3 phi-if-screen="medium">Your screen is medium</h3>
-                <h3 phi-if-screen="large gt-large">Your screen is large <span phi-if-screen="gt-large">+</span></h3>
-            </div>
+            <section id="page-editor" phi-boundary>
+                <h1>Page editor</h1>
+                <phi-page-editor ng-model="vm.page" insertable="vm.insertable"></phi-page-editor>
+            </section>
+
         </div>
 
+
         <div id="contents" phi-boundary ng-init="foo = 1; counter = [1,2,3,4,5];">
-            
+
             <a href="#">focus me</a>
 
             <select ng-model="foo">
