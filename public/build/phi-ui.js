@@ -5795,16 +5795,17 @@ someObject = {
 
             function go(targetStateName) {
 
+                if (vm.states[targetStateName] === undefined || vm.currentState == targetStateName) {
+                    return;
+                }
+
                 if (scope) {
                     scope.$destroy();
                     scope = null;
                 }
 
                 scope = $scope.$new(true);
-
-                if (vm.states[targetStateName] === undefined || vm.currentState == targetStateName) {
-                    return;
-                }
+                scope.phiObject = vm;
 
                 $element.removeClass("phi-object-state-"+vm.currentState);
                 $element.addClass("phi-object-state-"+targetStateName);
@@ -5816,7 +5817,7 @@ someObject = {
 
                 if (targetState.controller) {
 
-                    var controllerObj = $controller(targetState.controller, {'$scope': scope, 'phiStatesController': vm});
+                    var controllerObj = $controller(targetState.controller, {'$scope': scope});
 
                     if (targetState.controllerAs) {
                         scope[targetState.controllerAs] = controllerObj;
@@ -7569,9 +7570,6 @@ insertable = [
         return function(phiObject) {
 
             return {
-
-                type:  "html",
-                title: "texto html",
 
                 initialize: initialize,
 

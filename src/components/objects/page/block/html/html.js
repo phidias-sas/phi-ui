@@ -12,9 +12,6 @@
 
             return {
 
-                type:  "html",
-                title: "texto html",
-
                 initialize: initialize,
 
                 states: {
