@@ -168,20 +168,25 @@ insertable = [
             function attachBlock(block) {
 
                 if (block.id) {
-                    return;
+
+                    phiApi.put( vm.page.url + "/blocks/" + block.id, block);
+
+                } else {
+
+                    phiApi.post( vm.page.url + "/blocks", {
+
+                        type:        block.type,
+                        url:         block.url,
+                        title:       block.title,
+                        description: block.description,
+                        order:       vm.page.blocks.length
+
+                    }).success( function(response) {
+                        block.id = response.id;
+                    });
+
                 }
 
-                phiApi.post( vm.page.url + "/blocks", {
-
-                    type:        block.type,
-                    url:         block.url,
-                    title:       block.title,
-                    description: block.description,
-                    order:       vm.page.blocks.length
-
-                }).success( function(response) {
-                    block.id = response.id;
-                });
             };
 
             function removeBlock(block) {

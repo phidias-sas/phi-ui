@@ -4,7 +4,9 @@
     angular
         .module("phi.ui", [
             "ngAria",
-            "textAngular"
+            "textAngular",
+            "angular-sortable-view",
+            "angularFileUpload"
         ]);
 
 })();

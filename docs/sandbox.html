@@ -13,6 +13,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-aria.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-sanitize.min.js" type="text/javascript"></script>
 
+        <script src="../src/vendor/angular-sortable-view/angular-sortable-view.min.js" type="text/javascript"></script>
+
+        <script src="../src/vendor/angular-file-upload/angular-file-upload.min.js" type="text/javascript"></script>
+
         <script src="../src/vendor/textangular/textAngular-rangy.min.js"></script>
         <script src="../src/vendor/textangular/textAngular-sanitize.min.js"></script>
         <script src="../src/vendor/textangular/textAngular.min.js"></script>
@@ -28,9 +32,7 @@
             statesTest.$inject = ["phiApi"];
             function statesTest(phiApi) {
 
-                var vm = this;
-
-
+                var vm      = this;
                 var pageUrl = "http://127.0.0.1/v4/nodes/2jttml3b/posts/2jue5kfl"
                 vm.page     = false;
 
@@ -59,6 +61,7 @@
 
                     });
 
+
                 vm.insertable = [
                     {
                         type: "html",
@@ -67,6 +70,47 @@
 
                         collectionUrl: 'http://127.0.0.1/v4/posts/2k6jrofj/resources/media/html',
 
+                        menu: [
+                            {
+                                state: "editor",
+                                title: "editar",
+                                icon: "fa-pencil"
+                            },
+
+                            {
+                                state: "delete",
+                                title: "eliminar",
+                                icon: "fa-trash-o"
+                            }
+                        ]
+                    },
+
+                    {
+                        type: "youtube",
+                        title: "Youtube",
+                        icon: "fa-youtube-play",
+
+                        collectionUrl: 'http://127.0.0.1/v4/nodes/2jttml3b/posts/2jue5kfl/blocks',
+
+                        menu: [
+                            {
+                                state: "editor",
+                                title: "editar",
+                                icon: "fa-pencil"
+                            },
+
+                            {
+                                state: "delete",
+                                title: "eliminar",
+                                icon: "fa-trash-o"
+                            }
+                        ]
+                    },
+
+                    {
+                        type: "filesystem",
+                        title: "Files",
+                        icon: "fa-files-o",
                         menu: [
                             {
                                 state: "editor",
@@ -98,7 +142,22 @@
     </head>
 
     <body>
+<!-- 
+        <section>
+            <h1>Here is a local folder</h1>
+            <phi-api-filesystem url="http://localhost/filesystem/people/emma/files/local/"></phi-api-filesystem>
+        </section>
 
+        <section>
+            <h1>Here is an S3 folder</h1>
+            <phi-api-filesystem url="http://localhost/filesystem/people/emma/files/s3/"></phi-api-filesystem>
+        </section>
+
+        <section>
+            <h1>Here is a dropbox folder</h1>
+            <phi-api-filesystem url="http://localhost/filesystem/people/emma/files/dropbox/"></phi-api-filesystem>
+        </section>
+ -->
         <div ng-controller="statesTest as vm">
 
             <section id="page-editor" phi-boundary>

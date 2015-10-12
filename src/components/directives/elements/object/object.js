@@ -29,8 +29,8 @@ someObject = {
 
             scope: {
                 type:         "@",
-                ngModel:      "=",
                 controllerAs: "=",
+                ngModel:      "=",
                 onChange:     "&",
                 onDestroy:    "&"
             },
@@ -73,7 +73,7 @@ someObject = {
 
             /* Setup external controller */
             vm.controller = {
-                states:       vm.states,
+                states:       Object.keys(vm.states),
                 currentState: vm.currentState,
                 go:           go,
                 isLoading:    vm.isLoading
