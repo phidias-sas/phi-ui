@@ -75,7 +75,7 @@
                     //make one up I guess!
                     var random = Math.floor((Math.random() * 10000) + 1);
 
-                    phiObject.ngModel.url = "http://127.0.0.1/filesystem/people/citizen" + random + "/files/dropbox/";
+                    phiObject.ngModel.url = "http://127.0.0.1/filesystem/people/citizen" + random + "/files/local/";
                     phiObject.change();
                 }
             }

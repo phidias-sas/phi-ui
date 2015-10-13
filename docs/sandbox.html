@@ -33,7 +33,7 @@
             function statesTest(phiApi) {
 
                 var vm      = this;
-                var pageUrl = "http://127.0.0.1/v4/nodes/2jttml3b/posts/2jue5kfl"
+                var pageUrl = "http://127.0.0.1/v4/nodes/2jttml3b/posts/2joe9iop"
                 vm.page     = false;
 
                 phiApi.get(pageUrl)
@@ -68,7 +68,7 @@
                         title: "texto HTML",
                         icon: "fa-font",
 
-                        collectionUrl: 'http://127.0.0.1/v4/posts/2k6jrofj/resources/media/html',
+                        collectionUrl: 'http://127.0.0.1/v4/posts/2joe9iop/resources/media/html',
 
                         menu: [
                             {
@@ -90,7 +90,7 @@
                         title: "Youtube",
                         icon: "fa-youtube-play",
 
-                        collectionUrl: 'http://127.0.0.1/v4/nodes/2jttml3b/posts/2jue5kfl/blocks',
+                        collectionUrl: 'http://127.0.0.1/v4/nodes/2jttml3b/posts/2joe9iop/blocks',
 
                         menu: [
                             {
@@ -161,13 +161,14 @@
         <div ng-controller="statesTest as vm">
 
             <section id="page-editor" phi-boundary>
-                <h1>Page editor</h1>
+
                 <phi-page-editor ng-model="vm.page" insertable="vm.insertable"></phi-page-editor>
+
             </section>
 
         </div>
 
-
+<!-- 
         <div id="contents" phi-boundary ng-init="foo = 1; counter = [1,2,3,4,5];">
 
             <a href="#">focus me</a>
@@ -197,7 +198,7 @@
             <h1>Now selected: {{foo}}</h1>
 
 
-        </div> <!-- /#contents -->
-
+        </div> 
+ -->
     </body>
 </html>
