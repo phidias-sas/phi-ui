@@ -1,0 +1,39 @@
+$phi-page-editor-block-toolbar-height: 42px;
+
+phi-page-editor {
+
+    display: block;
+
+    .phi-page-editor-block {
+
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 12px;
+        padding: 4px;
+
+        &-toolbar {
+            position: relative;
+            height: $phi-page-editor-block-toolbar-height;
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, 0.065);
+            cursor: move;            
+
+
+            &-menu {
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                button {
+                    background: transparent;
+                    border: 0;
+                    padding: 6px 22px;
+                    height: $phi-page-editor-block-toolbar-height;
+                }
+            }
+
+        }
+
+    }
+
+}

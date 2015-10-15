@@ -91,11 +91,11 @@ insertable = [
 
                             '<div sv-root sv-part="vm.page.blocks" sv-on-sort="vm.reorder()">' + 
 
-                                '<div ng-repeat="(key, block) in vm.page.blocks" ng-init="block.ctrl = {}" class="phi-block" sv-element>' + 
+                                '<div ng-repeat="(key, block) in vm.page.blocks" ng-init="block.ctrl = {}" class="phi-page-editor-block" sv-element>' + 
 
-                                    '<div class="phi-block-toolbar" sv-handle>' + 
+                                    '<div class="phi-page-editor-block-toolbar" sv-handle>' + 
 
-                                        '<div class="phi-block-menu">' + 
+                                        '<div class="phi-page-editor-block-toolbar-menu">' + 
                                             '<phi-button class="cancel" ng-blur="block.menuShown = false" id="menu_toggler_{{post.id}}_{{key}}" ng-show="block.ctrl.currentState == \'default\'" ng-click="block.menuShown = !block.menuShown" phi-icon="fa-ellipsis-v"></phi-button>' + 
                                             '<phi-button class="cancel" ng-blur="block.menuShown = false" ng-show="block.ctrl.currentState != \'default\'" ng-click="block.ctrl.go(\'default\')" phi-icon="fa-arrow-left"></phi-button>' + 
 
@@ -122,11 +122,15 @@ insertable = [
                             '</div>' + 
 
 
-                            '<div class="phi-block-adder">' +
-                                '<ul>' +
-                                    '<li ng-repeat="insertable in vm.insertable" phi-icon="{{insertable.icon}}" ng-click="vm.addBlock(insertable)" ng-bind="insertable.title"></li>' +
-                                '</ul>' +
-                            '</div>' +
+                            '<div class="phi-page-editor-inserter phi-drawer" phi-texture="paper">' + 
+                                '<div phi-visible="{{!!adderIsOpen}}" phi-visible-animation="scale">' + 
+                                    '<phi-menu>' + 
+                                        '<phi-menu-item ng-repeat="insertable in vm.insertable" ng-click="$parent.adderIsOpen = false; vm.addBlock(insertable);" phi-icon-left="{{insertable.icon}}">{{insertable.title}}</phi-menu-item>' + 
+                                    '</phi-menu>' + 
+                                '</div>' + 
+                                '<button ng-click="adderIsOpen = true" ng-show="!adderIsOpen" phi-icon-left="fa-plus">adjuntar</button>' + 
+                                '<button ng-click="adderIsOpen = false" ng-show="adderIsOpen" phi-icon-left="fa-times" class="cancel">cancelar</button>' + 
+                            '</div>' + 
 
                         '</div>'
 

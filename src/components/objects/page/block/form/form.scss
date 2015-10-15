@@ -1,25 +1,50 @@
-phi-block.form {
+.phi-form-editor {
 
-    form {
+    margin-bottom: 32px;
 
-        & > h1 {
-            margin: 0;
-            padding: 0;
+    & > .description {
+        margin-bottom: 24px;
+    }
+
+    & > .fields {
+        padding: 6px;
+    }
+
+    &-field {
+
+        margin-bottom: 24px;
+
+        &-toolbar {
+            cursor: move;
+            position: relative;
+            height: 30px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            margin-bottom: 6px;
+
+            & > a {
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                display: block;
+                height: 30px;
+                line-height: 30px;
+                padding: 0 8px;
+            }
         }
 
-        & > p {
-            margin: 0;
-            padding: 0;
-            opacity: 0.8;
+        &-controls,
+        &-preview {
+            display: inline-block;
+            box-sizing: border-box;
+            width: 50%;
+
+            padding: 18px;
+            vertical-align: top;
         }
 
-        fieldset {
-            padding: 12px;
-        }
-
-        .preview {
-
-            padding: 24px;
+        &-preview {
 
             label {
                 display: block;
@@ -36,81 +61,33 @@ phi-block.form {
                 marign-right: 1em;
             }
 
-            .notice {
+            .description {
                 margin: 0;
                 padding: 6px 0;
                 font-size: 12px;
                 opacity: 0.6;
             }
-            
-        }
-
-    }
-
-
-    .builder {
-
-        .field-adder {
-            margin: 12px 0;
-            background: transparent;
-            border: 0;
-            padding: 12px 24px;
-        }
-
-        .field {
-            border-bottom: 1px dashed #ddd;
-            padding-bottom: 12px;
-            margin-bottom: 24px;
-
-            .toolbar {
-                cursor: move;
-                position: relative;
-                height: 30px;
-                border-radius: 4px;
-                background-color: #f0f0f0;
-                margin-bottom: 6px;
-
-                a {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-
-                    display: block;
-                    height: 30px;
-                    line-height: 30px;
-                    padding: 0 8px;
-                }
-            }
-
-            .preview,
-            .controls {
-                display: inline-block;
-                width: 47%;
-                vertical-align: top;
-            }
-
-            .controls {
-                margin-right: 5%;
-            }
-
-            .controls {
-                background: #f3f3f3;
-                padding: 12px;
-                border: 1px dashed #ccc;
-                border-radius: 4px;
-
-                .notice {
-                    font-size: 12px;
-                    margin: 0;
-                    padding: 0;
-                }
-            }
 
         }
 
+        &-controls {
 
-        footer {
-            margin-top: 24px;
+            background: #f3f3f3;
+            border: 1px dashed #ccc;
+            border-radius: 4px;
+
+            .notice {
+                font-size: 12px;
+                margin: 0;
+                padding: 0;
+            }
+
+            phi-select,
+            phi-input {
+                display: block;
+                margin-bottom: 12px;
+            }
+
         }
 
     }
