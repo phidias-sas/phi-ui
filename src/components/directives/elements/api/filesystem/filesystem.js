@@ -30,7 +30,6 @@ This element provides an interface with a phidias filesystem endpoint
 
             template:   '<div ng-if="uploader">' +
 
-
                             '<ul>' +
                                 '<li ng-repeat="item in items" ng-class="{selected: selected.url == item.url}" ng-click="select(item)">' +
                                     '<div class="thumbnail">' +
@@ -41,7 +40,8 @@ This element provides an interface with a phidias filesystem endpoint
                                 '</li>' +
 
                                 '<li ng-repeat="item in uploader.queue">' +
-                                    '<div class="thumbnail">' +
+                                    '<h3 ng-bind="item.file.name"></h3>' +
+                                    '<div class="thumbnail" ng-if="item.file.type.substring(0,5) == \'image\'">' +
                                         '<div ng-thumb="{file: item._file, height: 100}"></div>' +
                                     '</div>' +
                                     '<progress max="100" value="{{item.progress}}"></progress>' +
