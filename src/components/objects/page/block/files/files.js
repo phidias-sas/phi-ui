@@ -3,10 +3,10 @@
 
     angular
         .module("phi.ui")
-        .factory("phiObjectPageBlockFilesystem", phiObjectPageBlockFilesystem);
+        .factory("phiObjectPageBlockFiles", phiObjectPageBlockFiles);
 
-    phiObjectPageBlockFilesystem.$inject = ["phiApi"];
-    function phiObjectPageBlockFilesystem(phiApi) {
+    phiObjectPageBlockFiles.$inject = ["phiApi"];
+    function phiObjectPageBlockFiles(phiApi) {
 
         return function(phiObject) {
 
@@ -18,11 +18,15 @@
 
                     default: {
                         controller: loadFiles,
-                        template:   '<ul>' + 
-                                        '<li ng-repeat="file in phiObject.files">' + 
-                                            '<a href="{{phiObject.ngModel.url}}/{{file.path}}" target="_blank" ng-bind="file.path"></a>' + 
-                                        '</li>' + 
-                                    '</ul>'
+                        template:   '<div>' + 
+                                        '<ul>' + 
+                                            '<li ng-repeat="file in phiObject.files">' + 
+                                                '<a href="{{file.url}}" target="_blank">' + 
+                                                    '<img ng-src="{{file.thumbnail}}" />' + 
+                                                '</a>' + 
+                                            '</li>' + 
+                                        '</ul>' + 
+                                    '</div>'
                     },
 
                     editor: {
@@ -52,7 +56,7 @@
                 phiApi.get(phiObject.ngModel.url)
                     .success(function(response) {
                         phiObject.files = response;
-                    })
+                    });
 
             }
 
@@ -75,7 +79,7 @@
                     //make one up I guess!
                     var random = Math.floor((Math.random() * 10000) + 1);
 
-                    phiObject.ngModel.url = "http://127.0.0.1/filesystem/people/citizen" + random + "/files/local/";
+                    phiObject.ngModel.url = phiObject.ngModel.collectionUrl + "/block" + random;
                     phiObject.change();
                 }
             }

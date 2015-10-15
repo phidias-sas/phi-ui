@@ -89,9 +89,6 @@ insertable = [
 
             template:   '<div>' + 
 
-                            '<h1 ng-bind="vm.page.title"></h1>' + 
-                            '<div ng-bind="vm.page.description"></div>' + 
-
                             '<div sv-root sv-part="vm.page.blocks" sv-on-sort="vm.reorder()">' + 
 
                                 '<div ng-repeat="(key, block) in vm.page.blocks" ng-init="block.ctrl = {}" class="phi-block" sv-element>' + 
@@ -154,15 +151,12 @@ insertable = [
                     vm.page.blocks = [];
                 }
 
-                var newBlock = {
-                    order: vm.page.blocks.length
-                };
-
-                for (var property in insertable) {
-                    newBlock[property] = insertable[property];
-                }
+                var newBlock   = insertable.block;
+                newBlock.type  = insertable.type;
+                newBlock.order = vm.page.blocks.length;
 
                 vm.page.blocks.push(newBlock);
+
             };
 
             function attachBlock(block) {

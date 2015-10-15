@@ -60,7 +60,7 @@
 
                 phiApi.post(phiObject.ngModel.collectionUrl)
                     .success(function(response, code, headers) {
-                        phiObject.ngModel.url = 'http://127.0.0.1/v4/' + headers("location");
+                        phiObject.ngModel.url = headers("location");
 
                         // Play nice:  report ngModel changes to phiObject
                         phiObject.change();

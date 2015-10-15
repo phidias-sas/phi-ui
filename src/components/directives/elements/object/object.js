@@ -144,7 +144,7 @@ someObject = {
 
             if (typeof objectService.initialize == "function") {
                 objectService.initialize();
-            } else {
+            } else if (vm.states.length) {
                 vm.go(Object.keys(vm.states)[0]);
             }
 
@@ -157,9 +157,14 @@ someObject = {
             });
 
             var serviceName  = "phiObject" + words.join("");
-            var blockFactory = angular.element(document.body).injector().get(serviceName);
 
-            return blockFactory(vm);
+            try {
+                var blockFactory = angular.element(document.body).injector().get(serviceName);
+                return blockFactory(vm);
+            } catch (err) {
+                console.log("Block service " + serviceName + " not found");
+                return {states: []};
+            }
 
         };
 

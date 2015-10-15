@@ -83,7 +83,7 @@ This element provides an interface with a phidias filesystem endpoint
                     return;
                 }
 
-                phiApi.delete(scope.url + "/" + item.basename)
+                phiApi.delete(scope.url + "/" + item.name)
                     .success(function (data) {
                         scope.items.splice(scope.items.indexOf(item), 1);
                         scope.onChange({items: scope.items});
