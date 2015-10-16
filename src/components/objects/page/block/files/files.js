@@ -17,22 +17,12 @@
                 states: {
 
                     default: {
-                        controller: loadFiles,
-                        template:   '<div>' + 
-                                        '<ul>' + 
-                                            '<li ng-repeat="file in phiObject.files">' + 
-                                                '<a href="{{file.url}}" target="_blank">' + 
-                                                    '<img ng-src="{{file.thumbnail}}" />' + 
-                                                '</a>' + 
-                                            '</li>' + 
-                                        '</ul>' + 
-                                    '</div>'
+                        template:   '<phi-api-resource-files src="{{phiObject.ngModel.url}}"></phi-api-resource-files>'
                     },
 
                     editor: {
                         controller:   editorController,
-                        controllerAs: 'vm',
-                        template:     '<phi-api-filesystem url="{{phiObject.ngModel.url}}"></phi-api-filesystem>'
+                        template:     '<phi-api-resource-files-editor src="{{phiObject.ngModel.url}}"></phi-api-resource-files-editor>'
                     },
 
                     delete: {
@@ -51,15 +41,6 @@
 
             //////////////////////
 
-            function loadFiles() {
-
-                phiApi.get(phiObject.ngModel.url)
-                    .success(function(response) {
-                        phiObject.files = response;
-                    });
-
-            }
-
             function initialize() {
 
                 if ( phiObject.ngModel.url ) {
@@ -73,7 +54,6 @@
 
 
             function editorController() {
-                var vm = this;
 
                 if ( !phiObject.ngModel.url ) {
                     //make one up I guess!
@@ -82,6 +62,7 @@
                     phiObject.ngModel.url = phiObject.ngModel.collectionUrl + "/block" + random;
                     phiObject.change();
                 }
+
             }
 
         }

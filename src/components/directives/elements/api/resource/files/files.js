@@ -16,14 +16,21 @@
                 src: "@"
             },
 
-            bindToController: true,
-
             controller:       phiApiResourceFilesController,
             controllerAs:     "vm",
+            bindToController: true,
 
-            template:   '<phi-gallery>' + 
-                            '<phi-gallery-image ng-repeat="picture in vm.gallery.pictures" src="{{picture.preview|trustAsResourceUrl}}" thumbnail="{{picture.thumbnail|trustAsResourceUrl}}"></phi-gallery-image>' + 
-                        '</phi-gallery>'
+            template:   '<ul>' +
+                            '<li ng-repeat="item in vm.files" class="phi-api-resource-files-file" ng-class="{selected: selected.url == item.url}" ng-click="select(item)">' +
+                                '<a class="thumbnail" target="_blank" href="{{item.url}}">' +
+                                    '<img ng-if="!!item.thumbnail" ng-src="{{item.thumbnail}}" />' +
+                                '</a>' +
+                                '<a class="details" target="_blank" href="{{item.url}}">' +
+                                    '<h3 ng-bind="item.title"></h3>' +
+                                    '<p>{{item.size|bytes}} - {{item.name}}</p>' +
+                                '</a>' +
+                            '</li>' +
+                        '</ul>'
         };
 
         ///////////////////////////////////
@@ -31,18 +38,12 @@
         phiApiResourceFilesController.$inject = ["phiApi"];
         function phiApiResourceFilesController(phiApi) {
 
-            var vm     = this;
-            vm.gallery = null;
+            var vm   = this;
+            vm.files = [];
 
             phiApi.get(vm.src)
                 .success(function(response) {
-                    vm.gallery = response;
-
-                    phiApi.get(vm.src)
-                        .success(function(response) {
-                            vm.gallery.pictures = response;
-                        });
-
+                    vm.files = response;
                 });
 
         }

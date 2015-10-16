@@ -31,9 +31,9 @@
                     delete: {
                         controller:   deleteController,
                         controllerAs: 'vm',                    
-                        template:     '<h1>Are you sure ?</h1>' + 
-                                      '<phi-button class="danger" ng-click="vm.confirm()">Delete</phi-button>'  + 
-                                      '<phi-button class="cancel" ng-click="vm.cancel()">Cancel</phi-button>'
+                        template:     '<h1>Eliminar este texto ?</h1>' + 
+                                      '<phi-button class="danger" ng-click="vm.confirm()">Eliminar</phi-button>'  + 
+                                      '<phi-button class="cancel" ng-click="vm.cancel()">Cancelar</phi-button>'
                     },
 
                     error: {
