@@ -18,13 +18,14 @@ angular.module("phi.ui").directive("phiInput", [function() {
             ngModelOptions: "=",
             ngChange:       "&",
             ngFocus:        "&",
-            ngBlur:         "&"
+            ngBlur:         "&",
+            maxlength:      "@",
         },
 
         template:   '<div>' +
                         '<label for="{{elementId}}" ng-bind="label"></label>' +
-                        '<input type="{{type||\'text\'}}" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-model-options="ngModelOptions||{}" />' +
-                        '<textarea ng-if="multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false" ng-model-options="ngModelOptions||{}"></textarea>' +
+                        '<input maxlength="{{maxlength}}" type="{{type||\'text\'}}" ng-if="!multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-model-options="ngModelOptions||{}" />' +
+                        '<textarea maxlength="{{maxlength}}" ng-if="multiline" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="blur()" id="{{elementId}}" name="{{name}}" ng-model="$parent.ngModel" ng-disabled="state.disabled" ng-trim="false" ng-model-options="ngModelOptions||{}"></textarea>' +
                     '</div>' +
                     '<hr />',
 
