@@ -1,4 +1,8 @@
-# Phi-UI
+# DEPRECATED !
+See https://github.com/phidias-sas/ui.js instead
+
+
+##### Phi-UI
 
 UI kit of CSS and Angular.js components.  Based on material.angular.org but preserving
 the following principles:
